@@ -1,0 +1,11 @@
+.navbar {
+    height: 42px;
+    color:coral;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;  
+    width: 100%;  
+    justify-content: center;  
+    background-color: rgb(255, 218, 240);
+}
