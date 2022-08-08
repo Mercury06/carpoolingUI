@@ -1,12 +1,11 @@
-import './App.module.scss';
 import Header from '../Header/Header.jsx';
-import Navbar from '../Navbar/Navbar';
+//import Navbar from '../Navbar/Navbar';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Header />
-      <Navbar />
+      {/* <Navbar /> */}
       <div></div>
     </div>
   );
