@@ -14,7 +14,7 @@
     overflow: hidden;
     color: $light;
     margin: 0 auto;
-    max-width: 1920px;
+    max-width: 100%; //edit
     height: 100%;
     display: flex;
     align-items: center;
@@ -25,6 +25,7 @@
     &__logo {
       font-size: 2rem;
       font-weight: bold;
+      font-family: $Poppins;
       text-decoration: none;
       color: $light;
     }
@@ -44,7 +45,7 @@
       background: rgba($dark, 0.9);
       backdrop-filter: blur(2px);
       transform: translate(0);
-      transition: 0.3s ease transform;
+      transition: 0.5s ease transform;
 
       @include breakpoint(md) {
         transform: none;
@@ -76,6 +77,7 @@
           }
           a {
             text-decoration: none;
+            font-family: $Poppins;
             color: inherit;
             padding: 0.75rem 1.25rem;
             border-radius: $borderRadius;
@@ -91,29 +93,29 @@
           }
         }
       }
-      button {
-        cursor: pointer;
-        outline: none;
-        padding: 0.75rem 1.25rem;
-        border-radius: $borderRadius;
-        font-size: 1rem;
-        font-family: inherit;
-        background: $primary;
-        color: $dark;
-        border: 1px solid transparent;
-        transition: 0.3s ease all;
+      // button {
+      //   cursor: pointer;
+      //   outline: none;
+      //   padding: 0.75rem 1.25rem;
+      //   border-radius: $borderRadius;
+      //   font-size: 1rem;
+      //   font-family: inherit;
+      //   background: $primary;
+      //   color: $dark;
+      //   border: 1px solid transparent;
+      //   transition: 0.3s ease all;
 
-        &:hover {
-          border-color: $primary;
-          background: rgba($primary, 0.1);
-          color: $primary;
-        }
-        &:active {
-          border-color: $primary;
-          background: linear-gradient(rgba($primary, 0.2), rgba($primary, 0.3));
-          color: $primary;
-        }
-      }
+      //   &:hover {
+      //     border-color: $primary;
+      //     background: rgba($primary, 0.1);
+      //     color: $primary;
+      //   }
+      //   &:active {
+      //     border-color: $primary;
+      //     background: linear-gradient(rgba($primary, 0.2), rgba($primary, 0.3));
+      //     color: $primary;
+      //   }
+      // }
 
       &.isMenu {
         transform: translate(100%);
