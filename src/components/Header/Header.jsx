@@ -36,11 +36,6 @@ const Header = () => {
     setMenuOpen(() => !menuOpen);
   };
 
-  const ctaClickHandler = () => {
-    menuToggleHandler();
-    navigate('/page-cta');
-  };
-
   return (
     <header className={classes.header}>
       <div className={classes.header__content}>
@@ -58,7 +53,7 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link to="/page-two" onClick={menuToggleHandler}>
+              <Link to="/login" onClick={menuToggleHandler}>
                 Войти
               </Link>
             </li>
