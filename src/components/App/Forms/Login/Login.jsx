@@ -2,10 +2,10 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import s from './Login.module.scss';
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit }) => {
   return (
     <>
-      <form onSubmit={props.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div>
           <Field placeholder={'Login'} name={'login'} component={'input'} />
         </div>
