@@ -22,6 +22,7 @@ function App() {
         {/* <Route path="/" exact></Route> */}
         <Route path="login" element={<Login />} />
         <Route path="registration" element={<Registration />} />
+        {/* <Route path="search" element={<Registration />} /> */}
       </Routes>
     </Layout>
   );
