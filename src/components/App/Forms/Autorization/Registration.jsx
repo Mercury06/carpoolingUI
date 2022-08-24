@@ -1,8 +1,8 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import s from './Login.module.scss';
+import s from './autorization.module.scss';
 
-const LoginForm = ({ handleSubmit }) => {
+const RegistrationForm = ({ handleSubmit }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -16,25 +16,25 @@ const LoginForm = ({ handleSubmit }) => {
           <Field type={'checkbox'} name={'rememberMe'} component={'input'} /> remember me
         </div>
         <div>
-          <button>Login</button>
+          <button>Sign up</button>
         </div>
       </form>
     </>
   );
 };
 
-const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
+const RegistrationReduxForm = reduxForm({ form: 'registration' })(RegistrationForm);
 
-const Login = (props) => {
+const Registration = (props) => {
   const onSubmit = (formData) => {
     console.log(formData);
   };
   return (
-    <div className={s.login}>
-      <h1>Login</h1>
-      <LoginReduxForm onSubmit={onSubmit} />
+    <div className={s.registration}>
+      <h1>Registration</h1>
+      <RegistrationReduxForm onSubmit={onSubmit} />
     </div>
   );
 };
 
-export default Login;
+export default Registration;

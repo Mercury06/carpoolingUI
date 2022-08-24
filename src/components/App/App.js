@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import Header from '../Header/Header.jsx';
 import Layout from '../Layout/Layout.jsx';
-import Login from './Forms/Login/Login.jsx';
-import Registration from './Forms/Registration/Registration.jsx';
+import Login from './Forms/Autorization/Login.jsx';
+import Registration from './Forms/Autorization/Registration.jsx';
 //import Navbar from '../Navbar/Navbar';
 
 // function App() {
