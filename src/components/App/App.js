@@ -1,6 +1,8 @@
+import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Header from '../Header/Header.jsx';
 import Layout from '../Layout/Layout.jsx';
+import MainPage from '../MainPage/MainPage.jsx';
 import Login from './Forms/Autorization/Login.jsx';
 import Registration from './Forms/Autorization/Registration.jsx';
 //import Navbar from '../Navbar/Navbar';
@@ -16,14 +18,17 @@ import Registration from './Forms/Autorization/Registration.jsx';
 // }
 
 function App() {
+  const isAuth = useSelector((state) => state.user.isAuth);
+
   return (
     <Layout>
       <Routes>
         {/* <Route path="/" exact></Route> */}
-        <Route path="login" element={<Login />} />
-        <Route path="registration" element={<Registration />} />
+        {!isAuth && <Route path="login" element={<Login />} />}
+        {!isAuth && <Route path="registration" element={<Registration />} />}
         {/* <Route path="search" element={<Registration />} /> */}
       </Routes>
+      {isAuth && <MainPage />}
     </Layout>
   );
 }

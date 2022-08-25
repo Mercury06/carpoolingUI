@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
 import { BiMenuAltRight } from 'react-icons/bi';
-import { AiOutlineClose } from 'react-icons/ai';
+//import { AiOutlineClose } from 'react-icons/ai';
+import { BiArrowBack } from 'react-icons/bi';
 
 import classes from './Header.module.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../reducers/userReducer';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -13,6 +16,11 @@ const Header = () => {
     width: undefined,
     height: undefined,
   });
+  const isAuth = useSelector((state) => state.user.isAuth);
+  const user = useSelector((state) => state.user.currentUser);
+  const login = user.username;
+  // const currentDir = useSelector( state => state.files.currentDir)
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleResize = () => {
@@ -42,6 +50,16 @@ const Header = () => {
         <Link to="/" className={classes.header__content__logo}>
           navbar
         </Link>
+        {isAuth && (
+          <>
+            {' '}
+            <div className="navbar__login" title="logout" onClick={() => dispatch(logout())}>
+              <NavLink to="/login">
+                <b>{login}</b>
+              </NavLink>
+            </div>
+          </>
+        )}
         <nav
           className={`${classes.header__content__nav} ${
             menuOpen && size.width < 768 ? classes.isMenu : ''
@@ -73,7 +91,7 @@ const Header = () => {
           {!menuOpen ? (
             <BiMenuAltRight onClick={menuToggleHandler} />
           ) : (
-            <AiOutlineClose onClick={menuToggleHandler} />
+            <BiArrowBack onClick={menuToggleHandler} />
           )}
         </div>
       </div>
