@@ -7,7 +7,7 @@ const RegistrationForm = ({ handleSubmit }) => {
     <>
       <form onSubmit={handleSubmit}>
         <div>
-          <Field placeholder={'Login'} name={'login'} component={'input'} />
+          <Field placeholder={'Username'} name={'Username'} component={'input'} />
         </div>
         <div>
           <Field placeholder={'Password'} name={'password'} component={'input'} />
