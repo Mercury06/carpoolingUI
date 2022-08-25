@@ -1,7 +1,7 @@
 import React from 'react';
-//import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-//import { login } from './../../../api/actions';
+import { login } from '../../../api/actions';
 import s from './autorization.module.scss';
 
 const LoginForm = ({ handleSubmit }) => {
@@ -18,7 +18,7 @@ const LoginForm = ({ handleSubmit }) => {
     <>
       <form onSubmit={handleSubmit}>
         <div>
-          <Field placeholder={'e-mail'} name={'Username'} component={'input'} />
+          <Field placeholder={'e-mail'} name={'username'} component={'input'} />
         </div>
         <div>
           <Field placeholder={'password'} name={'password'} component={'input'} />
@@ -37,8 +37,10 @@ const LoginForm = ({ handleSubmit }) => {
 const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
 
 const Login = (props) => {
+  const dispatch = useDispatch();
   const onSubmit = (formData) => {
     console.log(formData);
+    dispatch(login({ ...formData }));
   };
   return (
     <div className={s.registration}>
