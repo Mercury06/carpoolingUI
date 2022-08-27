@@ -1,7 +1,50 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
+import s from './mainPage.module.scss';
 
-const MainPage = () => {
-  return <h1>Here sould be content</h1>;
+const SearchForm = ({ handleSubmit }) => {
+  // const [form, setForm] = useState({ username: '', password: '' });
+  // //const[response, setResponse] = useState('')
+
+  // const changeHandler = (event) => {
+  //   setForm({ ...form, [event.target.name]: event.target.value });
+  //   // console.log(form)
+  // };
+  // const dispatch = useDispatch();
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <Field placeholder={'e-mail'} name={'username'} component={'input'} />
+        </div>
+        <div>
+          <Field placeholder={'password'} name={'password'} component={'input'} />
+        </div>
+        <div>
+          <Field type={'checkbox'} name={'rememberMe'} component={'input'} /> remember me
+        </div>
+        <div>
+          <button>Search</button>
+        </div>
+      </form>
+    </>
+  );
 };
 
-export default MainPage;
+const SearchReduxForm = reduxForm({ form: 'search' })(SearchForm);
+
+const Search = (props) => {
+  const dispatch = useDispatch();
+  const onSubmit = (formData) => {
+    console.log(formData);
+  };
+  return (
+    <div className={s.registration}>
+      <SearchReduxForm onSubmit={onSubmit} />
+    </div>
+  );
+};
+
+export default Search;
