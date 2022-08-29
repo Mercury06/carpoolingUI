@@ -15,20 +15,22 @@ const SearchForm = ({ handleSubmit }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <Field placeholder={'e-mail'} name={'username'} component={'input'} />
-        </div>
-        <div>
-          <Field placeholder={'password'} name={'password'} component={'input'} />
-        </div>
-        <div>
-          <Field type={'checkbox'} name={'rememberMe'} component={'input'} /> remember me
-        </div>
-        <div>
-          <button>Search</button>
-        </div>
-      </form>
+      <div className={s.container}>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <Field placeholder={'e-mail'} name={'username'} component={'input'} />
+          </div>
+          <div>
+            <Field placeholder={'password'} name={'password'} component={'input'} />
+          </div>
+          <div>
+            <Field type={'checkbox'} name={'rememberMe'} component={'input'} /> remember me
+          </div>
+          <div>
+            <button>Search</button>
+          </div>
+        </form>
+      </div>
     </>
   );
 };

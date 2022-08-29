@@ -1,0 +1,32 @@
+.container {
+  //height: calc(100vh - #{$headerHeight});
+  // background: $bg;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  border: 1px solid rgb(88, 87, 87);
+  border-radius: 6px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px;
+
+  input {
+    margin: 10px 0;
+    font-family: inherit;
+    font-size: inherit;
+    border-radius: 6px;
+    //width: 100%;
+  }
+  button {
+    padding: 6px;
+    border: none;
+    background-color: #4460fd;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+  }
+}
