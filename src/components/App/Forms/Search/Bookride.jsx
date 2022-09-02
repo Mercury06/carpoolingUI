@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 //import s from './Bookride.module.css';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { setSuggestedRides } from '../../../../reducers/rideReducer';
 import { findLocality } from '../../../api/actions';
-// import { TextField } from '@mui/material';
-// import { Stack } from '@mui/material';
-// import { makeStyles } from '@emotion/styled';
-// import { Autocomplete } from '@mui/material';
-// import { Box } from '@mui/system';
 
 const Bookride = () => {
   const [fromInputValue, setFromInputValue] = useState({});

@@ -5,24 +5,15 @@ import Bookride from '../App/Forms/Search/Bookride';
 import s from './mainPage.module.scss';
 
 const SearchForm = ({ handleSubmit }) => {
-  // const [form, setForm] = useState({ username: '', password: '' });
-  // //const[response, setResponse] = useState('')
-
-  // const changeHandler = (event) => {
-  //   setForm({ ...form, [event.target.name]: event.target.value });
-  //   // console.log(form)
-  // };
-  // const dispatch = useDispatch();
-
   return (
     <>
       <div className={s.container}>
         <form onSubmit={handleSubmit}>
           <div>
-            <Field placeholder={'e-mail'} name={'username'} component={Bookride} />
+            <Field placeholder={'From'} name={'username'} component={Bookride} />
           </div>
           <div>
-            <Field placeholder={'password'} name={'password'} component={'input'} />
+            <Field placeholder={'to'} name={'password'} component={Bookride} />
           </div>
           <div>
             <Field type={'checkbox'} name={'rememberMe'} component={'input'} /> remember me
