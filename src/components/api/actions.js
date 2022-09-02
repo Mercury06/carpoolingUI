@@ -92,23 +92,21 @@ export const login = ({ ...form }) => {
 //       }
 // }
 
-// export function findLocality (search) {
+export function findLocality(search) {
+  return async (dispatch) => {
+    try {
+      //const response = await axios.post("http://localhost:9000/api/settings/findlocality", {locality: payload})
+      const response = await axios.get(
+        `http://localhost:9000/api/settings/findlocality?search=${search}`,
+      );
 
-//     return async dispatch => {
-//         try {
-
-//             //const response = await axios.post("http://localhost:9000/api/settings/findlocality", {locality: payload})
-//             const response = await axios.get(`http://localhost:9000/api/settings/findlocality?search=${search}`)
-
-//             dispatch(setSuggestedRides(response.data))
-//             return response.data
-
-//         } catch (e) {
-//             alert(e.message)
-//         }
-//     }
-// }
-
+      dispatch(setSuggestedRides(response.data));
+      return response.data;
+    } catch (e) {
+      alert(e.message);
+    }
+  };
+}
 // export function findAllLocalities () {
 
 //     return async dispatch => {

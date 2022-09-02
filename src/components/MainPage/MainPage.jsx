@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import Bookride from '../App/Forms/Search/Bookride';
 import s from './mainPage.module.scss';
 
 const SearchForm = ({ handleSubmit }) => {
@@ -18,7 +19,7 @@ const SearchForm = ({ handleSubmit }) => {
       <div className={s.container}>
         <form onSubmit={handleSubmit}>
           <div>
-            <Field placeholder={'e-mail'} name={'username'} component={'input'} />
+            <Field placeholder={'e-mail'} name={'username'} component={Bookride} />
           </div>
           <div>
             <Field placeholder={'password'} name={'password'} component={'input'} />
