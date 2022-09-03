@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { setSuggestedRides } from '../../../../reducers/rideReducer';
+import { findLocality } from '../../../api/actions';
 import Bookride from './Bookride';
 import s from './rideSearchForm.module.scss';
 
@@ -11,10 +13,10 @@ const RideSearchForm = (props) => {
       <div className={s.container}>
         <form onSubmit={props.handleSubmit}>
           <div>
-            <Field placeholder={'From'} name={'username'} component={'input'} />
+            <Field placeholder={'From'} name={'fromLocality'} component={'input'} />
           </div>
           <div>
-            <Field placeholder={'to'} name={'password'} component={'input'} />
+            <Field placeholder={'to'} name={'toLocality'} component={'input'} />
           </div>
           <div>
             <Field type={'checkbox'} name={'rememberMe'} component={'input'} /> remember me
@@ -33,13 +35,22 @@ const SearchReduxForm = reduxForm({ form: 'search' })(RideSearchForm);
 
 const Search = (props) => {
   const dispatch = useDispatch();
-  const onSubmit = (formData) => {
+  const onChange = (e) => {
+    let search = e.fromLocality;
+    console.log('search:', search);
+    if (!search) {
+      dispatch(setSuggestedRides([]));
+    } else {
+      dispatch(findLocality(search));
+    }
+  };
+  const onSubmit = (formData, ...props) => {
     console.log('formData:', formData);
     console.log('props:', props);
   };
   return (
     <div className={s.registration}>
-      <SearchReduxForm onSubmit={onSubmit} />
+      <SearchReduxForm onSubmit={onSubmit} onChange={onChange} />
     </div>
   );
 };

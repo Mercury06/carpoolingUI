@@ -28,9 +28,7 @@ export const login = ({ ...form }) => {
       }
     } catch (e) {
       console.log('error:', e.response.data.message);
-
       let message = e.response.data.message;
-      //console.log('e', e);
       dispatch(stopSubmit('login', { _error: message }));
     }
   };
