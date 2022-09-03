@@ -22,15 +22,16 @@ export const login = ({ ...form }) => {
       //console.log(response);
       if (response.status === 200) {
         console.log('statusCode=200');
-        //dispatch(setUser(response.data.user));
-        // localStorage.setItem('token', response.data.token);
-        // console.log('token', response.data.token); //edit
+        dispatch(setUser(response.data.user));
+        localStorage.setItem('token', response.data.token);
+        console.log('token', response.data.token); //edit
       }
     } catch (e) {
-      //alert(e.response.data.message)
-      //let message = response.data
+      console.log('error:', e.response.data.message);
+
+      let message = e.response.data.message;
       //console.log('e', e);
-      //dispatch(stopSubmit('login', { _error: e }));
+      dispatch(stopSubmit('login', { _error: message }));
     }
   };
 };
