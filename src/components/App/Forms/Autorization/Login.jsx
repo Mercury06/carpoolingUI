@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { login } from '../../../api/actions';
 import s from './autorization.module.scss';
 
-const LoginForm = ({ handleSubmit }) => {
+const LoginForm = (props) => {
   // const [form, setForm] = useState({ username: '', password: '' });
   // //const[response, setResponse] = useState('')
 
@@ -16,7 +16,7 @@ const LoginForm = ({ handleSubmit }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={props.handleSubmit}>
         <div>
           <Field placeholder={'e-mail'} name={'username'} component={'input'} />
         </div>
@@ -26,6 +26,7 @@ const LoginForm = ({ handleSubmit }) => {
         <div>
           <Field type={'checkbox'} name={'rememberMe'} component={'input'} /> remember me
         </div>
+        <div>{props.error}</div>
         <div>
           <button>Sign in</button>
         </div>
@@ -38,8 +39,9 @@ const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
 
 const Login = (props) => {
   const dispatch = useDispatch();
-  const onSubmit = (formData) => {
+  const onSubmit = (formData, ...props) => {
     console.log(formData);
+    console.log('props:', props);
     dispatch(login({ ...formData }));
   };
   return (

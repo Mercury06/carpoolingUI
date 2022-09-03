@@ -2,9 +2,10 @@ import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Header from '../Header/Header.jsx';
 import Layout from '../Layout/Layout.jsx';
-import MainPage from '../MainPage/MainPage.jsx';
+//import MainPage from '../MainPage/MainPage.jsx';
 import Login from './Forms/Autorization/Login.jsx';
 import Registration from './Forms/Autorization/Registration.jsx';
+import Search from './Forms/Search/RideSearchForm.jsx';
 //import Navbar from '../Navbar/Navbar';
 
 // function App() {
@@ -28,7 +29,7 @@ function App() {
         {!isAuth && <Route path="registration" element={<Registration />} />}
         {/* <Route path="search" element={<Registration />} /> */}
       </Routes>
-      {isAuth && <MainPage />}
+      {isAuth && <Search />}
     </Layout>
   );
 }

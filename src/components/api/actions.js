@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { stopSubmit } from 'redux-form';
 import { setSuggestedRides } from '../../reducers/rideReducer';
 import { setUser } from './../../reducers/userReducer';
 
@@ -18,12 +19,18 @@ export const login = ({ ...form }) => {
   return async (dispatch) => {
     try {
       const response = await axios.post('http://localhost:9000/api/auth/login', { ...form });
-
-      dispatch(setUser(response.data.user));
-      localStorage.setItem('token', response.data.token);
-      console.log('token', response.data.token); //edit
+      //console.log(response);
+      if (response.status === 200) {
+        console.log('statusCode=200');
+        //dispatch(setUser(response.data.user));
+        // localStorage.setItem('token', response.data.token);
+        // console.log('token', response.data.token); //edit
+      }
     } catch (e) {
       //alert(e.response.data.message)
+      //let message = response.data
+      //console.log('e', e);
+      //dispatch(stopSubmit('login', { _error: e }));
     }
   };
 };

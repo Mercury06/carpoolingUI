@@ -1,23 +1,25 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import Bookride from '../App/Forms/Search/Bookride';
-import s from './mainPage.module.scss';
+import Bookride from './Bookride';
+import s from './rideSearchForm.module.scss';
 
-const SearchForm = ({ handleSubmit }) => {
+// в эту форму поиска поездки входит localities, date
+const RideSearchForm = (props) => {
   return (
     <>
       <div className={s.container}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={props.handleSubmit}>
           <div>
-            <Field placeholder={'From'} name={'username'} component={Bookride} />
+            <Field placeholder={'From'} name={'username'} component={'input'} />
           </div>
           <div>
-            <Field placeholder={'to'} name={'password'} component={Bookride} />
+            <Field placeholder={'to'} name={'password'} component={'input'} />
           </div>
           <div>
             <Field type={'checkbox'} name={'rememberMe'} component={'input'} /> remember me
           </div>
+          <div>{props.error}</div>
           <div>
             <button>Search</button>
           </div>
@@ -27,12 +29,13 @@ const SearchForm = ({ handleSubmit }) => {
   );
 };
 
-const SearchReduxForm = reduxForm({ form: 'search' })(SearchForm);
+const SearchReduxForm = reduxForm({ form: 'search' })(RideSearchForm);
 
 const Search = (props) => {
   const dispatch = useDispatch();
   const onSubmit = (formData) => {
-    console.log(formData);
+    console.log('formData:', formData);
+    console.log('props:', props);
   };
   return (
     <div className={s.registration}>
