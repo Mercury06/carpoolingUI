@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { setSuggestedRides } from '../../../../reducers/rideReducer';
@@ -17,6 +19,9 @@ const RideSearchForm = (props) => {
           </div>
           <div>
             <Field placeholder={'to'} name={'toLocality'} component={'input'} />
+          </div>
+          <div>
+            <Field name={'date'} component={ReactDatePicker} />
           </div>
           <div>
             <Field type={'checkbox'} name={'rememberMe'} component={'input'} /> remember me

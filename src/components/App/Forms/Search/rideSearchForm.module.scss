@@ -11,6 +11,7 @@
   flex-direction: column;
   align-items: center;
   padding: 6px;
+  height: auto;
 
   input {
     margin: 10px 0;
@@ -24,9 +25,23 @@
     border: none;
     background-color: #4460fd;
     color: rgb(255, 255, 255);
-    font-weight: 600;
+    //font-weight: 600;
     border-radius: 5px;
     width: 100%;
+    height: 24px;
     cursor: pointer;
   }
+}
+
+.error-input {
+  border: 2px solid red;
+  border-radius: 4px;
+}
+
+.error-text {
+  margin: 0.25em 0 0 0;
+  padding: 0;
+  color: red;
+  font-style: bold;
+  font-size: 1.2rem;
 }

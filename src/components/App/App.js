@@ -5,7 +5,7 @@ import Layout from '../Layout/Layout.jsx';
 //import MainPage from '../MainPage/MainPage.jsx';
 import Login from './Forms/Autorization/Login.jsx';
 import Registration from './Forms/Autorization/Registration.jsx';
-import Search from './Forms/Search/RideSearchForm.jsx';
+import RideSearchForm1 from './Forms/Search/RideSearchForm1.jsx';
 //import Navbar from '../Navbar/Navbar';
 
 // function App() {
@@ -29,7 +29,7 @@ function App() {
         {!isAuth && <Route path="registration" element={<Registration />} />}
         {/* <Route path="search" element={<Registration />} /> */}
       </Routes>
-      {isAuth && <Search />}
+      {isAuth && <RideSearchForm1 />}
     </Layout>
   );
 }
