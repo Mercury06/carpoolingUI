@@ -8,16 +8,6 @@ import Registration from './Forms/Autorization/Registration.jsx';
 import RideSearchForm1 from './Forms/Search/RideSearchForm1.jsx';
 //import Navbar from '../Navbar/Navbar';
 
-// function App() {
-//   return (
-//     <div>
-//       <Header />
-//       {/* <Navbar /> */}
-//       <div></div>
-//     </div>
-//   );
-// }
-
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
 
