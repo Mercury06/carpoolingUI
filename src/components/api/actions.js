@@ -34,6 +34,18 @@ export const login = ({ ...form }) => {
   };
 };
 
+export const createRide = async ({ ...form }) => {
+  //debugger
+  try {
+    const response = await axios.post('http://localhost:9000/api/settings/createride', {
+      ...form,
+    });
+    return response.data.message;
+  } catch (e) {
+    alert(e.response.data.message);
+  }
+};
+
 // export const auth =  () => {
 //     return async dispatch => {
 //         try {
@@ -81,18 +93,6 @@ export const login = ({ ...form }) => {
 //          const data = response.data
 //          console.log("from action concatinated fetch:", data)
 //          return data
-//      } catch (e) {
-//          alert(e.response.data.message)
-//       }
-// }
-
-// /****** перенести из users */
-// export const createLocality = async ({...form}) => {
-//     //debugger
-//      try {
-//          const response = await axios.post("http://localhost:9000/api/settings/createlocality", { ...form})
-//          console.log(response.data.message)
-
 //      } catch (e) {
 //          alert(e.response.data.message)
 //       }

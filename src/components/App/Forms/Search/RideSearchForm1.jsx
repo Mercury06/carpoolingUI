@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React, { useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -17,27 +16,25 @@ const initialState = {
 };
 
 const RideSearchForm1 = (props) => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [modifiedDate, setModifiedDate] = useState();
   const userId = useSelector((state) => state.user.currentUser.id);
-
-  const dispatch = useDispatch();
 
   React.useEffect(() => {
     initialState.user = userId;
+    initialState.date = modifiedInitialStateDate;
   }, []);
 
-  const { handleSubmit, handleChange, handleBlur, values, errors, isSubmitting } =
-    useFormValidation(initialState, validateAuth);
+  const {
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    values,
+    errors,
+    isSubmitting,
+    startDate,
+    onChangeDateHandler,
+    modifiedInitialStateDate,
+  } = useFormValidation(initialState, validateAuth);
 
-  const onChangeDateHandler = (value) => {
-    setStartDate(value);
-    const modifiedDate = moment(value).format('YYYY-MM-DD');
-    setModifiedDate(modifiedDate);
-    initialState.date = modifiedDate;
-    console.log('initialState.date:', initialState.date);
-    //console.log(initialState);
-  };
   return (
     <>
       <div className={s.container}>
