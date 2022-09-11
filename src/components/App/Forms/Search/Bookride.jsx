@@ -7,13 +7,13 @@ import { findLocality } from '../../../api/actions';
 const Bookride = () => {
   const [fromInputValue, setFromInputValue] = useState({});
   // const [toInputValue, setToInputValue] = useState('');
-  const [selectedItem, setSelectedItem] = useState({});
+  //const [selectedItem, setSelectedItem] = useState({});
 
   const dispatch = useDispatch();
 
   const changeHandlerFrom = (e) => {
     let search = e.target.value;
-    if (!search) {
+    if (search === 0) {
       dispatch(setSuggestedRides([]));
     }
     //setForm({ ...form, [e.target.name]: e.target.value })

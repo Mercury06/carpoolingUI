@@ -110,6 +110,7 @@ export function findLocality(search) {
       return response.data;
     } catch (e) {
       alert(e.message);
+      dispatch(setSuggestedRides([]));
     }
   };
 }
