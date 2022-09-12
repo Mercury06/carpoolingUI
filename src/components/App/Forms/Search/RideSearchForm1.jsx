@@ -24,7 +24,8 @@ const RideSearchForm1 = (props) => {
   React.useEffect(() => {
     initialState.user = userId;
     initialState.date = modifiedInitialStateDate;
-  }, []);
+    console.log('suggestedRides:', suggestedRides);
+  }, [suggestedRides]);
 
   // const searchHandler = (e) => {
   // let search = e.target.value;
