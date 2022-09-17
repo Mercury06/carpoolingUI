@@ -74,19 +74,15 @@ const RideSearchForm1 = (props) => {
             />
           </div>
           <br></br>
-          {suggestedRides && suggestedRides.length > 0 ? (
-            suggestedRides.map((item, i) => {
-              return (
-                // <p key={i} onClick={(e) => onSuggestSelect(e, { item })}>
-                <p key={i}>{item.locality}</p>
-              );
-            })
-          ) : (
-            <div>
-              {' '}
-              <h3>list is empty</h3>
-            </div>
-          )}
+          {/* {suggestedRides && suggestedRides.length > 0 ? ( */}
+          {inputValues.localityFrom !== '' && suggestedRides.length > 0
+            ? suggestedRides.map((item, i) => {
+                return (
+                  // <p key={i} onClick={(e) => onSuggestSelect(e, { item })}>
+                  <p key={i}>{item.locality}</p>
+                );
+              })
+            : null}
           {/* {errors.email && <p className="error-text">{errors.email}</p>} */}
           <div>
             <input
@@ -100,20 +96,15 @@ const RideSearchForm1 = (props) => {
             />
           </div>
           <br></br>
-          {suggestedRides && suggestedRides.length > 0 ? (
-            suggestedRides.map((item, i) => {
-              return (
-                // <p key={i} onClick={(e) => onSuggestSelect(e, { item })}>
-                <p key={i}>{item.locality}</p>
-              );
-            })
-          ) : (
-            <div>
-              {' '}
-              <h3>list is empty</h3>
-            </div>
-          )}
-          {/* {errors.password && <p className="error-text">{errors.password}</p>} */}
+          {/* {suggestedRides && suggestedRides.length > 0 ? ( */}
+          {inputValues.destination !== '' && suggestedRides.length > 0
+            ? suggestedRides.map((item, i) => {
+                return (
+                  // <p key={i} onClick={(e) => onSuggestSelect(e, { item })}>
+                  <p key={i}>{item.locality}</p>
+                );
+              })
+            : null}
           <div>
             <ReactDatePicker
               selected={startDate}
