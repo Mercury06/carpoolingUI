@@ -42,24 +42,6 @@ const RideSearchForm1 = (props) => {
     //console.log('initialState:', initialState);
   }, [suggestedRides]);
 
-  // const searchHandler = (e) => {
-  // let search = e.target.value;
-  // if (search === 0) {
-  //   dispatch(setSuggestedRides([]));
-  //   return;
-  // }
-  //setForm({ ...form, [e.target.name]: e.target.value })
-  // setFromInputValue(search);
-  // console.log(inputValue)
-  //   dispatch(findLocality(search));
-  // };
-
-  // const onSuggestSelect = (e, { item }) => {
-  //   setSelectedItem(item);
-  //   setFromInputValue(item);
-  //   dispatch(setSuggestedRides([]));
-  // };
-
   const {
     handleSubmit,
     handleChange,
@@ -68,6 +50,9 @@ const RideSearchForm1 = (props) => {
     isSubmitting,
     startDate,
     onChangeDateHandler,
+    onSuggestSelect1,
+    onSuggestSelect2,
+    targetName,
     modifiedInitialStateDate,
     inputValues,
   } = useFormValidation(initialState, validateAuth);
@@ -88,7 +73,6 @@ const RideSearchForm1 = (props) => {
               placeholder="where are you now..."
             />
           </div>
-          <br></br>
           {/* {suggestedRides && suggestedRides.length > 0 ? ( */}
           {inputValues.localityFrom.localityName !== '' && suggestedRides.length > 0 ? (
             <div className={s.input__popup}>
@@ -96,7 +80,9 @@ const RideSearchForm1 = (props) => {
                 {suggestedRides.map((item, i) => {
                   return (
                     // <p key={i} onClick={(e) => onSuggestSelect(e, { item })}>
-                    <li key={i}>{item.locality}</li>
+                    <li key={i} onClick={(e) => onSuggestSelect1(e, { item })}>
+                      {item.locality}
+                    </li>
                   );
                 })}
               </ul>
@@ -108,31 +94,34 @@ const RideSearchForm1 = (props) => {
               onChange={handleChange}
               onBlur={handleBlur}
               value={inputValues.destination.localityName}
-              className={errors.password && 'error-input'}
+              className={s.input}
               name="destination"
-              type="text"
+              autoComplete="off"
               placeholder="where are you going..."
             />
           </div>
-          <br></br>
           {/* {suggestedRides && suggestedRides.length > 0 ? ( */}
-          {inputValues.destination.localityName !== '' && suggestedRides.length > 0
-            ? suggestedRides.map((item, i) => {
-                return (
-                  // <p key={i} onClick={(e) => onSuggestSelect(e, { item })}>
-                  <div className="item" key={i}>
-                    {item.locality}
-                  </div>
-                  // <p key={i}>{item.locality}</p>
-                );
-              })
-            : null}
+          {inputValues.destination.localityName !== '' && suggestedRides.length > 0 ? (
+            <div className={s.input__popup}>
+              <ul>
+                {suggestedRides.map((item, i) => {
+                  return (
+                    // <p key={i} onClick={(e) => onSuggestSelect(e, { item })}>
+                    <li key={i} onClick={(e) => onSuggestSelect2(e, { item })}>
+                      {item.locality}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ) : null}
           <div>
             <ReactDatePicker
               selected={startDate}
               onChange={onChangeDateHandler}
               dateFormat="dd MMM yyy"
               minDate={new Date()}
+              className={s.date_picker}
             />
           </div>
           <div>

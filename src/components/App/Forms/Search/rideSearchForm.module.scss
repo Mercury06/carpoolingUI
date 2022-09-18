@@ -22,11 +22,35 @@
     //width: 100%;
   }
   .input__popup {
+    margin: 0;
+    background-color: #e6e9f5;
+    //width: inherit;
     position: absolute;
     border: 1px solid rgb(88, 87, 87);
     color: inherit;
-  }
 
+    ul {
+      overflow: hidden;
+      li {
+        padding: 12px 20px;
+        list-style-type: none;
+        cursor: pointer;
+
+        &.active,
+        &:hover {
+          background: rgba(254, 95, 30, 0.05);
+        }
+
+        &.active {
+          font-weight: bold;
+          color: orange;
+        }
+      }
+    }
+  }
+  // .date_picker {
+  //   position: relative;
+  // }
   button {
     padding: 6px;
     border: none;
