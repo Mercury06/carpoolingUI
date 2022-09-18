@@ -9,9 +9,22 @@ import useFormValidation from '../../../../Hooks/useFormValidation';
 import s from './rideSearchForm.module.scss';
 import validateAuth from './validateAuth';
 
+// const initialState = {
+//   localityFrom: '',
+//   destination: '',
+//   user: '',
+//   date: '',
+// };
+
 const initialState = {
-  localityFrom: '',
-  destination: '',
+  localityFrom: {
+    localityName: '',
+    id: '',
+  },
+  destination: {
+    localityName: '',
+    id: '',
+  },
   user: '',
   date: '',
 };
@@ -25,6 +38,7 @@ const RideSearchForm1 = (props) => {
     initialState.user = userId;
     initialState.date = modifiedInitialStateDate;
     console.log('suggestedRides:', suggestedRides);
+    //console.log('initialState:', initialState);
   }, [suggestedRides]);
 
   // const searchHandler = (e) => {
@@ -67,7 +81,7 @@ const RideSearchForm1 = (props) => {
               onChange={handleChange}
               onBlur={handleBlur}
               name="localityFrom"
-              value={inputValues.localityFrom}
+              value={inputValues.localityFrom.localityName}
               className={errors.email && 'error-input'}
               autoComplete="off"
               placeholder="where are you now..."
@@ -75,11 +89,13 @@ const RideSearchForm1 = (props) => {
           </div>
           <br></br>
           {/* {suggestedRides && suggestedRides.length > 0 ? ( */}
-          {inputValues.localityFrom !== '' && suggestedRides.length > 0
+          {inputValues.localityFrom.localityName !== '' && suggestedRides.length > 0
             ? suggestedRides.map((item, i) => {
                 return (
                   // <p key={i} onClick={(e) => onSuggestSelect(e, { item })}>
-                  <p key={i}>{item.locality}</p>
+                  <div className="item" key={i}>
+                    {item.locality}
+                  </div>
                 );
               })
             : null}
@@ -88,7 +104,7 @@ const RideSearchForm1 = (props) => {
             <input
               onChange={handleChange}
               onBlur={handleBlur}
-              value={inputValues.destination}
+              value={inputValues.destination.localityName}
               className={errors.password && 'error-input'}
               name="destination"
               type="text"
@@ -97,11 +113,14 @@ const RideSearchForm1 = (props) => {
           </div>
           <br></br>
           {/* {suggestedRides && suggestedRides.length > 0 ? ( */}
-          {inputValues.destination !== '' && suggestedRides.length > 0
+          {inputValues.destination.localityName !== '' && suggestedRides.length > 0
             ? suggestedRides.map((item, i) => {
                 return (
                   // <p key={i} onClick={(e) => onSuggestSelect(e, { item })}>
-                  <p key={i}>{item.locality}</p>
+                  <div className="item" key={i}>
+                    {item.locality}
+                  </div>
+                  // <p key={i}>{item.locality}</p>
                 );
               })
             : null}

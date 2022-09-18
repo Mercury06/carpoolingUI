@@ -36,7 +36,7 @@ function useFormValidation(initialState, validate) {
     }
     setInputValues({
       ...inputValues,
-      [e.target.name]: e.target.value,
+      [e.target.name]: { localityName: e.target.value },
     });
     dispatch(findLocality(search));
     return;
