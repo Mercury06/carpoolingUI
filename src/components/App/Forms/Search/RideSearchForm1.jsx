@@ -7,6 +7,7 @@ import useFormValidation from '../../../../Hooks/useFormValidation';
 // import { findLocality } from '../../../api/actions';
 
 import s from './rideSearchForm.module.scss';
+// import './rideSearchForm.module.scss';
 import validateAuth from './validateAuth';
 
 // const initialState = {
@@ -82,23 +83,25 @@ const RideSearchForm1 = (props) => {
               onBlur={handleBlur}
               name="localityFrom"
               value={inputValues.localityFrom.localityName}
-              className={errors.email && 'error-input'}
+              className={s.input}
               autoComplete="off"
               placeholder="where are you now..."
             />
           </div>
           <br></br>
           {/* {suggestedRides && suggestedRides.length > 0 ? ( */}
-          {inputValues.localityFrom.localityName !== '' && suggestedRides.length > 0
-            ? suggestedRides.map((item, i) => {
-                return (
-                  // <p key={i} onClick={(e) => onSuggestSelect(e, { item })}>
-                  <div className="item" key={i}>
-                    {item.locality}
-                  </div>
-                );
-              })
-            : null}
+          {inputValues.localityFrom.localityName !== '' && suggestedRides.length > 0 ? (
+            <div className={s.input__popup}>
+              <ul>
+                {suggestedRides.map((item, i) => {
+                  return (
+                    // <p key={i} onClick={(e) => onSuggestSelect(e, { item })}>
+                    <li key={i}>{item.locality}</li>
+                  );
+                })}
+              </ul>
+            </div>
+          ) : null}
           {/* {errors.email && <p className="error-text">{errors.email}</p>} */}
           <div>
             <input
