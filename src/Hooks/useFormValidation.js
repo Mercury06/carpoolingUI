@@ -8,7 +8,7 @@ function useFormValidation(initialState, validate) {
   const [inputValues, setInputValues] = React.useState(initialState);
   //const [form, setForm] = React.useState({ localityFrom: '', destination: '', user: '', date: '' });
   const [errors, setErrors] = React.useState({});
-  const [isSubmitting, setSubmitting] = React.useState(false);
+  //const [isSubmitting, setSubmitting] = React.useState(false);
   const [startDate, setStartDate] = React.useState(new Date());
   const [modifiedDate, setModifiedDate] = React.useState();
   const [targetName, setTargetName] = React.useState(null);
@@ -22,7 +22,6 @@ function useFormValidation(initialState, validate) {
   //   if (isSubmitting) {
   //     const noErrors = Object.keys(errors).length === 0;
   //     if (noErrors) {
-  //       console.log('authenticated!', values.email, values.password);
   //       setSubmitting(false);
   //     } else {
   //       setSubmitting(false);
@@ -88,10 +87,11 @@ function useFormValidation(initialState, validate) {
   }
   async function handleSubmit(event) {
     event.preventDefault();
-    const validationErrors = validate(inputValues);
-    setErrors(validationErrors);
-    setSubmitting(true);
-    //console.log(inputValues);
+    console.log('submit');
+    //const validationErrors = validate(inputValues);
+    //setErrors(validationErrors);
+    //setSubmitting(true);
+    console.log(inputValues);
     await createRide(inputValues);
   }
 
@@ -109,7 +109,7 @@ function useFormValidation(initialState, validate) {
     // handleBlur,
     inputValues,
     errors,
-    isSubmitting,
+    //isSubmitting,
     startDate,
     modifiedDate,
     onChangeDateHandler,

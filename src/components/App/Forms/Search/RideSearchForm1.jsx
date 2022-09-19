@@ -125,9 +125,8 @@ const RideSearchForm1 = (props) => {
             />
           </div>
           <div>
-            <button disabled={isSubmitting} type="submit">
-              Create
-            </button>
+            {/* <button disabled={isSubmitting} type="submit"> */}
+            <button type="submit">Create</button>
           </div>
         </form>
       </div>
