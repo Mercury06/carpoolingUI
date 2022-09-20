@@ -22,10 +22,10 @@
     //width: 100%;
   }
   .input__popup {
+    position: absolute;
     margin: 0;
     background-color: #e6e9f5;
     //width: inherit;
-    position: absolute;
     border: 1px solid rgb(88, 87, 87);
     color: inherit;
 
@@ -48,9 +48,9 @@
       }
     }
   }
-  // .date_picker {
-  //   position: relative;
-  // }
+  .date__picker {
+    position: relative;
+  }
   button {
     padding: 6px;
     border: none;

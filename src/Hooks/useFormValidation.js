@@ -87,12 +87,12 @@ function useFormValidation(initialState, validate) {
   }
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log('submit');
+    await createRide(inputValues);
+    //console.log('submit');
     //const validationErrors = validate(inputValues);
     //setErrors(validationErrors);
     //setSubmitting(true);
-    console.log(inputValues);
-    await createRide(inputValues);
+    //console.log(inputValues);
   }
 
   const onChangeDateHandler = (value) => {

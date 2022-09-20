@@ -10,13 +10,6 @@ import s from './rideSearchForm.module.scss';
 // import './rideSearchForm.module.scss';
 import validateAuth from './validateAuth';
 
-// const initialState = {
-//   localityFrom: '',
-//   destination: '',
-//   user: '',
-//   date: '',
-// };
-
 const initialState = {
   localityFrom: {
     localityName: '',
@@ -73,13 +66,13 @@ const RideSearchForm1 = (props) => {
               placeholder="where are you now..."
             />
           </div>
-          {/* {suggestedRides && suggestedRides.length > 0 ? ( */}
-          {inputValues.localityFrom.localityName !== '' && suggestedRides.length > 0 ? (
+          {inputValues.localityFrom.localityName !== '' &&
+          suggestedRides.length > 0 &&
+          targetName === 'localityFrom' ? (
             <div className={s.input__popup}>
               <ul>
                 {suggestedRides.map((item, i) => {
                   return (
-                    // <p key={i} onClick={(e) => onSuggestSelect(e, { item })}>
                     <li key={i} onClick={(e) => onSuggestSelect1(e, { item })}>
                       {item.locality}
                     </li>
@@ -100,13 +93,13 @@ const RideSearchForm1 = (props) => {
               placeholder="where are you going..."
             />
           </div>
-          {/* {suggestedRides && suggestedRides.length > 0 ? ( */}
-          {inputValues.destination.localityName !== '' && suggestedRides.length > 0 ? (
+          {inputValues.destination.localityName !== '' &&
+          suggestedRides.length > 0 &&
+          targetName === 'destination' ? (
             <div className={s.input__popup}>
               <ul>
                 {suggestedRides.map((item, i) => {
                   return (
-                    // <p key={i} onClick={(e) => onSuggestSelect(e, { item })}>
                     <li key={i} onClick={(e) => onSuggestSelect2(e, { item })}>
                       {item.locality}
                     </li>
@@ -121,7 +114,8 @@ const RideSearchForm1 = (props) => {
               onChange={onChangeDateHandler}
               dateFormat="dd MMM yyy"
               minDate={new Date()}
-              className={s.date_picker}
+              // className={s.date__picker}
+              style={{ position: 'relative' }}
             />
           </div>
           <div>
