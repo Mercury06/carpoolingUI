@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { BiMenuAltRight } from 'react-icons/bi';
+import { BiMenuAltRight, BiArrowBack } from 'react-icons/bi';
+
 //import { AiOutlineClose } from 'react-icons/ai';
-import { BiArrowBack } from 'react-icons/bi';
 
 import classes from './Header.module.scss';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
