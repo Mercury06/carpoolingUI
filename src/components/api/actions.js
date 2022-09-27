@@ -61,17 +61,17 @@ export const createRide = async ({ ...form }) => {
 //     }
 // }
 
-// export const findAllRides = async () => {
-//     //debugger
-//      try {
-//          const response = await axios.get("http://localhost:9000/api/settings/findall")
-//          const data = response.data
-//          console.log(data)
-//          return data
-//      } catch (e) {
-//          alert(e.response.data.message)
-//       }
-// }
+export const findMyRides = async (id) => {
+  //debugger
+  try {
+    const response = await axios.get(`http://localhost:9000/api/settings/findmyrides/:${id}`);
+    const data = response.data;
+    console.log(data);
+    return data;
+  } catch (e) {
+    alert(e.response.data.message);
+  }
+};
 
 // export const findLocs = async () => {
 //     //debugger

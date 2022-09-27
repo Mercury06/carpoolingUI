@@ -8,6 +8,7 @@ import classes from './Header.module.scss';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../reducers/userReducer';
+import { findMyRides } from '../api/actions';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -40,8 +41,10 @@ const Header = () => {
     }
   }, [size.width, menuOpen]);
 
-  const menuToggleHandler = () => {
+  const menuToggleHandler = (id) => {
+    debugger;
     setMenuOpen(() => !menuOpen);
+    findMyRides(id);
   };
 
   return (
@@ -65,16 +68,34 @@ const Header = () => {
             menuOpen && size.width < 768 ? classes.isMenu : ''
           }`}>
           <ul>
-            <li>
-              <Link to="/registration" onClick={menuToggleHandler}>
-                Регистрация
-              </Link>
-            </li>
-            <li>
-              <Link to="/login" onClick={menuToggleHandler}>
-                Войти
-              </Link>
-            </li>
+            {!isAuth && (
+              <>
+                <li>
+                  <Link to="/registration" onClick={menuToggleHandler}>
+                    Регистрация
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/login" onClick={menuToggleHandler}>
+                    Войти
+                  </Link>
+                </li>
+              </>
+            )}
+            {isAuth && (
+              <>
+                <li>
+                  <Link to="/myrides" onClick={() => menuToggleHandler(user.id)}>
+                    Мои поездки
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/myhistory" onClick={menuToggleHandler}>
+                    История поездок
+                  </Link>
+                </li>
+              </>
+            )}
             <li>
               <Link to="/search" onClick={menuToggleHandler}>
                 Запросить поездку
@@ -82,7 +103,7 @@ const Header = () => {
             </li>
             <li>
               <Link to="/page-three" onClick={menuToggleHandler}>
-                + Найти попутчиков
+                + Предложить поездку
               </Link>
             </li>
           </ul>
