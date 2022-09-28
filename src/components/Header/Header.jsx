@@ -41,7 +41,11 @@ const Header = () => {
     }
   }, [size.width, menuOpen]);
 
-  const menuToggleHandler = (id) => {
+  const menuToggleHandler = () => {
+    setMenuOpen(() => !menuOpen);
+  };
+
+  const searchHandler = (id) => {
     debugger;
     setMenuOpen(() => !menuOpen);
     findMyRides(id);
@@ -85,7 +89,7 @@ const Header = () => {
             {isAuth && (
               <>
                 <li>
-                  <Link to="/myrides" onClick={() => menuToggleHandler(user.id)}>
+                  <Link to="/myrides" onClick={() => searchHandler(user.id)}>
                     Мои поездки
                   </Link>
                 </li>
