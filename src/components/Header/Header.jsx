@@ -8,7 +8,7 @@ import classes from './Header.module.scss';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../reducers/userReducer';
-import { findMyRides } from '../api/actions';
+//import { findMyRides } from '../api/actions';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -45,11 +45,11 @@ const Header = () => {
     setMenuOpen(() => !menuOpen);
   };
 
-  const searchHandler = (id) => {
-    debugger;
-    setMenuOpen(() => !menuOpen);
-    findMyRides(id);
-  };
+  // const searchHandler = (id) => {
+  //   debugger;
+  //   setMenuOpen(() => !menuOpen);
+  //   findMyRides(id);
+  // };
 
   return (
     <header className={classes.header}>
@@ -88,8 +88,13 @@ const Header = () => {
             )}
             {isAuth && (
               <>
-                <li>
+                {/* <li>
                   <Link to="/myrides" onClick={() => searchHandler(user.id)}>
+                    Мои поездки
+                  </Link>
+                </li> */}
+                <li>
+                  <Link to="/myrides" onClick={menuToggleHandler}>
                     Мои поездки
                   </Link>
                 </li>

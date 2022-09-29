@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { login } from '../../../api/actions';
 import s from './autorization.module.scss';
@@ -38,11 +39,13 @@ const LoginForm = (props) => {
 const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
 
 const Login = (props) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const onSubmit = (formData, ...props) => {
     console.log(formData);
     console.log('props:', props);
     dispatch(login({ ...formData }));
+    navigate('/'); // edit navigate если успешно аторизовался
   };
   return (
     <div className={s.registration}>
