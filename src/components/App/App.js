@@ -1,5 +1,7 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { auth } from './../api/actions';
 import Header from '../Header/Header.jsx';
 import Layout from '../Layout/Layout.jsx';
 import UserRides from '../UserPage/UserRides.jsx';
@@ -11,6 +13,14 @@ import RideSearchForm1 from './Forms/Search/RideSearchForm1.jsx';
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
+  const dispatch = useDispatch();
+
+  //const store = useStore()
+  //console.log("from store:", store.getState())
+
+  useEffect(() => {
+    dispatch(auth());
+  });
 
   return (
     <Layout>
