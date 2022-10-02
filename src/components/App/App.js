@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { auth } from './../api/actions';
 import Header from '../Header/Header.jsx';
 import Layout from '../Layout/Layout.jsx';
@@ -30,7 +30,8 @@ function App() {
         {!isAuth && <Route path="registration" element={<Registration />} />}
         {/* <Route path="search" element={<Registration />} /> */}
         <Route path="myrides" element={<UserRides />} />
-        {isAuth && <Route path="/" element={<RideSearchForm1 />} />}
+        {isAuth && <Route path="login" element={<Navigate to="/search" />} />}
+        {isAuth && <Route path="search" element={<RideSearchForm1 />} />}
       </Routes>
     </Layout>
   );

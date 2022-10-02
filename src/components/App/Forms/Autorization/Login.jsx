@@ -39,13 +39,11 @@ const LoginForm = (props) => {
 const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
 
 const Login = (props) => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const onSubmit = (formData, ...props) => {
     console.log(formData);
     console.log('props:', props);
     dispatch(login({ ...formData }));
-    navigate('/'); // edit navigate если успешно аторизовался
   };
   return (
     <div className={s.registration}>

@@ -21,13 +21,12 @@ export const login = ({ ...form }) => {
       const response = await axios.post('http://localhost:9000/api/auth/login', { ...form });
       //console.log(response);
       if (response.status === 200) {
-        console.log('statusCode=200');
+        console.log('response.status:', response.status);
         dispatch(setUser(response.data.user));
         localStorage.setItem('token', response.data.token);
-        console.log('token', response.data.token); //edit
       }
     } catch (e) {
-      console.log('error:', e.response.data.message);
+      console.log('error:', e);
       let message = e.response.data.message;
       dispatch(stopSubmit('login', { _error: message }));
     }
