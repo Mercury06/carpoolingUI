@@ -21,6 +21,11 @@ function App() {
   useEffect(() => {
     dispatch(auth());
   });
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition((position) => {
+  //     console.log(position);
+  //   });
+  // }, []);
 
   return (
     <Layout>
@@ -30,7 +35,8 @@ function App() {
         {!isAuth && <Route path="registration" element={<Registration />} />}
         {/* <Route path="search" element={<Registration />} /> */}
         <Route path="myrides" element={<UserRides />} />
-        {isAuth && <Route path="login" element={<Navigate to="/search" />} />}
+        {isAuth && <Route path="login" element={<Navigate to="/search" replace />} />}
+        {isAuth && <Route path="/" element={<Navigate to="/search" replace />} />}
         {isAuth && <Route path="search" element={<RideSearchForm1 />} />}
       </Routes>
     </Layout>

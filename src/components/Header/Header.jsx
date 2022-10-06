@@ -87,7 +87,7 @@ const Header = () => {
               </>
             )}
             {isAuth && (
-              <nav>
+              <>
                 {/* <li>
                   <Link to="/myrides" onClick={() => searchHandler(user.id)}>
                     Мои поездки
@@ -103,7 +103,7 @@ const Header = () => {
                     История поездок
                   </Link>
                 </li>
-              </nav>
+              </>
             )}
             <li>
               <Link to="/search" onClick={menuToggleHandler}>
