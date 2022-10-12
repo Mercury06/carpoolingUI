@@ -17,20 +17,25 @@ function App() {
 
   //const store = useStore()
   //console.log("from store:", store.getState())
-
+  // const success = (position) => {
+  //   console.log(position);
+  // };
+  // const error = (err) => {
+  //   console.log('error:', err);
+  // };
   useEffect(() => {
     dispatch(auth());
   });
+  useEffect(() => {
+    sessionStorage.setItem('occupation', 'Software dev');
+  });
   // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition((position) => {
-  //     console.log(position);
-  //   });
+  //   navigator.geolocation.getCurrentPosition(success, error);
   // }, []);
 
   return (
     <Layout>
       <Routes>
-        {/* <Route path="/" exact></Route> */}
         {!isAuth && <Route path="login" element={<Login />} />}
         {!isAuth && <Route path="registration" element={<Registration />} />}
         {/* <Route path="search" element={<Registration />} /> */}

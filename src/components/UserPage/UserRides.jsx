@@ -38,7 +38,7 @@ const UserRides = () => {
 
   return (
     <div>
-      {/* <h1>Found {rides.length} results</h1> */}
+      <h1>Found {rides.length} results</h1>
       {rides && rides.length > 0 ? (
         rides.map((item, i) => {
           return (
