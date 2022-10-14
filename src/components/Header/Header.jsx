@@ -88,11 +88,6 @@ const Header = () => {
             )}
             {isAuth && (
               <>
-                {/* <li>
-                  <Link to="/myrides" onClick={() => searchHandler(user.id)}>
-                    Мои поездки
-                  </Link>
-                </li> */}
                 <li>
                   <Link to="/myrides" onClick={menuToggleHandler}>
                     Мои поездки
