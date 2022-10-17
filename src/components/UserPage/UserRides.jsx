@@ -9,18 +9,68 @@ const UserRides = () => {
   const id = user.id;
   const [rides, setRides] = useState(null);
 
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const response = await axios.get(`http://localhost:9000/api/settings/findmyrides/${id}`);
+  //     const data = await response.data;
+  //     if (data) {
+  //       setRides(data);
+  //     } else {
+  //       setRides([
+  //         {
+  //           localityFrom: {
+  //             localityName: 'New Orlean',
+  //             id: '6260413bf25174950eb09a52',
+  //           },
+  //           destination: {
+  //             localityName: 'Los Angeles',
+  //             id: '626e5943b749f1042b21d252',
+  //           },
+  //           _id: '63282a5dff6daa6582a18481',
+  //           user: '625474cdaeaabfaac86eda54',
+  //           seats: 1,
+  //           date: '2022-09-19T00:00:00.000Z',
+  //           completed: false,
+  //           createdAt: '2022-09-19T08:37:49.602Z',
+  //           updatedAt: '2022-09-19T08:37:49.602Z',
+  //           __v: 0,
+  //         },
+  //       ]);
+  //     }
+  //   }
+  //   fetchData().catch(console.error);
+  // }, [id]);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const response = await fetch(`http://localhost:9000/api/settings/findmyrides/${id}`);
+  //     const data = await JSON.parse(response.data);
+  //     console.log('fetched data:', data);
+  //   }
+  //   fetchData().catch(console.error);
+  // }, [id]);
   useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get(`http://localhost:9000/api/settings/findmyrides/${id}`);
-      const data = response.data;
-      // edit
-      setTimeout(() => {
-        setRides(data);
-        //console.log('rides_data:', data);
-        //console.log('rides_data:', rides);
-      }, 1000);
+    function status(response) {
+      if (response.status >= 200 && response.status < 300) {
+        return Promise.resolve(response);
+      } else {
+        return Promise.reject(new Error(response.statusText));
+      }
     }
-    fetchData();
+
+    function json(response) {
+      return response.json();
+    }
+
+    fetch(`http://localhost:9000/api/settings/findmyrides/${id}`)
+      .then(status)
+      .then(json)
+      .then(function (data) {
+        console.log('Request succeeded with JSON response', data);
+        setRides(data);
+      })
+      .catch(function (error) {
+        console.log('Request failed', error);
+      });
   }, [id]);
 
   return (
