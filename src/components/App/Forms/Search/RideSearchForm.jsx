@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { setSuggestedRides } from '../../../../reducers/rideReducer';
 import { findLocality } from '../../../api/actions';
-import Bookride from './Bookride';
 import s from './rideSearchForm.module.scss';
 
 // в эту форму поиска поездки входит localities, date
