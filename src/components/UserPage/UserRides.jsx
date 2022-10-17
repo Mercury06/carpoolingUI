@@ -23,22 +23,9 @@ const UserRides = () => {
     fetchData();
   }, [id]);
 
-  // useLayoutEffect(() => {
-  //   async function fetchData() {
-  //     //debugger;
-  //     console.log('id:', id);
-  //     const response = await axios.get(`http://localhost:9000/api/settings/findmyrides/${id}`);
-  //     const data = response.data;
-  //     setRides(data);
-  //     console.log('rides_data:', data);
-  //     console.log('rides_data:', rides);
-  //   }
-  //   fetchData();
-  // }, []);
-
   return (
     <div>
-      <h1>Found {rides.length} results</h1>
+      {rides && <h1>Found {rides.length} results</h1>}
       {rides && rides.length > 0 ? (
         rides.map((item, i) => {
           return (
