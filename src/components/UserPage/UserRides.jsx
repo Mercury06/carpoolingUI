@@ -40,14 +40,7 @@ const UserRides = () => {
   //   }
   //   fetchData().catch(console.error);
   // }, [id]);
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const response = await fetch(`http://localhost:9000/api/settings/findmyrides/${id}`);
-  //     const data = await JSON.parse(response.data);
-  //     console.log('fetched data:', data);
-  //   }
-  //   fetchData().catch(console.error);
-  // }, [id]);
+
   useEffect(() => {
     function status(response) {
       if (response.status >= 200 && response.status < 300) {
