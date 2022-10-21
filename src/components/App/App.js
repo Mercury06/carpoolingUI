@@ -29,9 +29,6 @@ function App() {
   useEffect(() => {
     sessionStorage.setItem('occupation', 'Software dev');
   });
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition(success, error);
-  // }, []);
 
   return (
     <Layout>
@@ -39,9 +36,11 @@ function App() {
         {!isAuth && <Route path="login" element={<Login />} />}
         {!isAuth && <Route path="registration" element={<Registration />} />}
         {/* <Route path="search" element={<Registration />} /> */}
-        <Route path="myrides" element={<UserRides />} />
+        {isAuth && <Route path="myrides" element={<UserRides />} />}
+        {!isAuth && <Route path="myrides" element={<Navigate to="/" replace />} />}
         {isAuth && <Route path="login" element={<Navigate to="/search" replace />} />}
         {isAuth && <Route path="/" element={<Navigate to="/search" replace />} />}
+        {!isAuth && <Route path="/" element={<Navigate to="/login" replace />} />}
         {isAuth && <Route path="search" element={<RideSearchForm1 />} />}
       </Routes>
     </Layout>
