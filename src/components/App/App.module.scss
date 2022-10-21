@@ -1,3 +1,18 @@
 .App {
   text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px; //edit
+}
+
+body {
+  width: 100%;
+  font-family: $Poppins;
+  color: $dark;
+  margin: 0px;
+  padding: 0px;
 }
