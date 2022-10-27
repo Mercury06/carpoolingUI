@@ -7,7 +7,6 @@ import useFormValidation from '../../../../Hooks/useFormValidation';
 // import { findLocality } from '../../../api/actions';
 
 import s from './rideSearchForm.module.scss';
-// import './rideSearchForm.module.scss';
 import validateAuth from './validateAuth';
 
 const initialState = {
@@ -32,7 +31,6 @@ const RideSearchForm1 = (props) => {
     initialState.user = userId;
     initialState.date = modifiedInitialStateDate;
     console.log('suggestedRides:', suggestedRides);
-    //console.log('initialState:', initialState);
   }, [suggestedRides]);
 
   const {

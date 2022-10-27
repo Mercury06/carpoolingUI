@@ -102,12 +102,12 @@ const Header = () => {
             )}
             <li>
               <Link to="/search" onClick={menuToggleHandler}>
-                Запросить поездку
+                Запросить место
               </Link>
             </li>
             <li>
               <Link to="/page-three" onClick={menuToggleHandler}>
-                + Предложить поездку
+                + Найти попутчиков
               </Link>
             </li>
           </ul>
