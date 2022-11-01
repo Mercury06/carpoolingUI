@@ -42,7 +42,6 @@ const Login = (props) => {
   const dispatch = useDispatch();
   const onSubmit = (formData, ...props) => {
     console.log(formData);
-    console.log('props:', props);
     dispatch(login({ ...formData }));
   };
   return (
