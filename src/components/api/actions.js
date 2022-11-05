@@ -4,15 +4,15 @@ import { stopSubmit } from 'redux-form';
 import { setSuggestedRides } from '../../reducers/rideReducer';
 import { setUser } from './../../reducers/userReducer';
 
-export const registration = async ({ ...form }) => {
-  //debugger
-  try {
-    //const response = await axios.post("http://localhost:9000/api/auth/registration", { ...form})
-    // console.log(response.data.message)
-  } catch (e) {
-    alert(e.response.data.message);
-  }
-};
+// export const registration = async ({ ...form }) => {
+//   //debugger
+//   try {
+//     //const response = await axios.post("http://localhost:9000/api/auth/registration", { ...form})
+//     // console.log(response.data.message)
+//   } catch (e) {
+//     alert(e.response.data.message);
+//   }
+// };
 
 export const login = ({ ...form }) => {
   //debugger;

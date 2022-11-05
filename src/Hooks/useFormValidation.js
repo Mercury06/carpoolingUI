@@ -48,7 +48,6 @@ function useFormValidation(initialState, validate) {
     return;
   }
   console.log('inputValues:', inputValues);
-  //console.log('initialState:', initialState);
   // function handleBlur() {
   //   const validationErrors = validate(inputValues);
   //   setErrors(validationErrors);
