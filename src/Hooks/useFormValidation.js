@@ -78,7 +78,6 @@ function useFormValidation(initialState, validate) {
 
     dispatch(setSuggestedRides([]));
     // console.log('e.target', e.target);
-
     // console.log('item._id', item._id);
     // console.log('item.localityFrom', item.locality);
     console.log('inputValues.destination.localityName:', inputValues.destination.localityName);

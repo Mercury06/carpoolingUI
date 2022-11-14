@@ -46,7 +46,6 @@ const Header = () => {
   };
 
   // const searchHandler = (id) => {
-  //   debugger;
   //   setMenuOpen(() => !menuOpen);
   //   findMyRides(id);
   // };
