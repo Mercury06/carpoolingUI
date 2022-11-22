@@ -60,6 +60,18 @@ export const auth = () => {
   };
 };
 
+// export const findLocs = async () => {
+//     //debugger
+//      try {
+//          const response = await axios.get("http://localhost:9000/api/settings/findlocs")
+//          const data = response.data
+//          console.log(data)
+//          return data
+//      } catch (e) {
+//          alert(e.response.data.message)
+//       }
+// }
+
 // export const findMyRides = async (id) => {
 //   //debugger
 //   try {
@@ -72,18 +84,6 @@ export const auth = () => {
 //     alert(e.response.data.message);
 //   }
 // };
-
-// export const findLocs = async () => {
-//     //debugger
-//      try {
-//          const response = await axios.get("http://localhost:9000/api/settings/findlocs")
-//          const data = response.data
-//          console.log(data)
-//          return data
-//      } catch (e) {
-//          alert(e.response.data.message)
-//       }
-// }
 
 // export const findRidesBy = async (date) => {
 //     debugger
