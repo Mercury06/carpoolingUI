@@ -78,8 +78,7 @@ export const auth = () => {
 //     const response = await axios.get(`http://localhost:9000/api/settings/findmyrides/${id}`);
 //     const data = response.data;
 
-//     //console.log('findMyRides:', data);
-//     return data;
+//    //     return data;
 //   } catch (e) {
 //     alert(e.response.data.message);
 //   }
