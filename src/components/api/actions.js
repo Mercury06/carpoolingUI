@@ -72,18 +72,6 @@ export const auth = () => {
 //       }
 // }
 
-// export const findMyRides = async (id) => {
-//   //debugger
-//   try {
-//     const response = await axios.get(`http://localhost:9000/api/settings/findmyrides/${id}`);
-//     const data = response.data;
-
-//    //     return data;
-//   } catch (e) {
-//     alert(e.response.data.message);
-//   }
-// };
-
 // export const findRidesBy = async (date) => {
 //     debugger
 //      try {
@@ -96,6 +84,18 @@ export const auth = () => {
 //          alert(e.response.data.message)
 //       }
 // }
+
+// export const findMyRides = async (id) => {
+//   //debugger
+//   try {
+//     const response = await axios.get(`http://localhost:9000/api/settings/findmyrides/${id}`);
+//     const data = response.data;
+
+//    //     return data;
+//   } catch (e) {
+//     alert(e.response.data.message);
+//   }
+// };
 
 export function findLocality(search) {
   return async (dispatch) => {
