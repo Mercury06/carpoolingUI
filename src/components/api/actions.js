@@ -72,18 +72,6 @@ export const auth = () => {
 //   }
 // };
 
-// export const findLocs = async () => {
-//     //debugger
-//      try {
-//          const response = await axios.get("http://localhost:9000/api/settings/findlocs")
-//          const data = response.data
-//          console.log(data)
-//          return data
-//      } catch (e) {
-//          alert(e.response.data.message)
-//       }
-// }
-
 // export const findRidesBy = async (date) => {
 //     debugger
 //      try {
@@ -91,6 +79,18 @@ export const auth = () => {
 //          const response = await axios.get(`http://localhost:9000/api/settings/findridesby?date=${date}`)
 //          const data = response.data
 //          console.log("from action concatinated fetch:", data)
+//          return data
+//      } catch (e) {
+//          alert(e.response.data.message)
+//       }
+// }
+
+// export const findLocs = async () => {
+//     //debugger
+//      try {
+//          const response = await axios.get("http://localhost:9000/api/settings/findlocs")
+//          const data = response.data
+//          console.log(data)
 //          return data
 //      } catch (e) {
 //          alert(e.response.data.message)
