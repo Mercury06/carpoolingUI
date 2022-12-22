@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useState } from 'react';
 import { stopSubmit } from 'redux-form';
 import { setSuggestedRides } from '../../reducers/rideReducer';
 import { setUser } from './../../reducers/userReducer';
