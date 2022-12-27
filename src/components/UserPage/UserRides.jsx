@@ -11,9 +11,7 @@ const UserRides = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get(
-        `https://fast-river-99451.herokuapp.com/api/settings/findmyrides/${id}`,
-      );
+      const response = await axios.get(`http://localhost:9000/api/settings/findmyrides/${id}`);
       const data = response.data;
       setRides(data);
     }
