@@ -51,7 +51,7 @@ const RideSearchForm1 = (props) => {
   return (
     <>
       <div className={s.container}>
-        <form onSubmit={handleSubmit}>
+        <form className={s.form} onSubmit={handleSubmit}>
           <h3>Create ride form</h3>
           <div>
             <input
