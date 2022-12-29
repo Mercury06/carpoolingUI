@@ -17,7 +17,10 @@
   height: auto;
   .form {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    @include breakpoint(md) {
+      flex-direction: row;
+    }
   }
 
   input {
