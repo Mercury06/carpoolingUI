@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { auth } from './../api/actions';
-import Header from '../Header/Header.jsx';
 import Layout from '../Layout/Layout.jsx';
 import UserRides from '../UserPage/UserRides.jsx';
 //import MainPage from '../MainPage/MainPage.jsx';
