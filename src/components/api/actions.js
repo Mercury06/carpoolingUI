@@ -35,7 +35,18 @@ export const login = ({ ...form }) => {
 export const createRide = async ({ ...form }) => {
   //debugger;
   try {
-    // const response = await axios.post('http://localhost:9000/api/settings/createride', {
+    const response = await axios.post('http://localhost:9000/api/settings/createride', {
+      ...form,
+    });
+    return response.data.message;
+  } catch (e) {
+    alert(e.response.data.message);
+  }
+};
+
+export const createAsk = async ({ ...form }) => {
+  debugger;
+  try {
     const response = await axios.post('http://localhost:9000/api/settings/createask', {
       ...form,
     });
