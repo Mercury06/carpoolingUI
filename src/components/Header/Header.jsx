@@ -100,13 +100,13 @@ const Header = () => {
               </>
             )}
             <li>
-              <Link to="/search" onClick={menuToggleHandler}>
-                Запросить место
+              <Link to="/create-ride" onClick={menuToggleHandler}>
+                Create Ride
               </Link>
             </li>
             <li>
-              <Link to="/page-three" onClick={menuToggleHandler}>
-                + Найти попутчиков
+              <Link to="/ask-ride" onClick={menuToggleHandler}>
+                Ask Ride
               </Link>
             </li>
           </ul>

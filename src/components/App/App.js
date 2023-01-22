@@ -40,7 +40,8 @@ function App() {
         {isAuth && <Route path="login" element={<Navigate to="/search" replace />} />}
         {isAuth && <Route path="/" element={<Navigate to="/search" replace />} />}
         {!isAuth && <Route path="/" element={<Navigate to="/login" replace />} />}
-        {isAuth && <Route path="search" element={<RideSearchForm1 />} />}
+        {isAuth && <Route path="create-ride" element={<RideSearchForm1 />} />}
+        {isAuth && <Route path="ask-ride" element={<RideSearchForm1 />} />}
       </Routes>
     </Layout>
   );
