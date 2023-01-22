@@ -7,7 +7,8 @@ import UserRides from '../UserPage/UserRides.jsx';
 //import MainPage from '../MainPage/MainPage.jsx';
 import Login from './Forms/Autorization/Login.jsx';
 import Registration from './Forms/Autorization/Registration.jsx';
-import RideSearchForm1 from './Forms/Search/RideSearchForm1.jsx';
+import RideCreateForm from './Forms/Search/RideCreateForm.jsx';
+import AskForm from './Forms/Search/AskForm';
 //import Navbar from '../Navbar/Navbar';
 
 function App() {
@@ -40,8 +41,8 @@ function App() {
         {isAuth && <Route path="login" element={<Navigate to="/search" replace />} />}
         {isAuth && <Route path="/" element={<Navigate to="/search" replace />} />}
         {!isAuth && <Route path="/" element={<Navigate to="/login" replace />} />}
-        {isAuth && <Route path="create-ride" element={<RideSearchForm1 />} />}
-        {isAuth && <Route path="ask-ride" element={<RideSearchForm1 />} />}
+        {isAuth && <Route path="create-ride" element={<RideCreateForm />} />}
+        {isAuth && <Route path="ask-ride" element={<AskForm />} />}
       </Routes>
     </Layout>
   );

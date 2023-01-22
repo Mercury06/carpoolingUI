@@ -6,7 +6,7 @@ import useFormValidation from '../../../../Hooks/useFormValidation';
 // import { setSuggestedRides } from '../../../../reducers/rideReducer';
 // import { findLocality } from '../../../api/actions';
 
-import s from './rideSearchForm.module.scss';
+import s from './searchForm.module.scss';
 import validateAuth from './validateAuth';
 
 const initialState = {
@@ -22,7 +22,7 @@ const initialState = {
   date: '',
 };
 
-const RideSearchForm1 = (props) => {
+const RideCreateForm = (props) => {
   const userId = useSelector((state) => state.user.currentUser.id);
   const suggestedRides = useSelector((state) => state.ride.suggestedRides);
   // const dispatch = useDispatch();
@@ -126,4 +126,4 @@ const RideSearchForm1 = (props) => {
   );
 };
 
-export default RideSearchForm1;
+export default RideCreateForm;
