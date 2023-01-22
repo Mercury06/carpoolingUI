@@ -32,30 +32,6 @@ export const login = ({ ...form }) => {
   };
 };
 
-export const createRide = async ({ ...form }) => {
-  //debugger;
-  try {
-    const response = await axios.post('http://localhost:9000/api/settings/createride', {
-      ...form,
-    });
-    return response.data.message;
-  } catch (e) {
-    alert(e.response.data.message);
-  }
-};
-
-export const createAsk = async ({ ...form }) => {
-  debugger;
-  try {
-    const response = await axios.post('http://localhost:9000/api/settings/createask', {
-      ...form,
-    });
-    return response.data.message;
-  } catch (e) {
-    alert(e.response.data.message);
-  }
-};
-
 export const auth = () => {
   return async (dispatch) => {
     try {
@@ -69,6 +45,46 @@ export const auth = () => {
       localStorage.removeItem('token');
     }
   };
+};
+
+export const createRide = async ({ ...form }) => {
+  //debugger;
+  try {
+    const response = await axios.post('http://localhost:9000/api/settings/createride', {
+      ...form,
+    });
+    return response.data.message;
+  } catch (e) {
+    alert(e.response.data.message);
+  }
+};
+
+export const findRide = async (search) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:9000/api/settings/findlocality?search=${search}`,
+      );
+
+      dispatch(setSuggestedRides(response.data));
+      return response.data;
+    } catch (e) {
+      alert(e.message);
+      dispatch(setSuggestedRides([]));
+    }
+  };
+};
+
+export const createAsk = async ({ ...form }) => {
+  debugger;
+  try {
+    const response = await axios.post('http://localhost:9000/api/settings/createask', {
+      ...form,
+    });
+    return response.data.message;
+  } catch (e) {
+    alert(e.response.data.message);
+  }
 };
 
 // export const findMyRides = async (id) => {

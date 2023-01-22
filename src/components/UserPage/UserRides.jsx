@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { setUserRidesAction } from '../../reducers/rideReducer';
 import s from './UserPage.module.scss';
 const moment = require('moment');
 
@@ -14,6 +15,7 @@ const UserRides = () => {
       const response = await axios.get(`http://localhost:9000/api/settings/findmyrides/${id}`);
       const data = response.data;
       setRides(data);
+      //debugger;
     }
     fetchData().catch(console.error);
   }, [id]);
