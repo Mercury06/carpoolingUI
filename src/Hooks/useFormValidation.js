@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { createRide, findLocality } from '../components/api/actions';
 import moment from 'moment';
-import { setSuggestedRides } from '../reducers/rideReducer';
+import { setSuggestedRidesActionCreator } from '../reducers/rideReducer';
 
 function useFormValidation(initialState, validate) {
   const [inputValues, setInputValues] = React.useState(initialState);
@@ -32,7 +32,7 @@ function useFormValidation(initialState, validate) {
   function handleChange(e) {
     let search = e.target.value;
     if (search === 0) {
-      dispatch(setSuggestedRides([]));
+      dispatch(setSuggestedRidesActionCreator([]));
       setTargetName(null);
       return;
     }
@@ -56,14 +56,14 @@ function useFormValidation(initialState, validate) {
   // function onSuggestSelect(e, { item }) {
   //   setSelectedItem(item);
   //   setFromInputValue(item);
-  //   dispatch(setSuggestedRides([]));
+  //   dispatch(setSuggestedRidesActionCreator([]));
   // }
   function onSuggestSelect1(e, { item }) {
     e.stopPropagation();
     inputValues.localityFrom.localityName = item.locality;
     inputValues.localityFrom.id = item._id;
 
-    dispatch(setSuggestedRides([]));
+    dispatch(setSuggestedRidesActionCreator([]));
     // console.log('e.target', e.target);
     // console.log('item.localityFrom', item.locality);
     // console.log('item._id', item._id);
@@ -76,7 +76,7 @@ function useFormValidation(initialState, validate) {
     inputValues.destination.localityName = item.locality;
     inputValues.destination.id = item._id;
 
-    dispatch(setSuggestedRides([]));
+    dispatch(setSuggestedRidesActionCreator([]));
     // console.log('e.target', e.target);
     // console.log('item._id', item._id);
     // console.log('item.localityFrom', item.locality);

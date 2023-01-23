@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { stopSubmit } from 'redux-form';
-import { setSuggestedRides } from '../../reducers/rideReducer';
+import { setSuggestedRidesActionCreator } from '../../reducers/rideReducer';
 import { setUser } from './../../reducers/userReducer';
 
 // export const registration = async ({ ...form }) => {
@@ -59,22 +59,6 @@ export const createRide = async ({ ...form }) => {
   }
 };
 
-export const findRide = async (search) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:9000/api/settings/findlocality?search=${search}`,
-      );
-
-      dispatch(setSuggestedRides(response.data));
-      return response.data;
-    } catch (e) {
-      alert(e.message);
-      dispatch(setSuggestedRides([]));
-    }
-  };
-};
-
 export const createAsk = async ({ ...form }) => {
   debugger;
   try {
@@ -87,46 +71,46 @@ export const createAsk = async ({ ...form }) => {
   }
 };
 
-// export const findMyRides = async (id) => {
-//   debugger
-//   try {
-//     const response = await axios.get(`http://localhost:9000/api/settings/findmyrides/${id}`);
-//     const data = response.data;
-//     return data;
-//   } catch (e) {
-//     alert(e.response.data.message);
-//   }
-// };
 export const findMyRidesApiAction = (id) => {
-  //debugger
   return axios.get(`http://localhost:9000/api/settings/findmyrides/${id}`).then((response) => {
     return response.data;
   });
 };
 
-export const findRidesBy = async (date) => {
-  debugger;
+// export const findRidesBy = async (date, localityFrom, destination) => {
+//   debugger;
+//   try {
+//     const response = await axios.get(
+//       `http://localhost:9000/api/settings/findridesby?date=${date}&localityFrom=${localityFrom}&destination=${destination}`,
+//     );
+//     const data = response.data;
+//     console.log('from action concatinated fetch:', data);
+//     return data;
+//   } catch (e) {
+//     alert(e.response.data.message);
+//   }
+// };
+export const findRidesByParamsApiAction = async (date, localityFrom, destination) => {
+  return axios
+    .get(
+      `http://localhost:9000/api/settings/findridesby?date=${date}&localityFrom=${localityFrom}&destination=${destination}`,
+    )
+    .then((response) => {
+      return response.data;
+    });
+};
+
+export const findLocs = async () => {
+  //debugger
   try {
-    const response = await axios.get(`http://localhost:9000/api/settings/findridesby?date=${date}`);
+    const response = await axios.get('http://localhost:9000/api/settings/findlocs');
     const data = response.data;
-    console.log('from action concatinated fetch:', data);
+    console.log(data);
     return data;
   } catch (e) {
     alert(e.response.data.message);
   }
 };
-
-// export const findLocs = async () => {
-//     //debugger
-//      try {
-//          const response = await axios.get("http://localhost:9000/api/settings/findlocs")
-//          const data = response.data
-//          console.log(data)
-//          return data
-//      } catch (e) {
-//          alert(e.response.data.message)
-//       }
-// }
 
 export function findLocality(search) {
   return async (dispatch) => {
@@ -135,11 +119,11 @@ export function findLocality(search) {
         `http://localhost:9000/api/settings/findlocality?search=${search}`,
       );
 
-      dispatch(setSuggestedRides(response.data));
+      dispatch(setSuggestedRidesActionCreator(response.data));
       return response.data;
     } catch (e) {
       alert(e.message);
-      dispatch(setSuggestedRides([]));
+      dispatch(setSuggestedRidesActionCreator([]));
     }
   };
 }

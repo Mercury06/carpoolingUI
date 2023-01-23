@@ -1,5 +1,6 @@
 //import { findAllRides, findRidesBy } from "../components/api/actions"
 
+//const SET_USER_RIDES = 'SET_USER_RIDES';
 const SET_RIDES = 'SET_RIDES';
 const SET_SUGGEST_RIDES = 'SET_SUGGEST_RIDES';
 
@@ -28,23 +29,11 @@ export default function rideReducer(state = defaultState, action) {
   }
 }
 
-export const setUserRidesAction = (rides) => ({ type: SET_RIDES, payload: rides });
-export const setSuggestedRides = (rides) => ({ type: SET_SUGGEST_RIDES, payload: rides });
-
-// export const getRidesThunkCreator = () => {
-//     //debugger
-//     return async (dispatch) => {
-//         try {
-//             //const rides = await findAllRides()
-//             console.log(rides)
-
-//             dispatch (setRides (rides));
-
-//         } catch (e) {
-//             alert(e.response.data)
-//         }
-//     }
-// }
+//export const setUserRidesActionCreator = (rides) => ({ type: SET_USER_RIDES, payload: rides });
+export const setSuggestedRidesActionCreator = (rides) => ({
+  type: SET_SUGGEST_RIDES,
+  payload: rides,
+});
 
 // export const findByThunkCreator = (date) => {
 //     debugger

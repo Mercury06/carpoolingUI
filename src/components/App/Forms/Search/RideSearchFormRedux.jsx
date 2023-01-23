@@ -3,7 +3,7 @@ import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { setSuggestedRides } from '../../../../reducers/rideReducer';
+import { setSuggestedRidesActionCreator } from '../../../../reducers/rideReducer';
 import { findLocality } from '../../../api/actions';
 import s from './rideSearchForm.module.scss';
 
@@ -43,7 +43,7 @@ const Search = (props) => {
     let search = e.fromLocality;
     console.log('search:', search);
     if (!search) {
-      dispatch(setSuggestedRides([]));
+      dispatch(setSuggestedRidesActionCreator([]));
     } else {
       dispatch(findLocality(search));
     }
