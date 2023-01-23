@@ -118,7 +118,7 @@ const RideCreateForm = (props) => {
           </div>
           <div>
             {/* <button disabled={isSubmitting} type="submit"> */}
-            <button type="submit">Create</button>
+            <button type="submit">Create Ride</button>
           </div>
         </form>
       </div>

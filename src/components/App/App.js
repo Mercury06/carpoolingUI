@@ -38,8 +38,8 @@ function App() {
         {/* <Route path="search" element={<Registration />} /> */}
         {isAuth && <Route path="myrides" element={<UserRides />} />}
         {!isAuth && <Route path="myrides" element={<Navigate to="/" replace />} />}
-        {isAuth && <Route path="login" element={<Navigate to="/search" replace />} />}
-        {isAuth && <Route path="/" element={<Navigate to="/search" replace />} />}
+        {isAuth && <Route path="login" element={<Navigate to="/create-ride" replace />} />}
+        {isAuth && <Route path="/" element={<Navigate to="/create-ride" replace />} />}
         {!isAuth && <Route path="/" element={<Navigate to="/login" replace />} />}
         {isAuth && <Route path="create-ride" element={<RideCreateForm />} />}
         {isAuth && <Route path="ask-ride" element={<AskForm />} />}

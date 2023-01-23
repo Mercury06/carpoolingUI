@@ -88,29 +88,33 @@ export const createAsk = async ({ ...form }) => {
 };
 
 // export const findMyRides = async (id) => {
-//   //debugger
+//   debugger
 //   try {
 //     const response = await axios.get(`http://localhost:9000/api/settings/findmyrides/${id}`);
 //     const data = response.data;
-
-//    //     return data;
+//     return data;
 //   } catch (e) {
 //     alert(e.response.data.message);
 //   }
 // };
+export const findMyRidesApiAction = (id) => {
+  //debugger
+  return axios.get(`http://localhost:9000/api/settings/findmyrides/${id}`).then((response) => {
+    return response.data;
+  });
+};
 
-// export const findRidesBy = async (date) => {
-//     debugger
-//      try {
-//          //const response = await axios.get(`http://localhost:9000/api/settings/findby?date=${startDateISO}`)
-//          const response = await axios.get(`http://localhost:9000/api/settings/findridesby?date=${date}`)
-//          const data = response.data
-//          console.log("from action concatinated fetch:", data)
-//          return data
-//      } catch (e) {
-//          alert(e.response.data.message)
-//       }
-// }
+export const findRidesBy = async (date) => {
+  debugger;
+  try {
+    const response = await axios.get(`http://localhost:9000/api/settings/findridesby?date=${date}`);
+    const data = response.data;
+    console.log('from action concatinated fetch:', data);
+    return data;
+  } catch (e) {
+    alert(e.response.data.message);
+  }
+};
 
 // export const findLocs = async () => {
 //     //debugger
@@ -139,16 +143,3 @@ export function findLocality(search) {
     }
   };
 }
-// export function findAllLocalities () {
-
-//     return async dispatch => {
-//         try {
-//             //const response = await axios.post("http://localhost:9000/api/settings/findlocality", {locality: payload})
-//             const response = await axios.get(`http://localhost:9000/api/settings/findlocality?search=${search}`)
-//             dispatch(setSuggestedRides(response.data))
-//             return response.data
-//         } catch (e) {
-//             alert(e.message)
-//         }
-//     }
-// }
