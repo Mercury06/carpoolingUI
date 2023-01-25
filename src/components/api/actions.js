@@ -60,7 +60,7 @@ export const createRide = async ({ ...form }) => {
 };
 
 export const createAsk = async ({ ...form }) => {
-  debugger;
+  //debugger;
   try {
     const response = await axios.post('http://localhost:9000/api/settings/createask', {
       ...form,
@@ -77,19 +77,6 @@ export const findMyRidesApiAction = (id) => {
   });
 };
 
-// export const findRidesBy = async (date, localityFrom, destination) => {
-//   debugger;
-//   try {
-//     const response = await axios.get(
-//       `http://localhost:9000/api/settings/findridesby?date=${date}&localityFrom=${localityFrom}&destination=${destination}`,
-//     );
-//     const data = response.data;
-//     console.log('from action concatinated fetch:', data);
-//     return data;
-//   } catch (e) {
-//     alert(e.response.data.message);
-//   }
-// };
 export const findRidesByParamsApiAction = async ({ date, localityFrom, destination }) => {
   //debugger;
   const pointA = localityFrom.localityName;
