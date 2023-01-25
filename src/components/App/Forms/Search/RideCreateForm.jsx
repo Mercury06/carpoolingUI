@@ -3,8 +3,6 @@ import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useSelector } from 'react-redux';
 import useFormValidation from '../../../../Hooks/useFormValidation';
-// import { setSuggestedRides } from '../../../../reducers/rideReducer';
-// import { findLocality } from '../../../api/actions';
 
 import s from './searchForm.module.scss';
 import validateAuth from './validateAuth';
@@ -34,7 +32,7 @@ const RideCreateForm = (props) => {
   }, [suggestedRides]);
 
   const {
-    handleSubmit,
+    createRideHandleSubmit,
     handleChange,
     handleBlur,
     errors,
@@ -51,7 +49,7 @@ const RideCreateForm = (props) => {
   return (
     <>
       <div className={s.container}>
-        <form className={s.form} onSubmit={handleSubmit}>
+        <form className={s.form} onSubmit={createRideHandleSubmit}>
           <h3>Create ride form</h3>
           <div>
             <input

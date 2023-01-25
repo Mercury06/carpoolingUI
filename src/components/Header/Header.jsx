@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 import { BiMenuAltRight, BiArrowBack } from 'react-icons/bi';
 
-//import { AiOutlineClose } from 'react-icons/ai';
+import { FaSearch } from 'react-icons/fa';
 
 import classes from './Header.module.scss';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../reducers/userReducer';
-//import { findMyRides } from '../api/actions';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -106,7 +105,8 @@ const Header = () => {
             </li>
             <li>
               <Link to="/ask-ride" onClick={menuToggleHandler}>
-                Ask Ride
+                <FaSearch /> <bn></bn>
+                Find Ride
               </Link>
             </li>
           </ul>

@@ -2,7 +2,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { createRide, findLocality } from '../components/api/actions';
 import moment from 'moment';
-import { setSuggestedRidesActionCreator } from '../reducers/rideReducer';
+import {
+  findRidesByParamsThunkCreator,
+  setSuggestedRidesActionCreator,
+} from '../reducers/rideReducer';
 
 function useFormValidation(initialState, validate) {
   const [inputValues, setInputValues] = React.useState(initialState);
@@ -84,9 +87,20 @@ function useFormValidation(initialState, validate) {
     console.log('inputValues.destination.id:', inputValues.destination.id);
     return;
   }
-  async function handleSubmit(event) {
+  async function createRideHandleSubmit(event) {
     event.preventDefault();
     await createRide(inputValues);
+    //console.log('submit');
+    //const validationErrors = validate(inputValues);
+    //setErrors(validationErrors);
+    //setSubmitting(true);
+    //console.log(inputValues);
+  }
+  async function findRidesHandleSubmit(event) {
+    debugger;
+    event.preventDefault();
+    dispatch(findRidesByParamsThunkCreator(inputValues));
+    //findRidesByParamsApiAction(inputValues);
     //console.log('submit');
     //const validationErrors = validate(inputValues);
     //setErrors(validationErrors);
@@ -103,7 +117,8 @@ function useFormValidation(initialState, validate) {
   };
 
   return {
-    handleSubmit,
+    createRideHandleSubmit,
+    findRidesHandleSubmit,
     handleChange,
     // handleBlur,
     inputValues,

@@ -34,7 +34,7 @@ const AskForm = (props) => {
   }, [suggestedRides]);
 
   const {
-    handleSubmit,
+    findRidesHandleSubmit,
     handleChange,
     handleBlur,
     errors,
@@ -51,7 +51,7 @@ const AskForm = (props) => {
   return (
     <>
       <div className={s.container}>
-        <form className={s.form} onSubmit={handleSubmit}>
+        <form className={s.form} onSubmit={findRidesHandleSubmit}>
           <h3>Create ride form</h3>
           <div>
             <input
@@ -118,7 +118,7 @@ const AskForm = (props) => {
           </div>
           <div>
             {/* <button disabled={isSubmitting} type="submit"> */}
-            <button type="submit">Ask ride</button>
+            <button type="submit">Find ride</button>
           </div>
         </form>
       </div>
