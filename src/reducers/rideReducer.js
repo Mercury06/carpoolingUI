@@ -35,7 +35,7 @@ export const setSuggestedRidesActionCreator = (rides) => ({
 });
 
 export const findRidesByParamsThunkCreator = ({ ...form }) => {
-  debugger;
+  //debugger;
   return async (dispatch) => {
     try {
       const rides = await findRidesByParamsApiAction({ ...form });

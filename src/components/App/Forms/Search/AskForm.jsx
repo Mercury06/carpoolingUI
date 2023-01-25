@@ -52,7 +52,7 @@ const AskForm = (props) => {
     <>
       <div className={s.container}>
         <form className={s.form} onSubmit={findRidesHandleSubmit}>
-          <h3>Create ride form</h3>
+          <h3>Find ride</h3>
           <div>
             <input
               onChange={handleChange}

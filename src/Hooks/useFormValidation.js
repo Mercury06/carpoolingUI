@@ -97,7 +97,7 @@ function useFormValidation(initialState, validate) {
     //console.log(inputValues);
   }
   async function findRidesHandleSubmit(event) {
-    debugger;
+    //debugger;
     event.preventDefault();
     dispatch(findRidesByParamsThunkCreator(inputValues));
     //findRidesByParamsApiAction(inputValues);

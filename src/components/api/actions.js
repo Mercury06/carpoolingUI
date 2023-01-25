@@ -91,7 +91,7 @@ export const findMyRidesApiAction = (id) => {
 //   }
 // };
 export const findRidesByParamsApiAction = async ({ date, localityFrom, destination }) => {
-  debugger;
+  //debugger;
   const pointA = localityFrom.localityName;
   const pointB = destination.localityName;
   return axios
