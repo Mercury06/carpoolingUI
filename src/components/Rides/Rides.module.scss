@@ -1,0 +1,49 @@
+.list {
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  border: 1px solid black;
+  margin-top: 3px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  border: 0px solid grey;
+  width: 70%;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  background-color: rgb(202, 188, 188);
+  cursor: pointer;
+
+  .avatar {
+    //margin-right: 20px;
+    margin-left: 0.5rem;
+    margin-top: 0.75rem;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+
+    .avaPhoto {
+      width: 80px;
+      height: 80px;
+    }
+  }
+  .infoBlock {
+    margin-left: 0.75rem;
+  }
+}
+
+.formsBlock {
+  display: flex;
+  flex-direction: row;
+  .form {
+    margin-left: 10px;
+  }
+}
+
+.itemsBlock {
+  margin-left: 2rem;
+  margin-top: 2rem;
+}

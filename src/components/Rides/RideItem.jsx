@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Rides.module.scss';
 //import avaPhoto from './../../assets/images/ava-rez.jpg';
+const moment = require('moment');
 
 const RideItem = ({ pointA, pointB, seats, date }) => {
   // const onClickItem = () => {
@@ -13,18 +14,22 @@ const RideItem = ({ pointA, pointB, seats, date }) => {
     <div className={s} onClick={() => {}}>
       <div className={s.avatar}></div>
 
-      <div className={s.infoBlock}>
+      <div className={s.content}>
         <div>
-          <b>откуда:{pointA}</b>{' '}
+          <b>from: </b>
+          {pointA}{' '}
         </div>
         <div>
-          <b>куда:{pointB}</b>{' '}
+          <b>to: </b>
+          {pointB}{' '}
         </div>
         <div>
-          <b>мест свободно:{seats}</b>{' '}
+          <b>seats: </b>
+          {seats}{' '}
         </div>
         <div>
-          <b>дата поездки:{date}</b>{' '}
+          <b>date:</b>
+          {moment(date).format('DD-MMM-YYYY')}{' '}
         </div>
       </div>
     </div>
