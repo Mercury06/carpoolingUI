@@ -9,10 +9,6 @@ const RidesList = () => {
   const rides = useSelector((state) => state.ride.rides);
   //const dispatch = useDispatch();
   console.log('rides from state:', rides);
-  const arr = [
-    { city: 'city1', year: '1971' },
-    { city: 'city2', year: '1973' },
-  ];
 
   useEffect(() => {}, []);
   return (

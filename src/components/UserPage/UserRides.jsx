@@ -13,15 +13,14 @@ const UserRides = () => {
     async function fetchData() {
       const data = await findMyRidesApiAction(id);
       setRides(data);
-      //debugger;
     }
     fetchData().catch(console.error);
   }, [id]);
 
   return (
-    <div>
-      {rides && <h1>Found {rides.length} results</h1>}
-      {id && <h1>user id: {id}</h1>}
+    <div className={s.container}>
+      {rides && <h5>Found {rides.length} rides</h5>}
+      {/* {id && <h5>user id: {id}</h5>} */}
       {rides && rides.length > 0 ? (
         rides.map((item, i) => {
           return (

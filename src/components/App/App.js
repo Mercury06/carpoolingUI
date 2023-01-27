@@ -9,25 +9,13 @@ import Login from './Forms/Autorization/Login.jsx';
 import Registration from './Forms/Autorization/Registration.jsx';
 import RideCreateForm from './Forms/Search/RideCreateForm.jsx';
 import RidesList from '../Rides/RidesList';
-//import Navbar from '../Navbar/Navbar';
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
   const dispatch = useDispatch();
 
-  //const store = useStore()
-  //console.log("from store:", store.getState())
-  // const success = (position) => {
-  //   console.log(position);
-  // };
-  // const error = (err) => {
-  //   console.log('error:', err);
-  // };
   useEffect(() => {
     dispatch(auth());
-  });
-  useEffect(() => {
-    sessionStorage.setItem('occupation', 'Software dev');
   });
 
   return (

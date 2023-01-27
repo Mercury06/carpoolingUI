@@ -1,4 +1,15 @@
+.container {
+  // margin-top: 136px;
+  margin-top: 16vw;
+}
+
 .content {
-  border: 1px solid black;
-  margin-top: 3px;
+  border: 0.2px solid rgb(182, 181, 181);
+  border-radius: 4px;
+  margin-top: 9px;
+  width: 48vw;
+  padding-left: 16px;
+  padding-top: 6px;
+  padding-bottom: 5px;
+  box-shadow: 1px 1px 2px 1px rgba(125, 125, 128, 0.712);
 }
