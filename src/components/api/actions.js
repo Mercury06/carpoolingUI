@@ -55,7 +55,7 @@ export const createRide = async ({ ...form }) => {
     });
     return response.data.message;
   } catch (e) {
-    alert(e.response.data.message);
+    console.log(e.response);
   }
 };
 

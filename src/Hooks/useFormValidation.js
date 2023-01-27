@@ -109,11 +109,15 @@ function useFormValidation(initialState, validate) {
   }
 
   const onChangeDateHandler = (value) => {
+    //debugger;
     setStartDate(value);
     const modifiedDate = moment(value).format('YYYY-MM-DD');
     setModifiedDate(modifiedDate);
-    initialState.date = modifiedDate;
-    //console.log('initialState.date:', initialState.date);
+    //console.log('modifiedDate:', modifiedDate);
+    setInputValues({
+      ...inputValues,
+      date: modifiedDate,
+    });
   };
 
   return {

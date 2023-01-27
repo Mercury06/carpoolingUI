@@ -39,8 +39,6 @@ export const findRidesByParamsThunkCreator = ({ ...form }) => {
   return async (dispatch) => {
     try {
       const rides = await findRidesByParamsApiAction({ ...form });
-      //console.log('from thunk:', rides);
-
       dispatch(setRidesActionCreator(rides));
     } catch (e) {
       alert(e.response.data);
