@@ -1,7 +1,8 @@
 @import './../../styles/variables.scss';
 
 .header {
-  background: $dark;
+  // background: $dark;
+  background: rgb(36, 36, 36);
   //width: 600px;  //edit
   height: $headerHeight;
   padding: 0 1.5rem;

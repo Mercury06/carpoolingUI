@@ -6,12 +6,14 @@ const moment = require('moment');
 
 const UserRides = () => {
   const user = useSelector((state) => state.user.currentUser);
+
   const id = user.id;
   const [rides, setRides] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       const data = await findMyRidesApiAction(id);
+
       setRides(data);
     }
     fetchData().catch(console.error);

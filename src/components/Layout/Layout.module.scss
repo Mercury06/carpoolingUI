@@ -1,10 +1,14 @@
 @import './../../styles/variables.scss';
 
 .container {
-  height: calc(100vh - #{$headerHeight});
+  // height: calc(100vh - #{$headerHeight});
+  //height: fit-content;
+  min-height: 100vh;
   width: 100%;
   background: $bg;
   display: flex;
   justify-content: center;
   align-items: center;
+  //margin-bottom: 32px;
+  padding-bottom: 32px;
 }

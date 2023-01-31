@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { BiMenuAltRight, BiArrowBack } from 'react-icons/bi';
 
 import { FaSearch } from 'react-icons/fa';
+import { BiLogOut } from 'react-icons/bi';
 
 import classes from './Header.module.scss';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
@@ -53,33 +54,39 @@ const Header = () => {
     <header className={classes.header}>
       <div className={classes.header__content}>
         <Link to="/" className={classes.header__content__logo}>
-          navbar
+          LOGOTYPE
         </Link>
         {isAuth && (
           <>
             {' '}
-            <div className="navbar__login" title="logout" onClick={() => dispatch(logout())}>
+            <div
+              className={classes.header__content__nav}
+              title="logout"
+              onClick={() => dispatch(logout())}
+            >
               <NavLink to="/login">
                 <b>{login}</b>
               </NavLink>
+              <BiLogOut />
             </div>
           </>
         )}
         <nav
           className={`${classes.header__content__nav} ${
             menuOpen && size.width < 768 ? classes.isMenu : ''
-          }`}>
+          }`}
+        >
           <ul>
             {!isAuth && (
               <>
                 <li>
                   <Link to="/registration" onClick={menuToggleHandler}>
-                    Регистрация
+                    Sign up
                   </Link>
                 </li>
                 <li>
                   <Link to="/login" onClick={menuToggleHandler}>
-                    Войти
+                    Sign in
                   </Link>
                 </li>
               </>
@@ -88,21 +95,22 @@ const Header = () => {
               <>
                 <li>
                   <Link to="/myrides" onClick={menuToggleHandler}>
-                    Мои поездки
+                    My rides
                   </Link>
                 </li>
                 <li>
                   <Link to="/myhistory" onClick={menuToggleHandler}>
-                    История поездок
+                    History
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/create-ride" onClick={menuToggleHandler}>
+                    Create Ride
                   </Link>
                 </li>
               </>
             )}
-            <li>
-              <Link to="/create-ride" onClick={menuToggleHandler}>
-                Create Ride
-              </Link>
-            </li>
+
             <li>
               <Link to="/ask-ride" onClick={menuToggleHandler}>
                 <FaSearch /> <bn></bn>

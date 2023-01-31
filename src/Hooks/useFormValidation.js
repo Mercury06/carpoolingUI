@@ -4,8 +4,10 @@ import { createRide, findLocality } from '../components/api/actions';
 import moment from 'moment';
 import {
   findRidesByParamsThunkCreator,
+  setSearchRidesParamsActionCreator,
   setSuggestedRidesActionCreator,
 } from '../reducers/rideReducer';
+import { useNavigate } from 'react-router-dom';
 
 function useFormValidation(initialState, validate) {
   const [inputValues, setInputValues] = React.useState(initialState);
@@ -16,6 +18,7 @@ function useFormValidation(initialState, validate) {
   const [modifiedDate, setModifiedDate] = React.useState();
   const [targetName, setTargetName] = React.useState(null);
   //const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const initialStateDate = new Date();
   const modifiedInitialStateDate = moment(initialStateDate).format('YYYY-MM-DD');
@@ -90,6 +93,10 @@ function useFormValidation(initialState, validate) {
   async function createRideHandleSubmit(event) {
     event.preventDefault();
     await createRide(inputValues);
+    // const result = await createRide(inputValues);
+    // console.log('result:', result);
+    // const redirect_path = result.data.redirect_path;
+    // if (result.status === 200) navigate(redirect_path);
     //console.log('submit');
     //const validationErrors = validate(inputValues);
     //setErrors(validationErrors);
@@ -99,6 +106,7 @@ function useFormValidation(initialState, validate) {
   async function findRidesHandleSubmit(event) {
     //debugger;
     event.preventDefault();
+    dispatch(setSearchRidesParamsActionCreator(inputValues));
     dispatch(findRidesByParamsThunkCreator(inputValues));
     //findRidesByParamsApiAction(inputValues);
     //console.log('submit');

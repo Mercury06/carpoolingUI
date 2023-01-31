@@ -53,7 +53,8 @@ export const createRide = async ({ ...form }) => {
     const response = await axios.post('http://localhost:9000/api/settings/createride', {
       ...form,
     });
-    return response.data.message;
+    //return response.data.message;
+    return response;
   } catch (e) {
     console.log(e.response);
   }

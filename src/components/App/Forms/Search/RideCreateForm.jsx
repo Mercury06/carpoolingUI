@@ -50,8 +50,8 @@ const RideCreateForm = (props) => {
     <>
       <div className={s.container}>
         <form className={s.form} onSubmit={createRideHandleSubmit}>
-          <h3>Create ride form</h3>
-          <div>
+          {/* <h3>Create ride form</h3> */}
+          <div className={s.input__block}>
             <input
               onChange={handleChange}
               onBlur={handleBlur}
@@ -59,26 +59,27 @@ const RideCreateForm = (props) => {
               value={inputValues.localityFrom.localityName}
               className={s.input}
               autoComplete="off"
-              placeholder="where are you now..."
+              placeholder="from..."
             />
+
+            {inputValues.localityFrom.localityName !== '' &&
+            suggestedRides.length > 0 &&
+            targetName === 'localityFrom' ? (
+              <div className={s.input__popup}>
+                <ul>
+                  {suggestedRides.map((item, i) => {
+                    return (
+                      <li key={i} onClick={(e) => onSuggestSelect1(e, { item })}>
+                        {item.locality}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ) : null}
           </div>
-          {inputValues.localityFrom.localityName !== '' &&
-          suggestedRides.length > 0 &&
-          targetName === 'localityFrom' ? (
-            <div className={s.input__popup}>
-              <ul>
-                {suggestedRides.map((item, i) => {
-                  return (
-                    <li key={i} onClick={(e) => onSuggestSelect1(e, { item })}>
-                      {item.locality}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          ) : null}
           {/* {errors.email && <p className="error-text">{errors.email}</p>} */}
-          <div>
+          <div className={s.input__block}>
             <input
               onChange={handleChange}
               onBlur={handleBlur}
@@ -86,24 +87,25 @@ const RideCreateForm = (props) => {
               className={s.input}
               name="destination"
               autoComplete="off"
-              placeholder="where are you going..."
+              placeholder="to..."
             />
+
+            {inputValues.destination.localityName !== '' &&
+            suggestedRides.length > 0 &&
+            targetName === 'destination' ? (
+              <div className={s.input__popup}>
+                <ul>
+                  {suggestedRides.map((item, i) => {
+                    return (
+                      <li key={i} onClick={(e) => onSuggestSelect2(e, { item })}>
+                        {item.locality}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ) : null}
           </div>
-          {inputValues.destination.localityName !== '' &&
-          suggestedRides.length > 0 &&
-          targetName === 'destination' ? (
-            <div className={s.input__popup}>
-              <ul>
-                {suggestedRides.map((item, i) => {
-                  return (
-                    <li key={i} onClick={(e) => onSuggestSelect2(e, { item })}>
-                      {item.locality}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          ) : null}
           <div>
             <ReactDatePicker
               selected={startDate}

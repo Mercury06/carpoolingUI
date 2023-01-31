@@ -45,7 +45,9 @@ const Login = (props) => {
   };
   return (
     <div className={s.registration}>
-      <h1>Login</h1>
+      <center>
+        <h1>Login</h1>
+      </center>
       <LoginReduxForm onSubmit={onSubmit} />
     </div>
   );
