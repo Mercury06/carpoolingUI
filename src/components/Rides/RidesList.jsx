@@ -4,14 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import RideItem from './RideItem';
 import s from './Rides.module.scss';
-import { Link } from 'react-router-dom';
+import { Button, Space } from 'antd';
 
 const RidesList = () => {
   const rides = useSelector((state) => state.ride.rides);
 
   return (
     <div className={s.list}>
-      <AskForm />
       <div>
         {rides.length > 0 ? (
           <div className={s.itemsBlock}>
@@ -30,7 +29,13 @@ const RidesList = () => {
             <center>
               <h4>
                 didn`t find a trip? just {'  '}
-                <Link to="/subscribe">subscribe</Link>
+                <br></br>
+                {/* <Link to="/subscribe">subscribe</Link> */}
+                <Space wrap>
+                  <Button type="primary" style={{ backgroundColor: 'gray', borderRadius: '1px' }}>
+                    Subscribe
+                  </Button>
+                </Space>
               </h4>
             </center>
           </div>

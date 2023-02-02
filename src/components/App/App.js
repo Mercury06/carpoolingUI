@@ -10,6 +10,7 @@ import Registration from './Forms/Autorization/Registration.jsx';
 import RideCreateForm from './Forms/Search/RideCreateForm.jsx';
 import RidesList from '../Rides/RidesList';
 import SubscribePage from '../UserPage/subcribePage';
+import AskForm from './Forms/Search/AskForm';
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -31,7 +32,7 @@ function App() {
         {isAuth && <Route path="/" element={<Navigate to="/create-ride" replace />} />}
         {!isAuth && <Route path="/" element={<Navigate to="/login" replace />} />}
         {isAuth && <Route path="create-ride" element={<RideCreateForm />} />}
-        {isAuth && <Route path="ask-ride" element={<RidesList />} />}
+        {isAuth && <Route path="ask-ride" element={<AskForm />} />}
         {isAuth && <Route path="subscribe" element={<SubscribePage />} />}
       </Routes>
     </Layout>
