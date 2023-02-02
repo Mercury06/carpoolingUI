@@ -33,6 +33,7 @@ function App() {
         {!isAuth && <Route path="/" element={<Navigate to="/login" replace />} />}
         {isAuth && <Route path="create-ride" element={<RideCreateForm />} />}
         {isAuth && <Route path="ask-ride" element={<AskForm />} />}
+        {isAuth && <Route path="rides-list" element={<RidesList />} />}
         {isAuth && <Route path="subscribe" element={<SubscribePage />} />}
       </Routes>
     </Layout>

@@ -18,11 +18,11 @@ function useFormValidation(initialState, validate) {
   const [modifiedDate, setModifiedDate] = React.useState();
   const [targetName, setTargetName] = React.useState(null);
   //const [open, setOpen] = React.useState(false);
-  const navigate = useNavigate();
 
   const initialStateDate = new Date();
   const modifiedInitialStateDate = moment(initialStateDate).format('YYYY-MM-DD');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // React.useEffect(() => {
   //   if (isSubmitting) {
@@ -106,8 +106,10 @@ function useFormValidation(initialState, validate) {
   async function findRidesHandleSubmit(event) {
     //debugger;
     event.preventDefault();
-    dispatch(setSearchRidesParamsActionCreator(inputValues));
-    dispatch(findRidesByParamsThunkCreator(inputValues));
+    await dispatch(setSearchRidesParamsActionCreator(inputValues));
+    await dispatch(findRidesByParamsThunkCreator(inputValues));
+    navigate('/rides-list');
+
     //findRidesByParamsApiAction(inputValues);
     //console.log('submit');
     //const validationErrors = validate(inputValues);
