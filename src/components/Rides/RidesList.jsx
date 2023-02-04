@@ -9,18 +9,23 @@ import { CheckIcon } from '../assets/svg/BoxIcons';
 
 const RidesList = () => {
   const [loading, setLoading] = useState(false);
+  const [fetched, setFetched] = useState(false);
   const rides = useSelector((state) => state.ride.rides);
   const searchRidesParams = useSelector((state) => state.ride.searchRidesParams);
 
   const subscribeHandler = async (e) => {
     e.stopPropagation();
     setLoading(true);
-    //await createAsk(searchRidesParams);
+    const result = await createAsk(searchRidesParams);
+    if (result.status === 'OK') {
+      setTimeout(() => {
+        console.log('result:', result.status);
+        setLoading(false);
+        setFetched(true);
+      }, 1000);
+    }
     return;
   };
-  // const wrapperClasses = cn(s.button, {
-  //   {s.button--loading}: loading,
-  // })
 
   return (
     <div className={s.list}>
@@ -43,18 +48,20 @@ const RidesList = () => {
               <h4>
                 didn`t find a trip? just {'  '}
                 <br></br>
-                <Button
-                  type="primary"
-                  onClick={subscribeHandler}
-                  //style={{ backgroundColor: 'gray', borderRadius: '1px' }}
-                  //className={cn(s.button, s.success)}
-                  //className={s.button}
-                  className={cn(s.button, {
-                    [s.button__loading]: loading === true,
-                  })}
-                >
-                  <span className={s.button__text}>Subscribe</span>
-                </Button>
+                {fetched ? (
+                  <CheckIcon />
+                ) : (
+                  <Button
+                    type="primary"
+                    onClick={subscribeHandler}
+                    //style={{ backgroundColor: 'gray', borderRadius: '1px' }}
+                    className={cn(s.button, {
+                      [s.button__loading]: loading === true,
+                    })}
+                  >
+                    <span className={s.button__text}>SUBSCRIBE</span>
+                  </Button>
+                )}
               </h4>
             </center>
           </div>

@@ -57,12 +57,13 @@
 .button {
   position: relative;
   //padding: 8px 16px;
-  background: gray;
+  background: #237804;
   border: none;
   outline: none;
   border-radius: 1px;
   //cursor: pointer;
   width: 120px; //edit
+  transition: all ease 0.5s;
   &:active {
     background: rgb(87, 87, 87);
   }
@@ -70,7 +71,7 @@
   //background-color: gray;
   //box-sizing: border-box;
   span {
-    font-size: 20px;
+    font-size: 16px;
     color: white;
     transition: all 0.2s;
     //display: none;
@@ -104,3 +105,27 @@
     transform: rotate(1turn);
   }
 }
+// .success {
+//   position: relative;
+//   background-color: #fff;
+//   animation: bounce 0.3s ease-in;
+// }
+// @keyframes bounce {
+//   0% {
+//     transform: scale(0.9);
+//   }
+// }
+// .success::before {
+//   content: '';
+//   position: absolute;
+//   //background: url('./../assets/svg/BoxIcons.jsx/CheckIcon3.svg') no-repeat;
+//   background: url('./../assets/img/icons8-checkmark.gif') no-repeat;
+//   //background: red;
+//   left: 0;
+//   right: 0;
+//   margin: 0 auto;
+//   width: 19px;
+//   height: 19px;
+//   line-height: 31px;
+//   top: 8px;
+// }

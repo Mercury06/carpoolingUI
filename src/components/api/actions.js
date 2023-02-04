@@ -66,7 +66,7 @@ export const createAsk = async ({ ...form }) => {
     const response = await axios.post('http://localhost:9000/api/settings/createask', {
       ...form,
     });
-    return response.data.message;
+    return response.data;
   } catch (e) {
     alert(e.response.data.message);
   }
