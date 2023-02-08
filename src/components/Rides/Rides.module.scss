@@ -55,6 +55,8 @@
   }
 }
 .button {
+  display: flex;
+  align-items: center;
   position: relative;
   //padding: 8px 16px;
   background: #237804;
@@ -64,17 +66,14 @@
   //cursor: pointer;
   width: 120px; //edit
   transition: all ease 0.5s;
+  box-shadow: 0 1px 2px rgb(2, 2, 2);
   &:active {
     background: rgb(87, 87, 87);
   }
-  //display: inline-block;
-  //background-color: gray;
-  //box-sizing: border-box;
   span {
     font-size: 16px;
     color: white;
     transition: all 0.2s;
-    //display: none;
   }
 }
 .button__loading .button__text {

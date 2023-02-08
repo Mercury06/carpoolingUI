@@ -47,48 +47,10 @@ export const auth = () => {
   };
 };
 
-export const createRide = async ({ ...form }) => {
-  //debugger;
-  try {
-    const response = await axios.post('http://localhost:9000/api/settings/createride', {
-      ...form,
-    });
-    //return response.data.message;
-    return response;
-  } catch (e) {
-    console.log(e.response);
-  }
-};
-
-export const createAsk = async ({ ...form }) => {
-  //debugger;
-  try {
-    const response = await axios.post('http://localhost:9000/api/settings/createask', {
-      ...form,
-    });
-    return response.data;
-  } catch (e) {
-    alert(e.response.data.message);
-  }
-};
-
 export const findMyRidesApiAction = (id) => {
   return axios.get(`http://localhost:9000/api/settings/findmyrides/${id}`).then((response) => {
     return response.data;
   });
-};
-
-export const findRidesByParamsApiAction = async ({ date, localityFrom, destination }) => {
-  //debugger;
-  const pointA = localityFrom.localityName;
-  const pointB = destination.localityName;
-  return axios
-    .get(
-      `http://localhost:9000/api/settings/findridesby?date=${date}&localityFrom=${pointA}&destination=${pointB}`,
-    )
-    .then((response) => {
-      return response.data;
-    });
 };
 
 export const findLocs = async () => {

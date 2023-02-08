@@ -16,6 +16,7 @@ const RidesList = () => {
   const subscribeHandler = async (e) => {
     e.stopPropagation();
     setLoading(true);
+    console.log(e.currentTarget);
     const result = await createAsk(searchRidesParams);
     if (result.status === 'OK') {
       setTimeout(() => {

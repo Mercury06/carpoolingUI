@@ -1,19 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import { login } from '../../../api/actions';
 import s from './autorization.module.scss';
 
 const LoginForm = (props) => {
-  // const [form, setForm] = useState({ username: '', password: '' });
-  // //const[response, setResponse] = useState('')
-
-  // const changeHandler = (event) => {
-  //   setForm({ ...form, [event.target.name]: event.target.value });
-  // };
-  // const dispatch = useDispatch();
-
   return (
     <>
       <form onSubmit={props.handleSubmit}>
@@ -40,7 +32,7 @@ const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
 const Login = (props) => {
   const dispatch = useDispatch();
   const onSubmit = (formData, ...props) => {
-    console.log(formData);
+    //console.log(formData);
     dispatch(login({ ...formData }));
   };
   return (

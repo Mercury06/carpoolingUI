@@ -5,17 +5,19 @@ import s from './UserPage.module.scss';
 const moment = require('moment');
 
 const SubscribePage = () => {
-  const searchRidesParams = useSelector((state) => state.ride.searchRidesParams);
-  const rideReducer = useSelector((state) => state.ride);
-  const [ridesParams, setRidesParams] = useState(null);
+  // const searchRidesParams = useSelector((state) => state.ride.searchRidesParams);
+  // const rideReducer = useSelector((state) => state.ride);
+  // const [ridesParams, setRidesParams] = useState(null);
   //console.log('searchRidesParams before useEffect:', searchRidesParams);
+  console.log('external');
   useEffect(() => {
     // async function () {
     //     await setRidesParams(searchRidesParams);
     //     console.log('ridesParams:', searchRidesParams);
     // }
-    console.log('searchRidesParams:', searchRidesParams);
-    console.log('rideReducer:', rideReducer);
+    // console.log('searchRidesParams:', searchRidesParams);
+    // console.log('rideReducer:', rideReducer);
+    console.log('insife useeffect');
   }, []);
 
   return (
