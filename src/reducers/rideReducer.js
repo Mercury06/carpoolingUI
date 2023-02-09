@@ -1,4 +1,4 @@
-import { findRidesByParamsApiAction } from '../components/api/actions';
+import { findRidesByParamsApiAction } from './../modules/RideSearchForm/apiActions';
 
 const SET_RIDES = 'SET_RIDES';
 const SET_SEARCH_RIDES_PARAMS = 'SET_SEARCH_RIDES_PARAMS';

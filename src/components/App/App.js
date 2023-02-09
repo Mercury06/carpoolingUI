@@ -7,10 +7,10 @@ import UserRides from '../UserPage/UserRides.jsx';
 //import MainPage from '../MainPage/MainPage.jsx';
 import Login from './Forms/Autorization/Login.jsx';
 import Registration from './Forms/Autorization/Registration.jsx';
-import RideCreateForm from './Forms/Search/RideCreateForm.jsx';
 import RidesList from '../Rides/RidesList';
-import SubscribePage from '../UserPage/subcribePage';
-import AskForm from './Forms/Search/AskForm';
+//import SubscribePage from '../UserPage/subcribePage';
+import AskForm from './../../modules/RideSearchForm/AskForm.jsx';
+import RideCreateForm from './../../modules/RideCreateForm/index';
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -34,7 +34,7 @@ function App() {
         {isAuth && <Route path="create-ride" element={<RideCreateForm />} />}
         {isAuth && <Route path="ask-ride" element={<AskForm />} />}
         {isAuth && <Route path="rides-list" element={<RidesList />} />}
-        {isAuth && <Route path="subscribe" element={<SubscribePage />} />}
+        {/* {isAuth && <Route path="subscribe" element={<SubscribePage />} />} */}
       </Routes>
     </Layout>
   );

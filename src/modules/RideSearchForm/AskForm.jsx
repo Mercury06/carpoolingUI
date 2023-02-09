@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useSelector } from 'react-redux';
-import useFormValidation from '../../../../Hooks/useFormValidation';
+import useForm from './hooks/useForm';
 // import { setSuggestedRides } from '../../../../reducers/rideReducer';
 // import { findLocality } from '../../../api/actions';
 
@@ -46,7 +46,7 @@ const AskForm = (props) => {
     targetName,
     modifiedInitialStateDate,
     inputValues,
-  } = useFormValidation(initialState, validateAuth);
+  } = useForm(initialState, validateAuth);
 
   return (
     <>

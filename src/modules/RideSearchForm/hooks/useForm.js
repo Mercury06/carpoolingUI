@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { createRide, findLocality } from '../components/api/actions';
+import { findLocality } from './../../../components/api/actions';
 import moment from 'moment';
 import {
   findRidesByParamsThunkCreator,
   setSearchRidesParamsActionCreator,
   setSuggestedRidesActionCreator,
-} from '../reducers/rideReducer';
+} from './../../../reducers/rideReducer.js';
 import { useNavigate } from 'react-router-dom';
 
 function useFormValidation(initialState, validate) {
@@ -49,7 +49,7 @@ function useFormValidation(initialState, validate) {
     setTargetName(e.target.name);
     //console.log('e.target.name:', e.target.name);
 
-    console.log('targetName:', targetName);
+    //console.log('targetName:', targetName);
     dispatch(findLocality(search));
     return;
   }
@@ -90,19 +90,7 @@ function useFormValidation(initialState, validate) {
     console.log('inputValues.destination.id:', inputValues.destination.id);
     return;
   }
-  async function createRideHandleSubmit(event) {
-    event.preventDefault();
-    await createRide(inputValues);
-    // const result = await createRide(inputValues);
-    // console.log('result:', result);
-    // const redirect_path = result.data.redirect_path;
-    // if (result.status === 200) navigate(redirect_path);
-    //console.log('submit');
-    //const validationErrors = validate(inputValues);
-    //setErrors(validationErrors);
-    //setSubmitting(true);
-    //console.log(inputValues);
-  }
+
   async function findRidesHandleSubmit(event) {
     //debugger;
     event.preventDefault();
@@ -131,7 +119,6 @@ function useFormValidation(initialState, validate) {
   };
 
   return {
-    createRideHandleSubmit,
     findRidesHandleSubmit,
     handleChange,
     // handleBlur,

@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useSelector } from 'react-redux';
-import useFormValidation from '../../../../Hooks/useFormValidation';
-
-import s from './searchForm.module.scss';
+import useForm from './hooks/useForm';
+import s from './createRideForm.module.scss';
 import validateAuth from './validateAuth';
 
 const initialState = {
@@ -29,7 +28,7 @@ const RideCreateForm = (props) => {
     initialState.user = userId;
     initialState.date = modifiedInitialStateDate;
     console.log('suggestedRides:', suggestedRides);
-  }, [suggestedRides]);
+  }, [suggestedRides]); //edit
 
   const {
     createRideHandleSubmit,
@@ -44,7 +43,7 @@ const RideCreateForm = (props) => {
     targetName,
     modifiedInitialStateDate,
     inputValues,
-  } = useFormValidation(initialState, validateAuth);
+  } = useForm(initialState, validateAuth);
 
   return (
     <>

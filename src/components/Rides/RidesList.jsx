@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import RideItem from './RideItem';
 import s from './Rides.module.scss';
 import { Button } from 'antd';
-import { createAsk } from '../api/actions';
+import { createAsk } from './apiActions';
 import cn from 'classnames';
 import { CheckIcon } from '../assets/svg/BoxIcons';
 

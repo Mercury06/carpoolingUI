@@ -1,13 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { createRide, findLocality } from '../components/api/actions';
+import { createRide } from '../apiActions';
 import moment from 'moment';
 import {
   findRidesByParamsThunkCreator,
   setSearchRidesParamsActionCreator,
   setSuggestedRidesActionCreator,
-} from '../reducers/rideReducer';
+} from './../../../reducers/rideReducer.js';
 import { useNavigate } from 'react-router-dom';
+import { findLocality } from '../../../components/api/actions';
 
 function useFormValidation(initialState, validate) {
   const [inputValues, setInputValues] = React.useState(initialState);
