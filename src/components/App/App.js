@@ -9,7 +9,7 @@ import Login from './Forms/Autorization/Login.jsx';
 import Registration from './Forms/Autorization/Registration.jsx';
 import RidesList from '../Rides/RidesList';
 //import SubscribePage from '../UserPage/subcribePage';
-import AskForm from './../../modules/RideSearchForm/AskForm.jsx';
+import AskForm from './../../modules/RideSearchForm/index';
 import RideCreateForm from './../../modules/RideCreateForm/index';
 
 function App() {

@@ -7,7 +7,6 @@ import useForm from './hooks/useForm';
 // import { findLocality } from '../../../api/actions';
 
 import s from './searchForm.module.scss';
-import validateAuth from './validateAuth';
 
 const initialState = {
   localityFrom: {
@@ -46,7 +45,7 @@ const AskForm = (props) => {
     targetName,
     modifiedInitialStateDate,
     inputValues,
-  } = useForm(initialState, validateAuth);
+  } = useForm(initialState);
 
   return (
     <>

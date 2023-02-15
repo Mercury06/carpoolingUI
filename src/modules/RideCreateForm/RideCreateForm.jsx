@@ -4,7 +4,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useSelector } from 'react-redux';
 import useForm from './hooks/useForm';
 import s from './createRideForm.module.scss';
-import validateAuth from './validateAuth';
 
 const initialState = {
   localityFrom: {
@@ -43,7 +42,7 @@ const RideCreateForm = (props) => {
     targetName,
     modifiedInitialStateDate,
     inputValues,
-  } = useForm(initialState, validateAuth);
+  } = useForm(initialState);
 
   return (
     <>

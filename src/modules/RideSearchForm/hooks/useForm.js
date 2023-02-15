@@ -59,11 +59,6 @@ function useFormValidation(initialState, validate) {
   //   setErrors(validationErrors);
   // }
 
-  // function onSuggestSelect(e, { item }) {
-  //   setSelectedItem(item);
-  //   setFromInputValue(item);
-  //   dispatch(setSuggestedRidesActionCreator([]));
-  // }
   function onSuggestSelect1(e, { item }) {
     e.stopPropagation();
     inputValues.localityFrom.localityName = item.locality;

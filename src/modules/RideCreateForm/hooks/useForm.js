@@ -2,28 +2,21 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { createRide } from '../apiActions';
 import moment from 'moment';
-import {
-  findRidesByParamsThunkCreator,
-  setSearchRidesParamsActionCreator,
-  setSuggestedRidesActionCreator,
-} from './../../../reducers/rideReducer.js';
+import { setSuggestedRidesActionCreator } from './../../../reducers/rideReducer.js';
 import { useNavigate } from 'react-router-dom';
 import { findLocality } from '../../../components/api/actions';
 
-function useFormValidation(initialState, validate) {
+function useForm(initialState, validate) {
   const [inputValues, setInputValues] = React.useState(initialState);
-  //const [form, setForm] = React.useState({ localityFrom: '', destination: '', user: '', date: '' });
   const [errors, setErrors] = React.useState({});
   //const [isSubmitting, setSubmitting] = React.useState(false);
   const [startDate, setStartDate] = React.useState(new Date());
   const [modifiedDate, setModifiedDate] = React.useState();
   const [targetName, setTargetName] = React.useState(null);
-  //const [open, setOpen] = React.useState(false);
 
   const initialStateDate = new Date();
   const modifiedInitialStateDate = moment(initialStateDate).format('YYYY-MM-DD');
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   // React.useEffect(() => {
   //   if (isSubmitting) {
@@ -31,7 +24,7 @@ function useFormValidation(initialState, validate) {
   //     if (noErrors) {
   //       setSubmitting(false);
   //     } else {
-  //       setSubmitting(false);
+  //       setSubmitting(true);
   //     }
   //   }
   // }, [errors]);
@@ -50,21 +43,16 @@ function useFormValidation(initialState, validate) {
     setTargetName(e.target.name);
     //console.log('e.target.name:', e.target.name);
 
-    console.log('targetName:', targetName);
+    //console.log('targetName:', targetName);
     dispatch(findLocality(search));
     return;
   }
-  console.log('inputValues:', inputValues);
+  //console.log('inputValues:', inputValues);
   // function handleBlur() {
   //   const validationErrors = validate(inputValues);
   //   setErrors(validationErrors);
   // }
 
-  // function onSuggestSelect(e, { item }) {
-  //   setSelectedItem(item);
-  //   setFromInputValue(item);
-  //   dispatch(setSuggestedRidesActionCreator([]));
-  // }
   function onSuggestSelect1(e, { item }) {
     e.stopPropagation();
     inputValues.localityFrom.localityName = item.locality;
@@ -78,6 +66,7 @@ function useFormValidation(initialState, validate) {
     console.log('inputValues.localityFrom.id:', inputValues.localityFrom.id);
     return;
   }
+
   function onSuggestSelect2(e, { item }) {
     e.stopPropagation();
     inputValues.destination.localityName = item.locality;
@@ -104,20 +93,20 @@ function useFormValidation(initialState, validate) {
     //setSubmitting(true);
     //console.log(inputValues);
   }
-  async function findRidesHandleSubmit(event) {
-    //debugger;
-    event.preventDefault();
-    await dispatch(setSearchRidesParamsActionCreator(inputValues));
-    await dispatch(findRidesByParamsThunkCreator(inputValues));
-    navigate('/rides-list');
+  // async function findRidesHandleSubmit(event) {
+  //   //debugger;
+  //   event.preventDefault();
+  //   await dispatch(setSearchRidesParamsActionCreator(inputValues));
+  //   await dispatch(findRidesByParamsThunkCreator(inputValues));
+  //   navigate('/rides-list');
 
-    //findRidesByParamsApiAction(inputValues);
-    //console.log('submit');
-    //const validationErrors = validate(inputValues);
-    //setErrors(validationErrors);
-    //setSubmitting(true);
-    //console.log(inputValues);
-  }
+  //   //findRidesByParamsApiAction(inputValues);
+  //   //console.log('submit');
+  //   //const validationErrors = validate(inputValues);
+  //   //setErrors(validationErrors);
+  //   //setSubmitting(true);
+  //   //console.log(inputValues);
+  // }
 
   const onChangeDateHandler = (value) => {
     //debugger;
@@ -133,7 +122,6 @@ function useFormValidation(initialState, validate) {
 
   return {
     createRideHandleSubmit,
-    findRidesHandleSubmit,
     handleChange,
     // handleBlur,
     inputValues,
@@ -149,4 +137,4 @@ function useFormValidation(initialState, validate) {
   };
 }
 
-export default useFormValidation;
+export default useForm;
