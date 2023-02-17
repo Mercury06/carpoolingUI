@@ -68,9 +68,10 @@ export const findLocs = async () => {
 export function findLocality(search) {
   return async (dispatch) => {
     try {
-      const response = await axios.get(
-        `http://localhost:9000/api/settings/findlocality?search=${search}`,
-      );
+      function fetchData() {
+        axios.get(`http://localhost:9000/api/settings/findlocality?search=${search}`);
+      }
+      const response = await fetchData();
 
       dispatch(setSuggestedRidesActionCreator(response.data));
       return response.data;
