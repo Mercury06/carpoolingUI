@@ -65,19 +65,37 @@ export const findLocs = async () => {
   }
 };
 
-export function findLocality(search) {
+// export function findLocality(search) {
+//   return async (dispatch) => {
+//     try {
+//       function fetchData() {
+//         const data = axios.get(`http://localhost:9000/api/settings/findlocality?search=${search}`);
+//         return data;
+//       }
+//       const response = await fetchData();
+
+//       dispatch(setSuggestedRidesActionCreator(response.data));
+//       return response.data;
+//     } catch (e) {
+//       alert(e.message);
+//       dispatch(setSuggestedRidesActionCreator([]));
+//     }
+//   };
+// }
+export async function findLocality(search) {
+  //debugger;
   return async (dispatch) => {
     try {
       function fetchData() {
-        axios.get(`http://localhost:9000/api/settings/findlocality?search=${search}`);
+        const data = axios.get(`http://localhost:9000/api/settings/findlocality?search=${search}`);
+        return data;
       }
       const response = await fetchData();
-
-      dispatch(setSuggestedRidesActionCreator(response.data));
+      console.log('response in api:', response);
+      //dispatch(setSuggestedRidesActionCreator(response.data));
       return response.data;
     } catch (e) {
       alert(e.message);
-      dispatch(setSuggestedRidesActionCreator([]));
     }
   };
 }
