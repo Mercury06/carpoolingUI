@@ -60,7 +60,7 @@ const RideCreateForm = (props) => {
               placeholder="from..."
             />
 
-            {/* {inputValues.localityFrom.localityName !== '' &&
+            {inputValues.localityFrom.localityName !== '' &&
             suggestedRides.length > 0 &&
             targetName === 'localityFrom' ? (
               <div className={s.input__popup}>
@@ -74,7 +74,7 @@ const RideCreateForm = (props) => {
                   })}
                 </ul>
               </div>
-            ) : null} */}
+            ) : null}
           </div>
           {/* {errors.email && <p className="error-text">{errors.email}</p>} */}
           <div className={s.input__block}>
@@ -88,7 +88,7 @@ const RideCreateForm = (props) => {
               placeholder="to..."
             />
 
-            {/* {inputValues.destination.localityName !== '' &&
+            {inputValues.destination.localityName !== '' &&
             suggestedRides.length > 0 &&
             targetName === 'destination' ? (
               <div className={s.input__popup}>
@@ -102,7 +102,7 @@ const RideCreateForm = (props) => {
                   })}
                 </ul>
               </div>
-            ) : null} */}
+            ) : null}
           </div>
           <div>
             <ReactDatePicker

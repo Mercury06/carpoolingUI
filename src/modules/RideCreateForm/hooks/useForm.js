@@ -15,7 +15,7 @@ function useForm(initialState, validate) {
   const [startDate, setStartDate] = React.useState(new Date());
   const [modifiedDate, setModifiedDate] = React.useState();
   const [targetName, setTargetName] = React.useState(null);
-  const deboucedSearch = useDebounce(findLocality, 2000);
+  const deboucedSearch = useDebounce(searchResolver, 500);
 
   const initialStateDate = new Date();
   const modifiedInitialStateDate = moment(initialStateDate).format('YYYY-MM-DD');
@@ -31,7 +31,15 @@ function useForm(initialState, validate) {
   //     }
   //   }
   // }, [errors]);
-
+  async function searchResolver(search) {
+    //debugger;
+    try {
+      const result = await findLocality(search);
+      dispatch(setSuggestedRidesActionCreator(result));
+    } catch (e) {
+      console.log(e);
+    }
+  }
   async function handleChange(e) {
     //debugger;
     let search = e.target.value;
@@ -49,8 +57,7 @@ function useForm(initialState, validate) {
 
     //console.log('targetName:', targetName);
     //dispatch(deboucedSearch(findLocality(search)));
-    const result = await deboucedSearch(e.target.value);
-    console.log('result:', result);
+    await deboucedSearch(search);
     //dispatch(setSuggestedRidesActionCreator(result));
     return;
   }
