@@ -101,7 +101,7 @@ export const findLocs = async () => {
 // }
 
 export async function findLocality(search) {
-  // debugger;
+  //debugger;
 
   try {
     const response = await axios.get(

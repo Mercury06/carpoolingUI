@@ -34,8 +34,12 @@ function useForm(initialState, validate) {
   async function searchResolver(search) {
     //debugger;
     try {
-      const result = await findLocality(search);
-      dispatch(setSuggestedRidesActionCreator(result));
+      if (search !== '' || undefined) {
+        const result = await findLocality(search);
+        dispatch(setSuggestedRidesActionCreator(result));
+      } else {
+        dispatch(setSuggestedRidesActionCreator([]));
+      }
     } catch (e) {
       console.log(e);
     }
@@ -58,7 +62,7 @@ function useForm(initialState, validate) {
     //console.log('targetName:', targetName);
     //dispatch(deboucedSearch(findLocality(search)));
     await deboucedSearch(search);
-    //dispatch(setSuggestedRidesActionCreator(result));
+
     return;
   }
   //console.log('inputValues:', inputValues);

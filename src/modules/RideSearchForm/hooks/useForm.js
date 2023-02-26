@@ -8,6 +8,7 @@ import {
   setSuggestedRidesActionCreator,
 } from './../../../reducers/rideReducer.js';
 import { useNavigate } from 'react-router-dom';
+import useDebounce from '../../../Hooks/useDebounce';
 
 function useFormValidation(initialState, validate) {
   const [inputValues, setInputValues] = React.useState(initialState);
@@ -17,6 +18,7 @@ function useFormValidation(initialState, validate) {
   const [startDate, setStartDate] = React.useState(new Date());
   const [modifiedDate, setModifiedDate] = React.useState();
   const [targetName, setTargetName] = React.useState(null);
+  const deboucedSearch = useDebounce(searchResolver, 500);
   //const [open, setOpen] = React.useState(false);
 
   const initialStateDate = new Date();
@@ -34,8 +36,21 @@ function useFormValidation(initialState, validate) {
   //     }
   //   }
   // }, [errors]);
+  async function searchResolver(search) {
+    //debugger;
+    try {
+      if (search !== '' || undefined) {
+        const result = await findLocality(search);
+        dispatch(setSuggestedRidesActionCreator(result));
+      } else {
+        dispatch(setSuggestedRidesActionCreator([]));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
-  function handleChange(e) {
+  async function handleChange(e) {
     let search = e.target.value;
     if (search === 0) {
       dispatch(setSuggestedRidesActionCreator([]));
@@ -50,7 +65,7 @@ function useFormValidation(initialState, validate) {
     //console.log('e.target.name:', e.target.name);
 
     //console.log('targetName:', targetName);
-    dispatch(findLocality(search));
+    await deboucedSearch(search);
     return;
   }
   console.log('inputValues:', inputValues);
