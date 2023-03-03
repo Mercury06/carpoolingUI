@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { findLocality } from './../../../components/api/actions';
 import moment from 'moment';
@@ -25,6 +25,7 @@ function useFormValidation(initialState, validate) {
   const modifiedInitialStateDate = moment(initialStateDate).format('YYYY-MM-DD');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const inputRef = useRef(null);
 
   // React.useEffect(() => {
   //   if (isSubmitting) {
@@ -49,6 +50,13 @@ function useFormValidation(initialState, validate) {
       console.log(e);
     }
   }
+  const onClickClear = (e) => {
+    //debugger;
+    console.log('e:', e);
+    //alert('object');
+    //setInputValues({ [e.target.name]: { localityName: e.target.value } });
+    inputRef.current?.focus();
+  };
 
   async function handleChange(e) {
     let search = e.target.value;
@@ -141,6 +149,8 @@ function useFormValidation(initialState, validate) {
     onSuggestSelect1,
     onSuggestSelect2,
     targetName,
+    inputRef,
+    onClickClear,
     modifiedInitialStateDate,
   };
 }

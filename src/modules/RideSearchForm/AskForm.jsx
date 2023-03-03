@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useSelector } from 'react-redux';
+import { ClearIcon } from '../../components/assets/svg/BoxIcons';
 import useForm from './hooks/useForm';
 // import { setSuggestedRides } from '../../../../reducers/rideReducer';
 // import { findLocality } from '../../../api/actions';
@@ -43,6 +44,8 @@ const AskForm = (props) => {
     onSuggestSelect1,
     onSuggestSelect2,
     targetName,
+    inputRef,
+    onClickClear,
     modifiedInitialStateDate,
     inputValues,
   } = useForm(initialState);
@@ -54,6 +57,7 @@ const AskForm = (props) => {
           {/* <h3>Find ride</h3> */}
           <div className={s.input__block}>
             <input
+              ref={inputRef}
               onChange={handleChange}
               onBlur={handleBlur}
               name="localityFrom"
@@ -62,6 +66,11 @@ const AskForm = (props) => {
               autoComplete="off"
               placeholder="where are you now..."
             />
+            {inputValues.localityFrom.localityName && (
+              <div style={{ cursor: 'pointer' }} onClick={(e) => onClickClear(e)}>
+                <ClearIcon />
+              </div>
+            )}
 
             {inputValues.localityFrom.localityName !== '' &&
             suggestedRides.length > 0 &&
@@ -82,6 +91,7 @@ const AskForm = (props) => {
           {/* {errors.email && <p className="error-text">{errors.email}</p>} */}
           <div className={s.input__block}>
             <input
+              ref={inputRef}
               onChange={handleChange}
               onBlur={handleBlur}
               value={inputValues.destination.localityName}
