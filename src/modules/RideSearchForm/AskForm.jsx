@@ -56,21 +56,27 @@ const AskForm = (props) => {
         <form className={s.form} onSubmit={findRidesHandleSubmit}>
           {/* <h3>Find ride</h3> */}
           <div className={s.input__block}>
-            <input
-              ref={inputRef}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              name="localityFrom"
-              value={inputValues.localityFrom.localityName}
-              className={s.input}
-              autoComplete="off"
-              placeholder="where are you now..."
-            />
-            {inputValues.localityFrom.localityName && (
-              <div style={{ cursor: 'pointer' }} onClick={(e) => onClickClear(e)}>
-                <ClearIcon />
-              </div>
-            )}
+            <div className={s.root}>
+              <input
+                ref={inputRef}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                name="localityFrom"
+                value={inputValues.localityFrom.localityName}
+                className={s.input}
+                autoComplete="off"
+                placeholder="where are you now..."
+              />
+              {inputValues.localityFrom.localityName && (
+                <div
+                  className={s.clearIcon}
+                  style={{ cursor: 'pointer' }}
+                  onClick={(e) => onClickClear(e)}
+                >
+                  <ClearIcon />
+                </div>
+              )}
+            </div>
 
             {inputValues.localityFrom.localityName !== '' &&
             suggestedRides.length > 0 &&

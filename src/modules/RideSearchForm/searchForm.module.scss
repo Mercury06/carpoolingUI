@@ -23,8 +23,12 @@
       flex-direction: row;
     }
   }
-
+  .root {
+    position: relative;
+    left: -120px;
+  }
   input {
+    border: 1px solid rgba(0, 0, 0, 0.1);
     margin: 10px 0;
     font-family: inherit;
     font-size: inherit;
@@ -75,6 +79,19 @@
     margin-left: 1px;
     margin-top: 7px;
     cursor: pointer;
+  }
+  .clearIcon {
+    // width: 18px;
+    // height: 18px;
+    opacity: 0.9;
+    position: absolute;
+    right: 6px;
+    top: 4px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 
