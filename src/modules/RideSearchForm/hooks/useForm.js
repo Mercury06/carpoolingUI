@@ -50,12 +50,27 @@ function useFormValidation(initialState, validate) {
       console.log(e);
     }
   }
-  const onClickClear = (e) => {
+  const onClickClear = (inputName) => {
     //debugger;
-    console.log('e:', e);
+    //console.log('inputName:', inputName);
+
+    if (inputName === 'input1') {
+      setInputValues({
+        ...inputValues,
+        localityFrom: { localityName: '' },
+      });
+    }
+    if (inputName === 'input2') {
+      setInputValues({
+        ...inputValues,
+        destination: { localityName: '' },
+      });
+    }
+    dispatch(setSuggestedRidesActionCreator([]));
     //alert('object');
     //setInputValues({ [e.target.name]: { localityName: e.target.value } });
-    inputRef.current?.focus();
+    //inputRef.current?.focus();
+    return;
   };
 
   async function handleChange(e) {

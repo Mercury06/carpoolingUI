@@ -56,7 +56,7 @@ const AskForm = (props) => {
         <form className={s.form} onSubmit={findRidesHandleSubmit}>
           {/* <h3>Find ride</h3> */}
           <div className={s.input__block}>
-            <div className={s.root}>
+            <div className={s.input__row}>
               <input
                 ref={inputRef}
                 onChange={handleChange}
@@ -65,13 +65,13 @@ const AskForm = (props) => {
                 value={inputValues.localityFrom.localityName}
                 className={s.input}
                 autoComplete="off"
-                placeholder="where are you now..."
+                placeholder="point A"
               />
               {inputValues.localityFrom.localityName && (
                 <div
                   className={s.clearIcon}
-                  style={{ cursor: 'pointer' }}
-                  onClick={(e) => onClickClear(e)}
+                  // style={{ cursor: 'pointer' }}
+                  onClick={() => onClickClear('input1')}
                 >
                   <ClearIcon />
                 </div>
@@ -96,17 +96,26 @@ const AskForm = (props) => {
           </div>
           {/* {errors.email && <p className="error-text">{errors.email}</p>} */}
           <div className={s.input__block}>
-            <input
-              ref={inputRef}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={inputValues.destination.localityName}
-              className={s.input}
-              name="destination"
-              autoComplete="off"
-              placeholder="where are you going..."
-            />
-
+            <div className={s.input__row}>
+              <input
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={inputValues.destination.localityName}
+                className={s.input}
+                name="destination"
+                autoComplete="off"
+                placeholder="point B"
+              />
+              {inputValues.destination.localityName && (
+                <div
+                  className={s.clearIcon}
+                  //style={{ cursor: 'pointer' }}
+                  onClick={() => onClickClear('input2')}
+                >
+                  <ClearIcon />
+                </div>
+              )}
+            </div>
             {inputValues.destination.localityName !== '' &&
             suggestedRides.length > 0 &&
             targetName === 'destination' ? (

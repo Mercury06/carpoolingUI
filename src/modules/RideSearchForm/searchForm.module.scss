@@ -23,13 +23,13 @@
       flex-direction: row;
     }
   }
-  .root {
+  .input__row {
     position: relative;
-    left: -120px;
   }
   input {
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin: 10px 0;
+    padding-left: 6px;
     font-family: inherit;
     font-size: inherit;
     border-radius: 2px;
