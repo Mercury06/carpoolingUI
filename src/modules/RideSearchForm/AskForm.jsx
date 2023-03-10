@@ -44,7 +44,8 @@ const AskForm = (props) => {
     onSuggestSelect1,
     onSuggestSelect2,
     targetName,
-    inputRef,
+    inputRef1,
+    inputRef2,
     onClickClear,
     modifiedInitialStateDate,
     inputValues,
@@ -58,7 +59,7 @@ const AskForm = (props) => {
           <div className={s.input__block}>
             <div className={s.input__row}>
               <input
-                ref={inputRef}
+                ref={inputRef1}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 name="localityFrom"
@@ -98,6 +99,7 @@ const AskForm = (props) => {
           <div className={s.input__block}>
             <div className={s.input__row}>
               <input
+                ref={inputRef2}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={inputValues.destination.localityName}

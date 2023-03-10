@@ -25,7 +25,8 @@ function useFormValidation(initialState, validate) {
   const modifiedInitialStateDate = moment(initialStateDate).format('YYYY-MM-DD');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const inputRef = useRef(null);
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
 
   // React.useEffect(() => {
   //   if (isSubmitting) {
@@ -52,23 +53,23 @@ function useFormValidation(initialState, validate) {
   }
   const onClickClear = (inputName) => {
     //debugger;
-    //console.log('inputName:', inputName);
 
     if (inputName === 'input1') {
       setInputValues({
         ...inputValues,
         localityFrom: { localityName: '' },
       });
+      inputRef1.current?.focus();
     }
     if (inputName === 'input2') {
       setInputValues({
         ...inputValues,
         destination: { localityName: '' },
       });
+      inputRef2.current?.focus();
     }
     dispatch(setSuggestedRidesActionCreator([]));
     //alert('object');
-    //setInputValues({ [e.target.name]: { localityName: e.target.value } });
     //inputRef.current?.focus();
     return;
   };
@@ -164,7 +165,8 @@ function useFormValidation(initialState, validate) {
     onSuggestSelect1,
     onSuggestSelect2,
     targetName,
-    inputRef,
+    inputRef1,
+    inputRef2,
     onClickClear,
     modifiedInitialStateDate,
   };
