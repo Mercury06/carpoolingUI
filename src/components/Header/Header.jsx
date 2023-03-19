@@ -9,6 +9,7 @@ import classes from './Header.module.scss';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../reducers/userReducer';
+import avaPhoto from '../assets/img/icons8-customer-50.png';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -53,21 +54,26 @@ const Header = () => {
   return (
     <header className={classes.header}>
       <div className={classes.header__content}>
-        <Link to="/" className={classes.header__content__logo}>
+        {/* <Link to="/" className={classes.header__content__logo}>
           LOGOTYPE
-        </Link>
+        </Link> */}
         {isAuth && (
           <>
             {' '}
-            <div
-              className={classes.header__content__nav}
-              title="logout"
-              onClick={() => dispatch(logout())}
-            >
-              <NavLink to="/login">
-                <b>{login}</b>
-              </NavLink>
-              <BiLogOut />
+            <div className={classes.user_container}>
+              <div className={classes.avatar_container}>
+                <img src={avaPhoto} alt="avatar" className={classes.mainPhoto} />
+              </div>
+              <div
+                className={classes.header__content__nav}
+                title="logout"
+                onClick={() => dispatch(logout())}
+              >
+                <NavLink to="/login">
+                  <b>{login}</b>
+                </NavLink>
+                <BiLogOut />
+              </div>
             </div>
           </>
         )}
