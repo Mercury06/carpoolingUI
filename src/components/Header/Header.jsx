@@ -65,14 +65,13 @@ const Header = () => {
                 <img src={avaPhoto} alt="avatar" className={classes.mainPhoto} />
               </div>
               <div
-                className={classes.header__content__nav}
+                className={classes.header__user}
                 title="logout"
                 onClick={() => dispatch(logout())}
               >
-                <NavLink to="/login">
-                  <b>{login}</b>
+                <NavLink to="/login" className={classes.header__user_link}>
+                  {login} <BiLogOut />
                 </NavLink>
-                <BiLogOut />
               </div>
             </div>
           </>
