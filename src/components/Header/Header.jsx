@@ -4,6 +4,9 @@ import { BiMenuAltRight, BiArrowBack } from 'react-icons/bi';
 
 import { FaSearch } from 'react-icons/fa';
 import { BiLogOut } from 'react-icons/bi';
+import { AiOutlineDown } from 'react-icons/ai';
+import { BsChevronCompactDown } from 'react-icons/bs';
+import { BsChevronDown } from 'react-icons/bs';
 
 import classes from './Header.module.scss';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
@@ -64,15 +67,23 @@ const Header = () => {
               <div className={classes.avatar_container}>
                 <img src={avaPhoto} alt="avatar" className={classes.mainPhoto} />
               </div>
-              <div
+              <BsChevronDown
+                size={24}
+                color={'grey'}
+                style={{
+                  'margin-left': '4px',
+                  'margin-top': '24px',
+                }}
+              />
+              {/* <div
                 className={classes.header__user}
                 title="logout"
                 onClick={() => dispatch(logout())}
-              >
-                {/* <NavLink to="/login" className={classes.header__user_link}>
+              > */}
+              {/* <NavLink to="/login" className={classes.header__user_link}>
                   {login} <BiLogOut />
                 </NavLink> */}
-              </div>
+              {/* </div> */}
             </div>
           </>
         )}
@@ -85,13 +96,13 @@ const Header = () => {
             {!isAuth && (
               <>
                 <li>
-                  <Link to="/registration" onClick={menuToggleHandler}>
-                    Sign up
+                  <Link to="/login" onClick={menuToggleHandler}>
+                    Sign in
                   </Link>
                 </li>
                 <li>
-                  <Link to="/login" onClick={menuToggleHandler}>
-                    Sign in
+                  <Link to="/registration" onClick={menuToggleHandler}>
+                    Sign up
                   </Link>
                 </li>
               </>
@@ -121,8 +132,13 @@ const Header = () => {
                 </li>
 
                 <li>
-                  <NavLink to="/login" className={classes.header__user_link}>
-                    <BiLogOut size={36} />
+                  <NavLink
+                    to="/login"
+                    className={classes.header__user_link}
+                    title="logout"
+                    onClick={() => dispatch(logout())}
+                  >
+                    <BiLogOut size={36} color={'grey'} />
                   </NavLink>
                 </li>
               </>
