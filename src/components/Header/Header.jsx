@@ -69,9 +69,9 @@ const Header = () => {
                 title="logout"
                 onClick={() => dispatch(logout())}
               >
-                <NavLink to="/login" className={classes.header__user_link}>
+                {/* <NavLink to="/login" className={classes.header__user_link}>
                   {login} <BiLogOut />
-                </NavLink>
+                </NavLink> */}
               </div>
             </div>
           </>
@@ -96,8 +96,19 @@ const Header = () => {
                 </li>
               </>
             )}
+            <li>
+              <Link to="/ask-ride" onClick={menuToggleHandler}>
+                <FaSearch /> <bn></bn>
+                Find Ride
+              </Link>
+            </li>
             {isAuth && (
               <>
+                <li>
+                  <Link to="/create-ride" onClick={menuToggleHandler}>
+                    Create Ride
+                  </Link>
+                </li>
                 <li>
                   <Link to="/myrides" onClick={menuToggleHandler}>
                     My rides
@@ -108,20 +119,14 @@ const Header = () => {
                     History
                   </Link>
                 </li>
+
                 <li>
-                  <Link to="/create-ride" onClick={menuToggleHandler}>
-                    Create Ride
-                  </Link>
+                  <NavLink to="/login" className={classes.header__user_link}>
+                    <BiLogOut size={36} />
+                  </NavLink>
                 </li>
               </>
             )}
-
-            <li>
-              <Link to="/ask-ride" onClick={menuToggleHandler}>
-                <FaSearch /> <bn></bn>
-                Find Ride
-              </Link>
-            </li>
           </ul>
         </nav>
         <div className={classes.header__content__toggle}>
