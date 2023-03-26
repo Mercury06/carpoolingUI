@@ -9,6 +9,7 @@ import { BsChevronCompactDown } from 'react-icons/bs';
 import { BsChevronDown } from 'react-icons/bs';
 
 import classes from './Header.module.scss';
+import cn from 'classnames';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../reducers/userReducer';
@@ -17,6 +18,7 @@ import avaPhoto from '../assets/img/icons8-customer-50.png';
 const Header = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [subHeader, setSubHeader] = useState(false);
   const [size, setSize] = useState({
     width: undefined,
     height: undefined,
@@ -55,105 +57,115 @@ const Header = () => {
   // };
 
   return (
-    <header className={classes.header}>
-      <div className={classes.header__content}>
-        {/* <Link to="/" className={classes.header__content__logo}>
+    <>
+      <header className={classes.header}>
+        <div className={classes.header__content}>
+          {/* <Link to="/" className={classes.header__content__logo}>
           LOGOTYPE
         </Link> */}
-        {isAuth && (
-          <>
-            {' '}
-            <div className={classes.user_container}>
-              <div className={classes.avatar_container}>
-                <img src={avaPhoto} alt="avatar" className={classes.mainPhoto} />
-              </div>
-              <BsChevronDown
-                size={24}
-                color={'grey'}
-                style={{
-                  'margin-left': '4px',
-                  'margin-top': '24px',
-                }}
-              />
-              {/* <div
+          {isAuth && (
+            <>
+              {' '}
+              <div className={classes.user_container}>
+                <div className={classes.avatar_container}>
+                  <img src={avaPhoto} alt="avatar" className={classes.mainPhoto} />
+                </div>
+                <BsChevronDown
+                  onClick={() => setSubHeader(!subHeader)}
+                  // onClick={() => alert('touched!')}
+                  size={24}
+                  color={'grey'}
+                  style={{
+                    'margin-left': '4px',
+                    'margin-top': '24px',
+                  }}
+                />
+                {/* <div
                 className={classes.header__user}
                 title="logout"
                 onClick={() => dispatch(logout())}
               > */}
-              {/* <NavLink to="/login" className={classes.header__user_link}>
+                {/* <NavLink to="/login" className={classes.header__user_link}>
                   {login} <BiLogOut />
                 </NavLink> */}
-              {/* </div> */}
-            </div>
-          </>
-        )}
-        <nav
-          className={`${classes.header__content__nav} ${
-            menuOpen && size.width < 768 ? classes.isMenu : ''
-          }`}
-        >
-          <ul>
-            {!isAuth && (
-              <>
-                <li>
-                  <Link to="/login" onClick={menuToggleHandler}>
-                    Sign in
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/registration" onClick={menuToggleHandler}>
-                    Sign up
-                  </Link>
-                </li>
-              </>
-            )}
-            <li>
-              <Link to="/ask-ride" onClick={menuToggleHandler}>
-                <FaSearch /> <bn></bn>
-                Find Ride
-              </Link>
-            </li>
-            {isAuth && (
-              <>
-                <li>
-                  <Link to="/create-ride" onClick={menuToggleHandler}>
-                    Create Ride
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/myrides" onClick={menuToggleHandler}>
-                    My rides
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/myhistory" onClick={menuToggleHandler}>
-                    History
-                  </Link>
-                </li>
-
-                <li>
-                  <NavLink
-                    to="/login"
-                    className={classes.header__user_link}
-                    title="logout"
-                    onClick={() => dispatch(logout())}
-                  >
-                    <BiLogOut size={36} color={'grey'} />
-                  </NavLink>
-                </li>
-              </>
-            )}
-          </ul>
-        </nav>
-        <div className={classes.header__content__toggle}>
-          {!menuOpen ? (
-            <BiMenuAltRight onClick={menuToggleHandler} />
-          ) : (
-            <BiArrowBack onClick={menuToggleHandler} />
+                {/* </div> */}
+              </div>
+            </>
           )}
+          <nav
+            className={`${classes.header__content__nav} ${
+              menuOpen && size.width < 768 ? classes.isMenu : ''
+            }`}
+          >
+            <ul>
+              {!isAuth && (
+                <>
+                  <li>
+                    <Link to="/login" onClick={menuToggleHandler}>
+                      Sign in
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/registration" onClick={menuToggleHandler}>
+                      Sign up
+                    </Link>
+                  </li>
+                </>
+              )}
+              <li>
+                <Link to="/ask-ride" onClick={menuToggleHandler}>
+                  <FaSearch /> <bn></bn>
+                  Find Ride
+                </Link>
+              </li>
+              {isAuth && (
+                <>
+                  <li>
+                    <Link to="/create-ride" onClick={menuToggleHandler}>
+                      Create Ride
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/myrides" onClick={menuToggleHandler}>
+                      My rides
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/myhistory" onClick={menuToggleHandler}>
+                      History
+                    </Link>
+                  </li>
+
+                  <li>
+                    <NavLink
+                      to="/login"
+                      className={classes.header__user_link}
+                      title="logout"
+                      onClick={() => dispatch(logout())}
+                    >
+                      <BiLogOut size={36} color={'grey'} />
+                    </NavLink>
+                  </li>
+                </>
+              )}
+            </ul>
+          </nav>
+          <div className={classes.header__content__toggle}>
+            {!menuOpen ? (
+              <BiMenuAltRight onClick={menuToggleHandler} />
+            ) : (
+              <BiArrowBack onClick={menuToggleHandler} />
+            )}
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+      {/* {subHeader && <header className={classes.subHeader}></header>} */}
+      <header
+        className={cn(classes.subHeader, {
+          [classes.subHeader__showed]: subHeader === true,
+        })}
+      ></header>
+    </>
   );
 };
 
