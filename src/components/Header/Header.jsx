@@ -6,7 +6,7 @@ import { FaSearch } from 'react-icons/fa';
 import { BiLogOut } from 'react-icons/bi';
 import { AiOutlineDown } from 'react-icons/ai';
 import { BsChevronCompactDown } from 'react-icons/bs';
-import { BsChevronDown } from 'react-icons/bs';
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 
 import classes from './Header.module.scss';
 import cn from 'classnames';
@@ -70,16 +70,30 @@ const Header = () => {
                 <div className={classes.avatar_container}>
                   <img src={avaPhoto} alt="avatar" className={classes.mainPhoto} />
                 </div>
-                <BsChevronDown
-                  onClick={() => setSubHeader(!subHeader)}
-                  // onClick={() => alert('touched!')}
-                  size={24}
-                  color={'grey'}
-                  style={{
-                    'margin-left': '4px',
-                    'margin-top': '24px',
-                  }}
-                />
+                {!subHeader ? (
+                  <BsChevronDown
+                    onClick={() => setSubHeader(!subHeader)}
+                    // onClick={() => alert('touched!')}
+                    size={24}
+                    color={'grey'}
+                    style={{
+                      'margin-left': '4px',
+                      'margin-top': '12px',
+                    }}
+                  />
+                ) : (
+                  <BsChevronUp
+                    onClick={() => setSubHeader(!subHeader)}
+                    // onClick={() => alert('touched!')}
+                    size={24}
+                    color={'grey'}
+                    style={{
+                      'margin-left': '4px',
+                      'margin-top': '12px',
+                    }}
+                  />
+                )}
+
                 {/* <div
                 className={classes.header__user}
                 title="logout"
@@ -125,7 +139,7 @@ const Header = () => {
                       Create Ride
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link to="/myrides" onClick={menuToggleHandler}>
                       My rides
                     </Link>
@@ -134,7 +148,7 @@ const Header = () => {
                     <Link to="/myhistory" onClick={menuToggleHandler}>
                       History
                     </Link>
-                  </li>
+                  </li> */}
 
                   <li>
                     <NavLink
@@ -159,12 +173,42 @@ const Header = () => {
           </div>
         </div>
       </header>
-      {/* {subHeader && <header className={classes.subHeader}></header>} */}
       <header
         className={cn(classes.subHeader, {
           [classes.subHeader__showed]: subHeader === true,
         })}
-      ></header>
+      >
+        {' '}
+        <div className={classes.subHeader__content}>
+          <nav className={classes.subHeader__content__nav}>
+            <ul>
+              <>
+                <li>
+                  <Link to="/myrides" onClick={menuToggleHandler}>
+                    My rides
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/myhistory" onClick={menuToggleHandler}>
+                    Messages
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/myhistory" onClick={menuToggleHandler}>
+                    History
+                  </Link>
+                </li>
+
+                <li>
+                  <Link to="/myhistory" onClick={menuToggleHandler}>
+                    Profile
+                  </Link>
+                </li>
+              </>
+            </ul>
+          </nav>
+        </div>
+      </header>
     </>
   );
 };
