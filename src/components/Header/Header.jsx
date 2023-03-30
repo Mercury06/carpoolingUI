@@ -5,8 +5,7 @@ import { BiMenuAltRight, BiArrowBack } from 'react-icons/bi';
 import { FaSearch } from 'react-icons/fa';
 import { BiLogOut } from 'react-icons/bi';
 import { AiOutlineDown } from 'react-icons/ai';
-import { BsChevronCompactDown } from 'react-icons/bs';
-import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
+import { BsChevronCompactDown, BsChevronDown, BsChevronUp } from 'react-icons/bs';
 
 import classes from './Header.module.scss';
 import cn from 'classnames';
@@ -92,8 +91,8 @@ const Header = () => {
                       'margin-top': '12px',
                     }}
                   />
-                )}
-
+                )}{' '}
+                <div className={classes.login}>{login}</div>
                 {/* <div
                 className={classes.header__user}
                 title="logout"

@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDatePicker from 'react-datepicker';
+
 import 'react-datepicker/dist/react-datepicker.css';
 import { useSelector } from 'react-redux';
+import { BsFillGeoAltFill } from 'react-icons/bs';
 import { ClearIcon } from '../../components/assets/svg/BoxIcons';
 import useForm from './hooks/useForm';
 // import { setSuggestedRides } from '../../../../reducers/rideReducer';
 // import { findLocality } from '../../../api/actions';
 
-import s from './searchForm.module.scss';
+import s from './askForm.module.scss';
 
 const initialState = {
   localityFrom: {
@@ -68,6 +70,9 @@ const AskForm = (props) => {
                 autoComplete="off"
                 placeholder="point A"
               />
+              <div className={s.geoIcon}>
+                <BsFillGeoAltFill />
+              </div>
               {inputValues.localityFrom.localityName && (
                 <div
                   className={s.clearIcon}
@@ -108,6 +113,9 @@ const AskForm = (props) => {
                 autoComplete="off"
                 placeholder="point B"
               />
+              <div className={s.geoIcon}>
+                <BsFillGeoAltFill />
+              </div>
               {inputValues.destination.localityName && (
                 <div
                   className={s.clearIcon}
@@ -134,7 +142,7 @@ const AskForm = (props) => {
               </div>
             ) : null}
           </div>
-          <div>
+          {/* <div>
             <ReactDatePicker
               selected={startDate}
               onChange={onChangeDateHandler}
@@ -143,7 +151,8 @@ const AskForm = (props) => {
               // className={s.date__picker}
               style={{ position: 'relative' }}
             />
-          </div>
+          </div> */}
+
           <div>
             {/* <button disabled={isSubmitting} type="submit"> */}
             <button type="submit">Find ride</button>

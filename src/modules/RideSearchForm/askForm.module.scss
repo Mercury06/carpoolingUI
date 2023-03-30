@@ -29,7 +29,7 @@
   input {
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin: 10px 0;
-    padding-left: 6px;
+    padding-left: 24px;
     font-family: inherit;
     font-size: inherit;
     border-radius: 2px;
@@ -79,6 +79,12 @@
     margin-left: 1px;
     margin-top: 7px;
     cursor: pointer;
+  }
+  .geoIcon {
+    opacity: 0.6;
+    position: absolute;
+    left: 6px;
+    top: 4px;
   }
   .clearIcon {
     // width: 18px;
