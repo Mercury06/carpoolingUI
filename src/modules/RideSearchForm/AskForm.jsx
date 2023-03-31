@@ -142,7 +142,7 @@ const AskForm = (props) => {
               </div>
             ) : null}
           </div>
-          {/* <div>
+          <div>
             <ReactDatePicker
               selected={startDate}
               onChange={onChangeDateHandler}
@@ -151,7 +151,7 @@ const AskForm = (props) => {
               // className={s.date__picker}
               style={{ position: 'relative' }}
             />
-          </div> */}
+          </div>
 
           <div>
             {/* <button disabled={isSubmitting} type="submit"> */}

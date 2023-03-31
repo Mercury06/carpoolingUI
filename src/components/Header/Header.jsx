@@ -156,7 +156,7 @@ const Header = () => {
                       title="logout"
                       onClick={() => dispatch(logout())}
                     >
-                      <BiLogOut size={36} color={'grey'} />
+                      <BiLogOut size={30} color={'grey'} />
                     </NavLink>
                   </li>
                 </>
@@ -172,42 +172,53 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <header
-        className={cn(classes.subHeader, {
-          [classes.subHeader__showed]: subHeader === true,
-        })}
-      >
-        {' '}
-        <div className={classes.subHeader__content}>
-          <nav className={classes.subHeader__content__nav}>
-            <ul>
-              <>
-                <li>
-                  <Link to="/myrides" onClick={menuToggleHandler}>
-                    My rides
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/myhistory" onClick={menuToggleHandler}>
-                    Messages
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/myhistory" onClick={menuToggleHandler}>
-                    History
-                  </Link>
-                </li>
+      {isAuth && (
+        <header
+          className={cn(classes.subHeader, {
+            [classes.subHeader__showed]: subHeader === true,
+          })}
+        >
+          {' '}
+          <div className={classes.subHeader__content}>
+            <nav className={classes.subHeader__content__nav}>
+              <ul>
+                <>
+                  <li>
+                    <Link
+                      to="/myrides"
+                      onClick={menuToggleHandler}
+                      title="create your ride to find passangers"
+                    >
+                      My rides
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/myasks" onClick={menuToggleHandler} title="ask ride to find driver">
+                      My asks
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/myhistory" onClick={menuToggleHandler}>
+                      Messages
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/myhistory" onClick={menuToggleHandler}>
+                      History
+                    </Link>
+                  </li>
 
-                <li>
-                  <Link to="/myhistory" onClick={menuToggleHandler}>
-                    Profile
-                  </Link>
-                </li>
-              </>
-            </ul>
-          </nav>
-        </div>
-      </header>
+                  <li>
+                    <Link to="/myhistory" onClick={menuToggleHandler}>
+                      Profile
+                    </Link>
+                  </li>
+                </>
+              </ul>
+            </nav>
+          </div>
+        </header>
+      )}
     </>
   );
 };
