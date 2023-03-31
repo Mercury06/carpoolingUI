@@ -52,6 +52,11 @@ export const findMyRidesApiAction = (id) => {
     return response.data;
   });
 };
+export const findMyAsksApiAction = (id) => {
+  return axios.get(`http://localhost:9000/api/settings/findmyask/${id}`).then((response) => {
+    return response.data;
+  });
+};
 
 export const findLocs = async () => {
   //debugger

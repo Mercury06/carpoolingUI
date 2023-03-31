@@ -11,6 +11,7 @@ import RidesList from '../Rides/RidesList';
 //import SubscribePage from '../UserPage/subcribePage';
 import AskForm from './../../modules/RideSearchForm/index';
 import RideCreateForm from './../../modules/RideCreateForm/index';
+import UserAsks from '../UserPage/UserAsks';
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -18,6 +19,7 @@ function App() {
 
   useEffect(() => {
     dispatch(auth());
+    console.log('initialized');
   });
 
   return (
@@ -27,7 +29,7 @@ function App() {
         {!isAuth && <Route path="registration" element={<Registration />} />}
         {/* <Route path="search" element={<Registration />} /> */}
         {isAuth && <Route path="myrides" element={<UserRides />} />}
-        {isAuth && <Route path="myasks" element={<UserRides />} />}
+        {isAuth && <Route path="myasks" element={<UserAsks />} />}
         {!isAuth && <Route path="myrides" element={<Navigate to="/" replace />} />}
         {isAuth && <Route path="login" element={<Navigate to="/create-ride" replace />} />}
         {isAuth && <Route path="/" element={<Navigate to="/create-ride" replace />} />}

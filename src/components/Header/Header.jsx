@@ -77,7 +77,7 @@ const Header = () => {
                     color={'grey'}
                     style={{
                       'margin-left': '4px',
-                      'margin-top': '12px',
+                      'margin-top': '4px',
                     }}
                   />
                 ) : (
@@ -88,7 +88,7 @@ const Header = () => {
                     color={'grey'}
                     style={{
                       'margin-left': '4px',
-                      'margin-top': '12px',
+                      'margin-top': '4px',
                     }}
                   />
                 )}{' '}
