@@ -19,7 +19,6 @@ function App() {
 
   useEffect(() => {
     dispatch(auth());
-    console.log('initialized');
   });
 
   return (
