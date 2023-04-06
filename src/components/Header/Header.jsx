@@ -198,7 +198,7 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/myhistory" onClick={menuToggleHandler}>
+                    <Link to="/messages" onClick={menuToggleHandler}>
                       Messages
                     </Link>
                   </li>
@@ -209,7 +209,7 @@ const Header = () => {
                   </li>
 
                   <li>
-                    <Link to="/myhistory" onClick={menuToggleHandler}>
+                    <Link to="/profile" onClick={menuToggleHandler}>
                       Profile
                     </Link>
                   </li>

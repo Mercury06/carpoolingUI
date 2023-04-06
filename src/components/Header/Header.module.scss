@@ -1,7 +1,8 @@
 @import './../../styles/variables.scss';
 
 .header {
-  // background: $dark;
+  //background: $dark;
+  //background: rgb(49, 55, 62);
   background: rgb(37, 37, 37);
   //width: 600px;  //edit
   height: $headerHeight;
@@ -176,6 +177,7 @@
 }
 .subHeader {
   background: rgb(37, 37, 37);
+  //background: rgb(49, 55, 62);
   height: $subHeaderHeight;
   padding: 0 1.5rem;
   position: absolute;

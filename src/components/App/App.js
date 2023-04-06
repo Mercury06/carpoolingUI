@@ -12,6 +12,7 @@ import RidesList from '../Rides/RidesList';
 import AskForm from './../../modules/RideSearchForm/index';
 import RideCreateForm from './../../modules/RideCreateForm/index';
 import UserAsks from '../UserPage/UserAsks';
+import Messages from '../../modules/Messages/Messages';
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -29,6 +30,7 @@ function App() {
         {/* <Route path="search" element={<Registration />} /> */}
         {isAuth && <Route path="myrides" element={<UserRides />} />}
         {isAuth && <Route path="myasks" element={<UserAsks />} />}
+        {isAuth && <Route path="messages" element={<Messages />} />}
         {!isAuth && <Route path="myrides" element={<Navigate to="/" replace />} />}
         {isAuth && <Route path="login" element={<Navigate to="/create-ride" replace />} />}
         {isAuth && <Route path="/" element={<Navigate to="/create-ride" replace />} />}
