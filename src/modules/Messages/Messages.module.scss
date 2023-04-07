@@ -1,0 +1,15 @@
+@import './../../styles/variables.scss';
+
+.main_container {
+  width: 50vw;
+  max-height: max-content;
+  background: #bae0ff;
+  margin-top: ($headerHeight + $subHeaderHeight) * 2;
+  border-radius: 6px;
+}
+
+.dialog_container {
+  width: 100%;
+  border-bottom: 1px solid black;
+  height: 66px;
+}

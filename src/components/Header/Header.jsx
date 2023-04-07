@@ -203,7 +203,7 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/myhistory" onClick={menuToggleHandler}>
+                    <Link to="/history" onClick={menuToggleHandler}>
                       History
                     </Link>
                   </li>
