@@ -118,11 +118,11 @@ const Header = () => {
                       Sign in
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link to="/registration" onClick={menuToggleHandler}>
                       Sign up
                     </Link>
-                  </li>
+                  </li> */}
                 </>
               )}
               <li>

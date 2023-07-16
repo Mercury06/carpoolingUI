@@ -1,14 +1,14 @@
-import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { findLocality } from './../../../components/api/actions';
-import moment from 'moment';
+import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { findLocality } from "./../../../components/api/actions";
+import moment from "moment";
 import {
   findRidesByParamsThunkCreator,
   setSearchRidesParamsActionCreator,
   setSuggestedRidesActionCreator,
-} from './../../../reducers/rideReducer.js';
-import { useNavigate } from 'react-router-dom';
-import useDebounce from '../../../Hooks/useDebounce';
+} from "./../../../reducers/rideReducer.js";
+import { useNavigate } from "react-router-dom";
+import useDebounce from "../../../Hooks/useDebounce";
 
 function useFormValidation(initialState, validate) {
   const [inputValues, setInputValues] = React.useState(initialState);
@@ -22,7 +22,8 @@ function useFormValidation(initialState, validate) {
   //const [open, setOpen] = React.useState(false);
 
   const initialStateDate = new Date();
-  const modifiedInitialStateDate = moment(initialStateDate).format('YYYY-MM-DD');
+  const modifiedInitialStateDate =
+    moment(initialStateDate).format("YYYY-MM-DD");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const inputRef1 = useRef(null);
@@ -41,7 +42,7 @@ function useFormValidation(initialState, validate) {
   async function searchResolver(search) {
     //debugger;
     try {
-      if (search !== '' || undefined) {
+      if (search !== "" || undefined) {
         const result = await findLocality(search);
         dispatch(setSuggestedRidesActionCreator(result));
       } else {
@@ -54,17 +55,17 @@ function useFormValidation(initialState, validate) {
   const onClickClear = (inputName) => {
     //debugger;
 
-    if (inputName === 'input1') {
+    if (inputName === "input1") {
       setInputValues({
         ...inputValues,
-        localityFrom: { localityName: '' },
+        localityFrom: { localityName: "" },
       });
       inputRef1.current?.focus();
     }
-    if (inputName === 'input2') {
+    if (inputName === "input2") {
       setInputValues({
         ...inputValues,
-        destination: { localityName: '' },
+        destination: { localityName: "" },
       });
       inputRef2.current?.focus();
     }
@@ -92,7 +93,7 @@ function useFormValidation(initialState, validate) {
     await deboucedSearch(search);
     return;
   }
-  console.log('inputValues:', inputValues);
+  console.log("inputValues:", inputValues);
   // function handleBlur() {
   //   const validationErrors = validate(inputValues);
   //   setErrors(validationErrors);
@@ -107,8 +108,11 @@ function useFormValidation(initialState, validate) {
     // console.log('e.target', e.target);
     // console.log('item.localityFrom', item.locality);
     // console.log('item._id', item._id);
-    console.log('inputValues.localityFrom.localityName:', inputValues.localityFrom.localityName);
-    console.log('inputValues.localityFrom.id:', inputValues.localityFrom.id);
+    console.log(
+      "inputValues.localityFrom.localityName:",
+      inputValues.localityFrom.localityName
+    );
+    console.log("inputValues.localityFrom.id:", inputValues.localityFrom.id);
     return;
   }
   function onSuggestSelect2(e, { item }) {
@@ -120,17 +124,20 @@ function useFormValidation(initialState, validate) {
     // console.log('e.target', e.target);
     // console.log('item._id', item._id);
     // console.log('item.localityFrom', item.locality);
-    console.log('inputValues.destination.localityName:', inputValues.destination.localityName);
-    console.log('inputValues.destination.id:', inputValues.destination.id);
+    console.log(
+      "inputValues.destination.localityName:",
+      inputValues.destination.localityName
+    );
+    console.log("inputValues.destination.id:", inputValues.destination.id);
     return;
   }
 
   async function findRidesHandleSubmit(event) {
     //debugger;
     event.preventDefault();
-    await dispatch(setSearchRidesParamsActionCreator(inputValues));
-    await dispatch(findRidesByParamsThunkCreator(inputValues));
-    navigate('/rides-list');
+    dispatch(setSearchRidesParamsActionCreator(inputValues));
+    dispatch(findRidesByParamsThunkCreator(inputValues));
+    navigate("/rides-list");
 
     //findRidesByParamsApiAction(inputValues);
     //console.log('submit');
@@ -143,7 +150,7 @@ function useFormValidation(initialState, validate) {
   const onChangeDateHandler = (value) => {
     //debugger;
     setStartDate(value);
-    const modifiedDate = moment(value).format('YYYY-MM-DD');
+    const modifiedDate = moment(value).format("YYYY-MM-DD");
     setModifiedDate(modifiedDate);
     //console.log('modifiedDate:', modifiedDate);
     setInputValues({

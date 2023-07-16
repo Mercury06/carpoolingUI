@@ -2,8 +2,9 @@
 
 .header {
   //background: $dark;
-  //background: rgb(49, 55, 62);
-  background: rgb(37, 37, 37);
+  // background: rgb(49, 55, 62);
+  background: #0C263F;
+  // background: rgb(37, 37, 37);
   //width: 600px;  //edit
   height: $headerHeight;
   padding: 0 1.5rem;
@@ -176,8 +177,9 @@
   }
 }
 .subHeader {
-  background: rgb(37, 37, 37);
+  // background: rgb(37, 37, 37);
   //background: rgb(49, 55, 62);
+  background: #0C263F;
   height: $subHeaderHeight;
   padding: 0 1.5rem;
   position: absolute;
