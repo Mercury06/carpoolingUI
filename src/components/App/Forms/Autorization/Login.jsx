@@ -36,7 +36,7 @@ const Login = (props) => {
     dispatch(login({ ...formData }));
   };
   return (
-    <div className={s.registration}>
+    <div className={s.authorization}>
       <center>
         <h1>Login</h1>
       </center>
