@@ -1,5 +1,7 @@
 import React from 'react';
 import { AiOutlineMail } from 'react-icons/ai';
+import { AiOutlineClose } from 'react-icons/ai';
+
 import { BiLockAlt } from 'react-icons/bi';
 
 import s from './autorization.module.scss';
@@ -8,6 +10,7 @@ const LoginForm = (props) => {
   return (
     <>
       <div className={s.wrapper}>
+        <span className={s.icon_close}><AiOutlineClose /> </span>
         <div className={s.form_box}>
         <h2>Loginn</h2>
         <form >

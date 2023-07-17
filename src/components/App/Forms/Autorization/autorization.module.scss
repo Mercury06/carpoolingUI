@@ -61,6 +61,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 
   .form_box {
     width: 100%;
@@ -74,6 +75,26 @@
 
     }
   }
+
+  .icon_close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #ced9e0;
+    font-size: 1em;
+    color: #162937;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+    
+
+
+  }
   .input_box {
     position: relative;
     width: 100%;
@@ -86,11 +107,12 @@
       position:absolute;
       top: 50px;
       left: 5px;
-      transform: translateY(-50%);
+      transform: translateY(-140%);
       font-size: 1em;
       color:#162937;
       font-weight: 500;
       pointer-events: none;
+      transition: .5s;
     }
 
     input {
@@ -100,8 +122,13 @@
       // background: yellow;
       border: none;
       outline: none;
+      font-size: 1em;
+      color: #162937;
+      font-weight: 600;
+      padding: 0 35px 0 5px;
+
       &:focus~label, &:valid~label {
-        top: -5px;
+        top: 20px;
       }
     }
 
@@ -109,9 +136,54 @@
       position: absolute;
       right: 8px;
       font-size: 1.2em;
-      color: #162938;
+      color: #162937;
       line-height: 57px;
     }
   }
+  .remember {
+    font-size: .9em;
+    color: #162937;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
 
+    label input {
+      accent-color: #162937;
+      margin-right: 3px;
+    }
+    a {
+      color: #162937;
+      text-decoration: none;
+    }
+  }
+  .btn {
+    width: 100%;
+    height: 45px;
+    background:#162937;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color:antiquewhite;
+    font-weight: 500;
+  }
+  .login_register {
+    font-size: .9em;
+    color: #162937;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+
+    p a {
+      color: #162937;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    p a:hover {
+      text-decoration: underline;
+    }
+  }
 }
