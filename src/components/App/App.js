@@ -5,7 +5,7 @@ import { auth } from "./../api/actions";
 import Layout from "../Layout/Layout.jsx";
 import UserRides from "../UserPage/UserRides.jsx";
 // import MainPage from '../MainPage/MainPage.jsx';
-// import Login from "./Forms/Autorization/Login.jsx";
+import Login from "./Forms/Autorization/Login.jsx";
 // import Registration from "./Forms/Autorization/Registration.jsx";
 import RidesList from "../Rides/RidesList";
 //import SubscribePage from '../UserPage/subcribePage';

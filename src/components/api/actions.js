@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { stopSubmit } from 'redux-form';
-import { setSuggestedRidesActionCreator } from '../../reducers/rideReducer';
-import { setUser } from './../../reducers/userReducer';
+import axios from "axios";
+import { stopSubmit } from "redux-form";
+import { setSuggestedRidesActionCreator } from "../../reducers/rideReducer";
+import { setUser } from "./../../reducers/userReducer";
 
 // export const registration = async ({ ...form }) => {
 //   //debugger
@@ -17,17 +17,20 @@ export const login = ({ ...form }) => {
   //debugger;
   return async (dispatch) => {
     try {
-      const response = await axios.post('http://localhost:9000/api/auth/login', { ...form });
+      const response = await axios.post(
+        "http://localhost:9000/api/auth/login",
+        { ...form }
+      );
       //console.log(response);
       if (response.status === 200) {
-        console.log('response.status:', response.status);
+        // console.log('response.status:', response.status);
         dispatch(setUser(response.data.user));
-        localStorage.setItem('token', response.data.token);
+        localStorage.setItem("token", response.data.token);
       }
     } catch (e) {
-      console.log('error:', e);
+      console.log("error:", e);
       let message = e.response.data.message;
-      dispatch(stopSubmit('login', { _error: message }));
+      dispatch(stopSubmit("login", { _error: message }));
     }
   };
 };
@@ -35,33 +38,39 @@ export const login = ({ ...form }) => {
 export const auth = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get('http://localhost:9000/api/auth/auth', {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      const response = await axios.get("http://localhost:9000/api/auth/auth", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       dispatch(setUser(response.data.user));
-      localStorage.setItem('token', response.data.token);
+      localStorage.setItem("token", response.data.token);
     } catch (e) {
       alert(e.response.data.message);
-      localStorage.removeItem('token');
+      localStorage.removeItem("token");
     }
   };
 };
 
 export const findMyRidesApiAction = (id) => {
-  return axios.get(`http://localhost:9000/api/settings/findmyrides/${id}`).then((response) => {
-    return response.data;
-  });
+  return axios
+    .get(`http://localhost:9000/api/settings/findmyrides/${id}`)
+    .then((response) => {
+      return response.data;
+    });
 };
 export const findMyAsksApiAction = (id) => {
-  return axios.get(`http://localhost:9000/api/settings/findmyask/${id}`).then((response) => {
-    return response.data;
-  });
+  return axios
+    .get(`http://localhost:9000/api/settings/findmyask/${id}`)
+    .then((response) => {
+      return response.data;
+    });
 };
 
 export const findLocs = async () => {
   //debugger
   try {
-    const response = await axios.get('http://localhost:9000/api/settings/findlocs');
+    const response = await axios.get(
+      "http://localhost:9000/api/settings/findlocs"
+    );
     const data = response.data;
     console.log(data);
     return data;
@@ -110,10 +119,10 @@ export async function findLocality(search) {
 
   try {
     const response = await axios.get(
-      `http://localhost:9000/api/settings/findlocality?search=${search}`,
+      `http://localhost:9000/api/settings/findlocality?search=${search}`
     );
 
-    console.log('response in api:', response);
+    console.log("response in api:", response);
     //dispatch(setSuggestedRidesActionCreator(response.data));
     return response.data;
   } catch (e) {

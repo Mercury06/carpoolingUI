@@ -93,7 +93,7 @@ function useFormValidation(initialState, validate) {
     await deboucedSearch(search);
     return;
   }
-  console.log("inputValues:", inputValues);
+  // console.log("inputValues:", inputValues);
   // function handleBlur() {
   //   const validationErrors = validate(inputValues);
   //   setErrors(validationErrors);
