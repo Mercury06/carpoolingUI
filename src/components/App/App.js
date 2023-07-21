@@ -4,8 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { auth } from "./../api/actions";
 import Layout from "../Layout/Layout.jsx";
 import UserRides from "../UserPage/UserRides.jsx";
-// import MainPage from '../MainPage/MainPage.jsx';
-import Login from "./Forms/Autorization/Login.jsx";
+// import Login from "./Forms/Autorization/Login.jsx";
 // import Registration from "./Forms/Autorization/Registration.jsx";
 import RidesList from "../Rides/RidesList";
 //import SubscribePage from '../UserPage/subcribePage';
@@ -40,13 +39,10 @@ function App() {
           <Route path="myrides" element={<Navigate to="/" replace />} />
         )}
         {isAuth && (
-          <Route
-            path="login"
-            element={<Navigate to="/create-ride" replace />}
-          />
+          <Route path="login" element={<Navigate to="/ask-ride" replace />} />
         )}
         {isAuth && (
-          <Route path="/" element={<Navigate to="/create-ride" replace />} />
+          <Route path="/" element={<Navigate to="/ask-ride" replace />} />
         )}
         {!isAuth && (
           <Route path="/" element={<Navigate to="/login" replace />} />

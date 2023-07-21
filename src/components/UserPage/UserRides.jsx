@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { findMyRidesApiAction } from '../api/actions';
+//import { Card, Space } from 'antd';
 import s from './UserPage.module.scss';
+
+
+
+
 const moment = require('moment');
+
 
 const UserRides = () => {
   const user = useSelector((state) => state.user.currentUser);
@@ -21,7 +27,7 @@ const UserRides = () => {
 
   return (
     <div className={s.container}>
-      {rides && <h5>Found {rides.length} rides</h5>}
+      {rides && <h5> You have {rides.length} rides</h5>}
       {/* {id && <h5>user id: {id}</h5>} */}
       {rides && rides.length > 0 ? (
         rides.map((item, i) => {
@@ -40,6 +46,7 @@ const UserRides = () => {
                 <strong>seats:</strong> {item.seats}
               </p>
             </div>
+            
           );
         })
       ) : (

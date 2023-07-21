@@ -12,7 +12,7 @@ const RideItem = ({ pointA, pointB, seats, date }) => {
   //debugger;
   return (
     <div className={s} onClick={() => {}}>
-      <div className={s.avatar}></div>
+      <div className={s.avatar}>hv</div>
 
       <div className={s.content}>
         <div>
