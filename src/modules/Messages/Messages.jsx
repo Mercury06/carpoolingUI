@@ -1,14 +1,12 @@
 import React from 'react';
 import s from './Messages.module.scss';
 import Dialog from './Dialog';
+import MessageRoom from './MessageRoom';
 
 export default function Messages() {
   return (
     <div className={s.main_container}>
-      <Dialog />
-      <Dialog />
-      <Dialog />
-      <Dialog />
+      <MessageRoom />
       {/* <Dialog />
       <Dialog />
       <Dialog />
