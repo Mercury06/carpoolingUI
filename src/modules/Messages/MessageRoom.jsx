@@ -8,6 +8,20 @@ export default function MessageRoom() {
   return (
     <div className={s.room_container}>
         <h1>message room</h1>
+        <h1>message room</h1>
+        <h1>message room</h1>
+        {/* <h1>message room</h1>
+        <h1>message room</h1>
+        <h1>message room</h1>
+        <h1>message room</h1>
+        <h1>message room</h1>
+        <h1>message room</h1>
+        <h1>message room</h1>
+        <h1>message room</h1>
+        <h1>message room</h1>
+        <h1>message room</h1>
+        <h1>message room</h1>
+        <h1>message room</h1> */}
         <div className={s.input_message_container}>
         <Input />
         <button>Send</button>

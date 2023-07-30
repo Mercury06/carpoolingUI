@@ -5,6 +5,7 @@
   flex-direction: column;
   //align-items: flex-end;
   background: grey;
+  height: 60vh;
   width: 50vw;
   //max-height: max-content;
   background: #bae0ff;
@@ -18,7 +19,7 @@
   grid-template-columns: 3fr 7fr 2fr;
   width: 100%;
   border-bottom: 1px solid black;
-  height: 66px;
+  // /height: 66px;
   //font-size: 4em;
   .messages_container_from {
     background: yellowgreen;
@@ -35,18 +36,24 @@
 .room_container {
   background-color: orangered;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  //overflow:hidden;
 }
 .input_message_container {
   
   //width: 100%;
-  width: auto;
+  width: 100%;
   height: 50px;
   background-color: rgb(46, 70, 146);
   //padding: 1px 1px 1  px;
+  position: absolute;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  //flex: 2;
+  //flex: 2 1;
 
   // .input_message {
    
