@@ -13,9 +13,24 @@ body {
   width: 100%;
   font-family: $Poppins;
   color: $dark;
-  margin: 0px;
+  margin: 30px;
   padding: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &::-webkit-scrollbar {
+    width: 3px;               /* ширина scrollbar */
+  }
+}
+body::-webkit-scrollbar {
+  width: 12px;               /* ширина scrollbar */
+}
+body::-webkit-scrollbar-track {
+  background: orange;        /* цвет дорожки */
+}
+body::-webkit-scrollbar-thumb {
+  background-color: blue;    /* цвет плашки */
+  border-radius: 20px;       /* закругления плашки */
+  border: 3px solid orange;  /* padding вокруг плашки */
 }
