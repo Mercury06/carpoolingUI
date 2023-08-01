@@ -14,7 +14,7 @@ import UserAsks from "../UserPage/UserAsks";
 import MessageBox from "../../modules/Messages/MessageBox";
 import LoginForm from "./Forms/Autorization/LoginForm";
 import RegistrationForm from "./Forms/Autorization/RegistrationForm";
-import Dialog from "../../modules/Messages/Dialog";
+import Dialogs from "../../modules/Messages/Dialogs";
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -36,7 +36,7 @@ function App() {
         {isAuth && <Route path="myrides" element={<UserRides />} />}
         {isAuth && <Route path="myasks" element={<UserAsks />} />}
         {isAuth && <Route path="messages" element={<MessageBox />} />}
-        {isAuth && <Route path="dialog" element={<Dialog />} />}
+        {isAuth && <Route path="dialogs" element={<Dialogs />} />}
         {!isAuth && (
           <Route path="myrides" element={<Navigate to="/" replace />} />
         )}

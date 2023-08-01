@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './Messages.module.scss';
-import Dialog from './Dialog';
 import MessageRoom from './MessageRoom';
 
 export default function MessageBox() {
