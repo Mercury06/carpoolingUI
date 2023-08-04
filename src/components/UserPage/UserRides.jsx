@@ -12,6 +12,7 @@ const UserRides = () => {
 
   const id = user.id;
   const [rides, setRides] = useState(null);
+  
 
   useEffect(() => {
     async function fetchData() {
@@ -21,7 +22,7 @@ const UserRides = () => {
     }
     fetchData().catch(console.error);
   }, [id]);
-
+  //console.log("fetched rides:", rides)
   return (
     <div className={s.container}>
       {rides && <h5> You have {rides.length} rides</h5>}
@@ -41,6 +42,9 @@ const UserRides = () => {
               </p>
               <p>
                 <strong>seats:</strong> {item.seats}
+              </p>
+              <p>
+                <strong>asks:</strong> {item.asks.length}
               </p>
             </div>
             

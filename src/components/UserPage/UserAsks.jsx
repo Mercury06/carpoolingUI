@@ -38,6 +38,9 @@ const UserAsks = () => {
               <p>
                 <strong>seats:</strong> {item.seats}
               </p>
+              <p>
+                <strong>offers:</strong> {item.offers.length}
+              </p>
             </div>
           );
         })

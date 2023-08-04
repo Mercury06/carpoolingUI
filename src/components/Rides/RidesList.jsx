@@ -12,6 +12,8 @@ const RidesList = () => {
   const [fetched, setFetched] = useState(false);
   const rides = useSelector((state) => state.ride.rides);
   const searchRidesParams = useSelector((state) => state.ride.searchRidesParams);
+  const {user} = searchRidesParams;
+  //console.log("user:", user)
 
   const subscribeHandler = async (e) => {
     e.stopPropagation();

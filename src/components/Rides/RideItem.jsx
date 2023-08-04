@@ -31,7 +31,11 @@ const RideItem = ({ pointA, pointB, seats, date }) => {
           <b>date:</b>
           {moment(date).format('DD-MMM-YYYY')}{' '}
         </div>
+        <div>
+          <button>ask</button>
+        </div>
       </div>
+      
     </div>
   );
 };
