@@ -198,7 +198,7 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/messages" onClick={menuToggleHandler}>
+                    <Link to="/dialogs" onClick={menuToggleHandler}>
                       Messages
                     </Link>
                   </li>

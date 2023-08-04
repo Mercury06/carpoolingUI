@@ -4,9 +4,6 @@ import { findMyRidesApiAction } from '../api/actions';
 //import { Card, Space } from 'antd';
 import s from './UserPage.module.scss';
 
-
-
-
 const moment = require('moment');
 
 

@@ -1,6 +1,10 @@
+@import './../../styles/variables.scss';
+
+
 .list {
   display: flex;
   flex-direction: column;
+  margin-top: calc($headerHeight + $subHeaderHeight);
 }
 .content {
   border: 1px solid black;

@@ -1,11 +1,12 @@
 @import './../../styles/variables.scss';
 
 .container {
-  //height: calc(100vh - #{$headerHeight});
-  // background: $bg;
+  // height: calc(100vh - #{$headerHeight+$subHeaderHeight});
+   background: green;
   // display: flex;
   // justify-content: center;
   // align-items: center;
+  margin-top: calc($headerHeight + $subHeaderHeight);
   position: relative;
   border: 1px solid rgb(167, 165, 165);
   border-radius: 6px;
@@ -14,7 +15,7 @@
   // flex-direction: row;
   // align-items: center;
   padding: 6px;
-  height: auto;
+  //height: auto;
   .form {
     display: flex;
     flex-direction: column;

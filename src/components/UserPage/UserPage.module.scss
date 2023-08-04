@@ -1,6 +1,8 @@
+@import './../../styles/variables.scss';
+
 .container {
-  // margin-top: 136px;
-  margin-top: 6vw;
+  margin-top: calc($headerHeight + $subHeaderHeight);
+  //margin-top: 6vw;
   //background: green;
   
 }
