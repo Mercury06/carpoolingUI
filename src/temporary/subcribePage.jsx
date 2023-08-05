@@ -17,7 +17,7 @@ const SubscribePage = () => {
     // }
     // console.log('searchRidesParams:', searchRidesParams);
     // console.log('rideReducer:', rideReducer);
-    console.log('insife useeffect');
+    console.log('inside useeffect');
   }, []);
 
   return (

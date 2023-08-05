@@ -32,12 +32,12 @@ const LoginForm = (props) => {
  
   // console.log("email:", inputValues.email)
   // console.log("password:", inputValues.password)
-  console.log("inputValues:", inputValues)
+  //console.log("inputValues:", inputValues)
 
   function LoginSubmit(e, {...inputValues}) {
     //debugger;
     e.preventDefault();
-    console.log("inputValues inside submit:", {...inputValues})
+    //console.log("inputValues inside submit:", {...inputValues})
     dispatch(login({ ...inputValues }));
     // alert("Submitted!")
     // dispatch(setSearchRidesParamsActionCreator(inputValues));

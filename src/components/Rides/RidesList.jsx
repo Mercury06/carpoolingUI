@@ -3,17 +3,34 @@ import { useDispatch, useSelector } from 'react-redux';
 import RideItem from './RideItem';
 import s from './Rides.module.scss';
 import { Button } from 'antd';
-import { createAsk } from './apiActions';
+import { askForSeat, createAsk } from './apiActions';
 import cn from 'classnames';
 import { CheckIcon } from '../assets/svg/BoxIcons';
 
 const RidesList = () => {
+
   const [loading, setLoading] = useState(false);
   const [fetched, setFetched] = useState(false);
   const rides = useSelector((state) => state.ride.rides);
   const searchRidesParams = useSelector((state) => state.ride.searchRidesParams);
   const {user} = searchRidesParams;
-  //console.log("user:", user)
+  
+
+  async function addAskToRideHandler(e, rideId) {
+    e.stopPropagation();
+    console.log("INSIDE HANDLER")
+    console.log("rideId:", rideId)
+    console.log("user:", user)
+    console.log("searchRidesParams:", searchRidesParams)
+    const startTime = new Date ();
+    const createAskResult = await createAsk(searchRidesParams);
+    const applicant = createAskResult.result;
+    console.log("applicant:", applicant)
+    await askForSeat(rideId, applicant);  
+    const endTime = new Date ();
+    console.log("result_time:", endTime - startTime);
+     
+  }
 
   const subscribeHandler = async (e) => {
     e.stopPropagation();
@@ -38,10 +55,12 @@ const RidesList = () => {
             {rides.map((item) => (
               <RideItem
                 key={item._id}
+                itemId={item._id}
                 pointA={item.localityFrom.localityName}
                 pointB={item.destination.localityName}
                 seats={item.seats_available}
                 date={item.date}
+                addAskToRideHandler={addAskToRideHandler}
               />
             ))}
           </div>

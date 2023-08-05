@@ -3,18 +3,23 @@ import s from './Rides.module.scss';
 //import avaPhoto from './../../assets/images/ava-rez.jpg';
 const moment = require('moment');
 
-const RideItem = ({ pointA, pointB, seats, date }) => {
+const RideItem = (props) => {
   // const onClickItem = () => {
   //     onItem ({id, name, status, species, type, gender, originName, locationName, image, created})
   //     setModal (true);
   //     setSelectedId (onItem);
   // }
   //debugger;
+  const { itemId, pointA, pointB, seats, date, addAskToRideHandler } = props;
   return (
     <div className={s} onClick={() => {}}>
       <div className={s.avatar}>hv</div>
 
       <div className={s.content}>
+        <div>
+          <b>itemId: </b>
+          {itemId}{' '}
+        </div>
         <div>
           <b>from: </b>
           {pointA}{' '}
@@ -32,7 +37,7 @@ const RideItem = ({ pointA, pointB, seats, date }) => {
           {moment(date).format('DD-MMM-YYYY')}{' '}
         </div>
         <div>
-          <button>ask</button>
+          <button onClick={(e) => addAskToRideHandler(e, itemId)}>ask</button>
         </div>
       </div>
       

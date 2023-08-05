@@ -15,16 +15,17 @@ export const createAsk = async ({ ...form }) => {
   }
 };
 
-export const askForSeat = async ({ ...form }) => {
+export const askForSeat = async (rideId, applicant) => {
   //debugger;
   try {
     const response = await axios.post(
       "http://localhost:9000/api/settings/addasktoride",
       {
-        ...form,
+        rideId,
+        applicant,
       }
     );
-    return response.data;
+    return response.data.result;
   } catch (e) {
     alert(e.response.data.message);
   }
