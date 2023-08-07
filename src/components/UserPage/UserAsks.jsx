@@ -1,31 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { findMyAsksApiAction } from '../api/actions';
+import React  from 'react';
 import s from './UserPage.module.scss';
+import { Link } from 'react-router-dom';
 const moment = require('moment');
 
-const UserAsks = () => {
-  const user = useSelector((state) => state.user.currentUser);
-  const id = user.id;
-  const [asks, setAsks] = useState(null);
+const UserAsks = (props) => {
+  const {item, onOffersClickHandler} = props;
 
-  useEffect(() => {
-    async function fetchData() {
-      const data = await findMyAsksApiAction(id);
-
-      setAsks(data);
-    }
-    fetchData().catch(console.error);
-  }, [id]);
-
-  return (
-    <div className={s.container}>
-      {asks && <h5>Found {asks.length} asks</h5>}
-      {/* {id && <h5>user id: {id}</h5>} */}
-      {asks && asks.length > 0 ? (
-        asks.map((item, i) => {
-          return (
-            <div className={s.content} key={i}>
+  return ( 
+            <div className={s.content} key={item._id}>
               <p>
                 <strong>from:</strong> {item.localityFrom.localityName}
               </p>
@@ -38,20 +20,14 @@ const UserAsks = () => {
               <p>
                 <strong>seats:</strong> {item.seats}
               </p>
-              <p>
-                <strong>offers:</strong> {item.offers.length}
-              </p>
+              {/* <p >
+                <strong>offers:</strong> <Link to="/rides-list">{item.offers.length}</Link>
+              </p> */}
+              <div className={s.offers_link} onClick={(e)=>onOffersClickHandler(e, item._id)}>
+                <div><strong>offers: <p>{item.offers.length}</p></strong> </div>
+              </div>
             </div>
-          );
-        })
-      ) : (
-        <div>
-          {' '}
-          <h3>list is empty</h3>
-        </div>
-      )}
-    </div>
   );
-};
+}
 
 export default UserAsks;

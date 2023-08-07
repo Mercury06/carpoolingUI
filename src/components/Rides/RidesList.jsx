@@ -18,17 +18,17 @@ const RidesList = () => {
 
   async function addAskToRideHandler(e, rideId) {
     e.stopPropagation();
-    console.log("INSIDE HANDLER")
-    console.log("rideId:", rideId)
-    console.log("user:", user)
-    console.log("searchRidesParams:", searchRidesParams)
-    const startTime = new Date ();
+    // console.log("INSIDE HANDLER")
+    // console.log("rideId:", rideId)
+    // console.log("user:", user)
+    // console.log("searchRidesParams:", searchRidesParams)
+    //const startTime = new Date ();
     const createAskResult = await createAsk(searchRidesParams);
     const applicant = createAskResult.result;
-    console.log("applicant:", applicant)
+    //console.log("applicant:", applicant)
     await askForSeat(rideId, applicant);  
-    const endTime = new Date ();
-    console.log("result_time:", endTime - startTime);
+    //const endTime = new Date ();
+    //console.log("result_time:", endTime - startTime);
      
   }
 
