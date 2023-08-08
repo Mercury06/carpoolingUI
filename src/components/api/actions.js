@@ -57,6 +57,7 @@ export const findMyRidesApiAction = (id) => {
       return response.data;
     });
 };
+
 export const findMyAsksApiAction = (id) => {
   return axios
     .get(`http://localhost:9000/api/settings/findmyask/${id}`)
@@ -79,21 +80,21 @@ export const findLocs = async () => {
   }
 };
 
-export const getOffers = async (rideId, applicant) => {
-  //debugger;
-  try {
-    // const response = await axios.post(
-    //   "http://localhost:9000/api/settings/addasktoride",
-    //   {
-    //     rideId,
-    //     applicant,
-    //   }
-    // );
-    // return response.data.result;
-  } catch (e) {
-    alert(e.response.data.message);
-  }
-};
+// export const getOffers = async (rideId, applicant) => {                //offers lready exist (delete)
+//   //debugger;
+//   try {
+//     // const response = await axios.post(
+//     //   "http://localhost:9000/api/settings/addasktoride",
+//     //   {
+//     //     rideId,
+//     //     applicant,
+//     //   }
+//     // );
+//     // return response.data.result;
+//   } catch (e) {
+//     alert(e.response.data.message);
+//   }
+// };
 
 // export function findLocality(search) {
 //   return async (dispatch) => {

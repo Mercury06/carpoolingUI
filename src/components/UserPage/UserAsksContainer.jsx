@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { findMyAsksApiAction, getOffers } from '../api/actions';
+import { findMyAsksApiAction } from '../api/actions';
 import s from './UserPage.module.scss';
 import { Link } from 'react-router-dom';
 import UserAsks from './UserAsks';
@@ -10,11 +10,12 @@ const UserAsksContainer = () => {
   const user = useSelector((state) => state.user.currentUser);
   const id = user.id;
   const [asks, setAsks] = useState(null);
+  const [offers, setOffers] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       const data = await findMyAsksApiAction(id);
-
+      //console.log("asks inside useeffect:", data)
       setAsks(data);
     }
     fetchData().catch(console.error); //edit
@@ -22,9 +23,14 @@ const UserAsksContainer = () => {
 
   const onOffersClickHandler = async (e, id) => {
     e.stopPropagation();
-    alert(id);
-    const offers = await getOffers(id);
-    console.log("recieved offers:", offers)
+    //alert(id);
+    const result = await asks.find ( i => i._id === id)
+    const offers = result.offers;
+    setOffers(offers)
+    // console.log("result in find:", result)    
+    // console.log("offers in find:", result.offers)
+    //const offers = await getOffers(id);
+    //console.log("recieved offers:", offers)
   }
 
   return (
