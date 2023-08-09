@@ -9,7 +9,7 @@ import { reducer as formReducer } from "redux-form";
 const rootReducer = combineReducers({
   ride: rideReducer,
   user: userReducer,
-  form: formReducer,
+  form: formReducer, //edit
   // app: appReducer
 });
 

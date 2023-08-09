@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { findMyAsksApiAction } from '../api/actions';
 import s from './UserPage.module.scss';
 import { Link } from 'react-router-dom';
 import UserAsks from './UserAsks';
+import { setRideOffersActionCreator } from '../../reducers/rideReducer';
 const moment = require('moment');
 
 const UserAsksContainer = () => {
   const user = useSelector((state) => state.user.currentUser);
   const id = user.id;
   const [asks, setAsks] = useState(null);
-  const [offers, setOffers] = useState(null);
+ 
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function fetchData() {
@@ -24,9 +26,12 @@ const UserAsksContainer = () => {
   const onOffersClickHandler = async (e, id) => {
     e.stopPropagation();
     //alert(id);
-    const result = await asks.find ( i => i._id === id)
+    const result = asks.find ( i => i._id === id)
     const offers = result.offers;
-    setOffers(offers)
+    
+    console.log("offers in find:", offers)
+    dispatch(setRideOffersActionCreator(offers));
+    //setRideOffersActionCreator(offers)
     // console.log("result in find:", result)    
     // console.log("offers in find:", result.offers)
     //const offers = await getOffers(id);
