@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { findMyAsksApiAction } from '../api/actions';
 import s from './UserPage.module.scss';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import UserAsks from './UserAsks';
 import { setRideOffersActionCreator } from '../../reducers/rideReducer';
 const moment = require('moment');
@@ -13,6 +14,7 @@ const UserAsksContainer = () => {
   const [asks, setAsks] = useState(null);
  
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -29,13 +31,10 @@ const UserAsksContainer = () => {
     const result = asks.find ( i => i._id === id)
     const offers = result.offers;
     
-    console.log("offers in find:", offers)
+    //console.log("offers in find:", offers)
     dispatch(setRideOffersActionCreator(offers));
-    //setRideOffersActionCreator(offers)
-    // console.log("result in find:", result)    
-    // console.log("offers in find:", result.offers)
-    //const offers = await getOffers(id);
-    //console.log("recieved offers:", offers)
+    navigate("/offers-list");
+    
   }
 
   return (

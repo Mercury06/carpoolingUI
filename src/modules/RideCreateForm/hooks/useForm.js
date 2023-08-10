@@ -1,12 +1,12 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { createRide } from '../apiActions';
-import moment from 'moment';
-import { setSuggestedRidesActionCreator } from './../../../reducers/rideReducer.js';
-import { useNavigate } from 'react-router-dom';
-import { findLocality } from '../../../components/api/actions';
-import useDebounce from '../../../Hooks/useDebounce';
-import axios from 'axios';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { createRide } from "../apiActions";
+import moment from "moment";
+import { setSuggestedRidesActionCreator } from "./../../../reducers/rideReducer.js";
+import { useNavigate } from "react-router-dom";
+import { findLocality } from "../../../components/api/actions";
+import useDebounce from "../../../Hooks/useDebounce";
+import axios from "axios";
 
 function useForm(initialState, validate) {
   const [inputValues, setInputValues] = React.useState(initialState);
@@ -18,7 +18,8 @@ function useForm(initialState, validate) {
   const deboucedSearch = useDebounce(searchResolver, 500);
 
   const initialStateDate = new Date();
-  const modifiedInitialStateDate = moment(initialStateDate).format('YYYY-MM-DD');
+  const modifiedInitialStateDate =
+    moment(initialStateDate).format("YYYY-MM-DD");
   const dispatch = useDispatch();
 
   // React.useEffect(() => {
@@ -34,7 +35,7 @@ function useForm(initialState, validate) {
   async function searchResolver(search) {
     //debugger;
     try {
-      if (search !== '' || undefined) {
+      if (search !== "" || undefined) {
         const result = await findLocality(search);
         dispatch(setSuggestedRidesActionCreator(result));
       } else {
@@ -80,8 +81,11 @@ function useForm(initialState, validate) {
     // console.log('e.target', e.target);
     // console.log('item.localityFrom', item.locality);
     // console.log('item._id', item._id);
-    console.log('inputValues.localityFrom.localityName:', inputValues.localityFrom.localityName);
-    console.log('inputValues.localityFrom.id:', inputValues.localityFrom.id);
+    console.log(
+      "inputValues.localityFrom.localityName:",
+      inputValues.localityFrom.localityName
+    );
+    console.log("inputValues.localityFrom.id:", inputValues.localityFrom.id);
     return;
   }
 
@@ -94,8 +98,11 @@ function useForm(initialState, validate) {
     // console.log('e.target', e.target);
     // console.log('item._id', item._id);
     // console.log('item.localityFrom', item.locality);
-    console.log('inputValues.destination.localityName:', inputValues.destination.localityName);
-    console.log('inputValues.destination.id:', inputValues.destination.id);
+    console.log(
+      "inputValues.destination.localityName:",
+      inputValues.destination.localityName
+    );
+    console.log("inputValues.destination.id:", inputValues.destination.id);
     return;
   }
   async function createRideHandleSubmit(event) {
@@ -111,25 +118,11 @@ function useForm(initialState, validate) {
     //setSubmitting(true);
     //console.log(inputValues);
   }
-  // async function findRidesHandleSubmit(event) {
-  //   //debugger;
-  //   event.preventDefault();
-  //   await dispatch(setSearchRidesParamsActionCreator(inputValues));
-  //   await dispatch(findRidesByParamsThunkCreator(inputValues));
-  //   navigate('/rides-list');
-
-  //   //findRidesByParamsApiAction(inputValues);
-  //   //console.log('submit');
-  //   //const validationErrors = validate(inputValues);
-  //   //setErrors(validationErrors);
-  //   //setSubmitting(true);
-  //   //console.log(inputValues);
-  // }
 
   const onChangeDateHandler = (value) => {
     //debugger;
     setStartDate(value);
-    const modifiedDate = moment(value).format('YYYY-MM-DD');
+    const modifiedDate = moment(value).format("YYYY-MM-DD");
     setModifiedDate(modifiedDate);
     //console.log('modifiedDate:', modifiedDate);
     setInputValues({

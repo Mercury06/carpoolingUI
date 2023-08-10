@@ -13,7 +13,7 @@ const defaultState = {
 };
 
 export default function rideReducer(state = defaultState, action) {
-  debugger;
+  //debugger;
   switch (action.type) {
     case SET_RIDES:
       return {

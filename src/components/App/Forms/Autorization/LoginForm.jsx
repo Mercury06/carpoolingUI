@@ -38,18 +38,9 @@ const LoginForm = (props) => {
     //debugger;
     e.preventDefault();
     //console.log("inputValues inside submit:", {...inputValues})
-    dispatch(login({ ...inputValues }));
-    // alert("Submitted!")
-    // dispatch(setSearchRidesParamsActionCreator(inputValues));
-    // dispatch(findRidesByParamsThunkCreator(inputValues));
-    // navigate("/rides-list");
-    
-    //findRidesByParamsApiAction(inputValues);
-    //console.log('submit');
-    //const validationErrors = validate(inputValues);
+    dispatch(login({ ...inputValues })); 
     //setErrors(validationErrors);
-    //setSubmitting(true);
-    //console.log(inputValues);
+    //setSubmitting(true);   
   }
 
   return (

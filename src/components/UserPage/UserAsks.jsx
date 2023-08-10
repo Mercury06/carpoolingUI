@@ -20,9 +20,7 @@ const UserAsks = (props) => {
               <p>
                 <strong>seats:</strong> {item.seats}
               </p>
-              {/* <p >
-                <strong>offers:</strong> <Link to="/rides-list">{item.offers.length}</Link>
-              </p> */}
+             
               <div className={s.offers_link} onClick={(e)=>onOffersClickHandler(e, item._id)}>
                 <div><strong>offers: <p>{item.offers.length}</p></strong> </div>
               </div>
