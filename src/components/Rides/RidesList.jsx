@@ -16,19 +16,20 @@ const RidesList = () => {
   const {user} = searchRidesParams;
   
 
-  async function addAskToRideHandler(e, rideId) {
+  async function createAskToRideHandler(e, rideId) {
     e.stopPropagation();
-    // console.log("INSIDE HANDLER")
-    // console.log("rideId:", rideId)
-    // console.log("user:", user)
-    // console.log("searchRidesParams:", searchRidesParams)
-    //const startTime = new Date ();
-    const createAskResult = await createAsk(searchRidesParams);
-    const applicant = createAskResult.result;
-    //console.log("applicant:", applicant)
-    await askForSeat(rideId, applicant);  
-    //const endTime = new Date ();
-    //console.log("result_time:", endTime - startTime);
+    alert("inside ridelist")
+    // // console.log("INSIDE HANDLER")
+    // // console.log("rideId:", rideId)
+    // // console.log("user:", user)
+    // // console.log("searchRidesParams:", searchRidesParams)
+    // //const startTime = new Date ();
+    // const createAskResult = await createAsk(searchRidesParams);
+    // const applicant = createAskResult.result;
+    // //console.log("applicant:", applicant)
+    // await askForSeat(rideId, applicant);  
+    // //const endTime = new Date ();
+    // //console.log("result_time:", endTime - startTime);
      
   }
 
@@ -60,7 +61,8 @@ const RidesList = () => {
                 pointB={item.destination.localityName}
                 seats={item.seats_available}
                 date={item.date}
-                addAskToRideHandler={addAskToRideHandler}
+                askId={null}
+                createAskToRideHandler={createAskToRideHandler}
               />
             ))}
           </div>

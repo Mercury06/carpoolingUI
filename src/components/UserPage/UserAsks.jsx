@@ -8,6 +8,9 @@ const UserAsks = (props) => {
 
   return ( 
             <div className={s.content} key={item._id}>
+               <p>
+                <strong>itemId:</strong> {item._id}
+              </p>
               <p>
                 <strong>from:</strong> {item.localityFrom.localityName}
               </p>
@@ -21,7 +24,7 @@ const UserAsks = (props) => {
                 <strong>seats:</strong> {item.seats}
               </p>
              
-              <div className={s.offers_link} onClick={(e)=>onOffersClickHandler(e, item._id)}>
+              <div className={s.offers_link} onClick={(e)=>onOffersClickHandler(e, item)}>
                 <div><strong>offers: <p>{item.offers.length}</p></strong> </div>
               </div>
             </div>

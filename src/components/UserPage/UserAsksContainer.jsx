@@ -25,15 +25,16 @@ const UserAsksContainer = () => {
     fetchData().catch(console.error); //edit
   }, [id]);
 
-  const onOffersClickHandler = async (e, id) => {
+  const onOffersClickHandler = async (e, item) => {
     e.stopPropagation();
-    //alert(id);
+    //console.log("onOffersClickHandler:", item)
+    const id = item._id;
     const result = asks.find ( i => i._id === id)
     const offers = result.offers;
     
     //console.log("offers in find:", offers)
     dispatch(setRideOffersActionCreator(offers));
-    navigate("/offers-list");
+    navigate("/offers-list", {state: { askItem: item }});
     
   }
 
@@ -42,7 +43,7 @@ const UserAsksContainer = () => {
       {asks && <h5>Found {asks.length} asks</h5>}
       {/* {id && <h5>user id: {id}</h5>} */}
       {asks && asks.length > 0 ? (
-        asks.map((item, i) => {
+        asks.map((item) => {
           return (
             <UserAsks item={item} onOffersClickHandler={onOffersClickHandler} />
           );

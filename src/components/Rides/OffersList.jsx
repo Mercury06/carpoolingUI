@@ -2,16 +2,28 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RideItem from './RideItem';
 import s from './Rides.module.scss';
+import { useLocation } from 'react-router-dom';
+import { askForSeat } from './apiActions';
 
 
-const OffersList = () => {
+const OffersList = (props) => {
 
   const [loading, setLoading] = useState(false);
   const [buttonDisable, setButtonDisable] = useState(false);
+  const {state} = useLocation();
+  
   
   const offers = useSelector((state) => state.ride.rideOffers);
+  const { askItem } = state;
+  
   
   //const {user} = searchRidesParams;
+
+  async function addAskToRideHandler(e, rideId) {
+    e.stopPropagation();
+    console.log("itemfromrouter:", askItem)    
+    await askForSeat(rideId, askItem);           
+  }
   
 
   useEffect(()=>{
@@ -31,7 +43,8 @@ const OffersList = () => {
                 pointB={item.destination.localityName}
                 seats={item.seats_available}
                 date={item.date}
-                //addAskToRideHandler={addAskToRideHandler}
+                askItem={item}
+                addAskToRideHandler={addAskToRideHandler}
               />
             ))}
           </div> ) : (<div>empty list</div>)};
