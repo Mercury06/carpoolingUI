@@ -10,7 +10,7 @@ const RideItem = (props) => {
   //     setSelectedId (onItem);
   // }
   //debugger;
-  const { itemId, pointA, pointB, seats, date, askItem, addAskToRideHandler } = props;
+  const { itemId, pointA, pointB, seats, date, rideItemId, askItem, askClickHandler, searchRidesParams } = props;
   return (
     <div className={s} onClick={() => {}}>
       <div className={s.avatar}>hv</div>
@@ -18,7 +18,7 @@ const RideItem = (props) => {
       <div className={s.content}>
         <div>
           <b>itemId: </b>
-          {itemId}{' '}
+          {rideItemId}{' '}
         </div>
         <div>
           <b>from: </b>
@@ -37,7 +37,7 @@ const RideItem = (props) => {
           {moment(date).format('DD-MMM-YYYY')}{' '}
         </div>
         <div>
-          <button onClick={(e) => addAskToRideHandler(e, askItem)}>ask</button>
+          <button onClick={(e) => askClickHandler(e, rideItemId, askItem, searchRidesParams)}>ask</button>
         </div>
       </div>
       

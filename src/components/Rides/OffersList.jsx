@@ -5,6 +5,9 @@ import s from './Rides.module.scss';
 import { useLocation } from 'react-router-dom';
 import { askForSeat } from './apiActions';
 
+import askClickHandler from './Helpers/askClickHandler';
+
+
 
 const OffersList = (props) => {
 
@@ -19,11 +22,12 @@ const OffersList = (props) => {
   
   //const {user} = searchRidesParams;
 
-  async function addAskToRideHandler(e, rideId) {
-    e.stopPropagation();
-    console.log("itemfromrouter:", askItem)    
-    await askForSeat(rideId, askItem);           
-  }
+  // async function askOnClickHandler(e, rideId) {
+  //   e.stopPropagation();
+  //   alert("inside offer")
+  //   //console.log("itemfromrouter:", askItem)    
+  //   await askForSeat(rideId, askItem);           
+  // }
   
 
   useEffect(()=>{
@@ -38,13 +42,14 @@ const OffersList = (props) => {
             {offers.map((item) => (
               <RideItem
                 key={item._id}
-                itemId={item._id}
+                rideItemId={item._id}
                 pointA={item.localityFrom.localityName}
                 pointB={item.destination.localityName}
                 seats={item.seats_available}
                 date={item.date}
-                askItem={item}
-                addAskToRideHandler={addAskToRideHandler}
+                searchRidesParams={null}
+                askItem={askItem}
+                askClickHandler={askClickHandler}
               />
             ))}
           </div> ) : (<div>empty list</div>)};

@@ -6,6 +6,7 @@ import { Button } from 'antd';
 import { askForSeat, createAsk } from './apiActions';
 import cn from 'classnames';
 import { CheckIcon } from '../assets/svg/BoxIcons';
+import askClickHandler from './Helpers/askClickHandler';
 
 const RidesList = () => {
 
@@ -16,7 +17,7 @@ const RidesList = () => {
   const {user} = searchRidesParams;
   
 
-  async function createAskToRideHandler(e, rideId) {
+  async function askOnClickHandler(e, rideId) {
     e.stopPropagation();
     alert("inside ridelist")
     // // console.log("INSIDE HANDLER")
@@ -56,13 +57,14 @@ const RidesList = () => {
             {rides.map((item) => (
               <RideItem
                 key={item._id}
-                itemId={item._id}
+                rideItemId={item._id}
                 pointA={item.localityFrom.localityName}
                 pointB={item.destination.localityName}
                 seats={item.seats_available}
                 date={item.date}
-                askId={null}
-                createAskToRideHandler={createAskToRideHandler}
+                searchRidesParams={searchRidesParams}
+                askItem={null}
+                askClickHandler={askClickHandler}
               />
             ))}
           </div>
