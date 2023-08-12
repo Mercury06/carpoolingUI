@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import RideItem from './RideItem';
 import s from './Rides.module.scss';
 import { Button } from 'antd';
-import { askForSeat, createAsk } from './apiActions';
+import { createAsk } from './apiActions';
 import cn from 'classnames';
 import { CheckIcon } from '../assets/svg/BoxIcons';
 import askClickHandler from './Helpers/askClickHandler';
@@ -16,24 +16,6 @@ const RidesList = () => {
   const searchRidesParams = useSelector((state) => state.ride.searchRidesParams);
   const {user} = searchRidesParams;
   
-
-  async function askOnClickHandler(e, rideId) {
-    e.stopPropagation();
-    alert("inside ridelist")
-    // // console.log("INSIDE HANDLER")
-    // // console.log("rideId:", rideId)
-    // // console.log("user:", user)
-    // // console.log("searchRidesParams:", searchRidesParams)
-    // //const startTime = new Date ();
-    // const createAskResult = await createAsk(searchRidesParams);
-    // const applicant = createAskResult.result;
-    // //console.log("applicant:", applicant)
-    // await askForSeat(rideId, applicant);  
-    // //const endTime = new Date ();
-    // //console.log("result_time:", endTime - startTime);
-     
-  }
-
   const subscribeHandler = async (e) => {
     e.stopPropagation();
     setLoading(true);

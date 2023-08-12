@@ -7,9 +7,6 @@ export default async function askClickHandler(
   searchRidesParams
 ) {
   e.stopPropagation();
-  //   console.log("rideItemId in helper:", rideItemId);
-  //   console.log("askItem in helper:", askItem);
-  //   console.log("searchRidesParams in helper:", searchRidesParams);
 
   if (askItem) {
     const applicant = askItem;

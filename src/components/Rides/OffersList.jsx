@@ -13,26 +13,12 @@ const OffersList = (props) => {
 
   const [loading, setLoading] = useState(false);
   const [buttonDisable, setButtonDisable] = useState(false);
-  const {state} = useLocation();
-  
+  const {state} = useLocation();  
   
   const offers = useSelector((state) => state.ride.rideOffers);
   const { askItem } = state;
   
   
-  //const {user} = searchRidesParams;
-
-  // async function askOnClickHandler(e, rideId) {
-  //   e.stopPropagation();
-  //   alert("inside offer")
-  //   //console.log("itemfromrouter:", askItem)    
-  //   await askForSeat(rideId, askItem);           
-  // }
-  
-
-  useEffect(()=>{
-
-  })
 
   return (
     <div className={s.list}>
