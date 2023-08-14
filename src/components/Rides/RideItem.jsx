@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './Rides.module.scss';
+import { Link } from 'react-router-dom';
 //import avaPhoto from './../../assets/images/ava-rez.jpg';
 const moment = require('moment');
 
@@ -10,34 +11,38 @@ const RideItem = (props) => {
   //     setSelectedId (onItem);
   // }
   //debugger;
-  const { itemId, pointA, pointB, seats, date, rideItemId, askItem, askClickHandler, searchRidesParams } = props;
+  // const { pointA, pointB, seats, date, rideItemId, askItem, askClickHandler, searchRidesParams } = props;
+  const { rideItem, askItem, askClickHandler, searchRidesParams } = props;
+ 
   return (
-    <div className={s} onClick={() => {}}>
-      <div className={s.avatar}>hv</div>
+    <div className={s} onClick={() => {}}>      
 
       <div className={s.content}>
         <div>
           <b>itemId: </b>
-          {rideItemId}{' '}
+          {rideItem._id}{' '}
         </div>
         <div>
           <b>from: </b>
-          {pointA}{' '}
+          {rideItem.localityFrom.localityName}{' '}
         </div>
         <div>
           <b>to: </b>
-          {pointB}{' '}
+          {rideItem.destination.localityName}{' '}
         </div>
         <div>
           <b>seats: </b>
-          {seats}{' '}
+          {rideItem.seats_available}{' '}
         </div>
         <div>
           <b>date:</b>
-          {moment(date).format('DD-MMM-YYYY')}{' '}
+          {moment(rideItem.date).format('DD-MMM-YYYY')}{' '}
         </div>
+        {/* <div>
+          <button onClick={(e) => askClickHandler(e, rideItem._id, askItem, searchRidesParams)}>ask</button>
+        </div> */}
         <div>
-          <button onClick={(e) => askClickHandler(e, rideItemId, askItem, searchRidesParams)}>ask</button>
+          <Link to="/ride-details" state={{rideItem, askItem, searchRidesParams}}>ride details</Link>
         </div>
       </div>
       

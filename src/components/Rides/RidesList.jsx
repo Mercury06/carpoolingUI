@@ -36,14 +36,10 @@ const RidesList = () => {
       <div>
         {rides.length > 0 ? (
           <div className={s.itemsBlock}>
-            {rides.map((item) => (
+            {rides.map((item) => (             
               <RideItem
                 key={item._id}
-                rideItemId={item._id}
-                pointA={item.localityFrom.localityName}
-                pointB={item.destination.localityName}
-                seats={item.seats_available}
-                date={item.date}
+                rideItem={item}
                 searchRidesParams={searchRidesParams}
                 askItem={null}
                 askClickHandler={askClickHandler}

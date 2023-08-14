@@ -28,11 +28,7 @@ const OffersList = (props) => {
             {offers.map((item) => (
               <RideItem
                 key={item._id}
-                rideItemId={item._id}
-                pointA={item.localityFrom.localityName}
-                pointB={item.destination.localityName}
-                seats={item.seats_available}
-                date={item.date}
+                rideItem={item}
                 searchRidesParams={null}
                 askItem={askItem}
                 askClickHandler={askClickHandler}

@@ -43,9 +43,9 @@ const UserAsksContainer = () => {
       {asks && <h5>Found {asks.length} asks</h5>}
       {/* {id && <h5>user id: {id}</h5>} */}
       {asks && asks.length > 0 ? (
-        asks.map((item) => {
+        asks.map((item, i) => {
           return (
-            <UserAsks item={item} onOffersClickHandler={onOffersClickHandler} />
+            <UserAsks item={item} index={i} onOffersClickHandler={onOffersClickHandler} />
           );
         })
       ) : (

@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 const moment = require('moment');
 
 const UserAsks = (props) => {
-  const {item, onOffersClickHandler} = props;
+  const {item, index, onOffersClickHandler} = props;
 
   return ( 
-            <div className={s.content} key={item._id}>
+            <div className={s.content} key={index}>
                <p>
                 <strong>itemId:</strong> {item._id}
               </p>

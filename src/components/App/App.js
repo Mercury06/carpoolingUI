@@ -17,6 +17,7 @@ import RegistrationForm from "./Forms/Autorization/RegistrationForm";
 import Dialogs from "../../modules/Messages/Dialogs";
 import UserAsksContainer from "../UserPage/UserAsksContainer";
 import OffersList from "../Rides/OffersList";
+import RideDetails from "../Rides/RideDetails";
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -55,6 +56,7 @@ function App() {
         {isAuth && <Route path="ask-ride" element={<AskForm />} />}
         {isAuth && <Route path="rides-list" element={<RidesList />} />}
         {isAuth && <Route path="offers-list" element={<OffersList />} />}
+        {isAuth && <Route path="ride-details" element={<RideDetails />} />}
         {/* {isAuth && <Route path="subscribe" element={<SubscribePage />} />} */}
       </Routes>
     </Layout>
