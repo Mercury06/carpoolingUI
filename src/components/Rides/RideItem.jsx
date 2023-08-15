@@ -1,17 +1,12 @@
 import React from 'react';
 import s from './Rides.module.scss';
 import { Link } from 'react-router-dom';
-//import avaPhoto from './../../assets/images/ava-rez.jpg';
 const moment = require('moment');
 
 const RideItem = (props) => {
-  // const onClickItem = () => {
-  //     onItem ({id, name, status, species, type, gender, originName, locationName, image, created})
-  //     setModal (true);
-  //     setSelectedId (onItem);
-  // }
+    
   //debugger;
-  const { rideItem, askItem, askClickHandler, searchRidesParams } = props;
+  const { rideItem, askItem, searchRidesParams } = props;
  
   return (
     <div className={s} onClick={() => {}}>      
@@ -38,8 +33,9 @@ const RideItem = (props) => {
           {moment(rideItem.date).format('DD-MMM-YYYY')}{' '}
         </div>        
         <div>
-          <Link to="/ride-details" state={{rideItem, askItem, searchRidesParams: searchRidesParams || null, pathFrom: "/offers-list"}}>ride details</Link>
+          <Link to="/ride-details" state={{rideItem, askItem, searchRidesParams: searchRidesParams || null }}>ride details</Link>
         </div>
+        
       </div>
       
     </div>
