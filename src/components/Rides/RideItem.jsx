@@ -11,7 +11,6 @@ const RideItem = (props) => {
   //     setSelectedId (onItem);
   // }
   //debugger;
-  // const { pointA, pointB, seats, date, rideItemId, askItem, askClickHandler, searchRidesParams } = props;
   const { rideItem, askItem, askClickHandler, searchRidesParams } = props;
  
   return (
@@ -37,12 +36,9 @@ const RideItem = (props) => {
         <div>
           <b>date:</b>
           {moment(rideItem.date).format('DD-MMM-YYYY')}{' '}
-        </div>
-        {/* <div>
-          <button onClick={(e) => askClickHandler(e, rideItem._id, askItem, searchRidesParams)}>ask</button>
-        </div> */}
+        </div>        
         <div>
-          <Link to="/ride-details" state={{rideItem, askItem, searchRidesParams}}>ride details</Link>
+          <Link to="/ride-details" state={{rideItem, askItem, searchRidesParams: searchRidesParams || null, pathFrom: "/offers-list"}}>ride details</Link>
         </div>
       </div>
       

@@ -2,49 +2,53 @@ import React, { useEffect, useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import RideItem from './RideItem';
 import s from './Rides.module.scss';
+import askClickHandler from './Helpers/askClickHandler';
 import { useLocation } from 'react-router-dom';
+const moment = require('moment');
 // import { askForSeat } from './apiActions';
 
-// import askClickHandler from './Helpers/askClickHandler';
 
 
 
-const RideDetails = (props) => {  
-  
-    const { rideItem, askItem, askClickHandler, searchRidesParams } = props;
-    //const {state} = useLocation(); 
-    // const data = location.state;
-    const location = useLocation();
-    console.log("state as props:", location)
+
+const RideDetails = () => {    
+   
+    const {state} = useLocation();
+    console.log("state:", state)
+    console.log("pathFrom:", state.pathFrom)
+    
+    console.log("rideItem:", state.rideItem)
+    console.log("askItem:", state.askItem)
+    console.log("searchRidesParams:", state.searchRidesParams)
   return (
    <div className={s.ride_container}>
     <h1>details</h1>
-        {/* <div >
+        <div >
         <div>
           <b>itemId: </b>
-          {rideItem._id}{' '}
+          {state.rideItem._id}{' '}
         </div>
         <div>
           <b>from: </b>
-          {rideItem.localityFrom.localityName}{' '}
+          {state.rideItem.localityFrom.localityName}{' '}
         </div>
         <div>
           <b>to: </b>
-          {rideItem.destination.localityName}{' '}
+          {state.rideItem.destination.localityName}{' '}
         </div>
         <div>
           <b>seats: </b>
-          {rideItem.seats_available}{' '}
+          {state.rideItem.seats_available}{' '}
         </div>
         <div>
           <b>date:</b>
-          {moment(rideItem.date).format('DD-MMM-YYYY')}{' '}
+          {moment(state.rideItem.date).format('DD-MMM-YYYY')}{' '}
         </div>
         <div>
-          <button onClick={(e) => askClickHandler(e, rideItem._id, askItem, searchRidesParams)}>ask</button>
+          <button onClick={(e) => askClickHandler(e, state.rideItem._id, state.askItem, state.searchRidesParams)}>ask</button>
         </div>
         
-      </div> */}
+      </div>
 
    </div>
   );
