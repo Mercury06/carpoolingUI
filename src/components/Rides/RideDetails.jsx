@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import s from './Rides.module.scss';
-import askClickHandler from './Helpers/askClickHandler';
+import askFetch from './Helpers/askFetch';
 import { useLocation, useNavigate } from 'react-router-dom';
 const moment = require('moment');
 
@@ -9,11 +9,22 @@ const moment = require('moment');
 
 const RideDetails = () => {    
     
+    const [fetched, setFetched] = useState(false);
     const {state} = useLocation();   
     const navigate = useNavigate();    
 
     const onBackClickHandler = () => {
-        navigate(-1)    
+        navigate(-1)  
+    }
+
+    const onAskClick = async (e, id, askItem, searchRidesParams) => {
+        //debugger
+        setFetched(true);
+        const result = await askFetch(e, id, askItem, searchRidesParams);
+        //console.log("result from click:", result.status)
+        if (result.status === "OK") {
+            setFetched(false)
+        }
     }
 
   return (
@@ -44,7 +55,8 @@ const RideDetails = () => {
             <p>you have already sent request</p>
         </div>
         <div>
-          <button disabled={true} onClick={(e) => askClickHandler(e, state.rideItem._id, state.askItem, state.searchRidesParams)}>ask</button>
+          {/* <button disabled={true} onClick={(e) => askClickHandler(e, state.rideItem._id, state.askItem, state.searchRidesParams)}>ask</button> */}
+          <button disabled={fetched} onClick={(e) => onAskClick(e, state.rideItem._id, state.askItem, state.searchRidesParams)}>ask</button>
         </div>
         <div>
           <button onClick={onBackClickHandler}>Back</button>

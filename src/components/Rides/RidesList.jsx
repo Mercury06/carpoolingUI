@@ -6,7 +6,7 @@ import { Button } from 'antd';
 import { createAsk } from './apiActions';
 import cn from 'classnames';
 import { CheckIcon } from '../assets/svg/BoxIcons';
-import askClickHandler from './Helpers/askClickHandler';
+import askClickHandler from './Helpers/askFetch';
 
 const RidesList = () => {
 

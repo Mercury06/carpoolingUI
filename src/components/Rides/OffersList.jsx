@@ -5,7 +5,7 @@ import s from './Rides.module.scss';
 import { useLocation } from 'react-router-dom';
 import { askForSeat } from './apiActions';
 
-import askClickHandler from './Helpers/askClickHandler';
+import askClickHandler from './Helpers/askFetch';
 
 
 

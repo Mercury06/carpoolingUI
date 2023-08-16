@@ -25,7 +25,7 @@ export const askForSeat = async (rideItemId, applicant) => {
         applicant,
       }
     );
-    return response.data.result;
+    return response.data;
   } catch (e) {
     alert(e.response.data.message);
   }
