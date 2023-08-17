@@ -57,8 +57,7 @@ const RidesList = () => {
                 ) : (
                   <Button
                     type="primary"
-                    onClick={subscribeHandler}
-                    //style={{ backgroundColor: 'gray', borderRadius: '1px' }}
+                    onClick={subscribeHandler}                    
                     className={cn(s.button, {
                       [s.button__loading]: loading === true,
                     })}

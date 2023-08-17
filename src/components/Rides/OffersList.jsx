@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import RideItem from './RideItem';
 import s from './Rides.module.scss';
 import { useLocation } from 'react-router-dom';
-import { askForSeat } from './apiActions';
-
-import askClickHandler from './Helpers/askFetch';
+import askFetch from './Helpers/askFetch';
 
 
 
@@ -31,7 +29,6 @@ const OffersList = (props) => {
                 rideItem={item}
                 searchRidesParams={null}
                 askItem={askItem}
-                askClickHandler={askClickHandler}
               />
             ))}
           </div> ) : (<div>empty list</div>)};

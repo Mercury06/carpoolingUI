@@ -2,16 +2,20 @@ import { askForSeat, createAsk } from "../apiActions";
 
 export default async function askFetch(
   e,
-  rideItemId,
-  askItem,
-  searchRidesParams
+  state
+  // rideItemId,
+  // askItem,
+  // searchRidesParams
 ) {
   //debugger;
   e.stopPropagation();
-  console.log(rideItemId);
-  console.log(askItem);
-  console.log(searchRidesParams);
 
+  const rideItemId = state.rideItem._id;
+  const askItem = state.askItem;
+  const searchRidesParams = state.searchRidesParams;
+  console.log("rideItemId:", rideItemId);
+  console.log("askItem:", askItem);
+  console.log("searchRidesParams:", searchRidesParams);
   if (askItem) {
     const applicant = askItem;
     const result = await askForSeat(rideItemId, applicant);

@@ -9,21 +9,26 @@ const moment = require('moment');
 
 const RideDetails = () => {    
     
+    const [loading, setLoading] = useState(false);
     const [fetched, setFetched] = useState(false);
     const {state} = useLocation();   
-    const navigate = useNavigate();    
-
+    const navigate = useNavigate();
+    
     const onBackClickHandler = () => {
         navigate(-1)  
     }
-
-    const onAskClick = async (e, id, askItem, searchRidesParams) => {
+    //console.log("state in details:", state);
+    const onAskClick = async (e, state) => {
         //debugger
+        e.stopPropagation();
         setFetched(true);
-        const result = await askFetch(e, id, askItem, searchRidesParams);
+        const result = await askFetch(e, state);
         //console.log("result from click:", result.status)
         if (result.status === "OK") {
-            setFetched(false)
+            
+            setTimeout(() => {  
+                setFetched(false)
+            }, 1000)
         }
     }
 
@@ -56,7 +61,8 @@ const RideDetails = () => {
         </div>
         <div>
           {/* <button disabled={true} onClick={(e) => askClickHandler(e, state.rideItem._id, state.askItem, state.searchRidesParams)}>ask</button> */}
-          <button disabled={fetched} onClick={(e) => onAskClick(e, state.rideItem._id, state.askItem, state.searchRidesParams)}>ask</button>
+          {/* <button disabled={fetched} onClick={(e) => onAskClick(e, state.rideItem._id, state.askItem, state.searchRidesParams)}>ask</button> */}
+          <button disabled={fetched} onClick={(e) => onAskClick(e, state)}>ask</button>
         </div>
         <div>
           <button onClick={onBackClickHandler}>Back</button>
