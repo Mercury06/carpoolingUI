@@ -1,21 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import RideItem from './RideItem';
 import s from './Rides.module.scss';
 import { useLocation } from 'react-router-dom';
-import askFetch from './Helpers/askFetch';
 
 
 
 const OffersList = (props) => {
 
-  const [loading, setLoading] = useState(false);
-  const [buttonDisable, setButtonDisable] = useState(false);
-  const {state} = useLocation();  
   
-  const offers = useSelector((state) => state.ride.rideOffers);
+  const {state} = useLocation();    
   const { askItem } = state;
-  
+  const offers = useSelector((state) => state.ride.rideOffers);  
+  console.log("state:", state)
   
 
   return (

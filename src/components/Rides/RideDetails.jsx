@@ -11,24 +11,43 @@ const RideDetails = () => {
     
     const [loading, setLoading] = useState(false);
     const [fetched, setFetched] = useState(false);
+    const [rejected, setRejected] = useState(false);
     const {state} = useLocation();   
     const navigate = useNavigate();
+    console.log("state inside details:", state)
+
+    // useEffect(()=>{
+    //     console.log("state in useEffect:", state.rideItem.asks)
+    //     let asksIdArray = state.rideItem.asks.map((el) => el._id);
+    //     console.log("asksIdArray:", asksIdArray)
+    //     asksIdArray.includes(state.askItem?._id) ? console.log("INCLUDES") : console.log("NOT INCLUDES")
+
+    // }, [])
+
+    // useEffect(()=>{
+        
+    //     let asksIdArray = state.rideItem.asks.map((el) => el._id);
+    //     console.log("asksIdArray:", asksIdArray)
+    //     console.log(asksIdArray.includes(state.askItem?._id))
+    // }, [])
     
     const onBackClickHandler = () => {
         navigate(-1)  
     }
-    //console.log("state in details:", state);
+    
     const onAskClick = async (e, state) => {
         //debugger
         e.stopPropagation();
-        setFetched(true);
-        const result = await askFetch(e, state);
+        setLoading(true);
+        const result = await askFetch(state);
         //console.log("result from click:", result.status)
-        if (result.status === "OK") {
-            
+        if (result.status === "OK") {            
             setTimeout(() => {  
-                setFetched(false)
+                setLoading(false);
+                setFetched(true);
             }, 1000)
+        } else {
+            setRejected(true);
         }
     }
 
@@ -56,14 +75,16 @@ const RideDetails = () => {
           <b>date:</b>
           {moment(state.rideItem.date).format('DD-MMM-YYYY')}{' '}
         </div>
-        <div>
-            <p>you have already sent request</p>
-        </div>
-        <div>
-          {/* <button disabled={true} onClick={(e) => askClickHandler(e, state.rideItem._id, state.askItem, state.searchRidesParams)}>ask</button> */}
-          {/* <button disabled={fetched} onClick={(e) => onAskClick(e, state.rideItem._id, state.askItem, state.searchRidesParams)}>ask</button> */}
-          <button disabled={fetched} onClick={(e) => onAskClick(e, state)}>ask</button>
-        </div>
+        { fetched ?
+            (<div>
+                <p>you have already sent request</p>
+            </div>) :
+            (<div>      
+                <button disabled={loading} onClick={(e) => onAskClick(e, state)}>ask</button>
+            </div>)
+        }
+        
+        
         <div>
           <button onClick={onBackClickHandler}>Back</button>
         </div>

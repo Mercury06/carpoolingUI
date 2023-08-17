@@ -7,7 +7,7 @@ const RideItem = (props) => {
     
   //debugger;
   const { rideItem, askItem, searchRidesParams } = props;
-  //console.log("rideItem:", rideItem);
+  console.log("rideItem:", rideItem);
  
   return (
     <div className={s} onClick={() => {}}>      

@@ -30,12 +30,12 @@ const UserAsksContainer = () => {
     //console.log("onOffersClickHandler:", item)
     const id = item._id;
     const result = asks.find ( i => i._id === id)
+    //console.log("offers in find:", result)
     const offers = result.offers;
     
     //console.log("offers in find:", offers)
     dispatch(setRideOffersActionCreator(offers));
-    navigate("/offers-list", {state: { askItem: item }});
-    
+    navigate("/offers-list", {state: { askItem: item }});    
   }
 
   return (
