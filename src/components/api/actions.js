@@ -50,7 +50,7 @@ export const auth = () => {
   };
 };
 
-export const findMyRidesApiAction = (id) => {
+export const findMyRidesApiAction = async (id) => {
   return axios
     .get(`http://localhost:9000/api/settings/findmyrides/${id}`)
     .then((response) => {
@@ -58,7 +58,16 @@ export const findMyRidesApiAction = (id) => {
     });
 };
 
-export const findMyAsksApiAction = (id) => {
+export const findOffers = async (offersIdArray) => {
+  //debugger;
+  return axios
+    .post("http://localhost:9000/api/settings/findoffers", offersIdArray)
+    .then((response) => {
+      return response.data;
+    });
+};
+
+export const findMyAsksApiAction = async (id) => {
   return axios
     .get(`http://localhost:9000/api/settings/findmyask/${id}`)
     .then((response) => {

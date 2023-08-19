@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import s from './Rides.module.scss';
 import askFetch from './Helpers/askFetch';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { findOffers } from '../api/actions';
 const moment = require('moment');
 
 
@@ -14,24 +15,20 @@ const RideDetails = () => {
     const [rejected, setRejected] = useState(false);
     const {state} = useLocation();   
     const navigate = useNavigate();
-    console.log("state inside details:", state)
+    // console.log("state inside details:", state)
 
-    // useEffect(()=>{
-    //     console.log("state in useEffect:", state.rideItem.asks)
-    //     let asksIdArray = state.rideItem.asks.map((el) => el._id);
-    //     console.log("asksIdArray:", asksIdArray)
-    //     asksIdArray.includes(state.askItem?._id) ? console.log("INCLUDES") : console.log("NOT INCLUDES")
+    useEffect(()=>{
+        // console.log("state in useEffect:", state.rideItem.asks)
+        let asksIdArray = state.rideItem.asks.map((el) => el._id);
+        console.log("asksIdArray:", asksIdArray)
+        // asksIdArray.includes(state.askItem?._id) ? console.log("INCLUDES") && setFetched(true) : console.log("NOT INCLUDES")
+        asksIdArray.includes(state.askItem?._id) ? setFetched(true) : console.log("NOT INCLUDES")
 
-    // }, [])
+    }, [])
 
-    // useEffect(()=>{
         
-    //     let asksIdArray = state.rideItem.asks.map((el) => el._id);
-    //     console.log("asksIdArray:", asksIdArray)
-    //     console.log(asksIdArray.includes(state.askItem?._id))
-    // }, [])
-    
-    const onBackClickHandler = () => {
+    const onBackClickHandler = async () => {
+      const fetchedOffers = await findOffers(offerId);
         navigate(-1)  
     }
     
@@ -40,7 +37,7 @@ const RideDetails = () => {
         e.stopPropagation();
         setLoading(true);
         const result = await askFetch(state);
-        //console.log("result from click:", result.status)
+        console.log("result from click:", result.status)
         if (result.status === "OK") {            
             setTimeout(() => {  
                 setLoading(false);
@@ -86,7 +83,7 @@ const RideDetails = () => {
         
         
         <div>
-          <button onClick={onBackClickHandler}>Back</button>
+          <button onClick={() => onBackClickHandler()}>Back</button>
         </div>
         
       </div>

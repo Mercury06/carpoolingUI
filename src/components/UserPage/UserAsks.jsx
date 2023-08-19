@@ -1,13 +1,12 @@
 import React  from 'react';
 import s from './UserPage.module.scss';
-import { Link } from 'react-router-dom';
 const moment = require('moment');
 
 const UserAsks = (props) => {
-  const {item, index, onOffersClickHandler} = props;
+  const {item, onOffersClickHandler} = props;
 
   return ( 
-            <div className={s.content} key={index}>
+            <div className={s.content}>
                <p>
                 <strong>itemId:</strong> {item._id}
               </p>

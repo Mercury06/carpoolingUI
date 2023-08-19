@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { findMyAsksApiAction } from '../api/actions';
+import { findMyAsksApiAction, findOffers } from '../api/actions';
 import s from './UserPage.module.scss';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
@@ -31,10 +31,10 @@ const UserAsksContainer = () => {
     const id = item._id;
     const result = asks.find ( i => i._id === id)
     //console.log("offers in find:", result)
-    const offers = result.offers;
-    
-    //console.log("offers in find:", offers)
-    dispatch(setRideOffersActionCreator(offers));
+    const offerId = result.offers.map( el => el._id);
+    const fetchedOffers = await findOffers(offerId);    
+    console.log("fetchedOffers:", fetchedOffers)
+    dispatch(setRideOffersActionCreator(fetchedOffers));
     navigate("/offers-list", {state: { askItem: item }});    
   }
 
@@ -45,7 +45,7 @@ const UserAsksContainer = () => {
       {asks && asks.length > 0 ? (
         asks.map((item, i) => {
           return (
-            <UserAsks item={item} index={i} onOffersClickHandler={onOffersClickHandler} />
+            <UserAsks item={item} key={i} onOffersClickHandler={onOffersClickHandler} />
           );
         })
       ) : (

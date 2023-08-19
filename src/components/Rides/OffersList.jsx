@@ -8,11 +8,12 @@ import { useLocation } from 'react-router-dom';
 
 const OffersList = (props) => {
 
-  
+
   const {state} = useLocation();    
   const { askItem } = state;
   const offers = useSelector((state) => state.ride.rideOffers);  
   console.log("state:", state)
+  console.log("offers from state:", offers)
   
 
   return (
@@ -28,7 +29,7 @@ const OffersList = (props) => {
                 askItem={askItem}
               />
             ))}
-          </div> ) : (<div>empty list</div>)};
+          </div> ) : (<div>empty list</div>)}
       </div>
        
     </div>
