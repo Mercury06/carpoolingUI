@@ -27,12 +27,14 @@ const UserAsksContainer = () => {
 
   const onOffersClickHandler = async (e, item) => {
     e.stopPropagation();
-    //console.log("onOffersClickHandler:", item)
+    //console.log("onOffersClickHandler:", item.offers)
     const id = item._id;
-    const result = asks.find ( i => i._id === id)
+    //const result = asks.find ( i => i._id === id)
     //console.log("offers in find:", result)
-    const offerId = result.offers.map( el => el._id);
-    const fetchedOffers = await findOffers(offerId);    
+    //const offersId = result.offers.map( el => el._id);
+    const offersId = item.offers.map( el => el._id);
+    console.log("offersId:", offersId)
+    const fetchedOffers = await findOffers(offersId);    
     console.log("fetchedOffers:", fetchedOffers)
     dispatch(setRideOffersActionCreator(fetchedOffers));
     navigate("/offers-list", {state: { askItem: item }});    

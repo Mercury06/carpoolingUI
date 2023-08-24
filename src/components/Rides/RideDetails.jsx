@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import s from './Rides.module.scss';
 import askFetch from './Helpers/askFetch';
-import { useLocation, useNavigate } from 'react-router-dom';
+
 import { findOffers } from '../api/actions';
+import { setRideOffersActionCreator } from '../../reducers/rideReducer';
 const moment = require('moment');
 
 
@@ -13,23 +16,53 @@ const RideDetails = () => {
     const [loading, setLoading] = useState(false);
     const [fetched, setFetched] = useState(false);
     const [rejected, setRejected] = useState(false);
-    const {state} = useLocation();   
+    //const dispatch = useDispatch();
+    const {state} = useLocation();
+    const askItem = state.askItem;
+    const offerId = state.rideItem._id;   
     const navigate = useNavigate();
     // console.log("state inside details:", state)
+    // console.log("window:", window.navigator);
+    
 
     useEffect(()=>{
         // console.log("state in useEffect:", state.rideItem.asks)
         let asksIdArray = state.rideItem.asks.map((el) => el._id);
         console.log("asksIdArray:", asksIdArray)
-        // asksIdArray.includes(state.askItem?._id) ? console.log("INCLUDES") && setFetched(true) : console.log("NOT INCLUDES")
         asksIdArray.includes(state.askItem?._id) ? setFetched(true) : console.log("NOT INCLUDES")
 
     }, [])
 
+    // useEffect(()=>{
+    //  if (window.Worker) {
+    //   console.log("Worker ok")
+    //   const worker = new Worker(new URL("./Helpers/worker.js", import.meta.url))
+    //   //console.log("created worker:", worker)
+    //   worker.postMessage(state.rideItem)
+    //  }
+    // }, [])
+    
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        console.log("setInterval")
+      }, 1000);
+       
+      return () => {
+        console.log("return useEffect")
+        clearInterval(interval)
+      }
         
-    const onBackClickHandler = async () => {
-      const fetchedOffers = await findOffers(offerId);
-        navigate(-1)  
+      }, []);
+
+    
+        
+    const onBackClickHandler = async (askItem) => {
+        //const fetchedOffers = await findOffers(offerId); //ridesID array  should be
+        // console.log("fetchedOffers:", fetchedOffers)
+        // dispatch(setRideOffersActionCreator(fetchedOffers));
+        // navigate("/offers-list", {state: { askItem, message: "updated offers" }})
+        navigate(-1);  
     }
     
     const onAskClick = async (e, state) => {
@@ -54,7 +87,7 @@ const RideDetails = () => {
         <div >
         <div>
           <b>itemId: </b>
-          {state.rideItem._id}{' '}
+          {offerId}{' '}
         </div>
         <div>
           <b>from: </b>
@@ -83,7 +116,7 @@ const RideDetails = () => {
         
         
         <div>
-          <button onClick={() => onBackClickHandler()}>Back</button>
+          <button onClick={onBackClickHandler}>Back</button>
         </div>
         
       </div>

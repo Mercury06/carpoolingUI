@@ -59,7 +59,7 @@ export const findMyRidesApiAction = async (id) => {
 };
 
 export const findOffers = async (offersIdArray) => {
-  //debugger;
+  // debugger;
   return axios
     .post("http://localhost:9000/api/settings/findoffers", offersIdArray)
     .then((response) => {

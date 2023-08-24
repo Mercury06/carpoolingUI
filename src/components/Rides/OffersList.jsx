@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import RideItem from './RideItem';
 import s from './Rides.module.scss';
-import { useLocation } from 'react-router-dom';
+
 
 
 
@@ -13,7 +14,7 @@ const OffersList = (props) => {
   const { askItem } = state;
   const offers = useSelector((state) => state.ride.rideOffers);  
   console.log("state:", state)
-  console.log("offers from state:", offers)
+  console.log("offers from store:", offers)
   
 
   return (
