@@ -75,6 +75,14 @@ export const findMyAsksApiAction = async (id) => {
     });
 };
 
+export const findAskItemApiAction = async (id) => {
+  return axios
+    .get(`http://localhost:9000/api/settings/findasks/${id}`)
+    .then((response) => {
+      return response.data;
+    });
+};
+
 export const findLocs = async () => {
   //debugger
   try {

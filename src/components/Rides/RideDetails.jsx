@@ -6,6 +6,7 @@ import askFetch from './Helpers/askFetch';
 
 import { findOffers } from '../api/actions';
 import { setRideOffersActionCreator } from '../../reducers/rideReducer';
+import useWorker from './hooks/useWorker';
 const moment = require('moment');
 
 
@@ -21,8 +22,10 @@ const RideDetails = () => {
     const askItem = state.askItem;
     const offerId = state.rideItem._id;   
     const navigate = useNavigate();
-    // console.log("state inside details:", state)
+    console.log("state inside details:", state)
     // console.log("window:", window.navigator);
+    const {askItemRefresh} = useWorker()
+    
     
 
     useEffect(()=>{
@@ -44,16 +47,17 @@ const RideDetails = () => {
     
 
     useEffect(() => {
+      
       const interval = setInterval(() => {
-        console.log("setInterval")
-      }, 1000);
-       
+        askItemRefresh(askItem._id)
+      }, 5000);
+
       return () => {
         console.log("return useEffect")
         clearInterval(interval)
-      }
-        
-      }, []);
+      }        
+    }, []);
+   
 
     
         
@@ -63,6 +67,22 @@ const RideDetails = () => {
         // dispatch(setRideOffersActionCreator(fetchedOffers));
         // navigate("/offers-list", {state: { askItem, message: "updated offers" }})
         navigate(-1);  
+        // const result = await fetch("https://jsonplaceholder.typicode.com/todos/1")
+        // console.log("resultFetch:", result)
+        // const blob = await result.blob()
+        // console.log("resultBlob:", blob)
+        // const objUrl = URL.createObjectURL(blob)
+        // console.log("objUrl:", objUrl)
+        // try {
+        //   console.log("clicked back")
+        //   const result = fetch("http://localhost:9000/api/settings/timer")
+        //   console.log("resulty:", result)
+        //   console.log("without waiting")
+
+        // } catch (e) {
+        //   console.log("e:", e)
+        // }
+
     }
     
     const onAskClick = async (e, state) => {
