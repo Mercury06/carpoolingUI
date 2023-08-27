@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { findMyAsksApiAction, findOffers } from '../api/actions';
 import s from './UserPage.module.scss';
-import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import UserAsks from './UserAsks';
 import { setRideOffersActionCreator } from '../../reducers/rideReducer';
+import UserAsk from './UserAsks';
 const moment = require('moment');
 
 const UserAsksContainer = () => {
@@ -47,7 +46,7 @@ const UserAsksContainer = () => {
       {asks && asks.length > 0 ? (
         asks.map((item, i) => {
           return (
-            <UserAsks item={item} key={i} onOffersClickHandler={onOffersClickHandler} />
+            <UserAsk item={item} key={i} onOffersClickHandler={onOffersClickHandler} />
           );
         })
       ) : (

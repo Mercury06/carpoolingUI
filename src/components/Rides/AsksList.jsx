@@ -5,7 +5,7 @@ import RideItem from './RideItem';
 import s from './Rides.module.scss';
 
 
-const OffersList = (props) => {
+const AsksList = (props) => {
 
   const {state} = useLocation();    
   const { askItem } = state;
@@ -34,4 +34,4 @@ const OffersList = (props) => {
   );
 };
 
-export default OffersList;
+export default AsksList;

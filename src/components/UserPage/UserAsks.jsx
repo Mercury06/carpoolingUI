@@ -2,7 +2,7 @@ import React  from 'react';
 import s from './UserPage.module.scss';
 const moment = require('moment');
 
-const UserAsks = (props) => {
+const UserAsk = (props) => {
   const {item, onOffersClickHandler} = props;
 
   return ( 
@@ -30,4 +30,4 @@ const UserAsks = (props) => {
   );
 }
 
-export default UserAsks;
+export default UserAsk;

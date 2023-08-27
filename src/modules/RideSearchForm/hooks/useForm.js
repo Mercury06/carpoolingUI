@@ -137,7 +137,7 @@ function useFormValidation(initialState, validate) {
     event.preventDefault();
     dispatch(setSearchRidesParamsActionCreator(inputValues));
     dispatch(findRidesByParamsThunkCreator(inputValues));
-    navigate("/rides-list");
+    navigate("/rides-search");
 
     //findRidesByParamsApiAction(inputValues);
     //console.log('submit');

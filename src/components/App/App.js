@@ -6,7 +6,6 @@ import Layout from "../Layout/Layout.jsx";
 import UserRides from "../UserPage/UserRides.jsx";
 // import Login from "./Forms/Autorization/Login.jsx";
 // import Registration from "./Forms/Autorization/Registration.jsx";
-import RidesList from "../Rides/RidesList";
 //import SubscribePage from '../UserPage/subcribePage';
 import AskForm from "./../../modules/RideSearchForm/index";
 import RideCreateForm from "./../../modules/RideCreateForm/index";
@@ -18,6 +17,7 @@ import Dialogs from "../../modules/Messages/Dialogs";
 import UserAsksContainer from "../UserPage/UserAsksContainer";
 import OffersList from "../Rides/OffersList";
 import RideDetails from "../Rides/RideDetails";
+import RidesSearchList from "../Rides/RidesSearchList";
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -54,7 +54,7 @@ function App() {
         )}
         {isAuth && <Route path="create-ride" element={<RideCreateForm />} />}
         {isAuth && <Route path="ask-ride" element={<AskForm />} />}
-        {isAuth && <Route path="rides-list" element={<RidesList />} />}
+        {isAuth && <Route path="rides-search" element={<RidesSearchList />} />}
         {isAuth && <Route path="offers-list" element={<OffersList />} />}
         {isAuth && <Route path="ride-details" element={<RideDetails />} />}
         {/* {isAuth && <Route path="subscribe" element={<SubscribePage />} />} */}

@@ -8,7 +8,7 @@ import cn from 'classnames';
 import { CheckIcon } from '../assets/svg/BoxIcons';
 import askClickHandler from './Helpers/askFetch';
 
-const RidesList = () => {
+const RidesSearchList = () => {
 
   const [loading, setLoading] = useState(false);
   const [fetched, setFetched] = useState(false);
@@ -74,4 +74,4 @@ const RidesList = () => {
   );
 };
 
-export default RidesList;
+export default RidesSearchList;
