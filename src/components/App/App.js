@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { auth } from "./../api/actions";
 import Layout from "../Layout/Layout.jsx";
-import UserRides from "../UserPage/UserRides.jsx";
 // import Login from "./Forms/Autorization/Login.jsx";
 // import Registration from "./Forms/Autorization/Registration.jsx";
 //import SubscribePage from '../UserPage/subcribePage';
@@ -18,6 +17,7 @@ import UserAsksContainer from "../UserPage/UserAsksContainer";
 import OffersList from "../Rides/OffersList";
 import RideDetails from "../Rides/RideDetails";
 import RidesSearchList from "../Rides/RidesSearchList";
+import UserRidesContainer from "../UserPage/UserRidesContainer";
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -36,7 +36,7 @@ function App() {
           <Route path="registration" element={<RegistrationForm />} />
         )}
         {/* <Route path="search" element={<Registration />} /> */}
-        {isAuth && <Route path="myrides" element={<UserRides />} />}
+        {isAuth && <Route path="myrides" element={<UserRidesContainer />} />}
         {isAuth && <Route path="myasks" element={<UserAsksContainer />} />}
         {isAuth && <Route path="messages" element={<MessageBox />} />}
         {isAuth && <Route path="dialogs" element={<Dialogs />} />}
