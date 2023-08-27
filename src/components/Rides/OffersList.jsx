@@ -13,8 +13,8 @@ const OffersList = (props) => {
   const {state} = useLocation();    
   const { askItem } = state;
   const offers = useSelector((state) => state.ride.rideOffers);  
-  console.log("state:", state)
-  console.log("offers from store:", offers)
+  // console.log("state:", state)
+  // console.log("offers from store:", offers)
   
 
   return (
