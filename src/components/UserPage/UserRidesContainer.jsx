@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { findMyRidesApiAction, findOffers } from '../api/actions';
+import { findAsksByIdArray, findMyRidesApiAction } from '../api/actions';
 import s from './UserPage.module.scss';
 import { useNavigate } from "react-router-dom";
 import { setRideOffersActionCreator } from '../../reducers/rideReducer';
@@ -23,20 +23,17 @@ const UserRidesContainer = () => {
     fetchData().catch(console.error);
   }, [id]);
 
-//   const onAsksClickHandler = async (e, item) => {
-//     e.stopPropagation();
-//     //console.log("onOffersClickHandler:", item.offers)
-//     const id = item._id;
-//     //const result = asks.find ( i => i._id === id)
-//     //console.log("offers in find:", result)
-//     //const offersId = result.offers.map( el => el._id);
-//     const offersId = item.offers.map( el => el._id);
-//     console.log("offersId:", offersId)
-//     const fetchedOffers = await findOffers(offersId);    
-//     console.log("fetchedOffers:", fetchedOffers)
-//     dispatch(setRideOffersActionCreator(fetchedOffers));
-//     navigate("/offers-list", {state: { askItem: item }});    
-//   }
+  const onAsksClickHandler = async (e, item) => {
+    e.stopPropagation();
+    console.log("onAsksClickHandler:", item)
+    //const id = item._id;    
+    const asksIdArray = item.asks.map( el => el._id);    
+    console.log("asksIdArray:", asksIdArray)
+    const fetchedAsks = await findAsksByIdArray(asksIdArray);    
+    console.log("fetchedAsks:", fetchedAsks)
+    // dispatch(setRideOffersActionCreator(fetchedOffers));
+    //navigate("/asks-list", {state: { askItem: item }});     
+  }
 
   return (
     <div className={s.container}>

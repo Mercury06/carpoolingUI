@@ -1,15 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import RideItem from './RideItem';
 import s from './Rides.module.scss';
+import AskItem from './AskItem';
 
 
 const AsksList = (props) => {
 
   const {state} = useLocation();    
   const { askItem } = state;
-  const offers = useSelector((state) => state.ride.rideOffers);  
+  const asks = useSelector((state) => state.ride.rideAsks);  
   // console.log("state:", state)
   // console.log("offers from store:", offers)
   
@@ -17,14 +17,14 @@ const AsksList = (props) => {
   return (
     <div className={s.list}>
       <div>
-        {offers.length > 0 ? (
+        {asks.length > 0 ? (
           <div className={s.itemsBlock}>
-            {offers.map((item) => (
-              <RideItem
+            {asks.map((item) => (
+              <AskItem
                 key={item._id}
-                rideItem={item}
+                askItem={item}
                 searchRidesParams={null}
-                askItem={askItem}
+                //askItem={askItem}
               />
             ))}
           </div> ) : (<div>empty list</div>)}

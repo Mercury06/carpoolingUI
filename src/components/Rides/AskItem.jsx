@@ -3,10 +3,10 @@ import s from './Rides.module.scss';
 import { Link } from 'react-router-dom';
 const moment = require('moment');
 
-const RideItem = (props) => {
+const AskItem = (props) => {
     
   //debugger;
-  const { rideItem, askItem, searchRidesParams } = props;
+  const { askItem, searchRidesParams } = props;
   //console.log("rideItem:", rideItem);
  
   return (
@@ -15,27 +15,27 @@ const RideItem = (props) => {
       <div className={s.content}>
         <div>
           <b>itemId: </b>
-          {rideItem._id}{' '}
+          {askItem._id}{' '}
         </div>
         <div>
           <b>from: </b>
-          {rideItem.localityFrom.localityName}{' '}
+          {askItem.localityFrom.localityName}{' '}
         </div>
         <div>
           <b>to: </b>
-          {rideItem.destination.localityName}{' '}
+          {askItem.destination.localityName}{' '}
         </div>
         <div>
           <b>seats: </b>
-          {rideItem.seats_available}{' '}
+          {askItem.seats_available}{' '}
         </div>
         <div>
           <b>date:</b>
-          {moment(rideItem.date).format('DD-MMM-YYYY')}{' '}
+          {moment(askItem.date).format('DD-MMM-YYYY')}{' '}
         </div>        
-        <div>
+        {/* <div>
           <Link to="/ride-details" state={{rideItem, askItem, searchRidesParams: searchRidesParams || null }}>ride details</Link>
-        </div>
+        </div> */}
         
       </div>
       
@@ -43,4 +43,4 @@ const RideItem = (props) => {
   );
 };
 
-export default RideItem;
+export default AskItem;

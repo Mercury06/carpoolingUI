@@ -67,6 +67,15 @@ export const findOffers = async (offersIdArray) => {
     });
 };
 
+export const findAsksByIdArray = async (asksIdArray) => {
+  // debugger;
+  return axios
+    .post("http://localhost:9000/api/settings/findasks", asksIdArray)
+    .then((response) => {
+      return response.data;
+    });
+};
+
 export const findMyAsksApiAction = async (id) => {
   return axios
     .get(`http://localhost:9000/api/settings/findmyask/${id}`)
@@ -77,7 +86,7 @@ export const findMyAsksApiAction = async (id) => {
 
 export const findAskItemApiAction = async (id) => {
   return axios
-    .get(`http://localhost:9000/api/settings/findasks/${id}`)
+    .get(`http://localhost:9000/api/settings/findaskbyid/${id}`)
     .then((response) => {
       return response.data;
     });
