@@ -6,8 +6,10 @@ const moment = require('moment');
 const AskItem = (props) => {
     
   //debugger;
-  const { askItem, searchRidesParams } = props;
-  //console.log("rideItem:", rideItem);
+  const { askItem, searchRidesParams, rideItem } = props;
+//   console.log("askItem:", askItem);
+//   console.log("searchRidesParams:", searchRidesParams);
+//   console.log("rideItem:", rideItem);
  
   return (
     <div className={s}>      
@@ -33,9 +35,9 @@ const AskItem = (props) => {
           <b>date:</b>
           {moment(askItem.date).format('DD-MMM-YYYY')}{' '}
         </div>        
-        {/* <div>
-          <Link to="/ride-details" state={{rideItem, askItem, searchRidesParams: searchRidesParams || null }}>ride details</Link>
-        </div> */}
+        <div>
+          <Link to="/ask-details" state={{ askItem, rideItem, searchRidesParams: searchRidesParams || null }}>ride details</Link>
+        </div>
         
       </div>
       

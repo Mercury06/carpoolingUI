@@ -8,9 +8,9 @@ import AskItem from './AskItem';
 const AsksList = (props) => {
 
   const {state} = useLocation();    
-  const { askItem } = state;
+  const { rideItem } = state;
   const asks = useSelector((state) => state.ride.rideAsks);  
-  // console.log("state:", state)
+  console.log("state:", state)
   // console.log("offers from store:", offers)
   
 
@@ -24,7 +24,7 @@ const AsksList = (props) => {
                 key={item._id}
                 askItem={item}
                 searchRidesParams={null}
-                //askItem={askItem}
+                rideItem={rideItem}
               />
             ))}
           </div> ) : (<div>empty list</div>)}

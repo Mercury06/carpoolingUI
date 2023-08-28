@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { findAsksByIdArray, findMyRidesApiAction } from '../api/actions';
 import s from './UserPage.module.scss';
 import { useNavigate } from "react-router-dom";
-import { setRideOffersActionCreator } from '../../reducers/rideReducer';
+import { setRideAsksActionCreator, setRideOffersActionCreator } from '../../reducers/rideReducer';
 import UserRide from './UserRide';
 const moment = require('moment');
 
@@ -31,8 +31,8 @@ const UserRidesContainer = () => {
     console.log("asksIdArray:", asksIdArray)
     const fetchedAsks = await findAsksByIdArray(asksIdArray);    
     console.log("fetchedAsks:", fetchedAsks)
-    // dispatch(setRideOffersActionCreator(fetchedOffers));
-    //navigate("/asks-list", {state: { askItem: item }});     
+    dispatch(setRideAsksActionCreator(fetchedAsks));
+    navigate("/asks-list", {state: { rideItem: item }});     
   }
 
   return (
