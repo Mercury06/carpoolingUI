@@ -15,23 +15,17 @@ const RideDetails = () => {
     const [fetched, setFetched] = useState(false);
     const [applicant, setApplicant] = useState(null);
     const [rejected, setRejected] = useState(false);
-    const {state} = useLocation();
+    const {state} = useLocation();    
     const askItem = state.askItem;
     const offerId = state.rideItem._id;   
     const navigate = useNavigate();
-    //console.log("state inside details:", state)
+    console.log("state inside details:", state)
     const {refreshData} = useWorker()
     
     
 
-    useEffect(()=>{
+    useEffect(()=>{        
         
-        //let asksIdArray = state.rideItem.asks.map((el) => el._id);
-        
-       
-        // let asksIdArray = state.rideItem.asks.map((el) => el._id);
-        // console.log("asksIdArray:", asksIdArray)
-        // asksIdArray.includes(state.askItem?._id) ? setFetched(true) : console.log("NOT INCLUDES")
         async function fetchData(offerId) {
           const fetchedRideItem = await findRideById(offerId)
           console.log("fetchedRideItem in useEffect:", fetchedRideItem)
@@ -42,7 +36,6 @@ const RideDetails = () => {
         fetchData(offerId).catch(console.error); //edit
         
     }, [])
-
       
 
     useEffect(() => {
@@ -65,6 +58,7 @@ const RideDetails = () => {
     
     const onAskClick = async (e, state) => {
         //debugger
+        console.log("state:", state)
         e.stopPropagation();
         setLoading(true);
         const { result, applicant } = await askFetch(state);
@@ -76,6 +70,7 @@ const RideDetails = () => {
                 setLoading(false);
                 setFetched(true);
                 setApplicant(applicant);
+                console.log("applicant after response:", applicant)
             }, 1000)
         } else {
             setRejected(true);
@@ -84,7 +79,8 @@ const RideDetails = () => {
 
     const onBackClick = () => {
       console.log("applicant:", applicant)
-      navigate("/rides-search", state={askItem: applicant || null })
+      let state;
+      navigate("/rides-search", { state: { askItem: applicant || askItem}});
     }
 
   return (
