@@ -34,7 +34,7 @@ const RideItem = (props) => {
           {moment(rideItem.date).format('DD-MMM-YYYY')}{' '}
         </div>        
         <div>
-          <Link to="/ride-details" state={{rideItem, askItem, searchRidesParams: searchRidesParams || null }}>ride details</Link>
+          <Link to="/ride-details" state={{rideItem, askItem: askItem || null, searchRidesParams: searchRidesParams || null }}>ride details</Link>
         </div>
         
       </div>

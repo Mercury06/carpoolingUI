@@ -7,6 +7,7 @@ import { createAsk } from './apiActions';
 import cn from 'classnames';
 import { CheckIcon } from '../assets/svg/BoxIcons';
 import askClickHandler from './Helpers/askFetch';
+import { useLocation } from 'react-router-dom';
 
 const RidesSearchList = () => {
 
@@ -15,6 +16,8 @@ const RidesSearchList = () => {
   const rides = useSelector((state) => state.ride.rides);
   const searchRidesParams = useSelector((state) => state.ride.searchRidesParams);
   const {user} = searchRidesParams;
+  const {state} = useLocation();
+  console.log("state:",state)
   
   const subscribeHandler = async (e) => {
     e.stopPropagation();

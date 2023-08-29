@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import s from './Rides.module.scss';
 import askFetch from './Helpers/askFetch';
 import useWorker from './hooks/useWorker';
+import { findRideById } from './apiActions';
 const moment = require('moment');
 
 
@@ -12,6 +13,7 @@ const RideDetails = () => {
     
     const [loading, setLoading] = useState(false);
     const [fetched, setFetched] = useState(false);
+    const [applicant, setApplicant] = useState(null);
     const [rejected, setRejected] = useState(false);
     const {state} = useLocation();
     const askItem = state.askItem;
@@ -24,24 +26,39 @@ const RideDetails = () => {
 
     useEffect(()=>{
         
-        let asksIdArray = state.rideItem.asks.map((el) => el._id);
-        console.log("asksIdArray:", asksIdArray)
-        asksIdArray.includes(state.askItem?._id) ? setFetched(true) : console.log("NOT INCLUDES")
-
+        //let asksIdArray = state.rideItem.asks.map((el) => el._id);
+        
+       
+        // let asksIdArray = state.rideItem.asks.map((el) => el._id);
+        // console.log("asksIdArray:", asksIdArray)
+        // asksIdArray.includes(state.askItem?._id) ? setFetched(true) : console.log("NOT INCLUDES")
+        async function fetchData(offerId) {
+          const fetchedRideItem = await findRideById(offerId)
+          console.log("fetchedRideItem in useEffect:", fetchedRideItem)
+          let asksIdArray = fetchedRideItem[0].asks.map((el) => el._id);
+          console.log("asksIdArray in useEffect:", asksIdArray)
+          asksIdArray.includes(state.askItem?._id) ? setFetched(true) : console.log("NOT INCLUDES")
+        }
+        fetchData(offerId).catch(console.error); //edit
+        
     }, [])
 
       
 
     useEffect(() => {
 
-      const interval = setInterval(() => {
-        refreshData(askItem._id)
-      }, 5000);
-
-      return () => {
-        console.log("return useEffect")
-        clearInterval(interval)
-      }        
+      if (askItem) {
+        const interval = setInterval(() => {
+          console.log("askItem._id", askItem._id)
+          refreshData(askItem._id)
+        }, 5000);
+  
+        return () => {
+          console.log("return useEffect")
+          clearInterval(interval)
+        }        
+      }
+      
     }, []);
    
 
@@ -50,16 +67,24 @@ const RideDetails = () => {
         //debugger
         e.stopPropagation();
         setLoading(true);
-        const result = await askFetch(state);
+        const { result, applicant } = await askFetch(state);
         console.log("result from click:", result.status)
+        // console.log("result from click:", result)
+        // console.log("applicant from click:", applicant)
         if (result.status === "OK") {            
             setTimeout(() => {  
                 setLoading(false);
                 setFetched(true);
+                setApplicant(applicant);
             }, 1000)
         } else {
             setRejected(true);
         }
+    }
+
+    const onBackClick = () => {
+      console.log("applicant:", applicant)
+      navigate("/rides-search", state={askItem: applicant || null })
     }
 
   return (
@@ -95,7 +120,7 @@ const RideDetails = () => {
             </div>)
         }         
         <div>
-          <button onClick={() => navigate(-1)}>Back</button>
+          <button onClick={onBackClick}>Back</button>
         </div>
         
       </div>

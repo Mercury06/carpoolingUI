@@ -21,6 +21,6 @@ export default async function askFetch(state) {
     //console.log("applicant:", applicant);
     const result = await askForSeat(rideItemId, applicant);
     console.log("ask_with_create:", result);
-    return result;
+    return { result, applicant };
   }
 }
