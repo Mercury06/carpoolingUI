@@ -17,8 +17,10 @@ const RidesSearchList = () => {
   const searchRidesParams = useSelector((state) => state.ride.searchRidesParams);
   const {user} = searchRidesParams;
   const {state} = useLocation();
-  const askItem = state?.askItem
+  const location = useLocation();  
+  const askItem = state?.askItem;
   console.log("state:", state)
+  console.log("location:", location)
   console.log("askItem in ride details:", askItem)
   
   const subscribeHandler = async (e) => {
@@ -48,6 +50,7 @@ const RidesSearchList = () => {
                 searchRidesParams={searchRidesParams}
                 askItem={askItem || null}
                 askClickHandler={askClickHandler}
+                path={location.pathname}
               />
             ))}
           </div>

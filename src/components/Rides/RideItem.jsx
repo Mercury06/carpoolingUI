@@ -6,7 +6,7 @@ const moment = require('moment');
 const RideItem = (props) => {
     
   //debugger;
-  const { rideItem, askItem, searchRidesParams } = props;
+  const { rideItem, askItem, searchRidesParams, path } = props;
   //console.log("rideItem:", rideItem);
  
   return (
@@ -34,7 +34,7 @@ const RideItem = (props) => {
           {moment(rideItem.date).format('DD-MMM-YYYY')}{' '}
         </div>        
         <div>
-          <Link to="/ride-details" state={{rideItem, askItem: askItem || null, searchRidesParams: searchRidesParams || null }}>ride details</Link>
+          <Link to="/ride-details" state={{rideItem, askItem: askItem || null, searchRidesParams: searchRidesParams || null, path }}>ride details</Link>
         </div>
         
       </div>

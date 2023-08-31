@@ -79,8 +79,9 @@ const RideDetails = () => {
 
     const onBackClick = () => {
       console.log("applicant:", applicant)
-      let state;
-      navigate("/rides-search", { state: { askItem: applicant || askItem}});
+      // let state;
+      // navigate("/rides-search", { state: { askItem: applicant || askItem}});
+      navigate(state.path, { state: { askItem: applicant || askItem}})
     }
 
   return (
