@@ -16,10 +16,12 @@ const AskDetails = () => {
     const [rejected, setRejected] = useState(false);
     const {state} = useLocation();
     const askItem = state.askItem;
-    const askId = state.askItem._id;   
+    const askId = state.askItem._id;
+    const confirmed = state.askItem.confirmed;   
     const navigate = useNavigate();
-    console.log("state inside details:", state)
-    // const {refreshData} = useWorker()
+    // console.log("state inside details:", state)
+    // console.log("confirmed flag:", confirmed)
+    
     
     
 
@@ -61,7 +63,7 @@ const AskDetails = () => {
             setTimeout( () => {  
                 setLoading(false);
                 setFetched(true);
-                console.log("modifyAskResult:", modifyAskResult)
+                //console.log("modifyAskResult:", modifyAskResult)
             }, 1000)
         } else {
             setRejected(true);
@@ -69,44 +71,80 @@ const AskDetails = () => {
     }
 
   return (
-   <div className={s.ride_container}>
-    <h1>ask details</h1>
-        <div >
-        <div>
-          <b>itemId: </b>
-          {askId}{' '}
-        </div>
-        <div>
-          <b>from: </b>
-          {state.askItem.localityFrom.localityName}{' '}
-        </div>
-        <div>
-          <b>to: </b>
-          {state.askItem.destination.localityName}{' '}
-        </div>
-        <div>
-          <b>seats need: </b>
-          {state.askItem.seats_available}{' '}
-        </div>
-        <div>
-          <b>date:</b>
-          {moment(state.askItem.date).format('DD-MMM-YYYY')}{' '}
-        </div>
-        { fetched ?
-            (<div>
-                <p>you have already sent request</p>
-            </div>) :
-            (<div>      
-                <button disabled={loading} onClick={(e) => confirmHandler(e, state)}>confirm</button>
-            </div>)
-        }         
-        <div>
-          <button onClick={() => navigate(-1)}>Back</button>
-        </div>
-        
-      </div>
-
-   </div>
+    <div>
+         {
+      confirmed ? (<div className={s.ride_container}>
+        <h1>ask details</h1>
+            <div >
+            <div>
+              <b>itemId: </b>
+              {askId}{' '}
+            </div>
+            <div>
+              <b>from: </b>
+              {state.askItem.localityFrom.localityName}{' '}
+            </div>
+            <div>
+              <b>to: </b>
+              {state.askItem.destination.localityName}{' '}
+            </div>
+            <div>
+              <b>seats need: </b>
+              {state.askItem.seats_available}{' '}
+            </div>
+            <div>
+              <b>date:</b>
+              {moment(state.askItem.date).format('DD-MMM-YYYY')}{' '}
+            </div>
+            <div>ask confirmed</div>                 
+            <div>
+              <button onClick={() => navigate(-1)}>Back</button>
+            </div>
+            
+          </div>
+    
+       </div>) : (<div className={s.ride_container}>
+        <h1>ask details</h1>
+            <div >
+            <div>
+              <b>itemId: </b>
+              {askId}{' '}
+            </div>
+            <div>
+              <b>from: </b>
+              {state.askItem.localityFrom.localityName}{' '}
+            </div>
+            <div>
+              <b>to: </b>
+              {state.askItem.destination.localityName}{' '}
+            </div>
+            <div>
+              <b>seats need: </b>
+              {state.askItem.seats_available}{' '}
+            </div>
+            <div>
+              <b>date:</b>
+              {moment(state.askItem.date).format('DD-MMM-YYYY')}{' '}
+            </div>
+            { fetched ?
+                (<div>
+                    <p>you have already sent request</p>
+                </div>) :
+                (<div>      
+                    <button disabled={loading} onClick={(e) => confirmHandler(e, state)}>confirm</button>
+                </div>)
+            }         
+            <div>
+              <button onClick={() => navigate(-1)}>Back</button>
+            </div>
+            
+          </div>
+    
+       </div>)
+    }
+   
+    </div>
+   
   );
 };
 
