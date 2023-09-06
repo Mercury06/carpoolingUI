@@ -6,11 +6,14 @@ const moment = require('moment');
 
 const UserRide = (props) => {  
   
-  const {item, onAsksClickHandler} = props;
+  const {item, onAsksClickHandler, onConfirmedClickHandler} = props;
   
   return (
    
             <div className={s.content}>
+              <p>
+                <strong>id:</strong> {item._id}
+              </p>
               <p>
                 <strong>from:</strong> {item.localityFrom.localityName}
               </p>
@@ -25,6 +28,9 @@ const UserRide = (props) => {
               </p>              
               <div className={s.offers_link} onClick={(e)=>onAsksClickHandler(e, item)}>
                 <div><strong>asks: <p>{item.asks.length}</p></strong> </div>
+              </div>
+              <div className={s.offers_link} onClick={(e)=>onConfirmedClickHandler(e, item)}>
+                <div><strong>confirmed: <p>{item.passengers.length}</p></strong> </div>
               </div>
             </div>            
           );

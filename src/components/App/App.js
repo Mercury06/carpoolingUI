@@ -20,6 +20,7 @@ import RidesSearchList from "../Rides/RidesSearchList";
 import UserRidesContainer from "../UserPage/UserRidesContainer";
 import AsksList from "../Rides/AsksList";
 import AskDetails from "../Rides/AskDetails";
+import ConfirmedAsksList from "../Rides/ConfirmedAsksList";
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -59,6 +60,9 @@ function App() {
         {isAuth && <Route path="rides-search" element={<RidesSearchList />} />}
         {isAuth && <Route path="offers-list" element={<OffersList />} />}
         {isAuth && <Route path="asks-list" element={<AsksList />} />}
+        {isAuth && (
+          <Route path="confirmed-asks" element={<ConfirmedAsksList />} />
+        )}
         {isAuth && <Route path="ride-details" element={<RideDetails />} />}
         {isAuth && <Route path="ask-details" element={<AskDetails />} />}
         {/* {isAuth && <Route path="subscribe" element={<SubscribePage />} />} */}

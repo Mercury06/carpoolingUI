@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { findAsksByIdArray, findMyRidesApiAction } from '../api/actions';
+import { findAsksByIdArray, findConfirmedAsksByIdArray, findMyRidesApiAction } from '../api/actions';
 import s from './UserPage.module.scss';
 import { useNavigate } from "react-router-dom";
-import { setRideAsksActionCreator, setRideOffersActionCreator } from '../../reducers/rideReducer';
+import { setConfirmedAsksActionCreator, setRideAsksActionCreator } from '../../reducers/rideReducer';
 import UserRide from './UserRide';
 const moment = require('moment');
 
@@ -29,10 +29,22 @@ const UserRidesContainer = () => {
     //const id = item._id;    
     const asksIdArray = item.asks.map( el => el._id);    
     console.log("asksIdArray:", asksIdArray)
-    const fetchedAsks = await findAsksByIdArray(asksIdArray);    
-    console.log("fetchedAsks:", fetchedAsks)
-    dispatch(setRideAsksActionCreator(fetchedAsks));
+    const fetchAsks = await findAsksByIdArray(asksIdArray);    
+    console.log("fetchedAsks:", fetchAsks)
+    dispatch(setRideAsksActionCreator(fetchAsks));
     navigate("/asks-list", {state: { rideItem: item }});     
+  }
+
+  const onConfirmedClickHandler = async (e, item) => {
+    e.stopPropagation();
+    console.log("onConfirmedClickHandler:", item)
+    //const id = item._id;    
+    const confirmedAsksIdArray = item.passengers.map( el => el._id);    
+    console.log("confirmedAsksIdArray:", confirmedAsksIdArray)
+    const fetchConfirmedAsks = await findAsksByIdArray(confirmedAsksIdArray);    
+    console.log("fetchConfirmedAsks:", fetchConfirmedAsks)
+    dispatch(setConfirmedAsksActionCreator(fetchConfirmedAsks));
+    navigate("/confirmed-asks", {state: { rideItem: item }});     
   }
 
   return (
@@ -42,7 +54,8 @@ const UserRidesContainer = () => {
       {rides && rides.length > 0 ? (
         rides.map((item, i) => {
           return (
-            <UserRide item={item} key={i} onAsksClickHandler={onAsksClickHandler} />
+            <UserRide item={item} key={i} onAsksClickHandler={onAsksClickHandler} 
+                                          onConfirmedClickHandler={onConfirmedClickHandler} />
           );
         })
       ) : (

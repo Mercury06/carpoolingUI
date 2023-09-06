@@ -65,7 +65,8 @@ const RideDetails = () => {
         console.log("result from click:", result.status)
         // console.log("result from click:", result)
         // console.log("applicant from click:", applicant)
-        if (result.status === "OK") {            
+        if (result.status === "OK") {   
+          console.log("result.status:", result)         
             setTimeout(() => {  
                 setLoading(false);
                 setFetched(true);

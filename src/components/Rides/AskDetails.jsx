@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import s from './Rides.module.scss';
 import askFetch from './Helpers/askFetch';
 import useWorker from './hooks/useWorker';
+import { confirmAsk, modifyAskAfterConfirmApiAction } from './apiActions';
 const moment = require('moment');
 
 
@@ -12,7 +13,7 @@ const AskDetails = () => {
     
     const [loading, setLoading] = useState(false);
     const [fetched, setFetched] = useState(false);
-    // const [rejected, setRejected] = useState(false);
+    const [rejected, setRejected] = useState(false);
     const {state} = useLocation();
     const askItem = state.askItem;
     const askId = state.askItem._id;   
@@ -46,20 +47,25 @@ const AskDetails = () => {
    
 
     
-    const onAskClick = async (e, state) => {
+    const confirmHandler = async (e, state) => {
         //debugger
-        // e.stopPropagation();
-        // setLoading(true);
-        // const result = await askFetch(state);
+        e.stopPropagation();
+        // console.log("confirmHandler:", state)
+        //setLoading(true);
+        const confirmAskResult = await confirmAsk(state);
+        
+        //console.log("result from confirm:", result)
         // console.log("result from click:", result.status)
-        // if (result.status === "OK") {            
-        //     setTimeout(() => {  
-        //         setLoading(false);
-        //         setFetched(true);
-        //     }, 1000)
-        // } else {
-        //     setRejected(true);
-        // }
+        if (confirmAskResult.status === "OK") {    
+          const modifyAskResult = await modifyAskAfterConfirmApiAction(state);        
+            setTimeout( () => {  
+                setLoading(false);
+                setFetched(true);
+                console.log("modifyAskResult:", modifyAskResult)
+            }, 1000)
+        } else {
+            setRejected(true);
+        }
     }
 
   return (
@@ -79,7 +85,7 @@ const AskDetails = () => {
           {state.askItem.destination.localityName}{' '}
         </div>
         <div>
-          <b>seats: </b>
+          <b>seats need: </b>
           {state.askItem.seats_available}{' '}
         </div>
         <div>
@@ -91,7 +97,7 @@ const AskDetails = () => {
                 <p>you have already sent request</p>
             </div>) :
             (<div>      
-                <button disabled={loading} onClick={(e) => onAskClick(e, state)}>confirm</button>
+                <button disabled={loading} onClick={(e) => confirmHandler(e, state)}>confirm</button>
             </div>)
         }         
         <div>
