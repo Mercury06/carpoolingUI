@@ -36,9 +36,18 @@ const UserAsksContainer = () => {
     const fetchedOffers = await findOffers(offersId);    
     console.log("fetchedOffers:", fetchedOffers)
     dispatch(setRideOffersActionCreator(fetchedOffers));
-    navigate("/offers-list", {state: { askItem: item }});    
+    navigate("/offers-list", {state: { askItem: item  }});    
   }
 
+  const onConfirmedClickHandler = async (e, item) => {
+    e.stopPropagation();
+    console.log("askItem:", item)
+    console.log("confirmed_offer_id:", item.agreeded[0]._id)    
+    const confirmedOfferId = item.agreeded[0]._id
+    
+    
+    navigate("/confirmed-offer", {state: { askItem: item, confirmedOfferId }});    
+  }
   return (
     <div className={s.container}>
       {asks && <h5>Found {asks.length} asks</h5>}
@@ -46,7 +55,8 @@ const UserAsksContainer = () => {
       {asks && asks.length > 0 ? (
         asks.map((item, i) => {
           return (
-            <UserAsk item={item} key={i} onOffersClickHandler={onOffersClickHandler} />
+            <UserAsk item={item} key={i} onOffersClickHandler={onOffersClickHandler} 
+                                         onConfirmedClickHandler={onConfirmedClickHandler} />
           );
         })
       ) : (

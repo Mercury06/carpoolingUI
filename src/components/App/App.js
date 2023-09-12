@@ -21,6 +21,7 @@ import UserRidesContainer from "../UserPage/UserRidesContainer";
 import AsksList from "../Rides/AsksList";
 import AskDetails from "../Rides/AskDetails";
 import ConfirmedAsksList from "../Rides/ConfirmedAsksList";
+import ConfirmedOffer from "../Rides/ConfirmedOffer";
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -65,6 +66,9 @@ function App() {
         )}
         {isAuth && <Route path="ride-details" element={<RideDetails />} />}
         {isAuth && <Route path="ask-details" element={<AskDetails />} />}
+        {isAuth && (
+          <Route path="confirmed-offer" element={<ConfirmedOffer />} />
+        )}
         {/* {isAuth && <Route path="subscribe" element={<SubscribePage />} />} */}
       </Routes>
     </Layout>
