@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import s from './Rides.module.scss';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { findRideById } from './apiActions';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { findRideById, unconfirmAsk } from './apiActions';
 const moment = require('moment');
 
-const ConfirmedOffer = (props) => {
+const ConfirmedOffer = () => {
     
   //debugger;
-  const { } = props;
+  
   const [confirmedOffer, setConfirmedOffer] = useState(null);
   const {state} = useLocation();
-  const { item, confirmedOfferId } = state;
+  const { askItem, confirmedOfferId } = state;
+  //console.log("item in state:", askItem);
   const navigate = useNavigate();
-//   console.log("confirmedOfferId:", confirmedOfferId);
+  const payload = {
+    askItem,
+    confirmedOffer,
+  }
+  console.log("payload:", payload);
+  console.log("confirmedOffer after useEfect:", confirmedOffer);
 //   console.log("confirmedOffers in useState:", confirmedOffer);
  
     useEffect(() => {
@@ -23,8 +29,11 @@ const ConfirmedOffer = (props) => {
         fetchData().catch(console.error); //edit
     }, [confirmedOfferId]); 
 
-    const removeHandler = () => {
-        
+    const removeHandler = async (e) => {
+        //console.log("payload in handler:", payload)
+        const result = await unconfirmAsk(payload);
+        console.log("result:", result);
+        navigate("/myasks");
     }
 
   return (
@@ -37,33 +46,31 @@ const ConfirmedOffer = (props) => {
               <div>Confirmed Offer</div>
               <div>
                 <b>itemId: </b>
-                {confirmedOffer[0]._id}{' '}
+                {confirmedOffer._id}{' '}
               </div>
               <div>
                 <b>from: </b>
-                {confirmedOffer[0].localityFrom.localityName}{' '}
+                {confirmedOffer.localityFrom.localityName}{' '}
               </div>
               <div>
                 <b>to: </b>
-                {confirmedOffer[0].destination.localityName}{' '}
+                {confirmedOffer.destination.localityName}{' '}
               </div>
               <div>
                 <b>seats: </b>
-                {confirmedOffer[0].seats_available}{' '}
+                {confirmedOffer.seats_available}{' '}
               </div>
               <div>
                 <b>date:</b>
-                {moment(confirmedOffer[0].date).format('DD-MMM-YYYY')}{' '}
+                {moment(confirmedOffer.date).format('DD-MMM-YYYY')}{' '}
               </div>
               <div>
                 <button onClick={() => navigate(-1)}>Back</button>
               </div>
               <div>
-                <button onClick={() => removeHandler()}>Remove</button>
+                <button onClick={removeHandler}>Remove</button>
               </div>          
-              {/* <div>
-                <Link to="/ask-details" state={{ askItem, rideItem, searchRidesParams: searchRidesParams || null }}>ask details</Link>
-              </div> */}
+             
               
             </div>
             

@@ -4,6 +4,9 @@ import s from './Rides.module.scss';
 import askFetch from './Helpers/askFetch';
 import useWorker from './hooks/useWorker';
 import { confirmAsk, modifyAskAfterConfirmApiAction } from './apiActions';
+import { findAsksByIdArray } from '../api/actions';
+import { useDispatch } from 'react-redux';
+import { setRideAsksActionCreator } from '../../reducers/rideReducer';
 const moment = require('moment');
 
 
@@ -15,12 +18,14 @@ const AskDetails = () => {
     const [fetched, setFetched] = useState(false);
     const [rejected, setRejected] = useState(false);
     const {state} = useLocation();
-    const askItem = state.askItem;
+    const { askItem, rideItem } = state;
     const askId = state.askItem._id;
-    const confirmed = state.askItem.confirmed;   
+    const confirmed = state.askItem.confirmed;
+    const asksIdArray = rideItem.asks.map( el => el._id);   
     const navigate = useNavigate();
-    // console.log("state inside details:", state)
-    // console.log("confirmed flag:", confirmed)
+    const dispatch = useDispatch();
+    console.log("state inside details:", state)
+    console.log("confirmed flag:", confirmed)
     
     
     
@@ -48,22 +53,29 @@ const AskDetails = () => {
     // }, []);
    
 
-    
+    const onBackClick = async (e) => {
+      e.stopPropagation();
+      const fetchAsks = await findAsksByIdArray (asksIdArray); 
+      console.log("fetchedAsks:", fetchAsks)
+      dispatch(setRideAsksActionCreator(fetchAsks));
+      navigate("/asks-list", {state: { rideItem }});  
+    }
+
     const confirmHandler = async (e, state) => {
         //debugger
-        e.stopPropagation();
-        // console.log("confirmHandler:", state)
-        //setLoading(true);
+        e.stopPropagation();        
+        console.log("confirmHandler:", state)
+        setLoading(true);
         const confirmAskResult = await confirmAsk(state);
         
-        //console.log("result from confirm:", result)
-        // console.log("result from click:", result.status)
-        if (confirmAskResult.status === "OK") {    
-          const modifyAskResult = await modifyAskAfterConfirmApiAction(state);        
+        console.log("result from confirm:", confirmAskResult)
+        console.log("confirmAskResult.statusText:", confirmAskResult.statusText)
+        if (confirmAskResult.statusText === "OK") {    
+          // const modifyAskResult = await modifyAskAfterConfirmApiAction(state);        
             setTimeout( () => {  
                 setLoading(false);
                 setFetched(true);
-                //console.log("modifyAskResult:", modifyAskResult)
+                // console.log("modifyAskResult:", modifyAskResult)
             }, 1000)
         } else {
             setRejected(true);
@@ -96,9 +108,10 @@ const AskDetails = () => {
               <b>date:</b>
               {moment(state.askItem.date).format('DD-MMM-YYYY')}{' '}
             </div>
-            <div>ask confirmed</div>                 
+            <p>you confirmed this ask </p>                 
             <div>
               <button onClick={() => navigate(-1)}>Back</button>
+              {/* <button onClick={(e) => onBackClick(e)}>Back after confirm</button> */}
             </div>
             
           </div>
@@ -127,16 +140,23 @@ const AskDetails = () => {
               {moment(state.askItem.date).format('DD-MMM-YYYY')}{' '}
             </div>
             { fetched ?
-                (<div>
-                    <p>you have already sent request</p>
-                </div>) :
+                (<>
+                  <div>
+                    <p>you confirmed this ask </p>    
+                  </div>
+
+                  <div>
+                  {/* <button onClick={() => navigate(-1)}>Back</button> */}
+                  <button onClick={(e) => onBackClick(e)}>Back after confirm</button>
+                 </div>
+                </>
+                ) :
                 (<div>      
-                    <button disabled={loading} onClick={(e) => confirmHandler(e, state)}>confirm</button>
+                    <button disabled={loading} onClick={ (e) => confirmHandler(e, state)}>confirm</button>
+                    <button onClick={() => navigate(-1)}>Back</button>
                 </div>)
             }         
-            <div>
-              <button onClick={() => navigate(-1)}>Back</button>
-            </div>
+            
             
           </div>
     

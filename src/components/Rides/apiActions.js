@@ -46,41 +46,32 @@ export const askForSeat = async (rideItemId, applicant) => {
 export const confirmAsk = async (state) => {
   //debugger;
   //console.log("state in debug", state);
-  const rideItem = state.rideItem;
-  const askItem = state.askItem;
-  // console.log("rideItem._id in debug", state.rideItem._id);
-  // console.log("askItem in debug", state.askItem);
   try {
     const response = await axios.post(
       "http://localhost:9000/api/settings/confirm-ask",
-      {
-        rideItem,
-        askItem,
-      }
+      { state }
+    );
+    return response;
+  } catch (e) {
+    alert(e.response);
+  }
+};
+
+export const unconfirmAsk = async (payload) => {
+  //debugger;
+  console.log("state in unconfirmAsk", payload);
+  // const rideItem = payload.rideItem;
+  // const askItem = payload.askItem;
+  // console.log("rideItem in debug", rideItem);
+  // console.log("askItem in debug", askItem);
+
+  try {
+    const response = await axios.post(
+      "http://localhost:9000/api/settings/unconfirm",
+      { payload }
     );
     return response.data;
   } catch (e) {
     alert(e.response.data.message);
   }
-};
-
-export const modifyAskAfterConfirmApiAction = async (state) => {
-  debugger;
-  console.log("state in debug", state);
-  // const rideItemId = state.rideItem._id;
-  // const askItem = state.askItem;
-  // console.log("rideItem._id in debug", state.rideItem._id);
-  // console.log("askItem in debug", state.askItem);
-  // try {
-  //   const response = await axios.post(
-  //     "http://localhost:9000/api/settings/confirm-ask",
-  //     {
-  //       rideItemId,
-  //       askItem,
-  //     }
-  //   );
-  //   return response.data;
-  // } catch (e) {
-  //   alert(e.response.data.message);
-  // }
 };

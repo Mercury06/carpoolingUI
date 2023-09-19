@@ -4,7 +4,7 @@ import { findMyAsksApiAction, findOffers } from '../api/actions';
 import s from './UserPage.module.scss';
 import { useNavigate } from "react-router-dom";
 import { setRideOffersActionCreator } from '../../reducers/rideReducer';
-import UserAsk from './UserAsks';
+import UserAsk from './UserAsk';
 const moment = require('moment');
 
 const UserAsksContainer = () => {
@@ -39,7 +39,7 @@ const UserAsksContainer = () => {
     navigate("/offers-list", {state: { askItem: item  }});    
   }
 
-  const onConfirmedClickHandler = async (e, item) => {
+  const showConfirmedHandler = async (e, item) => {
     e.stopPropagation();
     console.log("askItem:", item)
     console.log("confirmed_offer_id:", item.agreeded[0]._id)    
@@ -50,13 +50,13 @@ const UserAsksContainer = () => {
   }
   return (
     <div className={s.container}>
-      {asks && <h5>Found {asks.length} asks</h5>}
+      {asks && <h5>Found {asks.length} asks passenger side</h5>}
       {/* {id && <h5>user id: {id}</h5>} */}
       {asks && asks.length > 0 ? (
         asks.map((item, i) => {
           return (
             <UserAsk item={item} key={i} onOffersClickHandler={onOffersClickHandler} 
-                                         onConfirmedClickHandler={onConfirmedClickHandler} />
+            showConfirmedHandler={showConfirmedHandler} />
           );
         })
       ) : (

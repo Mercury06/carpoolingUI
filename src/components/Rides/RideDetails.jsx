@@ -29,7 +29,7 @@ const RideDetails = () => {
         async function fetchData(offerId) {
           const fetchedRideItem = await findRideById(offerId)
           console.log("fetchedRideItem in useEffect:", fetchedRideItem)
-          let asksIdArray = fetchedRideItem[0].asks.map((el) => el._id);
+          let asksIdArray = fetchedRideItem.asks.map((el) => el._id);
           console.log("asksIdArray in useEffect:", asksIdArray)
           asksIdArray.includes(state.askItem?._id) ? setFetched(true) : console.log("NOT INCLUDES")
         }

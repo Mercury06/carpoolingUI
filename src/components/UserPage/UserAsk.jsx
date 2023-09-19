@@ -3,7 +3,7 @@ import s from './UserPage.module.scss';
 const moment = require('moment');
 
 const UserAsk = (props) => {
-  const {item, onOffersClickHandler, onConfirmedClickHandler} = props;  
+  const {item, onOffersClickHandler, showConfirmedHandler} = props;  
   const confirmed = item.confirmed;
   //console.log("confirmed:", confirmed)
 
@@ -30,7 +30,7 @@ const UserAsk = (props) => {
               </div>)
               } */}
               {
-                confirmed ? (<div className={s.offers_link} onClick={(e)=>onConfirmedClickHandler(e, item)}>
+                confirmed ? (<div className={s.offers_link} onClick={(e)=>showConfirmedHandler(e, item)}>
                 <div><strong><p>your ask confirmed</p></strong> </div>
               </div>) : (<div className={s.offers_link} onClick={(e)=>onOffersClickHandler(e, item)}>
                 <div><strong>offers: <p>{item.offers.length}</p></strong> </div>

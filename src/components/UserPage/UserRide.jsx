@@ -32,6 +32,11 @@ const UserRide = (props) => {
               <div className={s.offers_link} onClick={(e)=>onConfirmedClickHandler(e, item)}>
                 <div><strong>confirmed: <p>{item.passengers.length}</p></strong> </div>
               </div>
+              <div className={s.delete_btn_container}>
+                <div className={s.delete_btn}>
+                  <center><span>delete</span></center>
+                </div>                
+              </div>
             </div>            
           );
 }        
