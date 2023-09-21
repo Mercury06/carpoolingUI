@@ -5,12 +5,15 @@ import s from './UserPage.module.scss';
 import { useNavigate } from "react-router-dom";
 import { setConfirmedAsksActionCreator, setRideAsksActionCreator } from '../../reducers/rideReducer';
 import UserRide from './UserRide';
+import Modal from '../App/Modal/Modal';
 const moment = require('moment');
 
 const UserRidesContainer = () => {
   const user = useSelector((state) => state.user.currentUser);
   const id = user.id;
   const [rides, setRides] = useState(null);
+  const[ modalActive, setModalActive ] = useState(false);
+  const[ rideForDelete, setRideForDelete] = useState(null);
  
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -47,15 +50,31 @@ const UserRidesContainer = () => {
     navigate("/confirmed-asks", {state: { rideItem: item }});     
   }
 
+  const prepareRideForDelete = (e, item) => {
+    e.stopPropagation();
+    console.log("item from cb:", item);
+    setRideForDelete(item);
+    setModalActive(true);
+  }
+
+  const deleteRideHandler = async (e, rideForDelete) => {
+    e.stopPropagation();
+    console.log("rideItem delete handler:", rideForDelete)
+    //setModalActive(false)
+
+  }
+
   return (
+    <>
     <div className={s.container}>
       {rides && <h5>Found {rides.length} rides</h5>}
       {/* {id && <h5>user id: {id}</h5>} */}
       {rides && rides.length > 0 ? (
         rides.map((item, i) => {
-          return (
+          return (            
             <UserRide item={item} key={i} onAsksClickHandler={onAsksClickHandler} 
-                                          onConfirmedClickHandler={onConfirmedClickHandler} />
+                                          onConfirmedClickHandler={onConfirmedClickHandler}                                          
+                                          prepareRideForDelete={prepareRideForDelete} />          
           );
         })
       ) : (
@@ -64,7 +83,14 @@ const UserRidesContainer = () => {
           <h3>list is empty</h3>
         </div>
       )}
+      
     </div>
+    { modalActive && <Modal>
+               <h1>Are you shure you want to delete this ride? </h1>
+               { rideForDelete.passengers && rideForDelete.passengers.length > 0 && <h1>you have {rideForDelete.passengers.length} registered travelers</h1>}
+               <div><button className={s.btn_modal} onClick={(e)=>deleteRideHandler(e, rideForDelete)}>Ok</button></div>
+                <div><button className={s.btn_modal} onClick={()=>setModalActive(false)}>Cancel</button></div></Modal>}
+    </>
   );
 };
 
