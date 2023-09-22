@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { findAsksByIdArray, findConfirmedAsksByIdArray, findMyRidesApiAction } from '../api/actions';
+import { deleteRide, findAsksByIdArray, findConfirmedAsksByIdArray, findMyRidesApiAction } from '../api/actions';
 import s from './UserPage.module.scss';
 import { useNavigate } from "react-router-dom";
 import { setConfirmedAsksActionCreator, setRideAsksActionCreator } from '../../reducers/rideReducer';
@@ -14,6 +14,7 @@ const UserRidesContainer = () => {
   const [rides, setRides] = useState(null);
   const[ modalActive, setModalActive ] = useState(false);
   const[ rideForDelete, setRideForDelete] = useState(null);
+  const[ ridesListUpdate, setRidesListUpdate ] = useState(false);
  
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,7 +25,8 @@ const UserRidesContainer = () => {
       setRides(data);
     }
     fetchData().catch(console.error);
-  }, [id]);
+    console.log("ridesListUpdate:", ridesListUpdate);
+  }, [id, ridesListUpdate]);
 
   const onAsksClickHandler = async (e, item) => {
     e.stopPropagation();
@@ -60,8 +62,10 @@ const UserRidesContainer = () => {
   const deleteRideHandler = async (e, rideForDelete) => {
     e.stopPropagation();
     console.log("rideItem delete handler:", rideForDelete)
-    //setModalActive(false)
-
+    const result = await deleteRide(rideForDelete);
+    console.log("result from delete_ride");
+    setModalActive(false);
+    setRidesListUpdate(!ridesListUpdate)    
   }
 
   return (

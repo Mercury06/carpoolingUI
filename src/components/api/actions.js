@@ -58,6 +58,19 @@ export const findMyRidesApiAction = async (id) => {
     });
 };
 
+export const deleteRide = async (rideItemId) => {
+  //debugger;
+  try {
+    const response = await axios.post(
+      "http://localhost:9000/api/settings/delete-ride",
+      { payload: rideItemId }
+    );
+    return response.data;
+  } catch (e) {
+    alert(e.response.data.message);
+  }
+};
+
 export const findOffers = async (offersIdArray) => {
   // debugger;
   return axios
