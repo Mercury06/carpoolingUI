@@ -35,7 +35,7 @@ const RideDetails = () => {
         }
         fetchData(offerId).catch(console.error); //edit
         
-    }, [])
+    }, [loading])
       
 
     useEffect(() => {

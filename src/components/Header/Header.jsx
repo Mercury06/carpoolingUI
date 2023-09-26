@@ -196,23 +196,24 @@ const Header = () => {
                     <Link to="/myasks" onClick={menuToggleHandler} title="ask ride to find driver">
                       My asks
                     </Link>
-                  </li>
-                  <li>
-                    <Link to="/dialogs" onClick={menuToggleHandler}>
-                      Messages
-                    </Link>
-                  </li>
+                  </li>        
+                  {/* // here would be your completed journeys           */}
                   <li>
                     <Link to="/history" onClick={menuToggleHandler}>
                       History
                     </Link>
                   </li>
-
                   <li>
+                    <Link to="/dialogs" onClick={menuToggleHandler}>
+                      Notifies
+                    </Link>
+                  </li>
+
+                  {/* <li>
                     <Link to="/profile" onClick={menuToggleHandler}>
                       Profile
                     </Link>
-                  </li>
+                  </li> */}
                 </>
               </ul>
             </nav>

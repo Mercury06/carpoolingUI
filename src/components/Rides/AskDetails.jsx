@@ -108,7 +108,10 @@ const AskDetails = () => {
               <b>date:</b>
               {moment(state.askItem.date).format('DD-MMM-YYYY')}{' '}
             </div>
-            <p>you confirmed this ask </p>                 
+            <p>you confirmed this ask </p>        
+            <div>
+              <button onClick={()=>navigate("/messages")}>messages</button>              
+            </div>         
             <div>
               <button onClick={() => navigate(-1)}>Back</button>
               {/* <button onClick={(e) => onBackClick(e)}>Back after confirm</button> */}

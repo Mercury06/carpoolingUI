@@ -29,7 +29,7 @@ const ConfirmedOffer = () => {
         fetchData().catch(console.error); //edit
     }, [confirmedOfferId]); 
 
-    const removeHandler = async (e) => {
+    const cancelHandler = async (e) => {
         //console.log("payload in handler:", payload)
         const result = await unconfirmAsk(payload);
         console.log("result:", result);
@@ -65,10 +65,13 @@ const ConfirmedOffer = () => {
                 {moment(confirmedOffer.date).format('DD-MMM-YYYY')}{' '}
               </div>
               <div>
+              <button onClick={()=>navigate("/messages")}>messages</button>              
+              </div>  
+              <div>
                 <button onClick={() => navigate(-1)}>Back</button>
               </div>
               <div>
-                <button onClick={removeHandler}>Remove</button>
+                <button onClick={cancelHandler}>Cancel confirm</button>
               </div>          
              
               
