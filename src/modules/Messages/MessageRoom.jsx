@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './Messages.module.scss';
 // import Dialog from './MessageItem';
 //import TextArea from 'antd/es/input/TextArea';
 import Input from './Input';
 import { useNavigate } from 'react-router-dom';
+import { sendMessage } from '../../components/api/actions';
+import { useSelector } from 'react-redux';
 
 
 export default function MessageRoom() {
+  const author = useSelector((state) => state.user.currentUser);
   const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+  console.log("message text:", message)
+  const payload = {
+    participants: [{}, {}],
+    referedRide: {},
+    author: author,
+    content: message,    
+  };
+
+  const onSendMessage = async (e) => {
+    e.stopPropagation();
+    console.log("payload in handler:", payload);
+    await sendMessage(payload);
+
+  }
   return (
     <div className={s.room_container}>
       <button onClick={()=>navigate(-1)}>Back</button>
@@ -33,8 +51,8 @@ export default function MessageRoom() {
         </div>
         
         <div className={s.input_message_container}>
-            <Input />
-            <button>Send</button>
+            <Input value={message} setTextValue={setMessage} />
+            <button onClick={onSendMessage}>Send</button>
         </div>
        
     </div>

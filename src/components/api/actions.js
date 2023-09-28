@@ -119,7 +119,21 @@ export const findLocs = async () => {
   }
 };
 
-// export const getOffers = async (rideId, applicant) => {                //offers lready exist (delete)
+export const sendMessage = async ({ ...payload }) => {
+  //debugger;
+  try {
+    const response = await axios.post(
+      "http://localhost:9000/api/settings/update-dialog",
+      { ...payload }
+    );
+    console.log(response);
+    return response;
+  } catch (e) {
+    console.log("error:", e.response.data.message);
+  }
+};
+
+// export const getOffers = async (rideId, applicant) => {                //offers already exist (delete)
 //   //debugger;
 //   try {
 //     // const response = await axios.post(

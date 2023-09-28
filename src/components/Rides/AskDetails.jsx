@@ -110,10 +110,10 @@ const AskDetails = () => {
             </div>
             <p>you confirmed this ask </p>        
             <div>
-              <button onClick={()=>navigate("/messages")}>messages</button>              
+              <button onClick={() => navigate("/messages", {state: {askItem: state.askItem, rideItem: state.rideItem}})}>messages</button>              
             </div>         
             <div>
-              <button onClick={() => navigate(-1)}>Back</button>
+              <button onClick={ () => navigate(-1)}>Back</button>
               {/* <button onClick={(e) => onBackClick(e)}>Back after confirm</button> */}
             </div>
             
