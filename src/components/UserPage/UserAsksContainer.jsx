@@ -41,13 +41,12 @@ const UserAsksContainer = () => {
 
   const showConfirmedHandler = async (e, item) => {
     e.stopPropagation();
-    console.log("askItem:", item)
-    console.log("confirmed_offer_id:", item.agreeded[0]._id)    
-    const confirmedOfferId = item.agreeded[0]._id
-    
-    
-    navigate("/confirmed-offer", {state: { askItem: item, confirmedOfferId }});    
+    console.log("askItem:", item);
+    console.log("confirmed_offer:", item.agreeded[0]);
+    const confirmedOffer = item.agreeded[0];  
+    navigate("/confirmed-offer", {state: { askItem: item, confirmedOffer: confirmedOffer }});    
   }
+
   return (
     <div className={s.container}>
       {asks && <h5>Found {asks.length} asks passenger side</h5>}

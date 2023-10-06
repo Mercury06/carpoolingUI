@@ -25,45 +25,37 @@ const UserRidesContainer = () => {
       setRides(data);
     }
     fetchData().catch(console.error);
-    console.log("ridesListUpdate:", ridesListUpdate);
+    //console.log("ridesListUpdate:", ridesListUpdate);
   }, [id, ridesListUpdate]);
 
   const onAsksClickHandler = async (e, item) => {
-    e.stopPropagation();
-    console.log("onAsksClickHandler:", item)
-    //const id = item._id;    
-    const asksIdArray = item.asks.map( el => el._id);    
-    console.log("asksIdArray:", asksIdArray)
-    const fetchAsks = await findAsksByIdArray(asksIdArray);    
-    console.log("fetchedAsks:", fetchAsks)
-    dispatch(setRideAsksActionCreator(fetchAsks));
+    e.stopPropagation(); 
+    let asksIdArray = item.asks.map( el => el._id);   
+    let fetchedAsks = await findAsksByIdArray(asksIdArray);   
+    dispatch(setRideAsksActionCreator(fetchedAsks.data));
     navigate("/asks-list", {state: { rideItem: item }});     
   }
 
   const onConfirmedClickHandler = async (e, item) => {
     e.stopPropagation();
-    console.log("onConfirmedClickHandler:", item)
-    //const id = item._id;    
-    const confirmedAsksIdArray = item.passengers.map( el => el._id);    
-    console.log("confirmedAsksIdArray:", confirmedAsksIdArray)
-    const fetchConfirmedAsks = await findAsksByIdArray(confirmedAsksIdArray);    
-    console.log("fetchConfirmedAsks:", fetchConfirmedAsks)
-    dispatch(setConfirmedAsksActionCreator(fetchConfirmedAsks));
+    let confirmedAsksIdArray = item.passengers.map( el => el._id);    
+    let fetchedConfirmedAsks = await findAsksByIdArray(confirmedAsksIdArray);    
+    dispatch(setConfirmedAsksActionCreator(fetchedConfirmedAsks.data));
     navigate("/confirmed-asks", {state: { rideItem: item }});     
   }
 
   const prepareRideForDelete = (e, item) => {
     e.stopPropagation();
-    console.log("item from cb:", item);
+    //console.log("item from cb:", item);
     setRideForDelete(item);
     setModalActive(true);
   }
 
   const deleteRideHandler = async (e, rideForDelete) => {
     e.stopPropagation();
-    console.log("rideItem delete handler:", rideForDelete)
+    //console.log("rideItem delete handler:", rideForDelete)
     const result = await deleteRide(rideForDelete);
-    console.log("result from delete_ride");
+    //console.log("result from delete_ride");
     setModalActive(false);
     setRidesListUpdate(!ridesListUpdate)    
   }

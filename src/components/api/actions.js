@@ -85,7 +85,10 @@ export const findAsksByIdArray = async (asksIdArray) => {
   return axios
     .post("http://localhost:9000/api/settings/findasks", asksIdArray)
     .then((response) => {
-      return response.data;
+      return {
+        status: response.status,
+        data: response.data,
+      };
     });
 };
 
@@ -119,17 +122,32 @@ export const findLocs = async () => {
   }
 };
 
+export const fetchDialog = async (payload) => {
+  // debugger;
+
+  try {
+    const response = await axios.post(
+      "http://localhost:9000/api/settings/fetch-dialog",
+      { ...payload }
+    );
+    return response;
+  } catch (e) {
+    console.log("error:", e);
+  }
+};
+
 export const sendMessage = async ({ ...payload }) => {
-  //debugger;
+  // debugger;
+
   try {
     const response = await axios.post(
       "http://localhost:9000/api/settings/update-dialog",
       { ...payload }
     );
-    console.log(response);
+    console.log("response in action:", response);
     return response;
   } catch (e) {
-    console.log("error:", e.response.data.message);
+    console.log("error:", e.response);
   }
 };
 

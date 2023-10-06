@@ -6,12 +6,12 @@ import { useLocation } from 'react-router-dom';
 export default function MessageBox() {
 
   const {state} = useLocation();
-  console.log("state through:", state)
+  // console.log("state through:", state)
 
 
   return (
     <div className={s.main_container}>
-      <MessageRoom />      
+      <MessageRoom state={state}/>      
     </div>
   );
 }

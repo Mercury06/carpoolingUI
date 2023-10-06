@@ -6,8 +6,7 @@ const moment = require('moment');
 const RideItem = (props) => {
     
   //debugger;
-  const { rideItem, askItem, searchRidesParams, path } = props;
-  //console.log("rideItem:", rideItem);
+  const { rideItem, askItem, searchRidesParams, path } = props;  
  
   return (
     <div className={s}>      

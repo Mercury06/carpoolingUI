@@ -19,8 +19,7 @@ const RideDetails = () => {
     const askItem = state.askItem;
     const offerId = state.rideItem._id;   
     const navigate = useNavigate();
-    console.log("state inside details:", state)
-    const {refreshData} = useWorker()
+    const {refreshData} = useWorker();
     
     
 
@@ -28,14 +27,14 @@ const RideDetails = () => {
         
         async function fetchData(offerId) {
           const fetchedRideItem = await findRideById(offerId)
-          console.log("fetchedRideItem in useEffect:", fetchedRideItem)
+          // console.log("fetchedRideItem in useEffect:", fetchedRideItem)
           let asksIdArray = fetchedRideItem.asks.map((el) => el._id);
-          console.log("asksIdArray in useEffect:", asksIdArray)
+          // console.log("asksIdArray in useEffect:", asksIdArray)
           asksIdArray.includes(state.askItem?._id) ? setFetched(true) : console.log("NOT INCLUDES")
         }
-        fetchData(offerId).catch(console.error); //edit
+        fetchData(offerId);//edit
         
-    }, [loading])
+    }, [loading, fetched])
       
 
     useEffect(() => {
@@ -66,7 +65,7 @@ const RideDetails = () => {
         // console.log("result from click:", result)
         // console.log("applicant from click:", applicant)
         if (result.status === "OK") {   
-          console.log("result.status:", result)         
+          console.log("result.status.OK:", result)         
             setTimeout(() => {  
                 setLoading(false);
                 setFetched(true);

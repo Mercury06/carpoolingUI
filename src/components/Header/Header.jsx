@@ -205,7 +205,7 @@ const Header = () => {
                   </li>
                   <li>
                     <Link to="/dialogs" onClick={menuToggleHandler}>
-                      Notifies
+                      Notifyies
                     </Link>
                   </li>
 

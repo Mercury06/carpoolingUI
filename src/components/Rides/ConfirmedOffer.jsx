@@ -8,26 +8,29 @@ const ConfirmedOffer = () => {
     
   //debugger;
   
-  const [confirmedOffer, setConfirmedOffer] = useState(null);
+  // const [confirmedOffer, setConfirmedOffer] = useState(null);
   const {state} = useLocation();
-  const { askItem, confirmedOfferId } = state;
-  //console.log("item in state:", askItem);
+  console.log("STATE:", state);
+  const { askItem, confirmedOffer } = state;
+  // const confirmedOfferId = confirmedOfferItem._id;
+  
   const navigate = useNavigate();
+
   const payload = {
     askItem,
     confirmedOffer,
   }
   console.log("payload:", payload);
-  console.log("confirmedOffer after useEfect:", confirmedOffer);
-//   console.log("confirmedOffers in useState:", confirmedOffer);
+  console.log("confirmedOffer after useEfect:", confirmedOffer); 
  
-    useEffect(() => {
-        async function fetchData() {
-        const data = await findRideById(confirmedOfferId);
-        setConfirmedOffer(data);
-        }
-        fetchData().catch(console.error); //edit
-    }, [confirmedOfferId]); 
+    // useEffect(() => {
+    //     async function fetchData(confirmedOfferId) {
+
+    //     const data = await findRideById(confirmedOfferId);
+    //     setConfirmedOffer(data);
+    //     }
+    //     fetchData(confirmedOfferId).catch(console.error); //edit
+    // }, []); 
 
     const cancelHandler = async (e) => {
         //console.log("payload in handler:", payload)
@@ -65,7 +68,7 @@ const ConfirmedOffer = () => {
                 {moment(confirmedOffer.date).format('DD-MMM-YYYY')}{' '}
               </div>
               <div>
-              <button onClick={()=>navigate("/messages")}>messages</button>              
+              <button onClick={()=>navigate("/messages", {state: {askItem: state.askItem, rideItem: state.confirmedOffer}})}>messages</button>              
               </div>  
               <div>
                 <button onClick={() => navigate(-1)}>Back</button>
