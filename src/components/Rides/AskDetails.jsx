@@ -13,48 +13,46 @@ const moment = require('moment');
 const AskDetails = () => {    
     
     const [loading, setLoading] = useState(false);
-    const [fetched, setFetched] = useState(false);
+    const [confirmed, setConfirmed] = useState(false);
     const [rejected, setRejected] = useState(false);
-    const [fetchedAskItem, setFetchedAskItem] = useState(null);
+    // const [fetchedAskItem, setFetchedAskItem] = useState(null);
     const {state} = useLocation();
     const { askItem, rideItem } = state;
-    const askId = state.askItem._id;
-    const confirmed = state.askItem.confirmed;
+    // const askId = state.askItem._id;
+    // const confirmed = askItem.confirmed && askItem.agreeded[0]._id === rideItem._id;
     const asksIdArray = rideItem.asks.map( el => el._id);   
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    console.log("state inside details:", state)   
-    
-   
-    useEffect(()=>{
-        async function fetchData(askId){
-          let result = await findAskItemApiAction(askId);
-          setFetchedAskItem(result);
-        };
-        fetchData(askId);
-    }, []);
-
-    useEffect(()=>{        
-        let confirmedAsksIdArray = state.rideItem.passengers.map((el) => el._id);
-        console.log("confirmedAsksIdArray:", confirmedAsksIdArray)
-        confirmedAsksIdArray.includes(state.askItem?._id) ? setFetched(true) : setFetched(false)
-    }, [])
-
+    console.log("state inside details:", state);
+    console.log("confirmed?:", confirmed)
+    // console.log("askItem.agreeded[0]._id === rideItem._id:", askItem.agreeded[0]._id === rideItem._id)
       
-
-    // useEffect(() => {
-
-    //   const interval = setInterval(() => {
-    //     refreshData(askItem._id)
-    //   }, 5000);
-
-    //   return () => {
-    //     console.log("return useEffect")
-    //     clearInterval(interval)
-    //   }        
-    // }, []);
    
+    useEffect(() => {
+      if (askItem.confirmed && askItem.agreeded[0]._id === rideItem._id) {
+        setConfirmed(true);
+      }
+    }, [confirmed])
+    // useEffect(()=>{
+    //     async function fetchData(askId){
+    //       let result = await findAskItemApiAction(askId);
+    //       setFetchedAskItem(result);
+    //     };
+    //     fetchData(askId);
+    // }, [fetched]);
 
+    // useEffect(()=>{        
+    //     let confirmedAsksIdArray = rideItem.passengers.map((el) => el._id);
+    //     // console.log("confirmedAsksIdArray:", confirmedAsksIdArray)
+    //     confirmedAsksIdArray.includes(state.askItem?._id) 
+    //     // && fetchedAskItem.confirmed 
+    //     // && fetchedAskItem.agreeded[0]._id == rideItem._id 
+    //     // ? setFetched(true)
+    //     ? console.log("*****MATCHED*****") 
+    //     : setFetched(false)
+    // }, [])
+
+    
     const onBackClick = async (e) => {
       e.stopPropagation();
       let result = await findAsksByIdArray (asksIdArray); 
@@ -69,21 +67,26 @@ const AskDetails = () => {
     const confirmHandler = async (e, state) => {
         //debugger
         e.stopPropagation();        
-        console.log("confirmHandler:", state)
+        console.log("***confirmHandler clicked***:", state)
         setLoading(true);
-        const confirmAskResult = await confirmAsk(state);
-        
-        console.log("result from confirm:", confirmAskResult)
-        console.log("confirmAskResult.statusText:", confirmAskResult.statusText)
-        if (confirmAskResult.statusText === "OK") {                    
-            setTimeout( () => {  
-                setLoading(false);
-                setFetched(true);
-                // console.log("modifyAskResult:", modifyAskResult)
-            }, 1000)
-        } else {
-            setRejected(true);
-        }
+        try {
+          let fetchedAskItem = await findAskItemApiAction(state.askItem._id);
+          console.log("fetchedAskItem***:", fetchedAskItem);
+          if (!fetchedAskItem.confirmed){
+            const confirmAskResult = await confirmAsk(state);
+            console.log("***result from confirm***:", confirmAskResult);
+            if (confirmAskResult.status === 200) {
+              console.log("***statusText === OK")
+              setConfirmed(true);
+            } 
+          } else {
+            return
+          }
+        } catch (err) {
+          console.log("confirmation exeption:", err);
+        } finally {
+          setLoading(false);
+        }    
     }
 
   return (
@@ -93,7 +96,7 @@ const AskDetails = () => {
             <div >
               <div>
                 <b>itemId: </b>
-                {askId}{' '}
+                {state.askItem._id}{' '}
               </div>
               <div>
                 <b>from: </b>
@@ -111,14 +114,16 @@ const AskDetails = () => {
                 <b>date:</b>
                 {moment(state.askItem.date).format('DD-MMM-YYYY')}{' '}
               </div>
-              {
-                // fetchedAskItem && fetchedAskItem.confirmed
-                fetched 
+              {               
+                confirmed 
                 ? <>
                     <p>you confirmed this ask </p>
                     <div>
-                      <button onClick={() => navigate("/messages", {state: {askItem: fetchedAskItem, 
-                                                                            rideItem: state.rideItem, }})}>message</button>                                                                     
+                      <button onClick={() => navigate("/messages", {state: {askItem: askItem, 
+                                                                            rideItem: rideItem, }})}>message</button>                                                                     
+                    </div> 
+                    <div>
+                      <button onClick={(e) => onBackClick(e)}>Back</button>
                     </div> 
                   </>                 
                 : <div>
