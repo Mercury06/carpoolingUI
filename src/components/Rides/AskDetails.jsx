@@ -76,7 +76,6 @@ const AskDetails = () => {
             const confirmAskResult = await confirmAsk(state);
             console.log("***result from confirm***:", confirmAskResult);
             if (confirmAskResult.status === 200) {
-              console.log("***statusText === OK")
               setConfirmed(true);
             } 
           } else {

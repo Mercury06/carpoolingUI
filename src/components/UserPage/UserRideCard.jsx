@@ -1,17 +1,27 @@
 import React from 'react';
-import s from './UserPage.module.scss';
+import s from './UserRide.module.scss';
 
 const moment = require('moment');
 
 
-const UserRide = (props) => {  
+const UserRideCard = (props) => {  
   
   const {item, onAsksClickHandler, onConfirmedClickHandler, prepareRideForDelete} = props;
   
   return (
    
-            <div className={s.content}>
-              <p>
+            <div className={s.card}>
+                <div className={s.card_content}>
+                    <div className={s.card_content_sidebar}>
+                        <span>span</span>
+                    </div>
+                    <div className={s.card_content_main}>
+                        <span>span</span>
+                    </div>
+                </div>
+                
+                {/* <span>span</span> */}
+              {/* <p>
                 <strong>id:</strong> {item._id}
               </p>
               <p>
@@ -33,12 +43,12 @@ const UserRide = (props) => {
                 <span>confirmed: {item.passengers.length} </span>
               </div>
               <div className={s.delete_btn_container} onClick={(e)=> prepareRideForDelete(e, item)}>
-                {/* <div className={s.delete_btn} onClick={(item)=> prepareRideForDelete(item)}> */}
-                <div className={s.delete_btn}>
+                 <div className={s.delete_btn} onClick={(item)=> prepareRideForDelete(item)}> 
+                 <div className={s.delete_btn}>
                   <center><span>delete</span></center>
-                </div>                
-              </div>
-            </div>            
+                </div>                 */}
+              </div> 
+                       
           );
 }        
-export default UserRide;
+export default UserRideCard;

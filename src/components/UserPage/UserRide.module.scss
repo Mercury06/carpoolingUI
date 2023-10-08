@@ -1,0 +1,34 @@
+
+.card {
+    background: linear-gradient(135deg, #474c62, #383c4d);
+    height: 36vh;
+    width: 38vw;
+    border-radius: 12px;
+    box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.4);
+    overflow: hidden;   
+    display: grid;
+    grid-template-rows: 5fr 1fr;
+
+    .card_content {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+
+        .card_content_sidebar {
+            border-right: 1px;
+        }
+        .card_content_main {
+            // border-left: 6px solid white;
+
+        }
+        .card_content_main:before{ 
+            content: " ";
+            background: white;
+            width: 4px;
+            height: 30vh;
+            float: left;
+            margin-right: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+    }
+}

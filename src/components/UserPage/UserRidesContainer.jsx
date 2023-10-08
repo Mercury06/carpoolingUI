@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { setConfirmedAsksActionCreator, setRideAsksActionCreator } from '../../reducers/rideReducer';
 import UserRide from './UserRide';
 import Modal from '../App/Modal/Modal';
+import UserRideCard from './UserRideCard';
 const moment = require('moment');
 
 const UserRidesContainer = () => {
@@ -63,14 +64,15 @@ const UserRidesContainer = () => {
   return (
     <>
     <div className={s.container}>
-      {rides && <h5>Found {rides.length} rides</h5>}
+      {rides && <h5>You have {rides.length} registered rides</h5>}
       {/* {id && <h5>user id: {id}</h5>} */}
       {rides && rides.length > 0 ? (
         rides.map((item, i) => {
           return (            
-            <UserRide item={item} key={i} onAsksClickHandler={onAsksClickHandler} 
-                                          onConfirmedClickHandler={onConfirmedClickHandler}                                          
-                                          prepareRideForDelete={prepareRideForDelete} />          
+            // <UserRide item={item} key={i} onAsksClickHandler={onAsksClickHandler} 
+            //                               onConfirmedClickHandler={onConfirmedClickHandler}                                          
+            //                               prepareRideForDelete={prepareRideForDelete} />          
+            <UserRideCard item={item} key={i} />
           );
         })
       ) : (

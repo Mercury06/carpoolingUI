@@ -14,13 +14,18 @@
     padding-top: 6px;
     padding-bottom: 5px;
     //box-shadow: 1px 1px 2px 1px rgba(125, 125, 128, 0.712);
-  
-    .offers_link p {
-      cursor: pointer;
+    
+    .offers_link {
+      display: flex;
+      flex-direction: row;
       a {
         color: green;
       }
+      span {
+        cursor: pointer;        
+      }
     }
+    
   }
 
     .delete_btn_container:hover .delete_btn {
