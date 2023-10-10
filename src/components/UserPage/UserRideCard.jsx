@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './UserRide.module.scss';
+import { BsGeoAltFill } from "react-icons/bs";
 
 const moment = require('moment');
 
@@ -13,7 +14,13 @@ const UserRideCard = (props) => {
             <div className={s.card}>
                 <div className={s.card_content}>
                     <div className={s.card_content_sidebar}>
-                        <span>span</span>
+                                           
+                          <span><BsGeoAltFill /></span>
+                          <span>{item.localityFrom.localityName}</span>
+                          <span className={s.vertical_dashed_line}></span>                          
+                          <span><BsGeoAltFill /></span>
+                          <span>{item.destination.localityName}</span>
+                        
                     </div>
                     <div className={s.card_content_main}>
                         <span>span</span>

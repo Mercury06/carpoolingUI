@@ -4,8 +4,6 @@
   //background: $dark;
   // background: rgb(49, 55, 62);
   background: #0C263F;
-  // background: rgb(37, 37, 37);
-  //width: 600px;  //edit
   height: $headerHeight;
   padding: 0 1.5rem;
   position: fixed;
@@ -13,7 +11,6 @@
   width: 100%;
   @include breakpoint(md) {
     padding: 0 3rem;
-    // background: yellow;
   }
   transition: 0.3s ease all;
 
@@ -25,7 +22,7 @@
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
     position: relative;
     z-index: 100;
 
@@ -97,7 +94,7 @@
           margin-bottom: 0;
           margin-right: calc(0.5rem + #{$spacing-md});
         }
-        li {
+        li {          
           &:not(:last-child) {
             margin-bottom: $spacing-lg;
             @include breakpoint(md) {

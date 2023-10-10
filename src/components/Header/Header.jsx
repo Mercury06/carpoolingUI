@@ -114,23 +114,19 @@ const Header = () => {
               {!isAuth && (
                 <>
                   <li>
+                    <Link to="/ask-ride" onClick={menuToggleHandler}>
+                      <FaSearch size={14} /> <bn></bn>
+                      Find Ride
+                    </Link>
+                  </li>
+                  <li>
                     <Link to="/login" onClick={menuToggleHandler}>
                       Sign in
                     </Link>
-                  </li>
-                  {/* <li>
-                    <Link to="/registration" onClick={menuToggleHandler}>
-                      Sign up
-                    </Link>
-                  </li> */}
+                  </li>                  
                 </>
               )}
-              <li>
-                <Link to="/ask-ride" onClick={menuToggleHandler}>
-                  <FaSearch /> <bn></bn>
-                  Find Ride
-                </Link>
-              </li>
+              
               {isAuth && (
                 <>
                   <li>
