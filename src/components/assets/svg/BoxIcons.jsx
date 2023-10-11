@@ -83,3 +83,9 @@ export const ClearIcon = (props) => {
     </svg>
   );
 };
+
+export const SeatIcon = (props) => {
+  return (
+   <></>
+  );
+};

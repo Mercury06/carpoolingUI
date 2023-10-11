@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { findMyAsksApiAction, findOffers } from '../api/actions';
-import s from './UserPage.module.scss';
+import s from './UserRide.module.scss';
 import { useNavigate } from "react-router-dom";
 import { setRideOffersActionCreator } from '../../reducers/rideReducer';
 import UserAsk from './UserAsk';

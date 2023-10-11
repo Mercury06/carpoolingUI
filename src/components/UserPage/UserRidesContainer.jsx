@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteRide, findAsksByIdArray, findConfirmedAsksByIdArray, findMyRidesApiAction } from '../api/actions';
-import s from './UserPage.module.scss';
+import s from './UserRide.module.scss';
 import { useNavigate } from "react-router-dom";
 import { setConfirmedAsksActionCreator, setRideAsksActionCreator } from '../../reducers/rideReducer';
-import UserRide from './UserRide';
 import Modal from '../App/Modal/Modal';
 import UserRideCard from './UserRideCard';
 const moment = require('moment');
@@ -68,11 +67,10 @@ const UserRidesContainer = () => {
       {/* {id && <h5>user id: {id}</h5>} */}
       {rides && rides.length > 0 ? (
         rides.map((item, i) => {
-          return (            
-            // <UserRide item={item} key={i} onAsksClickHandler={onAsksClickHandler} 
-            //                               onConfirmedClickHandler={onConfirmedClickHandler}                                          
-            //                               prepareRideForDelete={prepareRideForDelete} />          
-            <UserRideCard item={item} key={i} />
+          return (  
+            <UserRideCard item={item} key={i} onAsksClickHandler={onAsksClickHandler} 
+                                              onConfirmedClickHandler={onConfirmedClickHandler}  
+                                              prepareRideForDelete={prepareRideForDelete} />
           );
         })
       ) : (

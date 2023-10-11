@@ -1,5 +1,5 @@
 import React  from 'react';
-import s from './UserPage.module.scss';
+import s from './UserRide.module.scss';
 const moment = require('moment');
 
 const UserAsk = (props) => {
