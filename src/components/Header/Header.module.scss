@@ -82,6 +82,9 @@
         height: 100%;
         position: static;
       }
+      // &_signin {
+      //   margin-top: 6px;
+      // }     
       ul {
         list-style: none;
         padding: 0;
@@ -102,16 +105,23 @@
               margin-right: $spacing-md;
             }
           }
+          &:last-child {
+            background: #021629;
+            height: 38px;
+            margin-top: 4px;
+            border-radius: 24px;
+            padding-top: 5px;
+          }
           a {
             text-decoration: none;
             font-family: $Poppins;
             color: inherit;
             padding: 0.75rem 1.25rem;
             border-radius: $borderRadius;
-            transition: 0.3s ease all;
+            transition: 0.3s ease all;           
 
             &:hover {
-              background: rgba($light, 0.1);
+              background: rgba($light, 0.1);              
             }
             &:active {
               border-radius: calc(#{$borderRadius} + 6px);
@@ -123,6 +133,7 @@
             color: $light;
             margin-left: 6px;
           }
+          
         }
       }
 

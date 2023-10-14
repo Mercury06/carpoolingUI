@@ -50,11 +50,6 @@ const Header = () => {
     setMenuOpen(() => !menuOpen);
   };
 
-  // const searchHandler = (id) => {
-  //   setMenuOpen(() => !menuOpen);
-  //   findMyRides(id);
-  // };
-
   return (
     <>
       <header className={classes.header}>
@@ -120,8 +115,8 @@ const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/login" onClick={menuToggleHandler}>
-                      Sign in
+                    <Link to="/login" onClick={menuToggleHandler}>                    
+                        <span >Sign in</span>
                     </Link>
                   </li>                  
                 </>
@@ -134,16 +129,21 @@ const Header = () => {
                       Create Ride
                     </Link>
                   </li>
-                  {/* <li>
+                  <li>
                     <Link to="/myrides" onClick={menuToggleHandler}>
                       My rides
                     </Link>
                   </li>
                   <li>
+                    <Link to="/myasks" onClick={menuToggleHandler} title="ask ride to find driver">
+                      My asks
+                    </Link>
+                  </li> 
+                  <li>
                     <Link to="/myhistory" onClick={menuToggleHandler}>
                       History
                     </Link>
-                  </li> */}
+                  </li>
 
                   <li>
                     <NavLink
@@ -179,26 +179,9 @@ const Header = () => {
             <nav className={classes.subHeader__content__nav}>
               <ul>
                 <>
-                  <li>
-                    <Link
-                      to="/myrides"
-                      onClick={menuToggleHandler}
-                      title="create your ride to find passangers"
-                    >
-                      My rides
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/myasks" onClick={menuToggleHandler} title="ask ride to find driver">
-                      My asks
-                    </Link>
-                  </li>        
-                  {/* // here would be your completed journeys           */}
-                  <li>
-                    <Link to="/history" onClick={menuToggleHandler}>
-                      History
-                    </Link>
-                  </li>
+                  
+                         
+                  
                   <li>
                     <Link to="/dialogs" onClick={menuToggleHandler}>
                       Notifyies

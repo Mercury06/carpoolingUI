@@ -3,7 +3,7 @@ import s from './Messages.module.scss';
 import Dialog from './Dialog';
 import { useNavigate } from 'react-router-dom';
 
-export default function Dialogs() {
+export default function Notifications() {
 
   const [userDialogs, setUserDialogs] = useState(null);
 

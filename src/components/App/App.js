@@ -12,7 +12,6 @@ import RideCreateForm from "./../../modules/RideCreateForm/index";
 import MessageBox from "../../modules/Messages/MessageBox";
 import LoginForm from "./Forms/Autorization/LoginForm";
 import RegistrationForm from "./Forms/Autorization/RegistrationForm";
-import Dialogs from "../../modules/Messages/Dialogs";
 import UserAsksContainer from "../UserPage/UserAsksContainer";
 import OffersList from "../Rides/OffersList";
 import RideDetails from "../Rides/RideDetails";
@@ -22,6 +21,7 @@ import AsksList from "../Rides/AsksList";
 import AskDetails from "../Rides/AskDetails";
 import ConfirmedAsksList from "../Rides/ConfirmedAsksList";
 import ConfirmedOffer from "../Rides/ConfirmedOffer";
+import Notifications from "../../modules/Messages/Notifications";
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -43,7 +43,7 @@ function App() {
         {isAuth && <Route path="myrides" element={<UserRidesContainer />} />}
         {isAuth && <Route path="myasks" element={<UserAsksContainer />} />}
         {isAuth && <Route path="messages" element={<MessageBox />} />}
-        {isAuth && <Route path="dialogs" element={<Dialogs />} />}
+        {isAuth && <Route path="notifications" element={<Notifications />} />}
         {!isAuth && (
           <Route path="myrides" element={<Navigate to="/" replace />} />
         )}
