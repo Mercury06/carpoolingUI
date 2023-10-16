@@ -5,7 +5,6 @@ import { BiMenuAltRight, BiArrowBack } from 'react-icons/bi';
 import { FaSearch } from 'react-icons/fa';
 import { BiLogOut } from 'react-icons/bi';
 import { AiOutlineDown } from 'react-icons/ai';
-import { BsChevronCompactDown, BsChevronDown, BsChevronUp } from 'react-icons/bs';
 
 import classes from './Header.module.scss';
 import cn from 'classnames';
@@ -13,11 +12,12 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../reducers/userReducer';
 import avaPhoto from '../assets/img/icons8-customer-50.png';
+import { LogoIcon } from '../assets/svg/BoxIcons';
+
 
 const Header = () => {
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [subHeader, setSubHeader] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);  
   const [size, setSize] = useState({
     width: undefined,
     height: undefined,
@@ -54,52 +54,10 @@ const Header = () => {
     <>
       <header className={classes.header}>
         <div className={classes.header__content}>
-          {/* <Link to="/" className={classes.header__content__logo}>
-          LOGOTYPE
-        </Link> */}
-          {isAuth && (
-            <>
-              {' '}
-              <div className={classes.user_container}>
-                <div className={classes.avatar_container}>
-                  <img src={avaPhoto} alt="avatar" className={classes.mainPhoto} />
-                </div>
-                {!subHeader ? (
-                  <BsChevronDown
-                    onClick={() => setSubHeader(!subHeader)}
-                    // onClick={() => alert('touched!')}
-                    size={24}
-                    color={'grey'}
-                    style={{
-                      'margin-left': '4px',
-                      'margin-top': '4px',
-                    }}
-                  />
-                ) : (
-                  <BsChevronUp
-                    onClick={() => setSubHeader(!subHeader)}
-                    // onClick={() => alert('touched!')}
-                    size={24}
-                    color={'grey'}
-                    style={{
-                      'margin-left': '4px',
-                      'margin-top': '4px',
-                    }}
-                  />
-                )}{' '}
-                <div className={classes.login}>{login}</div>
-                {/* <div
-                className={classes.header__user}
-                title="logout"
-                onClick={() => dispatch(logout())}
-              > */}
-                {/* <NavLink to="/login" className={classes.header__user_link}>
-                  {login} <BiLogOut />
-                </NavLink> */}
-                {/* </div> */}
-              </div>
-            </>
-          )}
+          <div className={classes.header__content_logo}>
+            <LogoIcon />
+          </div>
+          
           <nav
             className={`${classes.header__content__nav} ${
               menuOpen && size.width < 768 ? classes.isMenu : ''
@@ -125,6 +83,12 @@ const Header = () => {
               {isAuth && (
                 <>
                   <li>
+                    <Link to="/ask-ride" onClick={menuToggleHandler}>
+                      <FaSearch size={14} /> <bn></bn>
+                      Find Ride
+                    </Link>
+                  </li>
+                  <li>
                     <Link to="/create-ride" onClick={menuToggleHandler}>
                       Create Ride
                     </Link>
@@ -139,11 +103,7 @@ const Header = () => {
                       My asks
                     </Link>
                   </li> 
-                  <li>
-                    <Link to="/myhistory" onClick={menuToggleHandler}>
-                      History
-                    </Link>
-                  </li>
+                  
 
                   <li>
                     <NavLink
@@ -167,38 +127,7 @@ const Header = () => {
             )}
           </div>
         </div>
-      </header>
-      {isAuth && (
-        <header
-          className={cn(classes.subHeader, {
-            [classes.subHeader__showed]: subHeader === true,
-          })}
-        >
-          {' '}
-          <div className={classes.subHeader__content}>
-            <nav className={classes.subHeader__content__nav}>
-              <ul>
-                <>
-                  
-                         
-                  
-                  <li>
-                    <Link to="/dialogs" onClick={menuToggleHandler}>
-                      Notifyies
-                    </Link>
-                  </li>
-
-                  {/* <li>
-                    <Link to="/profile" onClick={menuToggleHandler}>
-                      Profile
-                    </Link>
-                  </li> */}
-                </>
-              </ul>
-            </nav>
-          </div>
-        </header>
-      )}
+      </header>     
     </>
   );
 };

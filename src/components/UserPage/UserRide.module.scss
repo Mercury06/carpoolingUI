@@ -1,4 +1,8 @@
+@import './../../styles/variables.scss';
 
+.container {
+  margin-top: calc($headerHeight*2)
+}
 .card {
     background: linear-gradient(135deg, #474c62, #383c4d);
     height: 36vh;
