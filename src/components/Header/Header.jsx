@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { BiMenuAltRight, BiArrowBack } from 'react-icons/bi';
 
-import { FaSearch } from 'react-icons/fa';
-import { BiLogOut } from 'react-icons/bi';
-import { AiOutlineDown } from 'react-icons/ai';
-
+import { FaSearch, FaUserCircle } from 'react-icons/fa';
+// import { FaRegCircleUser } from "react-icons/fa6";
+import { IoNotificationsOutline } from "react-icons/io5";
 import classes from './Header.module.scss';
 import cn from 'classnames';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
@@ -69,12 +68,12 @@ const Header = () => {
                   <li>
                     <Link to="/ask-ride" onClick={menuToggleHandler}>
                       <FaSearch size={14} /> <bn></bn>
-                      Find Ride
+                      Find
                     </Link>
                   </li>
                   <li>
                     <Link to="/login" onClick={menuToggleHandler}>                    
-                        <span >Sign in</span>
+                        <span className={classes.header__content_signin}>Sign in</span>
                     </Link>
                   </li>                  
                 </>
@@ -85,7 +84,7 @@ const Header = () => {
                   <li>
                     <Link to="/ask-ride" onClick={menuToggleHandler}>
                       <FaSearch size={14} /> <bn></bn>
-                      Find Ride
+                      Find
                     </Link>
                   </li>
                   <li>
@@ -102,19 +101,16 @@ const Header = () => {
                     <Link to="/myasks" onClick={menuToggleHandler} title="ask ride to find driver">
                       My asks
                     </Link>
-                  </li> 
-                  
-
-                  <li>
-                    <NavLink
-                      to="/login"
-                      className={classes.header__user_link}
-                      title="logout"
-                      onClick={() => dispatch(logout())}
-                    >
-                      <BiLogOut size={30} color={'grey'} />
-                    </NavLink>
                   </li>
+                  <div className={classes.header__content_manage}>
+                    <li>
+                      <div><IoNotificationsOutline size="24"/></div>
+                    </li>
+                    <li>
+                      <div><FaUserCircle size="24"/></div>
+                    </li>
+                  </div>   
+                  
                 </>
               )}
             </ul>

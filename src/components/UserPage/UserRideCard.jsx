@@ -2,6 +2,7 @@ import React from 'react';
 import s from './UserRide.module.scss';
 import { BsGeoAltFill } from "react-icons/bs";
 import { MdOutlineAirlineSeatReclineExtra } from "react-icons/md"
+import { SeatIcon } from '../assets/svg/BoxIcons';
 
 
 const moment = require('moment');
@@ -27,8 +28,8 @@ const UserRideCard = (props) => {
                     </div>
                     <div className={s.card_content_main}>
                       <div className={s.card_content_main_info}>
-                        <span>{moment(item.date).format('DD-MMM-YYYY')}</span>
-                        <span>{item.seats} 3 seats <MdOutlineAirlineSeatReclineExtra size={48}/></span>
+                        <span>{moment(item.date).format('DD-MMM-YYYY')}</span>                        
+                        <span>{item.seats} 3 seats <SeatIcon /> </span>
                         <div className={s.info_quantity}><span onClick={(e)=>onAsksClickHandler(e, item)}>asks: {item.asks.length}</span>{"   "}
                                                         <span onClick={(e)=>onConfirmedClickHandler(e, item)}>confirmed: {item.passengers.length}</span>
                         </div>                        
