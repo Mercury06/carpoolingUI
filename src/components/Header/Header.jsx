@@ -3,18 +3,17 @@ import React, { useEffect, useState } from 'react';
 import { BiMenuAltRight, BiArrowBack } from 'react-icons/bi';
 
 import { FaSearch, FaUserCircle } from 'react-icons/fa';
-// import { FaRegCircleUser } from "react-icons/fa6";
 import { IoNotificationsOutline } from "react-icons/io5";
 import classes from './Header.module.scss';
 import cn from 'classnames';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../reducers/userReducer';
-import avaPhoto from '../assets/img/icons8-customer-50.png';
 import { LogoIcon } from '../assets/svg/BoxIcons';
+import DropDownMenu from './DropDownMenu';
 
 
-const Header = () => {
+const Header = ({setOpenDropdown}) => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);  
   const [size, setSize] = useState({
@@ -107,10 +106,9 @@ const Header = () => {
                       <div><IoNotificationsOutline size="24"/></div>
                     </li>
                     <li>
-                      <div><FaUserCircle size="24"/></div>
+                      <div onClick={() => setOpenDropdown(((prev) => !prev))}><FaUserCircle size="24"/></div>                                          
                     </li>
-                  </div>   
-                  
+                  </div>
                 </>
               )}
             </ul>
