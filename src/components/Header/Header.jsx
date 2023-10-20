@@ -13,17 +13,15 @@ import { LogoIcon } from '../assets/svg/BoxIcons';
 import DropDownMenu from './DropDownMenu';
 
 
-const Header = ({setOpenDropdown}) => {
+const Header = ({setOpenDropdown, isAuth}) => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);  
   const [size, setSize] = useState({
     width: undefined,
     height: undefined,
-  });
-  const isAuth = useSelector((state) => state.user.isAuth);
+  });  
   const user = useSelector((state) => state.user.currentUser);
-  const login = user.username;
-  // const currentDir = useSelector( state => state.files.currentDir)
+  const login = user.username;  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -106,7 +104,7 @@ const Header = ({setOpenDropdown}) => {
                       <div><IoNotificationsOutline size="24"/></div>
                     </li>
                     <li>
-                      <div onClick={() => setOpenDropdown(((prev) => !prev))}><FaUserCircle size="24"/></div>                                          
+                      <div className={classes.header__content_manage_usericon} onClick={() => setOpenDropdown(((prev) => !prev))}><FaUserCircle size="24"/></div>                                          
                     </li>
                   </div>
                 </>

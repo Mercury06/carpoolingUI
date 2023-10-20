@@ -1,15 +1,18 @@
 import React from "react";
 import classes from './Header.module.scss';
+import { useDispatch } from "react-redux";
+import { logout } from "../../reducers/userReducer";
 
 const DropDownMenu = () => {
+    const dispatch = useDispatch();
     return (
         <div className={classes.dropdownmenu}>
             <ul>
-                <li>Hi, Jonathan</li>
-                <li>_______</li>
-                <li>Profile</li>
-                <li>History</li>
-                <li>Logout</li>
+                <li><span>Hi, Jonathan</span></li>
+                <hr></hr>                
+                <li><span>Profile</span></li>
+                <li><span>History</span></li>
+                <li onClick={() => dispatch(logout())}><span>Logout</span></li>
             </ul>
         </div>
     )

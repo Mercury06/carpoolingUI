@@ -40,11 +40,8 @@
       flex-wrap: wrap;
       gap: 1rem;
 
-      &_dropdown {
-        position: absolute;
-        display: block;
-        z-index: 100;
-        background: green;
+      &_usericon {
+        cursor: pointer;
       }
     }
     &_signin {
@@ -153,13 +150,7 @@
               border-radius: calc(#{$borderRadius} + 6px);
               background: linear-gradient(rgba($light, 0.1), rgba($light, 0.2));
             }
-          }
-          .header__user_link {
-            text-decoration: none;
-            color: $light;
-            margin-left: 6px;
-          }
-          
+          }  
         }
       }
 
@@ -208,7 +199,7 @@
         display: none;
       }
     }
-  }
+  }  
 }
 // .subHeader {
 //   // background: rgb(37, 37, 37);
@@ -338,11 +329,11 @@
   position: absolute;
   top: 4.5rem;
   right: 3.4rem;
-  width: 180px;
-  padding: 15px;
+  width: 180px;  
   border-radius: 8px;
   background-color: white;
   border: 1px solid gray;
+  padding: 0.5rem 0;
   &::before{
     content: "";
     position: absolute;
@@ -356,9 +347,29 @@
     border-bottom: 1px solid gray;
   }
   ul {
+    margin-top: 0.6rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     list-style: none;
+    padding: 20px;
+   
+    li {
+      cursor: pointer;
+      padding-left: 0.5rem;
+      // hr {
+      //   margin-left: 1.5rem;
+      // }
+      span {
+        width: 100%;
+        transition: transform;        
+      }
+      &:hover {        
+        transform: translateX(2px);
+        transition: 0.4s;
+        color: gray;
+        font-weight: 400;        
+      }           
+    }
   }
 }
