@@ -329,11 +329,23 @@
   position: absolute;
   top: 4.5rem;
   right: 3.4rem;
-  width: 180px;  
+  width: 180px;
+  max-height: 0px;  
+  overflow: hidden;
   border-radius: 8px;
   background-color: white;
   border: 1px solid gray;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0; 
+  opacity: 0;
+  transition: 0.6s;  
+
+  &.active {
+    max-height: 230px;
+    border: 1px solid gray;
+    opacity: 1;
+    overflow: visible;
+  }
+
   &::before{
     content: "";
     position: absolute;
@@ -353,23 +365,34 @@
     gap: 1rem;
     list-style: none;
     padding: 20px;
+
+    hr {
+      border: 0;
+      height: 1px;
+      width: 100%;
+      background: #ccc;      
+    }
    
     li {
       cursor: pointer;
-      padding-left: 0.5rem;
-      // hr {
-      //   margin-left: 1.5rem;
-      // }
+        padding-left: 0.5rem;
+      
       span {
         width: 100%;
         transition: transform;        
       }
+
       &:hover {        
         transform: translateX(2px);
-        transition: 0.4s;
+        transition: 0.3s;
         color: gray;
         font-weight: 400;        
       }           
     }
   }
 }
+
+// .dropdownmenu_active {
+//   max-height: 230px;
+//   border: 5px solid gray;  
+// }

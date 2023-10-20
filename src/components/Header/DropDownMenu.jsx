@@ -3,10 +3,12 @@ import classes from './Header.module.scss';
 import { useDispatch } from "react-redux";
 import { logout } from "../../reducers/userReducer";
 
-const DropDownMenu = () => {
+
+const DropDownMenu = ({ openDropdown }) => {
     const dispatch = useDispatch();
+    console.log("openDropdown:", openDropdown)
     return (
-        <div className={classes.dropdownmenu}>
+        <div className={`${classes.dropdownmenu} ${ openDropdown ? classes.active : ''}`}>        
             <ul>
                 <li><span>Hi, Jonathan</span></li>
                 <hr></hr>                
