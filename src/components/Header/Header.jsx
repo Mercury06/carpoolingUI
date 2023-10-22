@@ -10,7 +10,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../reducers/userReducer';
 import { LogoIcon } from '../assets/svg/BoxIcons';
-import DropDownMenu from './DropDownMenu';
+
 
 
 const Header = ({setOpenDropdown, isAuth}) => {
@@ -44,8 +44,9 @@ const Header = ({setOpenDropdown, isAuth}) => {
 
   const menuToggleHandler = () => {
     setMenuOpen(() => !menuOpen);
-  };
+  }; 
 
+  
   return (
     <>
       <header className={classes.header}>
@@ -100,12 +101,14 @@ const Header = ({setOpenDropdown, isAuth}) => {
                     </Link>
                   </li>
                   <div className={classes.header__content_manage}>
-                    <li>
-                      <div><IoNotificationsOutline size="24"/></div>
-                    </li>
-                    <li>
+                    <div className={classes.header__content_manage_icons}>
+                        <div><IoNotificationsOutline size="24"/></div>
+                        <div className={classes.header__content_manage_icons_counter}>3</div>
+                    </div>
+                      
+                    
                       <div className={classes.header__content_manage_usericon} onClick={() => setOpenDropdown(((prev) => !prev))}><FaUserCircle size="24"/></div>                                          
-                    </li>
+                    
                   </div>
                 </>
               )}
