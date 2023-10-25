@@ -4,14 +4,14 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../reducers/userReducer";
 
 
-const DropDownMenu = ({ openDropdown }) => {
+const DropDownMenu = ({ openDropdown, user }) => {
     const dispatch = useDispatch();
-    console.log("openDropdown:", openDropdown)
+    // console.log("user:", user)
     return (
         <div className={`${classes.dropdownmenu_wrap} ${ openDropdown ? classes.active : ''}`}>    
             <div className={classes.dropdownmenu}>
                 <ul>
-                    <li><span>Hi, Jonathan</span></li>
+                    <li><span>Hi, {user.username} </span></li>
                     <hr></hr>                
                     <li><span>Profile</span></li>
                     <li><span>History</span></li>

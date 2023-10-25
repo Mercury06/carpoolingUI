@@ -41,6 +41,7 @@
       
       &_icons {
         position:relative;
+        cursor: pointer;
 
         &_counter {
           width: 14px;
@@ -349,7 +350,7 @@
   z-index: 3;
   top: 4.5rem;
   right: 3.4rem;
-  width: 180px;
+  max-width: max-content;
   max-height: 0px;  
   border-radius: 8px;
   background-color: white;

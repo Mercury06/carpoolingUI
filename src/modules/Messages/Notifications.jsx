@@ -27,9 +27,7 @@ export default function Notifications() {
             <Dialog />
 
     </div>
-    <div>
-      <button onClick={()=>navigate("/messages")}>message room</button>
-    </div>
+    
             
           </div>  
 }

@@ -9,13 +9,14 @@ import { useSelector } from 'react-redux';
 
 const Layout = ({ children }) => {
   const [openDropdown, setOpenDropdown] = React.useState(false);
-  const isAuth = useSelector((state) => state.user.isAuth); 
+  const isAuth = useSelector((state) => state.user.isAuth);
+  const user = useSelector((state) => state.user.currentUser); 
  
 
   return (
     <>
       <Header setOpenDropdown={setOpenDropdown} isAuth={isAuth} />      
-      { isAuth && <DropDownMenu openDropdown={openDropdown} /> } 
+      { isAuth && <DropDownMenu openDropdown={openDropdown} user={user} /> } 
       <div className={classes.container}>{children}</div>
       {/* <Content />
       <Footer /> */}

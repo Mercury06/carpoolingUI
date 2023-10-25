@@ -64,6 +64,12 @@ function App() {
         {isAuth && (
           <Route path="confirmed-asks" element={<ConfirmedAsksList />} />
         )}
+        {!isAuth && (
+          <Route
+            path="confirmed-asks"
+            element={<Navigate to="/login" replace />}
+          />
+        )}
         {isAuth && <Route path="ride-details" element={<RideDetails />} />}
         {isAuth && <Route path="ask-details" element={<AskDetails />} />}
         {isAuth && (

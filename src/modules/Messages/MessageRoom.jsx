@@ -14,18 +14,17 @@ export default function MessageRoom(props) {
   const navigate = useNavigate();
   const [dialogId, setDialogId] = useState(null);
   const [error, setError] = useState(null);
-  const [messages, setMessages] = useState("");
+  const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");  
-  //console.log("message text:", text)
-  // console.log("state in MessageRoom:", state)
-  console.log("state in MessageRoom:", props.state)
+  console.log("message text:", text)
+  // console.log("state in MessageRoom:", props.state)
   const refferedAskId = props.state.askItem._id;
   const driver = props.state.rideItem.user;
   const passenger = props.state.askItem.user;
   const referedAskId = props.state.askItem._id;
-  console.log("refferedAskId", refferedAskId);
-  console.log("dialogId", dialogId);
-  console.log("messages", messages);
+  // console.log("refferedAskId", refferedAskId);
+  // console.log("dialogId", dialogId);
+  // console.log("messages", messages);
 
   const payload = {
     participants: [driver, passenger],
@@ -37,10 +36,10 @@ export default function MessageRoom(props) {
   useEffect(() => {
     async function fetchMessages(payload) {
       let result = await fetchDialog (payload);
-      if (result) {
-        setDialogId(result.data.data._id);
-        setMessages(result.data.data.body);
-      }
+      // if (result) {
+      //   setDialogId(result.data.data._id);
+      //   setMessages(result.data.data.body);
+      // }
       // setMessages(result.data);
       console.log("result in useEffect:", result);
     };
@@ -51,21 +50,19 @@ export default function MessageRoom(props) {
     e.stopPropagation();
     console.log("payload in handler:", payload);
     await sendMessage(payload);
-
   }
+
   return (
     <div className={s.room_container}>
       <button onClick={()=>navigate(-1)}>Back</button>
         <div className={s.text_container}>
             <div className={s.text_container_body}>
               { messages && messages.length > 0 && messages.map((item, i) => {
-          return (            
-            <p key={i}>messages: {messages.content}</p>       
-          );
-        })}
-             
-            </div>
-            
+                return (            
+                  <p key={i}>messages: {messages.content}</p>       
+                );
+              })}             
+            </div>            
         </div>
         
         <div className={s.input_message_container}>

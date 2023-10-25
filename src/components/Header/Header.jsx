@@ -8,7 +8,6 @@ import classes from './Header.module.scss';
 import cn from 'classnames';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../reducers/userReducer';
 import { LogoIcon } from '../assets/svg/BoxIcons';
 
 
@@ -101,11 +100,10 @@ const Header = ({setOpenDropdown, isAuth}) => {
                     </Link>
                   </li>
                   <div className={classes.header__content_manage}>
-                    <div className={classes.header__content_manage_icons}>
+                    <div className={classes.header__content_manage_icons} onClick={() => navigate("notifications")}>
                         <div><IoNotificationsOutline size="24"/></div>
                         <div className={classes.header__content_manage_icons_counter}>3</div>
-                    </div>
-                      
+                    </div>                      
                     
                       <div className={classes.header__content_manage_usericon} onClick={() => setOpenDropdown(((prev) => !prev))}><FaUserCircle size="24"/></div>                                          
                     

@@ -30,6 +30,7 @@ const UserRideCard = (props) => {
                       <div className={s.card_content_main_info}>
                         <span>{moment(item.date).format('DD-MMM-YYYY')}</span>                        
                         <span>{item.seats} 3 seats <SeatIcon /> </span>
+                        <span>{item._id}</span>
                         <div className={s.info_quantity}><span onClick={(e)=>onAsksClickHandler(e, item)}>asks: {item.asks.length}</span>{"   "}
                                                         <span onClick={(e)=>onConfirmedClickHandler(e, item)}>confirmed: {item.passengers.length}</span>
                         </div>                        
