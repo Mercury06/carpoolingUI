@@ -37,21 +37,21 @@ const RideDetails = () => {
     }, [loading, fetched])
       
 
-    useEffect(() => {
+    // useEffect(() => {
 
-      if (askItem) {
-        const interval = setInterval(() => {
-          console.log("askItem._id", askItem._id)
-          refreshData(askItem._id)
-        }, 5000);
+    //   if (askItem) {
+    //     const interval = setInterval(() => {
+    //       // console.log("askItem._id", askItem._id)
+    //       refreshData(askItem._id)
+    //     }, 5000);
   
-        return () => {
-          console.log("return useEffect")
-          clearInterval(interval)
-        }        
-      }
+    //     return () => {
+    //       console.log("return useEffect")
+    //       clearInterval(interval)
+    //     }        
+    //   }
       
-    }, []);
+    // }, []);
    
 
     

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { auth } from "./../api/actions";
 import Layout from "../Layout/Layout.jsx";
+import { Constants } from "../utils/constants.js";
 // import Login from "./Forms/Autorization/Login.jsx";
 // import Registration from "./Forms/Autorization/Registration.jsx";
 //import SubscribePage from '../UserPage/subcribePage';
@@ -22,14 +23,34 @@ import AskDetails from "../Rides/AskDetails";
 import ConfirmedAsksList from "../Rides/ConfirmedAsksList";
 import ConfirmedOffer from "../Rides/ConfirmedOffer";
 import Notifications from "../../modules/Messages/Notifications";
+import { sseInitializer } from "../utils/sseInitializer.js";
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
   const dispatch = useDispatch();
+  const currentUser = useSelector((store) => store.user.currentUser);
 
   useEffect(() => {
     dispatch(auth());
-  });
+  }, []);
+
+  // useEffect(() => {
+  //   let eventSource;
+  //   if ("EventSource" in window) {
+  //     eventSource = new EventSource(`http://127.0.0.1:3090/stream`);
+  //   }
+  //   return () => eventSource.close();
+  // }, []);
+  useEffect(() => {
+    let eventSource;
+    if ("EventSource" in window) {
+      sseInitializer(eventSource);
+    }
+    return () => {
+      // eventSource.removeEventListener("message", handleReceiveMessage);
+      eventSource.close();
+    };
+  }, []);
 
   return (
     <Layout>

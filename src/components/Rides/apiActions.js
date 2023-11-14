@@ -4,7 +4,7 @@ export const createAsk = async ({ ...form }) => {
   //debugger;
   try {
     const response = await axios.post(
-      "http://localhost:9000/api/settings/createask",
+      "http://localhost:9000/api/busines/createask",
       {
         ...form,
       }
@@ -19,7 +19,7 @@ export const findRideById = async (rideItemId) => {
   //debugger;
   try {
     const response = await axios.get(
-      `http://localhost:9000/api/settings/findridebyid/${rideItemId}`
+      `http://localhost:9000/api/busines/findridebyid/${rideItemId}`
     );
     return response.data;
   } catch (e) {
@@ -31,7 +31,7 @@ export const askForSeat = async (rideItemId, applicant) => {
   //debugger;
   try {
     const response = await axios.post(
-      "http://localhost:9000/api/settings/addasktoride",
+      "http://localhost:9000/api/busines/addasktoride",
       {
         rideItemId,
         applicant,
@@ -48,7 +48,7 @@ export const confirmAsk = async (state) => {
   //console.log("state in debug", state);
   try {
     const response = await axios.post(
-      "http://localhost:9000/api/settings/confirm-ask",
+      "http://localhost:9000/api/busines/confirm-ask",
       { state }
     );
     return response;
@@ -67,7 +67,7 @@ export const unconfirmAsk = async (payload) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:9000/api/settings/unconfirm",
+      "http://localhost:9000/api/busines/unconfirm-ask",
       { payload }
     );
     return response.data;

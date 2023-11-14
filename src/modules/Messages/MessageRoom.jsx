@@ -1,34 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import s from './Messages.module.scss';
 // import Dialog from './MessageItem';
-//import TextArea from 'antd/es/input/TextArea';
 import Input from './Input';
 import { useNavigate } from 'react-router-dom';
 import { fetchDialog, sendMessage } from '../../components/api/actions';
 import { useSelector } from 'react-redux';
 
 
+
 export default function MessageRoom(props) {
   const author = useSelector((store) => store.user.currentUser);
-  console.log("author:", author)
+  
   const navigate = useNavigate();
   const [dialogId, setDialogId] = useState(null);
   const [error, setError] = useState(null);
   const [messages, setMessages] = useState([]);
-  const [text, setText] = useState("");  
-  console.log("message text:", text)
-  // console.log("state in MessageRoom:", props.state)
-  const refferedAskId = props.state.askItem._id;
+  const [text, setText] = useState("");
+  
+  console.log("author:", author)
+  console.log("dialogId:", dialogId)
+  console.log("messages:", messages)
+  console.log("message text:", text);
+  
+  // console.log("state in MessageRoom:", props.state)  
   const driver = props.state.rideItem.user;
   const passenger = props.state.askItem.user;
-  const referedAskId = props.state.askItem._id;
+  const refferedAskId = props.state.askItem._id;
   // console.log("refferedAskId", refferedAskId);
   // console.log("dialogId", dialogId);
   // console.log("messages", messages);
 
   const payload = {
     participants: [driver, passenger],
-    referedAsk: referedAskId,
+    referedAsk: refferedAskId,
     author: author.id,
     content: text,    
   };
@@ -36,20 +40,22 @@ export default function MessageRoom(props) {
   useEffect(() => {
     async function fetchMessages(payload) {
       let result = await fetchDialog (payload);
-      // if (result) {
-      //   setDialogId(result.data.data._id);
-      //   setMessages(result.data.data.body);
-      // }
-      // setMessages(result.data);
-      console.log("result in useEffect:", result);
+      if (result.data.status == "OK") {
+        setDialogId(result.data.data._id);
+        setMessages(result.data.data.body);
+        console.log("result in useEffect:", result.data);
+      } else return  
+      
     };
     fetchMessages(payload)
-  }, [refferedAskId]); //id?
+  }, [refferedAskId]); //id? 
+  
 
   const onSendMessage = async (e) => {
     e.stopPropagation();
-    console.log("payload in handler:", payload);
+    console.log("payload in SendMessagehandler:", payload);
     await sendMessage(payload);
+    // socket.emit( 'ROOM:JOIN', author)
   }
 
   return (

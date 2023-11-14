@@ -15,7 +15,7 @@ const UserRidesContainer = () => {
   const[ modalActive, setModalActive ] = useState(false);
   const[ rideForDelete, setRideForDelete] = useState(null);
   const[ ridesListUpdate, setRidesListUpdate ] = useState(false);
- 
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

@@ -11,7 +11,7 @@ const moment = require('moment');
 const UserRideCard = (props) => {  
   
   const {item, onAsksClickHandler, onConfirmedClickHandler, prepareRideForDelete} = props;
-  console.log("item:", item);
+  // console.log("item:", item);
   
   return (
    

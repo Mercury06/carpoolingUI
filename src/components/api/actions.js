@@ -52,7 +52,7 @@ export const auth = () => {
 
 export const findMyRidesApiAction = async (id) => {
   return axios
-    .get(`http://localhost:9000/api/settings/findmyrides/${id}`)
+    .get(`http://localhost:9000/api/busines/findmyrides/${id}`)
     .then((response) => {
       return response.data;
     });
@@ -62,7 +62,7 @@ export const deleteRide = async (rideItemId) => {
   //debugger;
   try {
     const response = await axios.post(
-      "http://localhost:9000/api/settings/delete-ride",
+      "http://localhost:9000/api/busines/delete-ride",
       { payload: rideItemId }
     );
     return response.data;
@@ -74,7 +74,7 @@ export const deleteRide = async (rideItemId) => {
 export const findOffers = async (offersIdArray) => {
   // debugger;
   return axios
-    .post("http://localhost:9000/api/settings/findoffers", offersIdArray)
+    .post("http://localhost:9000/api/busines/findoffers", offersIdArray)
     .then((response) => {
       return response.data;
     });
@@ -83,7 +83,7 @@ export const findOffers = async (offersIdArray) => {
 export const findAsksByIdArray = async (asksIdArray) => {
   // debugger;
   return axios
-    .post("http://localhost:9000/api/settings/findasks", asksIdArray)
+    .post("http://localhost:9000/api/busines/findasks", asksIdArray)
     .then((response) => {
       return {
         status: response.status,
@@ -94,7 +94,7 @@ export const findAsksByIdArray = async (asksIdArray) => {
 
 export const findMyAsksApiAction = async (id) => {
   return axios
-    .get(`http://localhost:9000/api/settings/findmyask/${id}`)
+    .get(`http://localhost:9000/api/busines/findmyask/${id}`)
     .then((response) => {
       return response.data;
     });
@@ -102,7 +102,7 @@ export const findMyAsksApiAction = async (id) => {
 
 export const findAskItemApiAction = async (id) => {
   return axios
-    .get(`http://localhost:9000/api/settings/findaskbyid/${id}`)
+    .get(`http://localhost:9000/api/busines/findaskbyid/${id}`)
     .then((response) => {
       return response.data;
     });
@@ -112,7 +112,7 @@ export const findLocs = async () => {
   //debugger
   try {
     const response = await axios.get(
-      "http://localhost:9000/api/settings/findlocs"
+      "http://localhost:9000/api/busines/findlocs"
     );
     const data = response.data;
     console.log(data);
@@ -127,7 +127,7 @@ export const fetchDialog = async (payload) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:9000/api/settings/fetch-dialog",
+      "http://localhost:9000/api/busines/fetch-dialog",
       { ...payload }
     );
     return response;
@@ -141,7 +141,7 @@ export const sendMessage = async ({ ...payload }) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:9000/api/settings/update-dialog",
+      "http://localhost:9000/api/busines/update-dialog",
       { ...payload }
     );
     console.log("response in action:", response);
@@ -150,22 +150,6 @@ export const sendMessage = async ({ ...payload }) => {
     console.log("error:", e.response);
   }
 };
-
-// export const getOffers = async (rideId, applicant) => {                //offers already exist (delete)
-//   //debugger;
-//   try {
-//     // const response = await axios.post(
-//     //   "http://localhost:9000/api/settings/addasktoride",
-//     //   {
-//     //     rideId,
-//     //     applicant,
-//     //   }
-//     // );
-//     // return response.data.result;
-//   } catch (e) {
-//     alert(e.response.data.message);
-//   }
-// };
 
 // export function findLocality(search) {
 //   return async (dispatch) => {
@@ -207,7 +191,7 @@ export async function findLocality(search) {
 
   try {
     const response = await axios.get(
-      `http://localhost:9000/api/settings/findlocality?search=${search}`
+      `http://localhost:9000/api/busines/findlocality?search=${search}`
     );
 
     console.log("response in api:", response);
