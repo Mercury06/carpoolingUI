@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { auth } from "./../api/actions";
@@ -23,16 +23,40 @@ import AskDetails from "../Rides/AskDetails";
 import ConfirmedAsksList from "../Rides/ConfirmedAsksList";
 import ConfirmedOffer from "../Rides/ConfirmedOffer";
 import Notifications from "../../modules/Messages/Notifications";
-import { sseInitializer } from "../utils/sseInitializer.js";
+// import { sseInitializer } from "../utils/sseInitializer.js";
+import { useSseInitializer } from "../utils/useSseInitializer.js";
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
   const dispatch = useDispatch();
   const currentUser = useSelector((store) => store.user.currentUser);
+  currentUser && console.log("currentUser:", currentUser);
+  const [message, setmessage] = useState(null);
+  const eventData = useSseInitializer();
+
+  // console.log("eventData at top:", eventData);
 
   useEffect(() => {
     dispatch(auth());
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await eventData;
+      console.log("data in useeffect: ", data);
+      setmessage(data);
+    };
+    fetchData();
+  }, [eventData]);
+  // useEffect(() => {
+  //   async function streamHandler(event) {
+  //     // console.log("event", event.data);
+  //     // const message = JSON.parse(event.data);
+
+  //     console.log("recievedData:", recievedData);
+  //     // setEventData(dataMes);
+
+  // }, []);
 
   // useEffect(() => {
   //   let eventSource;
@@ -41,16 +65,16 @@ function App() {
   //   }
   //   return () => eventSource.close();
   // }, []);
-  useEffect(() => {
-    let eventSource;
-    if ("EventSource" in window) {
-      sseInitializer(eventSource);
-    }
-    return () => {
-      // eventSource.removeEventListener("message", handleReceiveMessage);
-      eventSource.close();
-    };
-  }, []);
+  // useEffect(() => {
+  //   let eventSource;
+  //   if ("EventSource" in window) {
+  //     sseInitializer(eventSource, name);
+  //   }
+  //   return () => {
+  //     // eventSource.removeEventListener("message", handleReceiveMessage);
+  //     eventSource.close();
+  //   };
+  // }, [isAuth]);
 
   return (
     <Layout>
