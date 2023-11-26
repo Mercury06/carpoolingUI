@@ -30,9 +30,9 @@ function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
   const dispatch = useDispatch();
   const currentUser = useSelector((store) => store.user.currentUser);
-  currentUser && console.log("currentUser:", currentUser);
   const [message, setmessage] = useState(null);
-  const eventData = useSseInitializer();
+  const eventData = useSseInitializer(isAuth);
+  console.log("isAuth:", isAuth);
 
   // console.log("eventData at top:", eventData);
 
@@ -48,15 +48,6 @@ function App() {
     };
     fetchData();
   }, [eventData]);
-  // useEffect(() => {
-  //   async function streamHandler(event) {
-  //     // console.log("event", event.data);
-  //     // const message = JSON.parse(event.data);
-
-  //     console.log("recievedData:", recievedData);
-  //     // setEventData(dataMes);
-
-  // }, []);
 
   // useEffect(() => {
   //   let eventSource;

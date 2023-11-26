@@ -64,7 +64,7 @@ const Header = ({setOpenDropdown, isAuth}) => {
                 <>
                   <li>
                     <Link to="/ask-ride" onClick={menuToggleHandler}>
-                      <FaSearch size={14} /> <bn></bn>
+                      <FaSearch size={14} /> 
                       Find
                     </Link>
                   </li>
@@ -80,7 +80,7 @@ const Header = ({setOpenDropdown, isAuth}) => {
                 <>
                   <li>
                     <Link to="/ask-ride" onClick={menuToggleHandler}>
-                      <FaSearch size={14} /> <bn></bn>
+                      <FaSearch size={14} />
                       Find
                     </Link>
                   </li>

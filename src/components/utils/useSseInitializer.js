@@ -1,43 +1,44 @@
 import { Constants } from "./constants";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-export async function useSseInitializer() {
-  let eventSource;
+export async function useSseInitializer(isAuth) {
+  const eventSource = useRef(null);
   const [eventData, setEventData] = useState(null);
 
   useEffect(() => {
-    if ("EventSource" in window) {
-      eventSource = new EventSource(`${Constants.DEV_URL}/api/stream`, {
+    if ("EventSource" in window && isAuth) {
+      console.log("isAuth inside", isAuth);
+      eventSource.current = new EventSource(`${Constants.DEV_URL}/api/stream`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
 
-      eventSource.onmessage = (event) => {
+      eventSource.current.onmessage = (event) => {
         const message = JSON.parse(event.data);
         setEventData(message);
       };
 
-      eventSource.addEventListener("join", (event) => {
+      eventSource.current.addEventListener("join", (event) => {
         console.log("join", event);
       });
 
-      eventSource.onopen = (event) => {
+      eventSource.current.onopen = (event) => {
         // const message = JSON.parse(mes.data);
-        console.log("eventSource ", eventSource);
+        console.log("eventSource ", eventSource.current);
         console.log("eventSource opened...", event);
       };
 
-      eventSource.onerror = (event) => {
+      eventSource.current.onerror = (event) => {
         // const message = JSON.parse(mes.data);
         console.log("error occured...", event);
-        eventSource.close(JSON.stringify({ user: "user1" }));
+        eventSource.current.close(JSON.stringify({ user: "user1" }));
       };
     }
 
     return () => {
       // eventSource.removeEventListener("message", handleReceiveMessage);
-      eventSource.close();
+      eventSource.current.close();
     };
-  }, []);
+  }, [isAuth]);
 
   return eventData;
 }

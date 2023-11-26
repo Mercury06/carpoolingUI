@@ -1,6 +1,6 @@
 import axios from "axios";
 import { stopSubmit } from "redux-form";
-import { setSuggestedRidesActionCreator } from "../../reducers/rideReducer";
+// import { setSuggestedRidesActionCreator } from "../../reducers/rideReducer";
 import { setUser } from "./../../reducers/userReducer";
 
 // export const registration = async ({ ...form }) => {
@@ -44,7 +44,7 @@ export const auth = () => {
       dispatch(setUser(response.data.user));
       localStorage.setItem("token", response.data.token);
     } catch (e) {
-      console.log("not authorized:", e.response.data.message);
+      console.log("not authorized:", e.response);
       localStorage.removeItem("token");
     }
   };
