@@ -31,23 +31,27 @@ function App() {
   const dispatch = useDispatch();
   const currentUser = useSelector((store) => store.user.currentUser);
   const [message, setmessage] = useState(null);
-  const eventData = useSseInitializer(isAuth);
-  console.log("isAuth:", isAuth);
-
+  // const eventData = useSseInitializer(isAuth, currentUser);
+  useSseInitializer(isAuth, currentUser);
+  // console.log("currentUser at top:", currentUser);
   // console.log("eventData at top:", eventData);
 
   useEffect(() => {
     dispatch(auth());
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await eventData;
-      console.log("data in useeffect: ", data);
-      setmessage(data);
-    };
-    fetchData();
-  }, [eventData]);
+  // useEffect(() => {
+  //   sseInitializer(isAuth);
+  // }, []);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await eventData;
+  //     console.log("data in useeffect: ", data);
+  //     setmessage(data);
+  //   };
+  //   fetchData();
+  // }, []);
 
   // useEffect(() => {
   //   let eventSource;
@@ -94,6 +98,7 @@ function App() {
         )}
         {isAuth && <Route path="create-ride" element={<RideCreateForm />} />}
         {isAuth && <Route path="ask-ride" element={<AskForm />} />}
+        {!isAuth && <Route path="ask-ride" element={<AskForm />} />}
         {isAuth && <Route path="rides-search" element={<RidesSearchList />} />}
         {isAuth && <Route path="offers-list" element={<OffersList />} />}
         {isAuth && <Route path="asks-list" element={<AsksList />} />}

@@ -30,6 +30,7 @@ const UserRidesContainer = () => {
 
   const onAsksClickHandler = async (e, item) => {
     e.stopPropagation(); 
+    if (!item) return
     let asksIdArray = item.asks.map( el => el._id);   
     let fetchedAsks = await findAsksByIdArray(asksIdArray);   
     dispatch(setRideAsksActionCreator(fetchedAsks.data));
@@ -38,6 +39,7 @@ const UserRidesContainer = () => {
 
   const onConfirmedClickHandler = async (e, item) => {
     e.stopPropagation();
+    if (!item) return
     let confirmedAsksIdArray = item.passengers.map( el => el._id);    
     let fetchedConfirmedAsks = await findAsksByIdArray(confirmedAsksIdArray);    
     dispatch(setConfirmedAsksActionCreator(fetchedConfirmedAsks.data));
@@ -53,6 +55,7 @@ const UserRidesContainer = () => {
 
   const deleteRideHandler = async (e, rideForDelete) => {
     e.stopPropagation();
+    if (!rideForDelete) return
     //console.log("rideItem delete handler:", rideForDelete)
     const result = await deleteRide(rideForDelete);
     //console.log("result from delete_ride");

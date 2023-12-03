@@ -1,44 +1,54 @@
 import { Constants } from "./constants";
 import { useEffect, useState, useRef } from "react";
 
-export async function useSseInitializer(isAuth) {
+export async function useSseInitializer(isAuth, currentUser) {
   const eventSource = useRef(null);
+  const userId = currentUser.id;
+  let reconnectTimer;
+
   const [eventData, setEventData] = useState(null);
+  // console.log("userId in hook:", userId);
+  console.log("eventData in hook:", eventData);
 
   useEffect(() => {
-    if ("EventSource" in window && isAuth) {
-      console.log("isAuth inside", isAuth);
-      eventSource.current = new EventSource(`${Constants.DEV_URL}/api/stream`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
-
-      eventSource.current.onmessage = (event) => {
-        const message = JSON.parse(event.data);
-        setEventData(message);
-      };
-
-      eventSource.current.addEventListener("join", (event) => {
-        console.log("join", event);
-      });
-
-      eventSource.current.onopen = (event) => {
-        // const message = JSON.parse(mes.data);
-        console.log("eventSource ", eventSource.current);
-        console.log("eventSource opened...", event);
-      };
-
-      eventSource.current.onerror = (event) => {
-        // const message = JSON.parse(mes.data);
-        console.log("error occured...", event);
-        eventSource.current.close(JSON.stringify({ user: "user1" }));
-      };
-    }
+    let createSseConnection = () => {
+      if (eventSource.current) {
+        console.log("CATCHED...");
+      }
+      if ("EventSource" in window && isAuth) {
+        eventSource.current = new EventSource(
+          `${Constants.DEV_URL}/api/stream/${userId}`
+        );
+        eventSource.current.onmessage = (event) => {
+          const message = JSON.parse(event.data);
+          setEventData(message);
+        };
+        eventSource.current.addEventListener("join", (event) => {
+          console.log("join event recieved...", event);
+        });
+        eventSource.current.onopen = (event) => {
+          // const message = JSON.parse(mes.data);
+          console.log("eventSource ", eventSource.current);
+          console.log("eventSource opened...", event);
+        };
+        eventSource.current.onerror = (event) => {
+          // const message = JSON.parse(mes.data);
+          console.log("error occured...", event);
+          eventSource.current.close();
+          reconnectTimer = setTimeout(() => {
+            createSseConnection();
+          }, 1000);
+        };
+      }
+    };
+    createSseConnection();
 
     return () => {
       // eventSource.removeEventListener("message", handleReceiveMessage);
+      clearTimeout(reconnectTimer);
       eventSource.current.close();
     };
-  }, [isAuth]);
+  }, [isAuth, userId]);
 
   return eventData;
 }
@@ -75,3 +85,47 @@ export async function useSseInitializer(isAuth) {
 //         }
 //         streamHandler(event);
 //       };
+
+//////////////////************************* */////////////
+
+// useEffect(() => {
+//   if ("EventSource" in window && isAuth) {
+//     eventSource.current = new EventSource(
+//       `${Constants.DEV_URL}/api/stream/${userId}`
+//     );
+
+//     eventSource.current.onmessage = (event) => {
+//       const message = JSON.parse(event.data);
+//       setEventData(message);
+//     };
+
+//     eventSource.current.addEventListener("join", (event) => {
+//       console.log("join event recieved...", event);
+//     });
+
+//     eventSource.current.onopen = (event) => {
+//       // const message = JSON.parse(mes.data);
+//       console.log("eventSource ", eventSource.current);
+//       console.log("eventSource opened...", event);
+//     };
+
+//     // eventSource.current.addEventListener("close", (event) => {
+//     //   console.log("close", event);
+//     // });
+
+//     // eventSource.current.addEventListener("end", (event) => {
+//     //   console.log("end", event);
+//     // });
+
+//     eventSource.current.onerror = (event) => {
+//       // const message = JSON.parse(mes.data);
+//       console.log("error occured...", event);
+//       eventSource.current.close();
+//     };
+
+//     return () => {
+//       // eventSource.removeEventListener("message", handleReceiveMessage);
+//       eventSource.current.close();
+//     };
+//   }
+// }, [isAuth, userId]);

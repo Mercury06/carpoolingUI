@@ -29,7 +29,7 @@ export const login = ({ ...form }) => {
       }
     } catch (e) {
       console.log("error:", e);
-      let message = e.response.data.message;
+      let message = e.response.data;
       dispatch(stopSubmit("login", { _error: message }));
     }
   };
