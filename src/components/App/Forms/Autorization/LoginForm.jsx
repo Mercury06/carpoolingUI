@@ -65,6 +65,8 @@ const LoginForm = (props) => {
                 <a href="#">Forgot password?</a>
             </div>
             <button type="submit" className={s.btn}>SIGN IN</button>
+            <div className={s.login_register}><p> or continue with </p></div>
+            <button type="submit" className={s.btn}>GOOGLE</button>
             {/* <div className={s.login_register}><p>Don`t have an account? <a href="#" className={s.register_link}>Register</a></p></div> */}
             <div className={s.login_register}><p>Don`t have an account? <Link to="/registration" className={s.register_link}>Register</Link></p></div>
         </form>

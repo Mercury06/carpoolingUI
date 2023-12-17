@@ -12,7 +12,7 @@ import { LogoIcon } from '../assets/svg/BoxIcons';
 
 
 
-const Header = ({setOpenDropdown, isAuth}) => {
+const Header = ({setOpenDropdown, isAuth, userIconRef, openDropdown, dropDownMenuRef}) => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);  
   const [size, setSize] = useState({
@@ -22,6 +22,7 @@ const Header = ({setOpenDropdown, isAuth}) => {
   const user = useSelector((state) => state.user.currentUser);
   const login = user.username;  
   const dispatch = useDispatch();
+  console.log("openDropdown on top", openDropdown)
 
   useEffect(() => {
     const handleResize = () => {
@@ -44,7 +45,6 @@ const Header = ({setOpenDropdown, isAuth}) => {
   const menuToggleHandler = () => {
     setMenuOpen(() => !menuOpen);
   }; 
-
   
   return (
     <>
@@ -105,8 +105,20 @@ const Header = ({setOpenDropdown, isAuth}) => {
                         <div className={classes.header__content_manage_icons_counter}>3</div>
                     </div>                      
                     
-                      <div className={classes.header__content_manage_usericon} onClick={() => setOpenDropdown(((prev) => !prev))}><FaUserCircle size="24"/></div>                                          
-                    
+                      <div ref={userIconRef} className={classes.header__content_manage_usericon} onClick={() => setOpenDropdown(((prev) => !prev))}>
+                      {/* <div ref={userIconRef} className={classes.header__content_manage_usericon} onClick={(e) => onIconClickHandler(e)}> */}
+                        <FaUserCircle size="24"/>
+                      </div>                                          
+                      {/* <div className={classes.header__content_manage_usericon}  */}
+                            {/* // onMouseEnter={() => setOpenDropdown(true)}
+                            // onMouseLeave={() => setOpenDropdown(false)} 
+                            // onMouseLeave={(e)=>console.log("e", e)} 
+                            // onMouseEnter={(e)=>console.log("e.current", e.target, "dropDownMenuRef", dropDownMenuRef.current)}  
+                            // onMouseEnter={(e)=>{if(e.target === userIconRef.current) console.log("TRUE")}}                          */}
+                            
+                            {/* ref={userIconRef} onClick={(e)=>console.log(userIconRef)}> */}
+                              {/* <FaUserCircle size="24"/>
+                      </div>    */}
                   </div>
                 </>
               )}

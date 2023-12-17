@@ -27,13 +27,13 @@ export const findRideById = async (rideItemId) => {
   }
 };
 
-export const askForSeat = async (rideItemId, applicant) => {
+export const askForSeat = async (rideItem, applicant) => {
   //debugger;
   try {
     const response = await axios.post(
       "http://localhost:9000/api/busines/addasktoride",
       {
-        rideItemId,
+        rideItem,
         applicant,
       }
     );

@@ -12,19 +12,17 @@ export async function useSseInitializer(isAuth, currentUser) {
 
   useEffect(() => {
     let createSseConnection = () => {
-      if (eventSource.current) {
-        console.log("CATCHED...");
-      }
       if ("EventSource" in window && isAuth) {
         eventSource.current = new EventSource(
           `${Constants.DEV_URL}/api/stream/${userId}`
         );
         eventSource.current.onmessage = (event) => {
           const message = JSON.parse(event.data);
-          setEventData(message);
+          // setEventData(message);
+          console.log("eventSource onmessage...", message);
         };
-        eventSource.current.addEventListener("join", (event) => {
-          console.log("join event recieved...", event);
+        eventSource.current.addEventListener("opportune", (event) => {
+          console.log("OPPORTUNE event recieved...", event);
         });
         eventSource.current.onopen = (event) => {
           // const message = JSON.parse(mes.data);
@@ -46,7 +44,7 @@ export async function useSseInitializer(isAuth, currentUser) {
     return () => {
       // eventSource.removeEventListener("message", handleReceiveMessage);
       clearTimeout(reconnectTimer);
-      eventSource.current.close();
+      eventSource.current?.close();
     };
   }, [isAuth, userId]);
 
