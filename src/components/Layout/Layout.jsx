@@ -5,52 +5,53 @@ import Header from './../Header/Header';
 import DropDownMenu from '../Header/DropDownMenu';
 import classes from './Layout.module.scss';
 import { useSelector } from 'react-redux';
+import NotificationMenu from '../Header/NotificationMenu';
 
 
 const Layout = ({ children }) => {
   const [openDropdown, setOpenDropdown] = useState(false);
+  const [openNotifications, setOpenNotifications] = useState(false);
   const isAuth = useSelector((state) => state.user.isAuth);
   const user = useSelector((state) => state.user.currentUser); 
   const userIconRef = useRef();
   const dropDownMenuRef = useRef();
+  const notificationIconRef = useRef();
+  const notificationMenuRef = useRef();
 
-  const dropDownMenuHandler = (e) => {        
-    // if(openDropdown && dropDownMenuRef.current && !dropDownMenuRef.current.contains(e.target)){
-    //   // console.log("userIconRef.current", userIconRef.current)
-    //   // console.log("e.target", e.target)
-    //   console.log("CONDITIONS WORKS")      
-    //   setOpenDropdown(false)
-    // }
-    if(!dropDownMenuRef.current.contains(e.target) && !userIconRef.current.contains(e.target)){
-      // console.log("userIconRef.current", userIconRef.current)
-      // console.log("e.target", e.target)
-      console.log("CONDITIONS WORKS")      
+  const dropDownMenuHandler = (e) => {     
+    if(!dropDownMenuRef.current?.contains(e.target) && !userIconRef.current?.contains(e.target)){        
       setOpenDropdown(false)
+    }    
+  }  
+  const notificationMenuHandler = (e) => {     
+    if(!notificationIconRef.current?.contains(e.target) && !notificationMenuRef.current?.contains(e.target)){        
+      setOpenNotifications(false)
+    }    
+  }  
+  useEffect(() => {      
+    document.addEventListener("click", dropDownMenuHandler)    
+    return () => {
+      document.removeEventListener("click", dropDownMenuHandler);
+      console.log("UNMOUNT1")    
     }
-    // if(openDropdown && e.target !== dropDownMenuRef.current){
-    //   // console.log("userIconRef.current", userIconRef.current)
-    //   // console.log("e.target", e.target)
-    //   console.log("dropDownMenuRef.current", dropDownMenuRef.current)       
-    //   dropDownMenuRef.current.contains(e.target) ? console.log("CONTAINS") : console.log("NOT CONTAINS")
-      
-    //   // console.log("HANDLER", e.target)
-    //   setOpenDropdown(false) 
-    // }
-  }
-  
-  useEffect(() => {    
-   
-    document.addEventListener("click", dropDownMenuHandler)      
-   
-    return () => document.removeEventListener("click", dropDownMenuHandler);     
-      
+  }, [])
+
+  useEffect(() => {      
+    // console.log("notificationIconRef", notificationIconRef.current)
+    // console.log("notificationMenuRef", notificationMenuRef.current)
+    document.addEventListener("click", notificationMenuHandler)    
+    return () => {
+      document.removeEventListener("click", notificationMenuHandler);
+      console.log("UNMOUNT2")    
+    }
   }, [])
 
   return (
     <>
-      <Header setOpenDropdown={setOpenDropdown} openDropdown={openDropdown} isAuth={isAuth} userIconRef={userIconRef} dropDownMenuRef={dropDownMenuRef}/>      
+      <Header setOpenNotifications={setOpenNotifications} setOpenDropdown={setOpenDropdown} openDropdown={openDropdown} isAuth={isAuth} userIconRef={userIconRef} notificationIconRef={notificationIconRef}/>      
       { isAuth && <DropDownMenu openDropdown={openDropdown} user={user} 
                                 dropDownMenuRef={dropDownMenuRef}/> } 
+      { isAuth && <NotificationMenu openNotifications={openNotifications} notificationMenuRef={notificationMenuRef}/>}                         
       <div className={classes.container}>{children}</div>
       {/* <Content />
       <Footer /> */}

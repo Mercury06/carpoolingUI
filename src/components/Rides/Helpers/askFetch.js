@@ -13,7 +13,7 @@ export default async function askFetch(state) {
     const applicant = askItem;
     const result = await askForSeat(rideItem, applicant);
     console.log("ask_without_create:", result);
-    return result;
+    return { result, applicant };
   } else {
     const createAskResult = await createAsk(searchRidesParams);
     //console.log("createAskResult", createAskResult);

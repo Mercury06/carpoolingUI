@@ -1,7 +1,7 @@
 import axios from "axios";
 import { stopSubmit } from "redux-form";
 // import { setSuggestedRidesActionCreator } from "../../reducers/rideReducer";
-import { setUser } from "./../../reducers/userReducer";
+import { setNotifications, setUser } from "./../../reducers/userReducer";
 
 // export const registration = async ({ ...form }) => {
 //   //debugger
@@ -41,13 +41,28 @@ export const auth = () => {
       const response = await axios.get("http://localhost:9000/api/auth/auth", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
-      dispatch(setUser(response.data.user));
-      localStorage.setItem("token", response.data.token);
+      if (response.statusText === "OK" && response.status !== 403) {
+        dispatch(setUser(response.data.user));
+        localStorage.setItem("token", response.data.token);
+      } else {
+        localStorage.removeItem("token");
+      }
     } catch (e) {
       console.log("not authorized:", e.response);
       localStorage.removeItem("token");
     }
   };
+};
+
+export const fetchNotifications = (userId) => async (dispatch) => {
+  try {
+    const response = await axios
+      .get(`http://localhost:9000/api/busines/find-notifications/${userId}`)
+      .then((response) => response.data);
+    dispatch(setNotifications(response.notifications));
+  } catch (e) {
+    console.log(":", e.response);
+  }
 };
 
 export const findMyRidesApiAction = async (id) => {

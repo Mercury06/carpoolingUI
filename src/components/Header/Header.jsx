@@ -12,8 +12,9 @@ import { LogoIcon } from '../assets/svg/BoxIcons';
 
 
 
-const Header = ({setOpenDropdown, isAuth, userIconRef, openDropdown, dropDownMenuRef}) => {
-  const navigate = useNavigate();
+const Header = ({setOpenDropdown, setOpenNotifications, isAuth, userIconRef, notificationIconRef}) => {
+  const notifications = useSelector((state) => state.user.notifications);
+  const navigate = useNavigate();  
   const [menuOpen, setMenuOpen] = useState(false);  
   const [size, setSize] = useState({
     width: undefined,
@@ -22,7 +23,6 @@ const Header = ({setOpenDropdown, isAuth, userIconRef, openDropdown, dropDownMen
   const user = useSelector((state) => state.user.currentUser);
   const login = user.username;  
   const dispatch = useDispatch();
-  console.log("openDropdown on top", openDropdown)
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,7 +45,7 @@ const Header = ({setOpenDropdown, isAuth, userIconRef, openDropdown, dropDownMen
   const menuToggleHandler = () => {
     setMenuOpen(() => !menuOpen);
   }; 
-  
+
   return (
     <>
       <header className={classes.header}>
@@ -100,9 +100,10 @@ const Header = ({setOpenDropdown, isAuth, userIconRef, openDropdown, dropDownMen
                     </Link>
                   </li>
                   <div className={classes.header__content_manage}>
-                    <div className={classes.header__content_manage_icons} onClick={() => navigate("notifications")}>
+                    {/* <div className={classes.header__content_manage_icons} onClick={() => navigate("notifications")}> */}
+                    <div ref={notificationIconRef} className={classes.header__content_manage_icons} onClick={() => setOpenNotifications(((prev) => !prev))}>
                         <div><IoNotificationsOutline size="24"/></div>
-                        <div className={classes.header__content_manage_icons_counter}>3</div>
+                        <div className={classes.header__content_manage_icons_counter}>{notifications.length}</div>
                     </div>                      
                     
                       <div ref={userIconRef} className={classes.header__content_manage_usericon} onClick={() => setOpenDropdown(((prev) => !prev))}>

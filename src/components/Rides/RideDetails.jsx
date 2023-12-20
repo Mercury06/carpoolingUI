@@ -26,11 +26,11 @@ const RideDetails = () => {
     useEffect(()=>{        
         
         async function fetchData(offerId) {
-          const fetchedRideItem = await findRideById(offerId)
-          // console.log("fetchedRideItem in useEffect:", fetchedRideItem)
-          let asksIdArray = fetchedRideItem.asks.map((el) => el._id);
-          // console.log("asksIdArray in useEffect:", asksIdArray)
-          asksIdArray.includes(state.askItem?._id) ? setFetched(true) : console.log("NOT INCLUDES")
+          const fetchedRideItem = await findRideById(offerId)          
+          if(fetchedRideItem){
+            let asksIdArray = fetchedRideItem.asks.map((el) => el._id);
+            asksIdArray.includes(state.askItem?._id) ? setFetched(true) : console.log("NOT INCLUDES")
+          }          
         }
         fetchData(offerId);//edit
         
@@ -60,17 +60,12 @@ const RideDetails = () => {
         console.log("state:", state)
         e.stopPropagation();
         setLoading(true);
-        const { result, applicant } = await askFetch(state);
-        console.log("result from click:", result.status)
-        // console.log("result from click:", result)
-        // console.log("applicant from click:", applicant)
-        if (result.status === "OK") {   
-          console.log("result.status.OK:", result)         
+        const { result, applicant } = await askFetch(state);     
+        if (result.status === "OK") {  
             setTimeout(() => {  
                 setLoading(false);
                 setFetched(true);
-                setApplicant(applicant);
-                console.log("applicant after response:", applicant)
+                setApplicant(applicant);                
             }, 1000)
         } else {
             setRejected(true);

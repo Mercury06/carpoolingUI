@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { auth } from "./../api/actions";
+import { auth, fetchNotifications } from "./../api/actions";
 import Layout from "../Layout/Layout.jsx";
 import { Constants } from "../utils/constants.js";
 // import Login from "./Forms/Autorization/Login.jsx";
@@ -28,6 +28,7 @@ import { useSseInitializer } from "../utils/useSseInitializer.js";
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
+
   const dispatch = useDispatch();
   const currentUser = useSelector((store) => store.user.currentUser);
   const [message, setmessage] = useState(null);
@@ -38,7 +39,15 @@ function App() {
 
   useEffect(() => {
     dispatch(auth());
+    console.log("DISPATCHED AUTH");
   }, []);
+
+  useEffect(() => {
+    const userId = currentUser.id;
+    if (userId) {
+      dispatch(fetchNotifications(userId));
+    }
+  }, [isAuth]);
 
   // useEffect(() => {
   //   sseInitializer(isAuth);
