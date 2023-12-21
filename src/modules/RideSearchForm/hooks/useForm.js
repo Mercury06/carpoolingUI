@@ -135,6 +135,7 @@ function useFormValidation(initialState, validate) {
   async function findRidesHandleSubmit(event) {
     //debugger;
     event.preventDefault();
+    // console.log("inputValues", inputValues);
     dispatch(setSearchRidesParamsActionCreator(inputValues));
     dispatch(findRidesByParamsThunkCreator(inputValues));
     navigate("/rides-search");
@@ -144,7 +145,6 @@ function useFormValidation(initialState, validate) {
     //const validationErrors = validate(inputValues);
     //setErrors(validationErrors);
     //setSubmitting(true);
-    //console.log(inputValues);
   }
 
   const onChangeDateHandler = (value) => {

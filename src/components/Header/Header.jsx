@@ -90,7 +90,7 @@ const Header = ({setOpenDropdown, setOpenNotifications, isAuth, userIconRef, not
                     </Link>
                   </li>
                   <li>
-                    <Link to="/myrides" onClick={menuToggleHandler}>
+                    <Link to="/myrides" onClick={menuToggleHandler}>                    
                       My rides
                     </Link>
                   </li>

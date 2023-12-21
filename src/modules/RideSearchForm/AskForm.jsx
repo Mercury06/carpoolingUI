@@ -155,7 +155,7 @@ const AskForm = (props) => {
 
           <div>
             {/* <button disabled={isSubmitting} type="submit"> */}
-            <button type="submit">Find ride</button>
+            <button type="submit">Find ride</button>            
           </div>
         </form>
       </div>

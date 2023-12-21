@@ -18,33 +18,59 @@ const Layout = ({ children }) => {
   const notificationIconRef = useRef();
   const notificationMenuRef = useRef();
 
-  const dropDownMenuHandler = (e) => {     
-    if(!dropDownMenuRef.current?.contains(e.target) && !userIconRef.current?.contains(e.target)){        
-      setOpenDropdown(false)
-    }    
-  }  
-  const notificationMenuHandler = (e) => {     
-    if(!notificationIconRef.current?.contains(e.target) && !notificationMenuRef.current?.contains(e.target)){        
-      setOpenNotifications(false)
-    }    
-  }  
-  useEffect(() => {      
-    document.addEventListener("click", dropDownMenuHandler)    
-    return () => {
-      document.removeEventListener("click", dropDownMenuHandler);
-      console.log("UNMOUNT1")    
-    }
-  }, [])
 
-  useEffect(() => {      
-    // console.log("notificationIconRef", notificationIconRef.current)
-    // console.log("notificationMenuRef", notificationMenuRef.current)
-    document.addEventListener("click", notificationMenuHandler)    
+  const menuOnClickHandler = (e) => {    
+        
+    if(!dropDownMenuRef.current.contains(e.target) && !userIconRef.current.contains(e.target)){     
+      console.log("HANDLEr1")         
+      setOpenDropdown(false)
+    } else return
+  }  
+  const notificationMenuHandler = (e) => {    
+        
+    if(!notificationIconRef.current?.contains(e.target) && !notificationMenuRef.current?.contains(e.target)){   
+      console.log("HANDLEr2")      
+      setOpenNotifications(false)      
+    } else return   
+  } 
+  const handleClick = (e) => {
+    menuOnClickHandler(e);
+    notificationMenuHandler(e);
+  }
+  useEffect(() => {          
+    document.addEventListener("click", handleClick)    
     return () => {
-      document.removeEventListener("click", notificationMenuHandler);
+      document.removeEventListener("click", menuOnClickHandler);
       console.log("UNMOUNT2")    
     }
   }, [])
+  // const dropDownMenuHandler = (e) => {
+  //   console.log("HANDLEr1")     
+  //   if(!dropDownMenuRef.current?.contains(e.target) && !userIconRef.current?.contains(e.target)){        
+  //     setOpenDropdown(false)
+  //   }    
+  // }  
+  // const notificationMenuHandler = (e) => {    
+  //   console.log("HANDLEr2")     
+  //   if(!notificationIconRef.current?.contains(e.target) && !notificationMenuRef.current?.contains(e.target)){        
+  //     setOpenNotifications(false)
+  //   }    
+  // }  
+  // useEffect(() => {      
+  //   document.addEventListener("click", dropDownMenuHandler)    
+  //   return () => {
+  //     document.removeEventListener("click", dropDownMenuHandler);
+  //     console.log("UNMOUNT1")    
+  //   }
+  // }, [])
+
+  // useEffect(() => {          
+  //   document.addEventListener("click", notificationMenuHandler)    
+  //   return () => {
+  //     document.removeEventListener("click", notificationMenuHandler);
+  //     console.log("UNMOUNT2")    
+  //   }
+  // }, [])
 
   return (
     <>

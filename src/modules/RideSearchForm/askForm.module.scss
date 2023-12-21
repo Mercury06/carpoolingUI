@@ -3,6 +3,7 @@
 .container {
   //height: calc(100vh - #{$headerHeight});
   background: green;
+  z-index: 2;
   // display: flex;
   // justify-content: center;
   // align-items: center;
