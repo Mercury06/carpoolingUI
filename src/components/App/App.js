@@ -109,6 +109,7 @@ function App() {
         {isAuth && <Route path="ask-ride" element={<AskForm />} />}
         {!isAuth && <Route path="ask-ride" element={<AskForm />} />}
         {isAuth && <Route path="rides-search" element={<RidesSearchList />} />}
+        {!isAuth && <Route path="rides-search" element={<RidesSearchList />} />}
         {isAuth && <Route path="offers-list" element={<OffersList />} />}
         {isAuth && <Route path="asks-list" element={<AsksList />} />}
         {isAuth && (

@@ -9,12 +9,8 @@ const NotificationMenu = ({openNotifications, notificationMenuRef, children}) =>
     const notifications = useSelector((state) => state.user.notifications);
     
     return (    
-        <div ref={notificationMenuRef} className={`${classes.notificationmenu_wrap} ${ openNotifications ? classes.active : ''}`}>
-            <div className={classes.notificationmenu}>
-                {/* <p>Notifications</p> */}
-                {/* <div>{children}</div> */}
-                {notifications.map((item) => <NotificationItem key={item._id} />)}
-            </div>                
+        <div ref={notificationMenuRef} className={`${classes.notificationmenu_wrap} ${ openNotifications ? classes.active : ''}`}>         
+            {notifications.map((item) => <NotificationItem item={item} openNotifications={openNotifications} key={item._id} />)}  
         </div>
     )
 }

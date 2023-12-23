@@ -4,11 +4,12 @@ import { useDispatch } from "react-redux";
 
 
 
-const NotificationItem = () => {   
+const NotificationItem = ({ item, openNotifications}) => {   
     
     return (    
         <div className={classes.notification_item}>
-            <p>some notification</p>
+        {/* // <div className={`${classes.notification_item} ${ openNotifications ? classes.active : ''}`}> */}
+            <p>{item.event}</p>
         </div>
     )
 }

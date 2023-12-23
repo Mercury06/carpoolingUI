@@ -21,19 +21,21 @@ const Layout = ({ children }) => {
 
   const menuOnClickHandler = (e) => {    
         
-    if(!dropDownMenuRef.current.contains(e.target) && !userIconRef.current.contains(e.target)){     
-      console.log("HANDLEr1")         
+    if(!dropDownMenuRef.current?.contains(e.target) && !userIconRef.current?.contains(e.target)){   
       setOpenDropdown(false)
     } else return
   }  
   const notificationMenuHandler = (e) => {    
         
-    if(!notificationIconRef.current?.contains(e.target) && !notificationMenuRef.current?.contains(e.target)){   
-      console.log("HANDLEr2")      
+    if(!notificationIconRef.current?.contains(e.target) && !notificationMenuRef.current?.contains(e.target)){ 
+      console.log("switch of")       
       setOpenNotifications(false)      
     } else return   
   } 
   const handleClick = (e) => {
+    console.log("e.target", e.target)
+    console.log("openNotifications", openNotifications)
+
     menuOnClickHandler(e);
     notificationMenuHandler(e);
   }
