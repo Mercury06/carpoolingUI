@@ -1,17 +1,20 @@
 import axios from "axios";
-import { stopSubmit } from "redux-form";
+// import { stopSubmit } from "redux-form";
 // import { setSuggestedRidesActionCreator } from "../../reducers/rideReducer";
 import { setNotifications, setUser } from "./../../reducers/userReducer";
 
-// export const registration = async ({ ...form }) => {
-//   //debugger
-//   try {
-//     //const response = await axios.post("http://localhost:9000/api/auth/registration", { ...form})
-//     // console.log(response.data.message)
-//   } catch (e) {
-//     alert(e.response.data.message);
-//   }
-// };
+export const registration = async ({ ...form }) => {
+  //debugger
+  try {
+    const response = await axios.post(
+      "http://localhost:9000/api/auth/registration",
+      { ...form }
+    );
+    console.log(response.data.message);
+  } catch (e) {
+    alert(e.response.data.message);
+  }
+};
 
 export const login = ({ ...form }) => {
   //debugger;
@@ -28,9 +31,9 @@ export const login = ({ ...form }) => {
         localStorage.setItem("token", response.data.token);
       }
     } catch (e) {
-      console.log("error:", e);
-      let message = e.response.data;
-      dispatch(stopSubmit("login", { _error: message }));
+      console.log("error:", e.response.data);
+      // let message = e.response.data;
+      // dispatch(stopSubmit("login", { _error: message }));
     }
   };
 };
@@ -44,8 +47,10 @@ export const auth = () => {
       if (response.statusText === "OK" && response.status !== 403) {
         dispatch(setUser(response.data.user));
         localStorage.setItem("token", response.data.token);
+        alert("set new token!"); //edit
       } else {
         localStorage.removeItem("token");
+        alert("removed token!"); //edit
       }
     } catch (e) {
       console.log("not authorized:", e.response);

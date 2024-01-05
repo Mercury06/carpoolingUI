@@ -21,8 +21,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-form": "^8.3.10",
     "redux-thunk": "^2.4.1",
-    "sass": "^1.54.3",
-    "web-vitals": "^2.1.4"
+    "sass": "^1.54.3"
   },
   "scripts": {
     "start": "react-scripts start",
