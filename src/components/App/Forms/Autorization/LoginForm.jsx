@@ -6,6 +6,7 @@ import { BiLockAlt } from 'react-icons/bi';
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { login } from '../../../api/actions';
+import { jwtDecode } from "jwt-decode";
 import { Constants } from "../../../utils/constants";
 
 import s from './autorization.module.scss';
@@ -16,6 +17,8 @@ const LoginForm = (props) => {
 
   function googleResponseHandler(res) {
     console.log("googleResponse", res)
+    console.log('length', Object.keys(res).length !== 0)
+    console.log('jwtDecode', jwtDecode(res.credential))
     // setUser(response.data.user);
     // localStorage.setItem("token", response.data.token);
   }

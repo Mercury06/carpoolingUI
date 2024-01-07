@@ -27,15 +27,11 @@ const Layout = ({ children }) => {
   }  
   const notificationMenuHandler = (e) => {    
         
-    if(!notificationIconRef.current?.contains(e.target) && !notificationMenuRef.current?.contains(e.target)){ 
-      console.log("switch of")       
+    if(!notificationIconRef.current?.contains(e.target) && !notificationMenuRef.current?.contains(e.target)){            
       setOpenNotifications(false)      
     } else return   
   } 
-  const handleClick = (e) => {
-    console.log("e.target", e.target)
-    console.log("openNotifications", openNotifications)
-
+  const handleClick = (e) => {  
     menuOnClickHandler(e);
     notificationMenuHandler(e);
   }
