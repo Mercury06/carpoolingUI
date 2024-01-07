@@ -1,18 +1,7 @@
 export default function validateForm(e) {
   let errors = {};
   //   console.log("target name in validate", e.target.name);
-  //   if (e.target.name === "firstName" && value.trim() !== "") {
-  //     if (!/^[A-Za-z]+/.test(value)) {
-  //       errors.firstName = "enter a valid characters";
-  //     } else if (value.length < 4) {
-  //       console.log("value.length < 4", value);
-  //       errors.firstName = "sign 4 characters or more";
-  //     } else if (value.length < 1 || value === "") {
-  //       errors.firstName = null;
-  //     } else if (value.length > 3) {
-  //       errors.firstName = null;
-  //     } else errors.firstName = null;
-  //   }
+
   if (e.target.name === "firstName" && e.target.value.trim() !== "") {
     // console.log("target name in si firstName");
     if (!/^[A-Za-z]+/.test(e.target.value)) {
@@ -43,6 +32,18 @@ export default function validateForm(e) {
     errors.lastName = "";
   }
 
+  if (e.target.name === "email" && e.target.value.trim() !== "") {
+    console.log("target name is email");
+    const regex =
+      /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9]){1,}?$/;
+    if (!regex.test(e.target.value)) {
+      errors.email = "sign valid email";
+    } else {
+      errors.email = "";
+    }
+  } else if (e.target.name === "email" && e.target.value.trim() === "") {
+    errors.email = "";
+  }
   // if (!inputValues.email) {
   //   errors.email = "email required";
   //   //   } else if (!/\S+@\S+\.\S+/.test(values.email)) {
@@ -60,7 +61,3 @@ export default function validateForm(e) {
 
   return errors;
 }
-
-//   if (!inputValues.lastName.trim()) {
-//     errors.lastName = "lastName required";
-//   }
