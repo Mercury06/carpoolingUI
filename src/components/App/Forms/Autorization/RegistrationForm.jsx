@@ -17,16 +17,28 @@ const RegistrationForm = (props) => {
     email: "" ,
     password: "" ,    
   });
-  const [formError, setFormError] = React.useState({});
+  const [formError, setFormError] = React.useState({
+    firstName: "" ,
+    lastName: "" ,
+    email: "" ,
+    password: "" ,    
+  });
   ////////////////////////////////////////
   console.log("formError after state changed", formError)
+  // console.log("inputValues", inputValues)
   ////////////////////////////////////////
-  function handleChange(e) {       
+  function handleChange(e) { 
+    // console.log("e.target.name", e.target.name)
+    // console.log("e.target.value", e.target.value)       
     setInputValues(prev => {
       return {...prev, [e.target.name]: e.target.value}
     });
-    const value = inputValues[e.target.name];
-    setFormError(validateForm(e))         
+    const validateResult = validateForm(e);
+    // console.log("Object.keys", Object.keys(validateResult)[0])
+    // console.log("Object.values", Object.values(validateResult)[0])      
+    setFormError(prev => {
+      return {...prev, [Object.keys(validateResult)[0]]: Object.values(validateResult)[0] }
+    });      
   }
   function blurHandler(e) {  
     // console.log('onBlur',e.target.name)   
@@ -34,7 +46,11 @@ const RegistrationForm = (props) => {
     // const value = e.target.value;
     // console.log('valuE', value)
     // console.log("validation", validateForm(value, e))
-    setFormError(validateForm(e))
+    const validateResult = validateForm(e);
+    setFormError(prev => {
+      return {...prev, [Object.keys(validateResult)[0]]: Object.values(validateResult)[0] }
+    }); 
+      
   }
   function LoginSubmit(e, {...inputValues}) {
     //debugger;
@@ -64,6 +80,7 @@ const RegistrationForm = (props) => {
                 <input type="text" value={inputValues.lastName} onChange={handleChange} onBlur={blurHandler} name="lastName"></input>
                 <label>last name</label>
             </div>
+            <center><span><span className={s.span_error}>{formError.lastName}</span>&nbsp;</span></center>
             <div className={s.input_box}>
                 <span className={s.icon}><AiOutlineMail /></span>
                 <input type="text" value={inputValues.email} onChange={handleChange} onBlur={blurHandler} name="email"></input>

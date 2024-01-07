@@ -1,6 +1,6 @@
 export default function validateForm(e) {
   let errors = {};
-
+  //   console.log("target name in validate", e.target.name);
   //   if (e.target.name === "firstName" && value.trim() !== "") {
   //     if (!/^[A-Za-z]+/.test(value)) {
   //       errors.firstName = "enter a valid characters";
@@ -14,27 +14,33 @@ export default function validateForm(e) {
   //     } else errors.firstName = null;
   //   }
   if (e.target.name === "firstName" && e.target.value.trim() !== "") {
+    // console.log("target name in si firstName");
     if (!/^[A-Za-z]+/.test(e.target.value)) {
       errors.firstName = "enter a valid characters";
     } else if (e.target.value.length < 2) {
-      errors.firstName = "sign 2 characters or more";
+      errors.firstName = "sign min 2 chars";
     } else if (e.target.value.length < 1 || e.target.value === "") {
-      errors.firstName = null;
-    } else if (e.target.value.length > 3) {
-      errors.firstName = null;
-    } else errors.firstName = null;
+      errors.firstName = "";
+    } else if (e.target.value.length > 1) {
+      errors.firstName = "";
+    } else errors.firstName = "";
+  } else if (e.target.name === "firstName" && e.target.value.trim() === "") {
+    errors.firstName = "";
   }
 
   if (e.target.name === "lastName" && e.target.value.trim() !== "") {
+    // console.log("target name in si lastName");
     if (!/^[A-Za-z]+/.test(e.target.value)) {
-      errors.firstName = "enter a valid characters";
+      errors.lastName = "enter a valid characters";
     } else if (e.target.value.length < 2) {
-      errors.firstName = "sign 2 characters or more";
+      errors.lastName = "sign min 2 chars";
     } else if (e.target.value.length < 1 || e.target.value === "") {
-      errors.firstName = null;
+      errors.lastName = "";
     } else if (e.target.value.length > 3) {
-      errors.firstName = null;
-    } else errors.firstName = null;
+      errors.lastName = "";
+    } else errors.lastName = "";
+  } else if (e.target.name === "lastName" && e.target.value.trim() === "") {
+    errors.lastName = "";
   }
 
   // if (!inputValues.email) {
