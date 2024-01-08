@@ -18,14 +18,27 @@ const RegistrationForm = (props) => {
     email: "" ,
     password: "" ,    
   });
-  const [formError, setFormError] = React.useState({
+  const [hasError, setHasError] = React.useState(true);
+  
+  const [formError, setFormError] = React.useState({    
     firstName: "" ,
     lastName: "" ,
     email: "" ,
     password: "" ,    
   });
+
+  console.log('hasError after rerender', hasError);
+  console.log('formError after rerender ', formError)
+  console.log('rerender because of useEffect ')
+
+  React.useEffect(() => {    
+    if(Object.values(formError).every(value => value === '') && Object.values(inputValues).every(value => value !== '')) {      
+      console.log('every is empty')
+      setHasError(false)
+    } else setHasError(true)   
+  }, [inputValues]);
   ////////////////////////////////////////
-  console.log("formError after state changed", formError)
+  // console.log("formError after state changed", formError)
   // console.log("inputValues", inputValues)
   ////////////////////////////////////////
   function handleChange(e) { 
@@ -39,26 +52,19 @@ const RegistrationForm = (props) => {
     // console.log("Object.values", Object.values(validateResult)[0])      
     setFormError(prev => {
       return {...prev, [Object.keys(validateResult)[0]]: Object.values(validateResult)[0] }
-    });      
+    }); 
   }
-  // function blurHandler(e) {  
-  //   // console.log('onBlur',e.target.name)   
-  //   // const value = inputValues[e.target.name];
-  //   // const value = e.target.value;
-  //   // console.log('valuE', value)
-  //   // console.log("validation", validateForm(value, e))
-  //   const validateResult = validateForm(e);
-  //   setFormError(prev => {
-  //     return {...prev, [Object.keys(validateResult)[0]]: Object.values(validateResult)[0] }
-  //   });       
-  // }
-  function LoginSubmit(e, {...inputValues}) {
+  
+  function RegSubmit(e, {...inputValues}) {
     //debugger;
     e.preventDefault();
-    //console.log("inputValues inside submit:", {...inputValues})
+    console.log("inputValues inside submit:", {...inputValues})
+    console.log("errors length:",Object.keys(formError).length)
     // dispatch(login({ ...inputValues })); 
     //setErrors(validationErrors);
-    //setSubmitting(true);   
+    //setSubmitting(true);
+    const valuesArray = Object.values(formError);
+    console.log("valuesArray", valuesArray);
   } 
  
   return (
@@ -68,7 +74,7 @@ const RegistrationForm = (props) => {
         
         <div className={s.form_box_register}>
         {/* <h2>Registratien</h2> */}
-        <form >
+        <form onSubmit={(e)=>RegSubmit(e, {...inputValues})}>
             <div className={s.input_box}>
                 <span className={s.icon}><AiOutlineUser /></span>
                 <input type="text" value={inputValues.firstName} onChange={handleChange} name="firstName" placeholder=" "></input>                
@@ -97,7 +103,7 @@ const RegistrationForm = (props) => {
             <div className={s.remember}>
                 <label><input type="checkbox"></input>&nbsp;agree to the terms and conditions</label>                
             </div>
-            <button type="submit" className={s.btn}>SIGN UP</button>
+            <button type="submit" className={s.btn} disabled={hasError ? true : false}>SIGN UP</button>
             {/* <div className={s.login_register}><p>already have an account?<a href="#" className={s.register_link}>Login</a></p></div> */}
             <div className={s.login_register}><p>already have an account? <Link to="/login" className={s.register_link}>Login</Link></p></div>
         </form>
@@ -107,6 +113,33 @@ const RegistrationForm = (props) => {
   );
 };
 
-
-
 export default RegistrationForm;
+
+
+// const [formError, setFormError] = React.useState({
+//   hasError: false,
+//   completed: true,
+//   firstName: "" ,
+//   lastName: "" ,
+//   email: "" ,
+//   password: "" ,    
+// });
+
+// const validateResult = validateForm(e);
+// // console.log("Object.keys", Object.keys(validateResult)[0])
+// // console.log("Object.values", Object.values(validateResult)[0])      
+// setFormError(prev => {
+//   return {...prev, [Object.keys(validateResult)[0]]: Object.values(validateResult)[0] }
+// }); 
+
+// function blurHandler(e) {  
+  //   // console.log('onBlur',e.target.name)   
+  //   // const value = inputValues[e.target.name];
+  //   // const value = e.target.value;
+  //   // console.log('valuE', value)
+  //   // console.log("validation", validateForm(value, e))
+  //   const validateResult = validateForm(e);
+  //   setFormError(prev => {
+  //     return {...prev, [Object.keys(validateResult)[0]]: Object.values(validateResult)[0] }
+  //   });       
+  // }

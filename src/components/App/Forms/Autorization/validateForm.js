@@ -44,14 +44,20 @@ export default function validateForm(e) {
   } else if (e.target.name === "email" && e.target.value.trim() === "") {
     errors.email = "";
   }
-  // if (!inputValues.email) {
-  //   errors.email = "email required";
-  //   //   } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-  // } else if (
-  //   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$ /i.test(inputValues.email)
-  // ) {
-  //   errors.email = "email value is incorrect";
-  // }
+  if (e.target.name === "password" && e.target.value.trim() !== "") {
+    // console.log("target name in si firstName");
+    if (!/^[A-Za-z]+/.test(e.target.value)) {
+      errors.password = "enter a valid characters";
+    } else if (e.target.value.length < 6) {
+      errors.password = "sign min 6 chars";
+    } else if (e.target.value.length < 1 || e.target.value === "") {
+      errors.password = "";
+    } else if (e.target.value.length > 1) {
+      errors.password = "";
+    } else errors.password = "";
+  } else if (e.target.name === "password" && e.target.value.trim() === "") {
+    errors.password = "";
+  }
 
   // if (!inputValues.password) {
   //   errors.password = "password is required";

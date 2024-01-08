@@ -3,7 +3,7 @@
 .wrapper {
   position:relative;
   width: 400px;
-  height: 480px;
+  height: 515px;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, .5);
   border-radius: 20px;
@@ -120,7 +120,7 @@
     font-size: 0.8em;
     color: #162937;
     font-weight: 150;
-    margin: -15px 0 15px;
+    margin: 15px 0 15px;
     display: flex;
     justify-content: space-between;
 
@@ -145,6 +145,11 @@
     font-size: 1em;
     color:antiquewhite;
     font-weight: 500;
+
+      &:disabled {
+        background:#9caece;
+        cursor: default;        
+      }
   }
   .login_register {
     font-size: .9em;
