@@ -3,17 +3,19 @@ import axios from "axios";
 // import { setSuggestedRidesActionCreator } from "../../reducers/rideReducer";
 import { setNotifications, setUser } from "./../../reducers/userReducer";
 
-export const registration = async ({ ...form }) => {
-  //debugger
-  try {
-    const response = await axios.post(
-      "http://localhost:9000/api/auth/registration",
-      { ...form }
-    );
-    console.log(response.data.message);
-  } catch (e) {
-    alert(e.response.data.message);
-  }
+export const registration = ({ ...form }) => {
+  // debugger;
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:9000/api/auth/registration",
+        { ...form }
+      );
+      console.log(response.data.message);
+    } catch (e) {
+      alert(e.response.data.message);
+    }
+  };
 };
 
 export const login = ({ ...form }) => {

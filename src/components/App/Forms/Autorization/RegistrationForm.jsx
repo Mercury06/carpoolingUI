@@ -7,6 +7,8 @@ import s from './autorization.module.scss';
 import usePasswordTogle from './usePasswordTogle';
 import { useDispatch } from 'react-redux';
 import validateForm from './validateForm';
+import Loader from './Loader';
+import { registration } from '../../../api/actions';
 
 const RegistrationForm = (props) => {
   const {InputType, togleHandler, visible} = usePasswordTogle();  
@@ -19,24 +21,20 @@ const RegistrationForm = (props) => {
     password: "" ,    
   });
   const [hasError, setHasError] = React.useState(true);
+  const [submiting, setSubmiting] = React.useState(false);
   
   const [formError, setFormError] = React.useState({    
     firstName: "" ,
     lastName: "" ,
     email: "" ,
     password: "" ,    
-  });
-
-  console.log('hasError after rerender', hasError);
-  console.log('formError after rerender ', formError)
-  console.log('rerender because of useEffect ')
+  }); 
 
   React.useEffect(() => {    
-    if(Object.values(formError).every(value => value === '') && Object.values(inputValues).every(value => value !== '')) {      
-      console.log('every is empty')
-      setHasError(false)
+    if(Object.values(formError).every(value => value === '') && Object.values(inputValues).every(value => value !== '')) { 
+        setHasError(false)
     } else setHasError(true)   
-  }, [inputValues]);
+  }, [inputValues, submiting]);
   ////////////////////////////////////////
   // console.log("formError after state changed", formError)
   // console.log("inputValues", inputValues)
@@ -55,16 +53,18 @@ const RegistrationForm = (props) => {
     }); 
   }
   
-  function RegSubmit(e, {...inputValues}) {
+  function regSubmit(e, {...inputValues}) {
     //debugger;
     e.preventDefault();
     console.log("inputValues inside submit:", {...inputValues})
-    console.log("errors length:",Object.keys(formError).length)
-    // dispatch(login({ ...inputValues })); 
+    console.log("errors:", formError)
+    setSubmiting(true)
+    dispatch(registration({...inputValues})); 
+    setTimeout(() => {
+      setSubmiting(false);
+    }, 2000)    
     //setErrors(validationErrors);
-    //setSubmitting(true);
-    const valuesArray = Object.values(formError);
-    console.log("valuesArray", valuesArray);
+    //setSubmitting(true);   
   } 
  
   return (
@@ -74,7 +74,7 @@ const RegistrationForm = (props) => {
         
         <div className={s.form_box_register}>
         {/* <h2>Registratien</h2> */}
-        <form onSubmit={(e)=>RegSubmit(e, {...inputValues})}>
+        <form onSubmit={(e)=>regSubmit(e, {...inputValues})}>
             <div className={s.input_box}>
                 <span className={s.icon}><AiOutlineUser /></span>
                 <input type="text" value={inputValues.firstName} onChange={handleChange} name="firstName" placeholder=" "></input>                
@@ -103,8 +103,7 @@ const RegistrationForm = (props) => {
             <div className={s.remember}>
                 <label><input type="checkbox"></input>&nbsp;agree to the terms and conditions</label>                
             </div>
-            <button type="submit" className={s.btn} disabled={hasError ? true : false}>SIGN UP</button>
-            {/* <div className={s.login_register}><p>already have an account?<a href="#" className={s.register_link}>Login</a></p></div> */}
+            <button type="submit" title={hasError ? "enter all empty fields" : "sign up"} className={s.btn} disabled={hasError ? true : false}>{ submiting ? <Loader /> : "SIGN UP"}</button>            
             <div className={s.login_register}><p>already have an account? <Link to="/login" className={s.register_link}>Login</Link></p></div>
         </form>
         </div>
