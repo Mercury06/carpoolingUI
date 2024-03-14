@@ -23,6 +23,9 @@ const LoginForm = (props) => {
     // localStorage.setItem("token", response.data.token);
   }
 
+  const [formError, setFormError] = React.useState("");
+  console.log("formError", formError) 
+
   useEffect(() => {    
     global.google.accounts.id.initialize({
       client_id: Constants.GOOGLE_AUTH_CLIENT_ID,
@@ -49,7 +52,7 @@ const LoginForm = (props) => {
     //debugger;
     e.preventDefault();
     //console.log("inputValues inside submit:", {...inputValues})
-    dispatch(login({ ...inputValues })); 
+    dispatch(login({ ...inputValues }, setFormError)); 
     //setErrors(validationErrors);
     //setSubmitting(true);   
   } 
@@ -71,7 +74,7 @@ const LoginForm = (props) => {
                 <input type="password" value={inputValues.password} onChange={handleChange} name="password" placeholder=" "></input>
                 <label>password</label>
             </div>
-            <center><span><span className={s.span_error}></span>&nbsp;</span></center>
+            <center><span><span className={s.span_error}>{formError.message}</span>&nbsp;</span></center>
             <div className={s.remember}>
                 <label><input type="checkbox"></input>remember me</label>
                 <a href="#">Forgot password?</a>

@@ -33,12 +33,7 @@
       text-align: center;
 
     }
-  }
-  // .form_box_register {
-  //   position: absolute;
-  //   transition: none;
-  //   transform: translateX(400px);
-  // }
+  }  
  
   .icon_close {
     position: absolute;
@@ -87,6 +82,7 @@
       color: #162937;
       font-weight: 600;
       padding: 0 35px 0 5px;
+      
 
       // &:focus~label, &:not(:empty)~label {      
       &:focus~label, &:not(:placeholder-shown)~label {    
