@@ -3,12 +3,12 @@ import { AiOutlineMail, AiOutlineClose, AiOutlineUser, AiOutlineEye, AiOutlineEy
 // import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { BiLockAlt } from 'react-icons/bi';
 import { Link } from "react-router-dom";
-import s from './autorization.module.scss';
 import usePasswordTogle from './usePasswordTogle';
 import { useDispatch } from 'react-redux';
 import validateForm from './validateForm';
 import Loader from './Loader';
 import { registration } from '../../../api/actions';
+import s from './autorization.module.scss';
 
 const RegistrationForm = (props) => {
   const {InputType, togleHandler, visible} = usePasswordTogle();  
@@ -70,10 +70,8 @@ const RegistrationForm = (props) => {
   return (
     <>
       <div className={s.wrapper}>
-        <span className={s.icon_close}><AiOutlineClose /> </span>        
-        
-        <div className={s.form_box_register}>
-        {/* <h2>Registratien</h2> */}
+        <span className={s.icon_close}><AiOutlineClose /> </span>   
+        <div className={s.form_box}>        
         <form onSubmit={(e)=>regSubmit(e, {...inputValues})}>
             <div className={s.input_box}>
                 <span className={s.icon}><AiOutlineUser /></span>

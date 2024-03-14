@@ -36,7 +36,7 @@ const LoginForm = (props) => {
  
   const [inputValues, setInputValues] = React.useState({
     password: "" ,
-    username: ""    
+    email: ""    
   });
 
   async function handleChange(e) {       
@@ -45,7 +45,7 @@ const LoginForm = (props) => {
     });       
   }
 
-  function LoginSubmit(e, {...inputValues}) {
+  function loginSubmit(e, {...inputValues}) {
     //debugger;
     e.preventDefault();
     //console.log("inputValues inside submit:", {...inputValues})
@@ -58,23 +58,25 @@ const LoginForm = (props) => {
     <>
       <div className={s.wrapper}>
         <span className={s.icon_close}><AiOutlineClose /> </span>
-        <div className={s.form_box}>
-        {/* <h2>Loginn</h2> */}
-        <form onSubmit={(e)=>LoginSubmit(e, {...inputValues})}>
+        <div className={s.form_box}>       
+        <form onSubmit={(e)=>loginSubmit(e, {...inputValues})}>
             <div className={s.input_box}>
                 <span className={s.icon}><AiOutlineMail /></span>
-                <input type="email" value={inputValues.username} onChange={handleChange} name="username" required></input>
+                <input type="email" value={inputValues.email} onChange={handleChange} name="email" placeholder=" "></input>
                 <label>email</label>
             </div>
+            <center><span><span className={s.span_error}></span>&nbsp;</span></center>
             <div className={s.input_box}>
                 <span className={s.icon}><BiLockAlt /></span>
-                <input type="password" value={inputValues.password} onChange={handleChange} name="password" required></input>
+                <input type="password" value={inputValues.password} onChange={handleChange} name="password" placeholder=" "></input>
                 <label>password</label>
             </div>
+            <center><span><span className={s.span_error}></span>&nbsp;</span></center>
             <div className={s.remember}>
                 <label><input type="checkbox"></input>remember me</label>
                 <a href="#">Forgot password?</a>
             </div>
+            <center><span><span className={s.span_error}></span>&nbsp;</span></center>
             <button type="submit" className={s.btn}>SIGN IN</button>
             <div className={s.login_register}><p> or continue with </p></div>           
             <center><div id='signInDiv'>google sign in</div></center>  
