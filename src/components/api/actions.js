@@ -27,11 +27,11 @@ export const login = ({ ...form }, setFormError) => {
         .post("http://localhost:9000/api/auth/login", { ...form })
         .catch((err) => setFormError(err.response.data));
 
-      // if (response.status === 200) {
-      //   // console.log('response.status:', response.status);
-      //   dispatch(setUser(response.data.user));
-      //   localStorage.setItem("token", response.data.token);
-      // }
+      if (response.status === 200) {
+        // console.log('response.status:', response.status);
+        dispatch(setUser(response.data.user));
+        localStorage.setItem("token", response.data.token);
+      }
     } catch (e) {
       console.log("error:", e.response.data);
       // let message = e.response.data;

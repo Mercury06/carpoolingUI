@@ -42,7 +42,8 @@ const LoginForm = (props) => {
     email: ""    
   });
 
-  async function handleChange(e) {       
+  async function handleChange(e) {   
+    setFormError("")    
     setInputValues(prev => {
       return {...prev, [e.target.name]: e.target.value}
     });       
