@@ -9,14 +9,14 @@
   //max-height: max-content;
   background: #bae0ff;
   // background: white;
-  margin-top: ($headerHeight + $subHeaderHeight) * 2;
+  margin-top: ($headerHeight + $headerHeight) * 2;
   border-radius: 10px;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  margin-top: calc($headerHeight + $subHeaderHeight);
+  margin-top: calc($headerHeight + $headerHeight);
 }
 .content {
   border: 1px solid black;

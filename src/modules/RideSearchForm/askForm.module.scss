@@ -7,7 +7,7 @@
   // display: flex;
   // justify-content: center;
   // align-items: center;
-  margin-top: calc($headerHeight + $subHeaderHeight);
+  margin-top: calc($headerHeight*3);
   position: relative;
   border: 1px solid rgb(167, 165, 165);
   border-radius: 6px;
