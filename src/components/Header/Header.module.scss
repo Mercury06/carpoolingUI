@@ -10,7 +10,7 @@
   height: $headerHeight;
   padding: 0 1.5rem;
   position: fixed;
-  position: relative;  
+  // position: relative;  
   width: 100%;
   @include breakpoint(md) {
     padding: 0 3rem;

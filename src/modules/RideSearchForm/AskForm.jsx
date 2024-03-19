@@ -55,110 +55,116 @@ const AskForm = (props) => {
 
   return (
     <>
-      <div className={s.container}>
-        <form className={s.form} onSubmit={findRidesHandleSubmit}>
-          {/* <h3>Find ride</h3> */}
-          <div className={s.input__block}>
-            <div className={s.input__row}>
-              <input
-                ref={inputRef1}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                name="localityFrom"
-                value={inputValues.localityFrom.localityName}
-                className={s.input}
-                autoComplete="off"
-                placeholder="point A"
-              />
-              <div className={s.geoIcon}>
-                <BsFillGeoAltFill />
-              </div>
-              {inputValues.localityFrom.localityName && (
-                <div
-                  className={s.clearIcon}
-                  // style={{ cursor: 'pointer' }}
-                  onClick={() => onClickClear('input1')}
-                >
-                  <ClearIcon />
+      <div className={s.askForm__wrapper}>
+        <div className={s.slogan}>
+          <p>Drive your best way</p>
+        </div>
+        <div className={s.container}>
+          <form className={s.form} onSubmit={findRidesHandleSubmit}>
+            {/* <h3>Find ride</h3> */}
+            <div className={s.input__block}>
+              <div className={s.input__row}>
+                <input
+                  ref={inputRef1}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  name="localityFrom"
+                  value={inputValues.localityFrom.localityName}
+                  className={s.input}
+                  autoComplete="off"
+                  placeholder="point A"
+                />
+                <div className={s.geoIcon}>
+                  <BsFillGeoAltFill />
                 </div>
-              )}
+                {inputValues.localityFrom.localityName && (
+                  <div
+                    className={s.clearIcon}
+                    // style={{ cursor: 'pointer' }}
+                    onClick={() => onClickClear('input1')}
+                  >
+                    <ClearIcon />
+                  </div>
+                )}
+              </div>
+
+              {inputValues.localityFrom.localityName !== '' &&
+              suggestedRides.length > 0 &&
+              targetName === 'localityFrom' ? (
+                <div className={s.input__popup}>
+                  <ul>
+                    {suggestedRides.map((item, i) => {
+                      return (
+                        <li key={i} onClick={(e) => onSuggestSelect1(e, { item })}>
+                          {item.locality}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              ) : null}
+            </div>
+            {/* {errors.email && <p className="error-text">{errors.email}</p>} */}
+            <div className={s.input__block}>
+              <div className={s.input__row}>
+                <input
+                  ref={inputRef2}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={inputValues.destination.localityName}
+                  className={s.input}
+                  name="destination"
+                  autoComplete="off"
+                  placeholder="point B"
+                />
+                <div className={s.geoIcon}>
+                  <BsFillGeoAltFill />
+                </div>
+                {inputValues.destination.localityName && (
+                  <div
+                    className={s.clearIcon}
+                    //style={{ cursor: 'pointer' }}
+                    onClick={() => onClickClear('input2')}
+                  >
+                    <ClearIcon />
+                  </div>
+                )}
+              </div>
+              {inputValues.destination.localityName !== '' &&
+              suggestedRides.length > 0 &&
+              targetName === 'destination' ? (
+                <div className={s.input__popup}>
+                  <ul>
+                    {suggestedRides.map((item, i) => {
+                      return (
+                        <li key={i} onClick={(e) => onSuggestSelect2(e, { item })}>
+                          {item.locality}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              ) : null}
+            </div>
+            <div>
+              <ReactDatePicker
+                selected={startDate}
+                onChange={onChangeDateHandler}
+                dateFormat="dd MMM yyy"
+                minDate={new Date()}
+                // className={s.date__picker}
+                style={{ position: 'relative' }}
+              />
             </div>
 
-            {inputValues.localityFrom.localityName !== '' &&
-            suggestedRides.length > 0 &&
-            targetName === 'localityFrom' ? (
-              <div className={s.input__popup}>
-                <ul>
-                  {suggestedRides.map((item, i) => {
-                    return (
-                      <li key={i} onClick={(e) => onSuggestSelect1(e, { item })}>
-                        {item.locality}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            ) : null}
-          </div>
-          {/* {errors.email && <p className="error-text">{errors.email}</p>} */}
-          <div className={s.input__block}>
-            <div className={s.input__row}>
-              <input
-                ref={inputRef2}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={inputValues.destination.localityName}
-                className={s.input}
-                name="destination"
-                autoComplete="off"
-                placeholder="point B"
-              />
-              <div className={s.geoIcon}>
-                <BsFillGeoAltFill />
-              </div>
-              {inputValues.destination.localityName && (
-                <div
-                  className={s.clearIcon}
-                  //style={{ cursor: 'pointer' }}
-                  onClick={() => onClickClear('input2')}
-                >
-                  <ClearIcon />
-                </div>
-              )}
+            <div>
+              {/* <button disabled={isSubmitting} type="submit"> */}
+              <button type="submit">Find ride</button>            
             </div>
-            {inputValues.destination.localityName !== '' &&
-            suggestedRides.length > 0 &&
-            targetName === 'destination' ? (
-              <div className={s.input__popup}>
-                <ul>
-                  {suggestedRides.map((item, i) => {
-                    return (
-                      <li key={i} onClick={(e) => onSuggestSelect2(e, { item })}>
-                        {item.locality}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            ) : null}
-          </div>
-          <div>
-            <ReactDatePicker
-              selected={startDate}
-              onChange={onChangeDateHandler}
-              dateFormat="dd MMM yyy"
-              minDate={new Date()}
-              // className={s.date__picker}
-              style={{ position: 'relative' }}
-            />
-          </div>
-
-          <div>
-            {/* <button disabled={isSubmitting} type="submit"> */}
-            <button type="submit">Find ride</button>            
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
+      
     </>
   );
 };
