@@ -31,13 +31,17 @@
 
     &_logo {
       margin-top: 8px;
-      margin-left: 26px;
+      margin-left: 4%;
+
+      // h1 {
+      //   color: orangered;
+      // }
     }
 
     &_manage {
       display: flex;
       flex-direction: row;
-      margin-left: 16px;
+      margin-left: 16px;      
       margin-top: 6px;
       flex-wrap: wrap;
       gap: 1rem;
@@ -106,6 +110,7 @@
 
     &__nav {
       margin-left: 6px;
+      margin-right: 2%;
       top: 0;
       right: 100%;
       bottom: 0;

@@ -72,7 +72,7 @@ const AskForm = (props) => {
                   value={inputValues.localityFrom.localityName}
                   className={s.input}
                   autoComplete="off"
-                  placeholder="point A"
+                  placeholder="From"
                 />
                 <div className={s.geoIcon}>
                   <BsFillGeoAltFill />
@@ -115,7 +115,7 @@ const AskForm = (props) => {
                   className={s.input}
                   name="destination"
                   autoComplete="off"
-                  placeholder="point B"
+                  placeholder="To"
                 />
                 <div className={s.geoIcon}>
                   <BsFillGeoAltFill />

@@ -8,7 +8,7 @@ import classes from './Header.module.scss';
 import cn from 'classnames';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { LogoIcon } from '../assets/svg/BoxIcons';
+// import { LogoIcon } from '../assets/svg/BoxIcons';
 
 
 
@@ -50,10 +50,12 @@ const Header = ({setOpenDropdown, setOpenNotifications, isAuth, userIconRef, not
     <>
       <header className={classes.header}>
         <div className={classes.header__content}>
-          <div className={classes.header__content_logo}>
+          {/* <div className={classes.header__content_logo}>
             <LogoIcon />
+          </div> */}
+          <div className={classes.header__content_logo}>
+            <h1>FOXY</h1>
           </div>
-          
           <nav
             className={`${classes.header__content__nav} ${
               menuOpen && size.width < 768 ? classes.isMenu : ''
