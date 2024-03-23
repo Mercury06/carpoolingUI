@@ -10,6 +10,9 @@ import useForm from './hooks/useForm';
 // import { findLocality } from '../../../api/actions';
 
 import s from './askForm.module.scss';
+import Calendar from '../../components/App/Calendar/Calendar';
+import Calendar2 from '../../components/App/Calendar2/Calendar2';
+
 
 const initialState = {
   localityFrom: {
@@ -57,7 +60,7 @@ const AskForm = (props) => {
     <>
       <div className={s.askForm__wrapper}>
         <div className={s.slogan}>
-          <p>Drive your best way</p>
+          <p>Ride your best way</p>
         </div>
         <div className={s.container}>
           <form className={s.form} onSubmit={findRidesHandleSubmit}>
@@ -146,7 +149,7 @@ const AskForm = (props) => {
                 </div>
               ) : null}
             </div>
-            <div>
+            {/* <div>
               <ReactDatePicker
                 selected={startDate}
                 onChange={onChangeDateHandler}
@@ -155,13 +158,18 @@ const AskForm = (props) => {
                 // className={s.date__picker}
                 style={{ position: 'relative' }}
               />
+            </div> */}
+            <div className={s.calendar_btn}>              
+              <button type="button" id="id1">Date</button>       
             </div>
-
-            <div>
-              {/* <button disabled={isSubmitting} type="submit"> */}
-              <button type="submit">Find ride</button>            
-            </div>
+            <div className={s.search_btn}>              
+              <button disabled={isSubmitting} type="button">Find ride</button>       
+            </div>        
           </form>
+        </div>
+        <div>
+            {/* <Calendar /> */}
+            <Calendar2 />
         </div>
       </div>
       
