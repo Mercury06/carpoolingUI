@@ -65,12 +65,33 @@
 
     .calendar_header {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         font-size: 1em;
         font-weight: 600;
         color: var(--color-txt);
         padding: 10px;
+
+        .month_picker {
+            display: flex;
+            flex-direction: row;
+            
+            // padding: 5px 10px;
+            // border-radius: 10px;
+            // cursor: pointer;
+        
+            .month_and_year {
+                display: flex;
+                flex-direction: row;
+                margin-left: 1em;
+                margin-right: 1em;
+                justify-content: space-between;
+
+                .year {
+                    margin-left: 1em;
+                }
+            }
+        }
     }
   
     .calendar_body {
@@ -116,16 +137,10 @@
     }
 }
 
-// .light .calendar {
-//     box-shadow: var(--shadow);
-// }
+
+   
 
 
-// .month-picker {
-//     padding: 5px 10px;
-//     border-radius: 10px;
-//     cursor: pointer;
-// }
 
 // .month-picker:hover {
 //     background-color: var(--color-hover);
