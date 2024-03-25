@@ -10,24 +10,24 @@ import {
 import { useNavigate } from "react-router-dom";
 import useDebounce from "../../../Hooks/useDebounce";
 
-function useFormValidation(initialState, validate) {
+function useFormValidation(initialState, setOpenCalendar, validate) {
   const [inputValues, setInputValues] = React.useState(initialState);
   //const [form, setForm] = React.useState({ localityFrom: '', destination: '', user: '', date: '' });
   const [errors, setErrors] = React.useState({});
   //const [isSubmitting, setSubmitting] = React.useState(false);
-  const [startDate, setStartDate] = React.useState(new Date());
-  const [modifiedDate, setModifiedDate] = React.useState();
+  const [selectedDate, setSelectedDate] = React.useState(null);
   const [targetName, setTargetName] = React.useState(null);
   const deboucedSearch = useDebounce(searchResolver, 500);
   //const [open, setOpen] = React.useState(false);
+  console.log("inputValues mounted", inputValues);
 
-  const initialStateDate = new Date();
-  const modifiedInitialStateDate =
-    moment(initialStateDate).format("YYYY-MM-DD");
+  const modifiedInitialStateDate = selectedDate;
+  // moment(initialStateDate).format("YYYY-MM-DD");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const inputRef1 = useRef(null);
   const inputRef2 = useRef(null);
+  console.log("selected day in useForm", selectedDate);
 
   // React.useEffect(() => {
   //   if (isSubmitting) {
@@ -135,7 +135,8 @@ function useFormValidation(initialState, validate) {
   async function findRidesHandleSubmit(event) {
     //debugger;
     event.preventDefault();
-    // console.log("inputValues", inputValues);
+    console.log("inputValues", inputValues);
+    // console.log("converted", moment("25 march 2024").format("YYYY-MM-DD"));
     dispatch(setSearchRidesParamsActionCreator(inputValues));
     dispatch(findRidesByParamsThunkCreator(inputValues));
     navigate("/rides-search");
@@ -147,16 +148,29 @@ function useFormValidation(initialState, validate) {
     //setSubmitting(true);
   }
 
-  const onChangeDateHandler = (value) => {
+  const onChangeDateHandler = (e) => {
     //debugger;
-    setStartDate(value);
-    const modifiedDate = moment(value).format("YYYY-MM-DD");
-    setModifiedDate(modifiedDate);
-    //console.log('modifiedDate:', modifiedDate);
-    setInputValues({
-      ...inputValues,
-      date: modifiedDate,
-    });
+    // const modifiedDate = moment(value).format("YYYY-MM-DD");
+    // setModifiedDate(modifiedDate);
+    // console.log("e.target.id in hook:", e.target.id);
+    let day = e.target.id;
+
+    if (day && day > 0) {
+      // console.log("converted data", new Date(`2024-01-${day}`));
+      let date = new Date(`2024-01-${day}`);
+      // setSelectedDate(`2024-01-${e.target.id}`)
+
+      let modifiedDate = moment(date).format("YYYY-MM-DD");
+      console.log("modifiedDate in handler", modifiedDate);
+      // setSelectedDate(modifiedDate);
+      setInputValues({
+        ...inputValues,
+        date: modifiedDate,
+      });
+      setOpenCalendar(false);
+    } else {
+      console.log("no id");
+    }
   };
 
   return {
@@ -166,8 +180,7 @@ function useFormValidation(initialState, validate) {
     inputValues,
     errors,
     //isSubmitting,
-    startDate,
-    modifiedDate,
+    // modifiedDate,
     onChangeDateHandler,
     onSuggestSelect1,
     onSuggestSelect2,
@@ -175,7 +188,8 @@ function useFormValidation(initialState, validate) {
     inputRef1,
     inputRef2,
     onClickClear,
-    modifiedInitialStateDate,
+    selectedDate,
+    // modifiedInitialStateDate,
   };
 }
 

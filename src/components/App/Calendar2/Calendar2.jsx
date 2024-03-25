@@ -1,9 +1,9 @@
-
 import React from 'react'; 
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 import s from './Calendar2.module.scss';
 
-const Calendar2 = (props) => {    
+
+const Calendar2 = ({setDate}) => {    
     
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     const currentDate = new Date();
@@ -11,8 +11,7 @@ const Calendar2 = (props) => {
     const currentYear = currentDate.getFullYear()    
     const curr_month = `${monthNames[currentMonth]}`;
     const [shownMonthTitle, setShownMonthTitle] = React.useState(curr_month);
-    const [shownYear, setShownYear] = React.useState(currentYear);
-    // console.log("rerendered", shownMonthTitle)
+    const [shownYear, setShownYear] = React.useState(currentYear);   
 
     
     const isLeapYear = (shownYear) => {
@@ -41,7 +40,7 @@ const Calendar2 = (props) => {
     // console.log("shownYear try", shownYear)  
     // console.log("shownMonthTitle try", monthNames.indexOf(shownMonthTitle))  
     const first_day = new Date(shownYear, monthNames.indexOf(shownMonthTitle), 1)
-    console.log("first_day", first_day)    
+    // console.log("first_day", first_day)    
     
     let daysToRender = [];
 
@@ -53,12 +52,8 @@ const Calendar2 = (props) => {
         daysToRender.push(i - first_day.getDay() + 1)       
     }
 
-    const onForwardMonth = () => {
-        const monthIndex = monthNames.indexOf(shownMonthTitle)
-        console.log("monthIndex", monthIndex)
-        // console.log("forward", monthNames[monthNames.indexOf(shownMonthTitle) + 1])
-        if (monthNames.indexOf(shownMonthTitle) === 11) {
-            console.log("index 11")
+    const onForwardMonth = () => {       
+        if (monthNames.indexOf(shownMonthTitle) === 11) {           
             setShownYear(shownYear + 1)
             setShownMonthTitle(monthNames[0])
         } else {
@@ -66,30 +61,25 @@ const Calendar2 = (props) => {
         }        
     }
 
-    const onBackMonth = () => {
-        const monthIndex = monthNames.indexOf(shownMonthTitle)
-        console.log("monthIndex", monthIndex)
-        // console.log("forward", monthNames[monthNames.indexOf(shownMonthTitle) + 1])
-        if (monthNames.indexOf(shownMonthTitle) === 0) {
-            console.log("index 0")
+    const onBackMonth = () => { 
+        if (monthNames.indexOf(shownMonthTitle) === 0) {            
             setShownYear(shownYear - 1)
             setShownMonthTitle(monthNames[11])
         } else {
             setShownMonthTitle(monthNames[monthNames.indexOf(shownMonthTitle) - 1])
         } 
     }
-
-    // month_names.forEach((e, index) => {
-    //     let month = document.createElement('div')
-    //     month.innerHTML = `<div data-month="${index}">${e}</div>`
-    //     month.querySelector('div').onclick = () => {
-    //         month_list.classList.remove('show')
-    //         curr_month.value = index
-    //         generateCalendar(index, curr_year.value)
-    //     }
-    //     month_list.appendChild(month)
-    // }) 
-    
+    // const onChangeDateHandler = (e) => {       
+    //     console.log("e.target.id", e.target.id)
+    //     let day = e.target.id;
+        
+    //     if (e.target.id && e.target.id > 0) {            
+    //         console.log("converted data", new Date (`2024-01-${e.target.id}`))
+    //         // setSelectedDate(`2024-01-${e.target.id}`)
+    //     } else {
+    //         console.log("no id")
+    //     }                
+    // } 
 
     return (
         <>
@@ -126,9 +116,9 @@ const Calendar2 = (props) => {
                         <div>Fri</div>
                         <div>Sat</div>
                     </div>
-                    <div class={s.calendar_days}>
+                    <div class={s.calendar_days} onClick={(e) => setDate(e)}>
                         {daysToRender.map((day) => (
-                            <div>{day > 0 && day}</div>
+                            <div id={day} className={s.day}>{day > 0 && day}</div>
                         ))}
                     </div>
                 </div>               

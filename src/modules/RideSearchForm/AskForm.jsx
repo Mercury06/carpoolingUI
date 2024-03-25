@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDatePicker from 'react-datepicker';
 
-import 'react-datepicker/dist/react-datepicker.css';
 import { useSelector } from 'react-redux';
 import { BsFillGeoAltFill } from 'react-icons/bs';
 import { ClearIcon } from '../../components/assets/svg/BoxIcons';
@@ -10,33 +8,39 @@ import useForm from './hooks/useForm';
 // import { findLocality } from '../../../api/actions';
 
 import s from './askForm.module.scss';
-import Calendar from '../../components/App/Calendar/Calendar';
 import Calendar2 from '../../components/App/Calendar2/Calendar2';
+import moment from 'moment';
 
-
-const initialState = {
-  localityFrom: {
-    localityName: '',
-    id: '',
-  },
-  destination: {
-    localityName: '',
-    id: '',
-  },
-  user: '',
-  date: '',
-};
 
 const AskForm = (props) => {
+
+  const initialState = {
+    localityFrom: {
+      localityName: '',
+      id: '',
+    },
+    destination: {
+      localityName: '',
+      id: '',
+    },
+    user: '',
+    date: '',
+  };
+
   const userId = useSelector((state) => state.user.currentUser.id);
   const suggestedRides = useSelector((state) => state.ride.suggestedRides);
+  const [openCalendar, setOpenCalendar] = React.useState(false);
+  // const [selectedDate, setSelectedDate] = React.useState(moment(new Date()).format("YYYY-MM-DD"));
+  // console.log("initialState data", initialState)
   // const dispatch = useDispatch();
 
   React.useEffect(() => {
     initialState.user = userId;
-    initialState.date = modifiedInitialStateDate;
-    console.log('suggestedRides:', suggestedRides);
+    // initialState.date = selectedDate;    
+    // console.log('suggestedRides:', suggestedRides);
   }, [suggestedRides]);
+
+  // console.log("initialState mounted", initialState)
 
   const {
     findRidesHandleSubmit,
@@ -44,17 +48,17 @@ const AskForm = (props) => {
     handleBlur,
     errors,
     isSubmitting,
-    startDate,
-    onChangeDateHandler,
+    onChangeDateHandler,   
     onSuggestSelect1,
     onSuggestSelect2,
     targetName,
     inputRef1,
     inputRef2,
     onClickClear,
-    modifiedInitialStateDate,
+    // modifiedInitialStateDate,
+    selectedDate,
     inputValues,
-  } = useForm(initialState);
+  } = useForm(initialState, setOpenCalendar);
 
   return (
     <>
@@ -148,28 +152,19 @@ const AskForm = (props) => {
                   </ul>
                 </div>
               ) : null}
-            </div>
-            {/* <div>
-              <ReactDatePicker
-                selected={startDate}
-                onChange={onChangeDateHandler}
-                dateFormat="dd MMM yyy"
-                minDate={new Date()}
-                // className={s.date__picker}
-                style={{ position: 'relative' }}
-              />
-            </div> */}
+            </div>            
             <div className={s.calendar_btn}>              
-              <button type="button" id="id1">Date</button>       
+              {/* <button type="button" onClick={() => setOpenCalendar(!openCalendar)} id="id1">{moment(initialState.date).format("DD MMM YYYY")}</button> */}
+              <button type="button" onClick={() => setOpenCalendar(!openCalendar)}>{inputValues.date ? moment(inputValues.date).format("DD MMM YYYY") : moment(new Date ()).format("DD MMM YYYY")}</button>       
             </div>
             <div className={s.search_btn}>              
-              <button disabled={isSubmitting} type="button">Find ride</button>       
+              <button disabled={isSubmitting} type="submit">Find ride</button>       
             </div>        
           </form>
         </div>
         <div>
             {/* <Calendar /> */}
-            <Calendar2 />
+            {openCalendar && <Calendar2 setDate={onChangeDateHandler} />}
         </div>
       </div>
       

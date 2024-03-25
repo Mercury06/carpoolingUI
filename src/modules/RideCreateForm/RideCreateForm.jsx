@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+
 import { useSelector } from 'react-redux';
 import useForm from './hooks/useForm';
 import s from './createRideForm.module.scss';
@@ -103,17 +102,7 @@ const RideCreateForm = (props) => {
                 </ul>
               </div>
             ) : null}
-          </div>
-          <div>
-            <ReactDatePicker
-              selected={startDate}
-              onChange={onChangeDateHandler}
-              dateFormat="dd MMM yyy"
-              minDate={new Date()}
-              // className={s.date__picker}
-              style={{ position: 'relative' }}
-            />
-          </div>
+          </div>          
           <div>
             {/* <button disabled={isSubmitting} type="submit"> */}
             <button type="submit">Create Ride</button>
