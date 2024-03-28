@@ -151,7 +151,6 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
     if (day && day > 0) {
       // console.log("converted data", new Date(`2024-01-${day}`));
       let date = new Date(`2024-01-${day}`);
-      // setSelectedDate(`2024-01-${e.target.id}`)
 
       // let modifiedDate = moment(date).format("YYYY-MM-DD");
       let modifiedDate = console.log("modifiedDate in handler", modifiedDate);
@@ -161,7 +160,7 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
       });
       setOpenCalendar(false);
     } else {
-      console.log("no id");
+      console.log("no ID");
       return;
     }
   };

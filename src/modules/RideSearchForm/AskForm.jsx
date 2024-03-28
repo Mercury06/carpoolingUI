@@ -29,8 +29,10 @@ const AskForm = (props) => {
 
   const userId = useSelector((state) => state.user.currentUser.id);
   const suggestedRides = useSelector((state) => state.ride.suggestedRides);
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
   const [openCalendar, setOpenCalendar] = React.useState(false);
-  // const [selectedDate, setSelectedDate] = React.useState(moment(new Date()).format("YYYY-MM-DD"));
+  
+  console.log("selectedDate in main state", selectedDate) 
   // console.log("initialState data", initialState)
   // const dispatch = useDispatch();
 
@@ -164,7 +166,8 @@ const AskForm = (props) => {
         </div>
         <div>
             {/* <Calendar /> */}
-            {openCalendar && <Calendar2 setOpenCalendar={setOpenCalendar} inputValues={inputValues} setInputValues={setInputValues} />}
+            {openCalendar && <Calendar2 setOpenCalendar={setOpenCalendar} inputValues={inputValues} setInputValues={setInputValues} 
+                                        selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
         </div>
       </div>
       

@@ -135,8 +135,24 @@
                 justify-content: center;
                 padding: 5px;
                 position: relative;
+                // background-color: #0000ff;
+                color: #0000ff;
+                // animation: to-top 1s forwards;
+                /* border-radius: 50%; */
+            }
+            .div_curr_date_selected {
+                width: 45px;
+                height: 45px;                
+                border: 2px solid black;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 5px;
+                position: relative;
+                cursor: pointer;
+                // background-color: #0000ff;
+                color: #0000ff;
                 background-color: #0000ff;
-                color: rgb(255, 255, 255);
                 // animation: to-top 1s forwards;
                 /* border-radius: 50%; */
             }
@@ -153,6 +169,22 @@
                 // animation: to-top 1s forwards;
                 /* border-radius: 50%; */
             }
+            .div_future_date_selected {
+                width: 45px;
+                height: 45px;                
+                border: 2px solid black;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 5px;
+                position: relative;
+                cursor: pointer;
+                color: rgb(0, 0, 0);
+                background-color: #0000ff;
+                // animation: to-top 1s forwards;
+                /* border-radius: 50%; */
+            }
+           
             .div_past_date:hover {
                 cursor: default;
             }
@@ -170,40 +202,6 @@
     }
 }
 
-
-   
-
-
-
-// .month-picker:hover {
-//     background-color: var(--color-hover);
-// }
-
-// .year-picker {
-//     display: flex;
-//     align-items: center;
-// }
-
-// .year-change {
-//     height: 40px;
-//     width: 40px;
-//     border-radius: 50%;
-//     display: grid;
-//     place-items: center;
-//     margin: 0 10px;
-//     cursor: pointer;
-// }
-
-// .year-change:hover {
-//     background-color: var(--color-hover);
-// }
-
-// .calendar-footer {
-//     padding: 10px;
-//     display: flex;
-//     justify-content: flex-end;
-//     align-items: center;
-// }
 
 
 

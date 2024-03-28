@@ -1,9 +1,10 @@
 import React from 'react'; 
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 import s from './Calendar2.module.scss';
+import cn from 'classnames';
 
 
-const Calendar2 = ({setOpenCalendar, setInputValues, inputValues}) => {    
+const Calendar2 = ({setOpenCalendar, setInputValues, inputValues, selectedDate, setSelectedDate }) => {    
     
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     const currentDate = new Date();
@@ -11,9 +12,13 @@ const Calendar2 = ({setOpenCalendar, setInputValues, inputValues}) => {
     const currentYear = currentDate.getFullYear()    
     const curr_month = `${monthNames[currentMonth]}`;
     const [shownMonthTitle, setShownMonthTitle] = React.useState(curr_month);
-    const [shownYear, setShownYear] = React.useState(currentYear); 
-    console.log("shownMonthTitle", shownMonthTitle)  
-    console.log("shownYear", shownYear)  
+    const [shownYear, setShownYear] = React.useState(currentYear);
+    // const [monthToggleFlag, setMonthToggleFlag] = React.useState(false);  
+    
+    // console.log("shownMonthTitle", shownMonthTitle)  
+    // console.log("shownYear", shownYear)   
+    console.log("TRUE?", monthNames.indexOf(shownMonthTitle) === new Date().getMonth())
+      
 
     
     const isLeapYear = (shownYear) => {
@@ -63,81 +68,88 @@ const Calendar2 = ({setOpenCalendar, setInputValues, inputValues}) => {
         }        
     }
 
-    const onBackMonth = () => { 
-        if (monthNames.indexOf(shownMonthTitle) === 0) {            
-            setShownYear(shownYear - 1)
-            setShownMonthTitle(monthNames[11])
+    const onBackMonth = () => {
+        if (monthNames.indexOf(shownMonthTitle) === new Date().getMonth()) {
+            return
         } else {
-            setShownMonthTitle(monthNames[monthNames.indexOf(shownMonthTitle) - 1])
-        } 
-    }
+            if (monthNames.indexOf(shownMonthTitle) === 0) {            
+                setShownYear(shownYear - 1)
+                setShownMonthTitle(monthNames[11])
+            } else {
+                setShownMonthTitle(monthNames[monthNames.indexOf(shownMonthTitle) - 1])
+            } 
+        }        
+    } 
 
-    // function checkDay(day) {
-    //     let dayToRender = new Date (shownYear, monthNames.indexOf(shownMonthTitle), day).getDate()
-    //     // console.log("dayToRender", dayToRender)
-    //     // console.log("cheking in function", dayToRender)        
-    //     if (dayToRender < new Date().getDate()) {
-    //         console.log("dayToRender less", dayToRender)
-    //         return true
 
-    //     } else if (dayToRender >= new Date().getDate()) {
-    //         console.log("dayToRender more", dayToRender)
-    //         return false
-    //     }      
-    // }
-
-    // function checkDay(day) {
-    //     let dayToRender = new Date (shownYear, monthNames.indexOf(shownMonthTitle), day)
-    //     // console.log("dayToRender", dayToRender)
-    //     // console.log("cheking in function", dayToRender)
-    //     if(dayToRender.getDate() == new Date().getDate()) {
-    //         return false
-    //     } else if (dayToRender < new Date()) {
-    //         console.log("dayToRender less", dayToRender.getDate())
-    //         return true
-    //     } else if ( dayToRender > new Date() ) { 
-    //         console.log("dayToRender more", dayToRender.getDate()) // || 
-    //         return false
-    //     }      
-    //     // if (dayToRender.getDate() == new Date().getDate()) {
-    //     //     console.log("equal", dayToRender)
-    //     // }
-    // }
     function checkDay(day) {
-        let dayToRender = new Date (shownYear, monthNames.indexOf(shownMonthTitle), day)
-        // console.log("dayToRender", dayToRender)       
-     
-        // console.log("cheking in function", dayToRender)
+        // console.log("daysToRender", daysToRender) 
+        if (day > 0) {
+            console.log("day > 0", day)
+
+            let dayToRender = new Date (shownYear, monthNames.indexOf(shownMonthTitle), day)
+        // let formattedSelectedDate = dayToRender.getDate() == new Date().getDate() && dayToRender.getMonth() == new Date().getMonth() && dayToRender.getFullYear() == new Date().getFullYear()
+        // console.log("daysToRender.getDate()", dayToRender.getDate())
+        let formattedSelectedDate = new Date (selectedDate)
+        // console.log("dayToRender", dayToRender)    
+        // console.log("formattedSelectedDate", formattedSelectedDate)
+        // console.log("selectedDate in function*****", new Date(selectedDate))
+       
         if(dayToRender.getDate() == new Date().getDate() && dayToRender.getMonth() == new Date().getMonth() && dayToRender.getFullYear() == new Date().getFullYear()) {
-            // console.log("current day", dayToRender.getDate())
+            // console.log("dayToRender current", dayToRender)
+            if(dayToRender.getDate() == formattedSelectedDate.getDate() && dayToRender.getMonth() == formattedSelectedDate.getMonth() && dayToRender.getFullYear() == formattedSelectedDate.getFullYear()) {
+                return s.div_curr_date_selected
+            }
             return s.div_curr_date
+            // console.log("current day", dayToRender.getDate())           
         } else if (dayToRender < new Date()) {
             // console.log("dayToRender less", dayToRender.getDate())
             return s.div_past_date
-        } else if ( dayToRender > new Date() ) { 
-            // console.log("dayToRender more", dayToRender.getDate())
+        } else if ( dayToRender > new Date()) { 
+            // console.log("dayToRender future", dayToRender)
+            if(dayToRender.getDate() == formattedSelectedDate.getDate() 
+                && dayToRender.getMonth() == formattedSelectedDate.getMonth() 
+                && dayToRender.getFullYear() == formattedSelectedDate.getFullYear() ) 
+                // && dayToRender.getDate() !== new Date(selectedDate).getDate()
+                // && dayToRender.getMonth() !== new Date(selectedDate).getMonth()
+                // && dayToRender.getFullYear() !== new Date(selectedDate).getFullYear()) 
+                {
+                return s.div_future_date_selected
+            }
             return s.div_future_date
-        }           
+        }
+        } else {
+            console.log("day <= 0", day)
+        }
+        
+        
+        
     }
 
     const setDate = (e) => {
-       
+        // console.log("selectedDate in function", selectedDate)  
         let day = e.target.id;
         console.log("day", day);
+        // console.log("SHOWN", new Date (shownYear, monthNames.indexOf(shownMonthTitle), day).getDate());
+        // console.log("SHOWN2", new Date().getDate());
+        // console.log("SHOWN3", new Date (shownYear, monthNames.indexOf(shownMonthTitle), day) >= new Date());
     
-        if (day && day > 0 && new Date (shownYear, monthNames.indexOf(shownMonthTitle), day).getDate() >= new Date().getDate()) { 
-            console.log("new date", new Date())
-            console.log("DAY", new Date (shownYear, monthNames.indexOf(shownMonthTitle), day) )
+        if (day && day > 0 && new Date (shownYear, monthNames.indexOf(shownMonthTitle), day) >= new Date()) { 
+            // console.log("new date", new Date())
+            // console.log("DAY", new Date (shownYear, monthNames.indexOf(shownMonthTitle), day) )
     
       
             let formattedMonth = (monthNames.indexOf(shownMonthTitle) + 1);
-            console.log("currentMonth", formattedMonth)        
+            console.log("formattedMonth", formattedMonth)        
             let modifiedDate = shownYear + '-' + (formattedMonth <= 9 ? '0' + formattedMonth : formattedMonth) + '-' + (day <= 9 ? '0' + day : day);
             console.log("modifiedDate in handler", modifiedDate);
             setInputValues({
                 ...inputValues,
                 date: modifiedDate,
             });
+            setSelectedDate(modifiedDate);
+            // console.log("SETTY", new Date(modifiedDate)) 
+            
             setOpenCalendar(false);
         } else {
           console.log("no id");
@@ -190,7 +202,7 @@ const Calendar2 = ({setOpenCalendar, setInputValues, inputValues}) => {
                         {/* {daysToRender.map((day) => (<div id={day} className={s.day}>{day > 0 && day}</div>))  */}
                            
                         {/* {daysToRender.map((day) => (<div id={day} className={checkDay(day) ? s.div_past_date : s.div}>{day > 0 && day}</div>))} */}
-                        {daysToRender.map((day) => (<div id={day} className={checkDay(day)}>{day > 0 && day}</div>))}
+                        {daysToRender.map((day) => (<div id={day} className={checkDay(day)}>{day > 0 && day}</div>))}                       
                         
                     </div>
                 </div>               
