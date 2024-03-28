@@ -15,19 +15,16 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
   //const [form, setForm] = React.useState({ localityFrom: '', destination: '', user: '', date: '' });
   const [errors, setErrors] = React.useState({});
   //const [isSubmitting, setSubmitting] = React.useState(false);
-  const [selectedDate, setSelectedDate] = React.useState(null);
+
   const [targetName, setTargetName] = React.useState(null);
   const deboucedSearch = useDebounce(searchResolver, 500);
-  //const [open, setOpen] = React.useState(false);
-  console.log("inputValues mounted", inputValues);
 
-  const modifiedInitialStateDate = selectedDate;
-  // moment(initialStateDate).format("YYYY-MM-DD");
+  // console.log("inputValues mounted", inputValues);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const inputRef1 = useRef(null);
   const inputRef2 = useRef(null);
-  console.log("selected day in useForm", selectedDate);
 
   // React.useEffect(() => {
   //   if (isSubmitting) {
@@ -149,10 +146,6 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
   }
 
   const onChangeDateHandler = (e) => {
-    //debugger;
-    // const modifiedDate = moment(value).format("YYYY-MM-DD");
-    // setModifiedDate(modifiedDate);
-    // console.log("e.target.id in hook:", e.target.id);
     let day = e.target.id;
 
     if (day && day > 0) {
@@ -160,9 +153,8 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
       let date = new Date(`2024-01-${day}`);
       // setSelectedDate(`2024-01-${e.target.id}`)
 
-      let modifiedDate = moment(date).format("YYYY-MM-DD");
-      console.log("modifiedDate in handler", modifiedDate);
-      // setSelectedDate(modifiedDate);
+      // let modifiedDate = moment(date).format("YYYY-MM-DD");
+      let modifiedDate = console.log("modifiedDate in handler", modifiedDate);
       setInputValues({
         ...inputValues,
         date: modifiedDate,
@@ -170,6 +162,7 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
       setOpenCalendar(false);
     } else {
       console.log("no id");
+      return;
     }
   };
 
@@ -178,6 +171,7 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
     handleChange,
     // handleBlur,
     inputValues,
+    setInputValues,
     errors,
     //isSubmitting,
     // modifiedDate,
@@ -188,7 +182,6 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
     inputRef1,
     inputRef2,
     onClickClear,
-    selectedDate,
     // modifiedInitialStateDate,
   };
 }

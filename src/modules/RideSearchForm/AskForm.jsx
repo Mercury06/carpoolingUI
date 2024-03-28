@@ -52,12 +52,12 @@ const AskForm = (props) => {
     onSuggestSelect1,
     onSuggestSelect2,
     targetName,
+    inputValues,
+    setInputValues,
     inputRef1,
     inputRef2,
-    onClickClear,
-    // modifiedInitialStateDate,
-    selectedDate,
-    inputValues,
+    onClickClear,  
+    
   } = useForm(initialState, setOpenCalendar);
 
   return (
@@ -164,7 +164,7 @@ const AskForm = (props) => {
         </div>
         <div>
             {/* <Calendar /> */}
-            {openCalendar && <Calendar2 setDate={onChangeDateHandler} />}
+            {openCalendar && <Calendar2 setOpenCalendar={setOpenCalendar} inputValues={inputValues} setInputValues={setInputValues} />}
         </div>
       </div>
       
