@@ -1,7 +1,6 @@
 import React from 'react'; 
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 import s from './Calendar2.module.scss';
-import cn from 'classnames';
 
 
 const Calendar2 = ({setOpenCalendar, setInputValues, inputValues, selectedDate, setSelectedDate }) => {    
@@ -16,9 +15,8 @@ const Calendar2 = ({setOpenCalendar, setInputValues, inputValues, selectedDate, 
     // const [monthToggleFlag, setMonthToggleFlag] = React.useState(false);  
     
     // console.log("shownMonthTitle", shownMonthTitle)  
-    // console.log("shownYear", shownYear)   
-    console.log("TRUE?", monthNames.indexOf(shownMonthTitle) === new Date().getMonth())
-      
+    // console.log("shownYear", shownYear)
+    console.log("curr_month", shownMonthTitle)      
 
     
     const isLeapYear = (shownYear) => {
@@ -81,16 +79,15 @@ const Calendar2 = ({setOpenCalendar, setInputValues, inputValues, selectedDate, 
         }        
     } 
 
-
     function checkDay(day) {
         // console.log("daysToRender", daysToRender) 
         if (day > 0) {
-            console.log("day > 0", day)
+            // console.log("day > 0", day)
 
             let dayToRender = new Date (shownYear, monthNames.indexOf(shownMonthTitle), day)
         // let formattedSelectedDate = dayToRender.getDate() == new Date().getDate() && dayToRender.getMonth() == new Date().getMonth() && dayToRender.getFullYear() == new Date().getFullYear()
         // console.log("daysToRender.getDate()", dayToRender.getDate())
-        let formattedSelectedDate = new Date (selectedDate)
+            let formattedSelectedDate = new Date (selectedDate)
         // console.log("dayToRender", dayToRender)    
         // console.log("formattedSelectedDate", formattedSelectedDate)
         // console.log("selectedDate in function*****", new Date(selectedDate))
@@ -119,11 +116,8 @@ const Calendar2 = ({setOpenCalendar, setInputValues, inputValues, selectedDate, 
             return s.div_future_date
         }
         } else {
-            console.log("day <= 0", day)
+            // console.log("day <= 0", day)
         }
-        
-        
-        
     }
 
     const setDate = (e) => {
@@ -147,6 +141,7 @@ const Calendar2 = ({setOpenCalendar, setInputValues, inputValues, selectedDate, 
                 ...inputValues,
                 date: modifiedDate,
             });
+            
             setSelectedDate(modifiedDate);
             // console.log("SETTY", new Date(modifiedDate)) 
             

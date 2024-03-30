@@ -13,7 +13,7 @@ import moment from 'moment';
 
 
 const AskForm = (props) => {
-
+  
   const initialState = {
     localityFrom: {
       localityName: '',
@@ -42,7 +42,13 @@ const AskForm = (props) => {
     // console.log('suggestedRides:', suggestedRides);
   }, [suggestedRides]);
 
-  // console.log("initialState mounted", initialState)
+  React.useEffect(() => {
+    props.setRenderFlag(true)   
+    return () => { 
+      props.setRenderFlag(false)    
+    };
+  }, []);
+  
 
   const {
     findRidesHandleSubmit,

@@ -1,23 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
-// import Content from '../Content/Content';
-// import Footer from '../Footer/Footer';
+
 import Header from './../Header/Header';
 import DropDownMenu from '../Header/DropDownMenu';
 import classes from './Layout.module.scss';
 import { useSelector } from 'react-redux';
 import NotificationMenu from '../Header/NotificationMenu';
+import Footer from '../../temporary/Footer/Footer';
+import Content from '../../temporary/Content/Content';
 
 
-const Layout = ({ children }) => {
+const Layout = ({ children, renderFlag }) => {
   const [openDropdown, setOpenDropdown] = useState(false);
-  const [openNotifications, setOpenNotifications] = useState(false);
+  const [openNotifications, setOpenNotifications] = useState(false);  
+  
   const isAuth = useSelector((state) => state.user.isAuth);
   const user = useSelector((state) => state.user.currentUser); 
+    
   const userIconRef = useRef();
   const dropDownMenuRef = useRef();
   const notificationIconRef = useRef();
-  const notificationMenuRef = useRef();
-
+  const notificationMenuRef = useRef();  
+ 
 
   const menuOnClickHandler = (e) => {    
         
@@ -42,6 +45,8 @@ const Layout = ({ children }) => {
       console.log("UNMOUNT2")    
     }
   }, [])
+ 
+
   // const dropDownMenuHandler = (e) => {
   //   console.log("HANDLEr1")     
   //   if(!dropDownMenuRef.current?.contains(e.target) && !userIconRef.current?.contains(e.target)){        
@@ -77,6 +82,8 @@ const Layout = ({ children }) => {
                                 dropDownMenuRef={dropDownMenuRef}/> } 
       { isAuth && <NotificationMenu openNotifications={openNotifications} notificationMenuRef={notificationMenuRef}/>}                         
       <div className={classes.container}>{children}</div>
+      {renderFlag && <Content />}
+      {renderFlag && <Footer />}
       {/* <Content />
       <Footer /> */}
     </>

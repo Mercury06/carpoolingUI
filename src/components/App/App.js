@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { auth, fetchNotifications } from "./../api/actions";
 import Layout from "../Layout/Layout.jsx";
 
@@ -28,8 +28,8 @@ import { useSseInitializer } from "../utils/useSseInitializer.js";
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
-
   const dispatch = useDispatch();
+  const [renderFlag, setRenderFlag] = useState(false);
   const currentUser = useSelector((store) => store.user.currentUser);
   const [message, setmessage] = useState(null);
   // const eventData = useSseInitializer(isAuth, currentUser);
@@ -81,7 +81,7 @@ function App() {
   // }, [isAuth]);
 
   return (
-    <Layout>
+    <Layout renderFlag={renderFlag}>
       <Routes>
         {/* {!isAuth && <Route path="login" element={<Login />} />} */}
         {!isAuth && <Route path="login" element={<LoginForm />} />}
@@ -92,7 +92,10 @@ function App() {
         {isAuth && <Route path="myrides" element={<UserRidesContainer />} />}
         {isAuth && <Route path="myasks" element={<UserAsksContainer />} />}
         {isAuth && <Route path="messages" element={<MessageBox />} />}
-        {isAuth && <Route path="notifications" element={<Notifications />} />}
+        {isAuth && (
+          <Route path="notifications" element={<Notifications />} />
+        )}{" "}
+        //check
         {!isAuth && (
           <Route path="myrides" element={<Navigate to="/" replace />} />
         )}
@@ -103,18 +106,20 @@ function App() {
           <Route path="/" element={<Navigate to="/ask-ride" replace />} />
         )}
         {!isAuth && (
-          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route
+            path="ask-ride"
+            element={<AskForm setRenderFlag={setRenderFlag} />}
+          />
         )}
-        {isAuth && <Route path="create-ride" element={<RideCreateForm />} />}
-        {isAuth && <Route path="ask-ride" element={<AskForm />} />}
-        {!isAuth && <Route path="ask-ride" element={<AskForm />} />}
         {isAuth && <Route path="rides-search" element={<RidesSearchList />} />}
         {!isAuth && <Route path="rides-search" element={<RidesSearchList />} />}
-        {isAuth && <Route path="offers-list" element={<OffersList />} />}
-        {isAuth && <Route path="asks-list" element={<AsksList />} />}
+        //check
+        {isAuth && <Route path="offers-list" element={<OffersList />} />}//check
+        {isAuth && <Route path="asks-list" element={<AsksList />} />}//check
         {isAuth && (
           <Route path="confirmed-asks" element={<ConfirmedAsksList />} />
         )}
+        //check
         {!isAuth && (
           <Route
             path="confirmed-asks"
@@ -122,10 +127,12 @@ function App() {
           />
         )}
         {isAuth && <Route path="ride-details" element={<RideDetails />} />}
-        {isAuth && <Route path="ask-details" element={<AskDetails />} />}
+        //check
+        {isAuth && <Route path="ask-details" element={<AskDetails />} />}//check
         {isAuth && (
           <Route path="confirmed-offer" element={<ConfirmedOffer />} />
         )}
+        //check
         {/* {isAuth && <Route path="subscribe" element={<SubscribePage />} />} */}
       </Routes>
     </Layout>
