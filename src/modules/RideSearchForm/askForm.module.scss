@@ -15,7 +15,9 @@
   .container {
     // height: calc(100vh - #{$headerHeight});
     // margin-top: calc($headerHeight*2);
-    background: #356691;
+    // background: #356691;
+    // background: lime;
+    
     z-index: 2;    
     margin-top: $headerHeight;
     position: relative;
@@ -137,8 +139,12 @@
       }
     }
   }
-}
 
+  .scroll_top {
+    background: lime;  
+    border-radius: 20px; 
+  }
+}
 
 .error-input {
   border: 2px solid red;

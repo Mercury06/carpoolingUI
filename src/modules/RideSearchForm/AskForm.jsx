@@ -31,8 +31,11 @@ const AskForm = (props) => {
   const suggestedRides = useSelector((state) => state.ride.suggestedRides);
   const [selectedDate, setSelectedDate] = React.useState(new Date());
   const [openCalendar, setOpenCalendar] = React.useState(false);
+  const element = React.useRef();  
+  const observer = React.useRef();
+  const [scrolled, setScrolled] = React.useState(false);
+ 
   
-  console.log("selectedDate in main state", selectedDate) 
   // console.log("initialState data", initialState)
   // const dispatch = useDispatch();
 
@@ -48,15 +51,44 @@ const AskForm = (props) => {
       props.setRenderFlag(false)    
     };
   }, []);
-  
+
+ 
+
+  React.useEffect(() => {
+    // console.log("observer on start", observer)
+    // console.log("element on start", element)
+
+    const options = {
+      rootMargin: "-70px",
+      threshold: 0.9
+    }
+    var cb = function(entries, observer) {
+      // console.log("element in observer", element.current)
+      let entry = entries[0]      
+      console.log("entry.target", entry.target)
+      console.log("entry", entry.isIntersecting)
+
+
+      if (!entry.isIntersecting) {
+        setScrolled(true)
+        console.log("setScrolled true")
+      } else {
+        setScrolled(false)
+        console.log("setScrolled false")
+      }
+    
+    }
+    observer.current = new IntersectionObserver(cb, options)
+    observer.current.observe(element.current)
+
+  }, []);
 
   const {
     findRidesHandleSubmit,
     handleChange,
     handleBlur,
     errors,
-    isSubmitting,
-    onChangeDateHandler,   
+    isSubmitting,       
     onSuggestSelect1,
     onSuggestSelect2,
     targetName,
@@ -73,8 +105,9 @@ const AskForm = (props) => {
       <div className={s.askForm__wrapper}>
         <div className={s.slogan}>
           <p>Ride your best way</p>
-        </div>
-        <div className={s.container}>
+        </div>        
+        {/* <div ref={element} className={s.container}> */}        
+        <div ref={element} className={`${s.container} ${scrolled ? s.scroll_top : ""}`}>
           <form className={s.form} onSubmit={findRidesHandleSubmit}>
             {/* <h3>Find ride</h3> */}
             <div className={s.input__block}>
@@ -160,14 +193,16 @@ const AskForm = (props) => {
                   </ul>
                 </div>
               ) : null}
-            </div>            
+            </div>  
+                      
             <div className={s.calendar_btn}>              
               {/* <button type="button" onClick={() => setOpenCalendar(!openCalendar)} id="id1">{moment(initialState.date).format("DD MMM YYYY")}</button> */}
-              <button type="button" onClick={() => setOpenCalendar(!openCalendar)}>{inputValues.date ? moment(inputValues.date).format("DD MMM YYYY") : moment(new Date ()).format("DD MMM YYYY")}</button>       
+              <button type="button" onClick={() => setOpenCalendar(!openCalendar)}>{inputValues.date ? moment(inputValues.date).format("DD MMM YYYY") : moment(new Date ()).format("DD MMM YYYY")}</button>
+                   
             </div>
             <div className={s.search_btn}>              
               <button disabled={isSubmitting} type="submit">Find ride</button>       
-            </div>        
+            </div>                      
           </form>
         </div>
         <div>

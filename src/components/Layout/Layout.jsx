@@ -83,9 +83,7 @@ const Layout = ({ children, renderFlag }) => {
       { isAuth && <NotificationMenu openNotifications={openNotifications} notificationMenuRef={notificationMenuRef}/>}                         
       <div className={classes.container}>{children}</div>
       {renderFlag && <Content />}
-      {renderFlag && <Footer />}
-      {/* <Content />
-      <Footer /> */}
+      {renderFlag && <Footer />}     
     </>
   );
 };

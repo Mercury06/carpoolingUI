@@ -105,10 +105,22 @@ function App() {
         {isAuth && (
           <Route path="/" element={<Navigate to="/ask-ride" replace />} />
         )}
+        {isAuth && (
+          <Route
+            path="ask-ride"
+            element={<AskForm setRenderFlag={setRenderFlag} />}
+          />
+        )}
         {!isAuth && (
           <Route
             path="ask-ride"
             element={<AskForm setRenderFlag={setRenderFlag} />}
+          />
+        )}
+        {isAuth && (
+          <Route
+            path="create-ride"
+            element={<RideCreateForm setRenderFlag={setRenderFlag} />}
           />
         )}
         {isAuth && <Route path="rides-search" element={<RidesSearchList />} />}

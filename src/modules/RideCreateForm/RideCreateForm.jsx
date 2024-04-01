@@ -28,6 +28,13 @@ const RideCreateForm = (props) => {
     console.log('suggestedRides:', suggestedRides);
   }, [suggestedRides]); //edit
 
+  React.useEffect(() => {
+    props.setRenderFlag(true)   
+    return () => { 
+      props.setRenderFlag(false)    
+    };
+  }, []);
+
   const {
     createRideHandleSubmit,
     handleChange,
