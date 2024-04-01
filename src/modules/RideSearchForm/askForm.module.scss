@@ -16,11 +16,13 @@
     // height: calc(100vh - #{$headerHeight});
     // margin-top: calc($headerHeight*2);
     // background: #356691;
+    background: #ff2643;
+    
     // background: lime;
     
     z-index: 2;    
-    margin-top: $headerHeight;
-    position: relative;
+    // margin-top: $headerHeight;
+    // position: relative;
     box-shadow: 0 0 6px 0 rgb(171, 206, 241);
     border-radius: 6px;
     outline: none;
@@ -38,7 +40,8 @@
       @include breakpoint(md) {
         // flex-direction: row;
         display: grid;
-        grid-template-columns: 3fr 3fr 2fr 1fr;   
+        grid-template-columns: 3fr 3fr 2fr 1fr; 
+      
       }
     }
     .input__row {
@@ -139,10 +142,11 @@
       }
     }
   }
-
   .scroll_top {
-    background: lime;  
-    border-radius: 20px; 
+    background: lime;   
+    position: fixed;   
+    // margin-top: $headerHeight;
+    top: $headerHeight;
   }
 }
 

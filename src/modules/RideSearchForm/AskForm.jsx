@@ -54,29 +54,54 @@ const AskForm = (props) => {
 
  
 
-  React.useEffect(() => {
-    // console.log("observer on start", observer)
-    // console.log("element on start", element)
+  // React.useEffect(() => {
+  //   // console.log("observer on start", observer)
+  //   // console.log("element on start", element)
 
+  //   const options = {
+  //     rootMargin: "-70px",
+  //     threshold: 0.9
+  //   }
+  //   var cb = function(entries, observer) {
+  //     // console.log("element in observer", element.current)
+  //     let entry = entries[0]      
+  //     console.log("entry.target", entry.target)
+  //     console.log("entry", entry.isIntersecting)
+
+
+  //     if (!entry.isIntersecting) {
+  //       setScrolled(true)
+       
+  //       console.log("setScrolled true")
+  //     } 
+  //     else {
+  //       setScrolled(false)
+  //       console.log("setScrolled false")
+  //     }
+    
+  //   }
+  //   observer.current = new IntersectionObserver(cb, options)
+  //   observer.current.observe(element.current)
+
+  // }, []);
+
+  React.useLayoutEffect(() => {   
+    
     const options = {
-      rootMargin: "-70px",
-      threshold: 0.9
+      rootMargin: "-120px",
+      threshold: 0.5
     }
     var cb = function(entries, observer) {
-      // console.log("element in observer", element.current)
-      let entry = entries[0]      
-      console.log("entry.target", entry.target)
-      console.log("entry", entry.isIntersecting)
-
-
-      if (!entry.isIntersecting) {
-        setScrolled(true)
-        console.log("setScrolled true")
-      } else {
-        setScrolled(false)
-        console.log("setScrolled false")
-      }
     
+      let entry = entries[0]  
+      if (!entry.isIntersecting) {
+        console.log("intersecting")
+        setScrolled(true)
+      }
+      else {
+        console.log("not intersecting")
+        setScrolled(false)
+      }    
     }
     observer.current = new IntersectionObserver(cb, options)
     observer.current.observe(element.current)
@@ -102,12 +127,13 @@ const AskForm = (props) => {
 
   return (
     <>
-      <div className={s.askForm__wrapper}>
+      <div ref={element} className={s.askForm__wrapper}>
         <div className={s.slogan}>
           <p>Ride your best way</p>
         </div>        
         {/* <div ref={element} className={s.container}> */}        
-        <div ref={element} className={`${s.container} ${scrolled ? s.scroll_top : ""}`}>
+        {/* <div ref={element} className={`${s.container} ${scrolled ? s.scroll_top : ""}`}> */}
+        <div className={`${s.container} ${scrolled ? s.scroll_top : ""}`}>
           <form className={s.form} onSubmit={findRidesHandleSubmit}>
             {/* <h3>Find ride</h3> */}
             <div className={s.input__block}>
