@@ -3,6 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { BsFillGeoAltFill } from 'react-icons/bs';
 import { ClearIcon } from '../../components/assets/svg/BoxIcons';
+import { LiaExchangeAltSolid } from "react-icons/lia";
 import useForm from './hooks/useForm';
 // import { setSuggestedRides } from '../../../../reducers/rideReducer';
 // import { findLocality } from '../../../api/actions';
@@ -148,7 +149,7 @@ const AskForm = (props) => {
                   autoComplete="off"
                   placeholder="From"
                 />
-                <div className={s.geoIcon}>
+                <div className={s.geoIcon1}>
                   <BsFillGeoAltFill />
                 </div>
                 {inputValues.localityFrom.localityName && (
@@ -161,6 +162,8 @@ const AskForm = (props) => {
                   </div>
                 )}
               </div>
+              
+              
 
               {inputValues.localityFrom.localityName !== '' &&
               suggestedRides.length > 0 &&
@@ -179,6 +182,9 @@ const AskForm = (props) => {
               ) : null}
             </div>
             {/* {errors.email && <p className="error-text">{errors.email}</p>} */}
+            <div className={s.exchangeIcon}>
+              <LiaExchangeAltSolid size={22} />
+            </div>
             <div className={s.input__block}>
               <div className={s.input__row}>
                 <input
@@ -191,7 +197,7 @@ const AskForm = (props) => {
                   autoComplete="off"
                   placeholder="To"
                 />
-                <div className={s.geoIcon}>
+                <div className={s.geoIcon2}>
                   <BsFillGeoAltFill />
                 </div>
                 {inputValues.destination.localityName && (
