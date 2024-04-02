@@ -88,7 +88,7 @@ const AskForm = (props) => {
   React.useLayoutEffect(() => {   
     
     const options = {
-      rootMargin: "-120px",
+      rootMargin: "-136px",
       threshold: 0.5
     }
     var cb = function(entries, observer) {
@@ -230,12 +230,17 @@ const AskForm = (props) => {
               <button disabled={isSubmitting} type="submit">Find ride</button>       
             </div>                      
           </form>
-        </div>
-        <div>
+          <div>
             {/* <Calendar /> */}
             {openCalendar && <Calendar2 setOpenCalendar={setOpenCalendar} inputValues={inputValues} setInputValues={setInputValues} 
                                         selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
+          </div>
         </div>
+        {/* <div>
+           
+            {openCalendar && <Calendar2 setOpenCalendar={setOpenCalendar} inputValues={inputValues} setInputValues={setInputValues} 
+                                        selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
+        </div> */}
       </div>
       
     </>

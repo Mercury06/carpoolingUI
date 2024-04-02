@@ -5,6 +5,7 @@ import { BiMenuAltRight, BiArrowBack } from 'react-icons/bi';
 import { FaSearch, FaUserCircle } from 'react-icons/fa';
 import { IoNotificationsOutline } from "react-icons/io5";
 import classes from './Header.module.scss';
+import logo from "./../assets/img/m_logo.jpg"
 import cn from 'classnames';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -54,7 +55,7 @@ const Header = ({setOpenDropdown, setOpenNotifications, isAuth, userIconRef, not
             <LogoIcon />
           </div> */}
           <div className={classes.header__content_logo}>
-            <h1>FOXY</h1>
+            <h1>FOXY</h1>            
           </div>
           <nav
             className={`${classes.header__content__nav} ${

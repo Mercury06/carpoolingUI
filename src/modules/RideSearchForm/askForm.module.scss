@@ -18,13 +18,11 @@
     // background: #356691;
     background: #ff2643;
     
-    // background: lime;
-    
     z-index: 2;    
     // margin-top: $headerHeight;
     // position: relative;
     box-shadow: 0 0 6px 0 rgb(171, 206, 241);
-    border-radius: 6px;
+    
     outline: none;
     // box-sizing: border-box;
     // display: flex;
@@ -51,7 +49,9 @@
       // border: 2px solid #aaa;
       border-radius: 4px;      
       outline: none;
-      padding-left: 24px;      
+      padding-left: 30px;
+      padding-bottom: 2px;     
+      box-sizing: border-box;  
       display: inline-block;
       font-family: inherit;
       font-size: inherit;
@@ -124,17 +124,17 @@
     
     .geoIcon {
       opacity: 0.6;
-      position: absolute;
-      left: 6px;
-      top: 4px;
+      position: absolute;    
+      left: 10px;
+      top: 12px;
     }
     .clearIcon {
       // width: 18px;
       // height: 18px;
       opacity: 0.9;
       position: absolute;
-      right: 6px;
-      top: 4px;
+      right: 8px;
+      top: 13px;
       cursor: pointer;
   
       &:hover {
@@ -143,10 +143,18 @@
     }
   }
   .scroll_top {
-    background: lime;   
+    // background: lime;
+    background: #121212;
+    box-shadow: 0 0 0px 0 rgb(171, 206, 241);  
     position: fixed;   
-    // margin-top: $headerHeight;
-    top: $headerHeight;
+    margin-top: $headerHeight;
+    // top: $headerHeight;
+    top: 0;
+    left: 0;
+    right: 0;
+    // margin: 16px;
+    width: 100%;
+    padding: 10px 7% 10px;
   }
 }
 
