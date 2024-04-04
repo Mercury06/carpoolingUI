@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { BsFillGeoAltFill } from 'react-icons/bs';
 import { ClearIcon } from '../../components/assets/svg/BoxIcons';
 import { LiaExchangeAltSolid } from "react-icons/lia";
+import { FaCalendarWeek } from "react-icons/fa";
 import useForm from './hooks/useForm';
 // import { setSuggestedRides } from '../../../../reducers/rideReducer';
 // import { findLocality } from '../../../api/actions';
@@ -35,7 +36,7 @@ const AskForm = (props) => {
   const element = React.useRef();  
   const observer = React.useRef();
   const [scrolled, setScrolled] = React.useState(false);
- 
+  console.log("suggestedRides", suggestedRides)
   
   // console.log("initialState data", initialState)
   // const dispatch = useDispatch();
@@ -113,6 +114,8 @@ const AskForm = (props) => {
     findRidesHandleSubmit,
     handleChange,
     handleBlur,
+    suggestMode,
+    searching,
     errors,
     isSubmitting,       
     onSuggestSelect1,
@@ -131,6 +134,7 @@ const AskForm = (props) => {
       <div ref={element} className={s.askForm__wrapper}>
         <div className={s.slogan}>
           <p>Ride your best way</p>
+          
         </div>        
         {/* <div ref={element} className={s.container}> */}        
         {/* <div ref={element} className={`${s.container} ${scrolled ? s.scroll_top : ""}`}> */}
@@ -161,23 +165,49 @@ const AskForm = (props) => {
                     <ClearIcon />
                   </div>
                 )}
-              </div>
-              
-              
-
-              {inputValues.localityFrom.localityName !== '' &&
+              </div>               
+              {/* {inputValues.localityFrom.localityName !== '' &&
               suggestedRides.length > 0 &&
               targetName === 'localityFrom' ? (
                 <div className={s.input__popup}>
-                  <ul>
-                    {suggestedRides.map((item, i) => {
-                      return (
-                        <li key={i} onClick={(e) => onSuggestSelect1(e, { item })}>
-                          {item.locality}
-                        </li>
-                      );
-                    })}
-                  </ul>
+                  <div className={s.list_container}>
+                    <ul>
+                      <li><span className={s.loader}></span></li>
+                      {suggestedRides.map((item, i) => {
+                        return (
+                          <li key={i} onClick={(e) => onSuggestSelect1(e, { item })}>
+                            {item.locality}
+                          </li>
+                          
+                        );
+                      })}
+                    </ul>
+                  </div>                 
+                </div>
+              ) : null} */}
+             
+             {inputValues.localityFrom.localityName !== '' && targetName === 'localityFrom' && suggestMode ?
+              (
+                <div className={s.input__popup}>
+                  <div className={s.list_container}>
+                    <ul>
+                      { searching && <li><span className={s.loader}></span></li>}
+                        
+                         {suggestedRides.map((item, i) => {
+                            return (<li key={i} onClick={(e) => onSuggestSelect1(e, { item })}><span>{item.locality}</span></li>);
+                          })} 
+                          
+                      
+                      {/* { searching
+                        ? <li><span className={s.loader}></span></li>
+                        : suggestedRides ? <span><h6>result</h6></span> : <span><h6>No result</h6></span>  
+                      }  */}
+                       {/* { loading
+                        ? <li><span className={s.loader}></span></li>
+                        : <li><span className={s.span_result}><center><h4>No result</h4></center></span></li>
+                        }  */}
+                    </ul>
+                  </div>                 
                 </div>
               ) : null}
             </div>
@@ -227,10 +257,26 @@ const AskForm = (props) => {
               ) : null}
             </div>  
                       
-            <div className={s.calendar_btn}>              
+            <div className={s.calendar_btn}>     
+                      
               {/* <button type="button" onClick={() => setOpenCalendar(!openCalendar)} id="id1">{moment(initialState.date).format("DD MMM YYYY")}</button> */}
-              <button type="button" onClick={() => setOpenCalendar(!openCalendar)}>{inputValues.date ? moment(inputValues.date).format("DD MMM YYYY") : moment(new Date ()).format("DD MMM YYYY")}</button>
-                   
+              <button type="button" onClick={() => setOpenCalendar(!openCalendar)}>
+                {/* <span className={s.calendarIcon}>
+                  <FaCalendarWeek size={16}/>
+                </span>  */}
+                <div className={s.calendarBtn}>
+                  <div className={s.calendarIcon}>
+                    <FaCalendarWeek size={16}/>
+                  </div> 
+                  <div className={s.calendarDate}>
+                    <span > 
+                      {inputValues.date ? moment(inputValues.date).format("DD MMM YYYY") : moment(new Date ()).format("DD MMM YYYY")}
+                    </span>
+                  </div>
+                </div>
+                
+                  
+                  </button> 
             </div>
             <div className={s.search_btn}>              
               <button disabled={isSubmitting} type="submit">Find ride</button>       

@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { findLocality } from "./../../../components/api/actions";
-import moment from "moment";
 import {
   findRidesByParamsThunkCreator,
   setSearchRidesParamsActionCreator,
@@ -13,6 +12,8 @@ import useDebounce from "../../../Hooks/useDebounce";
 function useFormValidation(initialState, setOpenCalendar, validate) {
   const [inputValues, setInputValues] = React.useState(initialState);
   //const [form, setForm] = React.useState({ localityFrom: '', destination: '', user: '', date: '' });
+  const [suggestMode, setSuggestMode] = React.useState(false);
+  const [searching, setSearching] = React.useState(false);
   const [errors, setErrors] = React.useState({});
   //const [isSubmitting, setSubmitting] = React.useState(false);
 
@@ -41,9 +42,16 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
     try {
       if (search !== "" || undefined) {
         const result = await findLocality(search);
-        dispatch(setSuggestedRidesActionCreator(result));
+        if (result && result.length > 0) {
+          dispatch(setSuggestedRidesActionCreator(result));
+          setSearching(false);
+        } else {
+          setSuggestMode(false);
+          setSearching(false);
+        }
       } else {
         dispatch(setSuggestedRidesActionCreator([]));
+        setSuggestMode(false);
       }
     } catch (e) {
       console.log(e);
@@ -74,7 +82,12 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
 
   async function handleChange(e) {
     let search = e.target.value;
-    if (search === 0) {
+    // console.log("e.target.value", e.target.value);
+    if (search === "" || undefined) {
+      setInputValues({
+        ...inputValues,
+        [e.target.name]: { localityName: e.target.value },
+      });
       dispatch(setSuggestedRidesActionCreator([]));
       setTargetName(null);
       return;
@@ -84,9 +97,8 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
       [e.target.name]: { localityName: e.target.value },
     });
     setTargetName(e.target.name);
-    //console.log('e.target.name:', e.target.name);
-
-    //console.log('targetName:', targetName);
+    setSuggestMode(true);
+    setSearching(true);
     await deboucedSearch(search);
     return;
   }
@@ -102,6 +114,7 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
     inputValues.localityFrom.id = item._id;
 
     dispatch(setSuggestedRidesActionCreator([]));
+    setSuggestMode(false);
     // console.log('e.target', e.target);
     // console.log('item.localityFrom', item.locality);
     // console.log('item._id', item._id);
@@ -171,6 +184,8 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
     // handleBlur,
     inputValues,
     setInputValues,
+    suggestMode,
+    searching,
     errors,
     //isSubmitting,
     // modifiedDate,
