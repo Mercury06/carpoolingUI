@@ -180,13 +180,13 @@ const Calendar2 = ({setOpenCalendar, setInputValues, inputValues, selectedDate, 
                 </div>
                 <div class={s.calendar_body}>
                     <div class={s.calendar_week_day}>
-                        <div>Sun</div>
-                        <div>Mon</div>
-                        <div>Tue</div>
-                        <div>Wed</div>
-                        <div>Thu</div>
-                        <div>Fri</div>
-                        <div>Sat</div>
+                        <div>Su</div>
+                        <div>Mo</div>
+                        <div>Tu</div>
+                        <div>We</div>
+                        <div>Th</div>
+                        <div>Fr</div>
+                        <div>Sa</div>
                     </div>
                     <div class={s.calendar_days} onClick={(e) => setDate(e)}>
                         {/* {daysToRender.map((day) => checkDay(day) ? <div id={day} className={s.day}>{day > 0 && day}</div> : <div id={day} className={s.day}>{day*2}</div>
@@ -197,7 +197,7 @@ const Calendar2 = ({setOpenCalendar, setInputValues, inputValues, selectedDate, 
                         {/* {daysToRender.map((day) => (<div id={day} className={s.day}>{day > 0 && day}</div>))  */}
                            
                         {/* {daysToRender.map((day) => (<div id={day} className={checkDay(day) ? s.div_past_date : s.div}>{day > 0 && day}</div>))} */}
-                        {daysToRender.map((day) => (<div id={day} className={checkDay(day)}>{day > 0 && day}</div>))}                       
+                        {daysToRender.map((day) => (<div tabindex="-1" id={day} className={checkDay(day)}>{day > 0 && day}</div>))}                       
                         
                     </div>
                 </div>               

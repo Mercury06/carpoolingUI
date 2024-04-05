@@ -256,7 +256,10 @@ const AskForm = (props) => {
                 </div>
               ) : null}
             </div>  
-                      
+
+
+               <div className={s.calendar_wrapper}>
+                    
             <div className={s.calendar_btn}>     
                       
               {/* <button type="button" onClick={() => setOpenCalendar(!openCalendar)} id="id1">{moment(initialState.date).format("DD MMM YYYY")}</button> */}
@@ -278,15 +281,16 @@ const AskForm = (props) => {
                   
                   </button> 
             </div>
+            <div>            
+                {openCalendar && <Calendar2 setOpenCalendar={setOpenCalendar} inputValues={inputValues} setInputValues={setInputValues} 
+                                        selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
+            </div>
+            </div>   
             <div className={s.search_btn}>              
               <button disabled={isSubmitting} type="submit">Find ride</button>       
             </div>                      
           </form>
-          <div>
-            {/* <Calendar /> */}
-            {openCalendar && <Calendar2 setOpenCalendar={setOpenCalendar} inputValues={inputValues} setInputValues={setInputValues} 
-                                        selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
-          </div>
+          
         </div>
         {/* <div>
            
