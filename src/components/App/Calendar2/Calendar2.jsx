@@ -67,7 +67,8 @@ const Calendar2 = ({setOpenCalendar, setInputValues, inputValues, selectedDate, 
     }
 
     const onBackMonth = () => {
-        if (monthNames.indexOf(shownMonthTitle) === new Date().getMonth()) {
+        if (monthNames.indexOf(shownMonthTitle) === new Date().getMonth() && shownYear === new Date().getFullYear()) {
+            console.log("returned", new Date().getFullYear())
             return
         } else {
             if (monthNames.indexOf(shownMonthTitle) === 0) {            
@@ -127,25 +128,39 @@ const Calendar2 = ({setOpenCalendar, setInputValues, inputValues, selectedDate, 
         // console.log("SHOWN", new Date (shownYear, monthNames.indexOf(shownMonthTitle), day).getDate());
         // console.log("SHOWN2", new Date().getDate());
         // console.log("SHOWN3", new Date (shownYear, monthNames.indexOf(shownMonthTitle), day) >= new Date());
-    
-        if (day && day > 0 && new Date (shownYear, monthNames.indexOf(shownMonthTitle), day) >= new Date()) { 
-            // console.log("new date", new Date())
-            // console.log("DAY", new Date (shownYear, monthNames.indexOf(shownMonthTitle), day) )
-    
-      
+
+
+        // console.log("shownYear", shownYear);
+        // console.log("monthNames.indexOf(shownMonthTitle)", monthNames.indexOf(shownMonthTitle));
+        // console.log("newed", new Date (shownYear, monthNames.indexOf(shownMonthTitle), day));
+        // console.log("shownMonthTitle", shownMonthTitle);
+        // console.log("currMonth", monthNames[new Date().getMonth()]);
+        // console.log("compare mnths", shownMonthTitle === monthNames[new Date().getMonth()]);
+        // console.log("newed", new Date (shownYear, monthNames.indexOf(shownMonthTitle), day));
+        // console.log("today", new Date());
+        // console.log("newed < today", new Date (shownYear, monthNames.indexOf(shownMonthTitle), day) < new Date());
+        // console.log("newed = today", new Date (shownYear, monthNames.indexOf(shownMonthTitle), day) == new Date());
+        // console.log("newed > today", new Date (shownYear, monthNames.indexOf(shownMonthTitle), day) > new Date());
+        
+        // if (day && day > 0 && new Date (shownYear, monthNames.indexOf(shownMonthTitle), day).getDay() >= new Date().getDay()) {
+        if (day && day > 0) {
+            if (new Date (shownYear, monthNames.indexOf(shownMonthTitle), day).getDay() < new Date().getDay() 
+                && shownMonthTitle === monthNames[new Date().getMonth()]) {
+                    return
+            }
             let formattedMonth = (monthNames.indexOf(shownMonthTitle) + 1);
-            console.log("formattedMonth", formattedMonth)        
+            // console.log("formattedMonth", formattedMonth)        
             let modifiedDate = shownYear + '-' + (formattedMonth <= 9 ? '0' + formattedMonth : formattedMonth) + '-' + (day <= 9 ? '0' + day : day);
-            console.log("modifiedDate in handler", modifiedDate);
+            // console.log("modifiedDate in handler", modifiedDate);
             setInputValues({
                 ...inputValues,
                 date: modifiedDate,
             });
             
             setSelectedDate(modifiedDate);
-            // console.log("SETTY", new Date(modifiedDate)) 
-            
+            // console.log("SETTY", new Date(modifiedDate))            
             setOpenCalendar(false);
+            return
         } else {
           console.log("no id");
           return
@@ -158,9 +173,11 @@ const Calendar2 = ({setOpenCalendar, setInputValues, inputValues, selectedDate, 
             <div class={s.calendar}>
                 <div class={s.calendar_header}>
                     <div class={s.month_picker} id="month-picker">
-                        <div onClick={onBackMonth}>
+                        <div onClick={onBackMonth} class={s.arrow}>
                             <span>
-                                <h3><MdArrowBackIosNew /></h3>
+                                {/* <h3><MdArrowBackIosNew color="orange" /></h3> */} 
+                                {/* <h3><MdArrowBackIosNew color={`${s.container} ${scrolled ? s.scroll_top : ""}`} /></h3> */}
+                                <h3><MdArrowBackIosNew color={ new Date().getMonth() == monthNames.indexOf(shownMonthTitle) && new Date().getFullYear() == shownYear ? "grey"  : "orange"} /></h3>
                             </span>
                         </div>
                         <div class={s.month_and_year}>
@@ -171,9 +188,9 @@ const Calendar2 = ({setOpenCalendar, setInputValues, inputValues, selectedDate, 
                                 <span><h3>{shownYear}</h3></span>
                             </div>
                         </div>
-                        <div onClick={onForwardMonth}>
+                        <div onClick={onForwardMonth} class={s.arrow}>
                             <span>
-                                <h3><MdArrowForwardIos /></h3>
+                                <h3><MdArrowForwardIos color="orange"/></h3>
                             </span>
                         </div>                        
                     </div>     
@@ -197,7 +214,7 @@ const Calendar2 = ({setOpenCalendar, setInputValues, inputValues, selectedDate, 
                         {/* {daysToRender.map((day) => (<div id={day} className={s.day}>{day > 0 && day}</div>))  */}
                            
                         {/* {daysToRender.map((day) => (<div id={day} className={checkDay(day) ? s.div_past_date : s.div}>{day > 0 && day}</div>))} */}
-                        {daysToRender.map((day) => (<div tabindex="-1" id={day} className={checkDay(day)}>{day > 0 && day}</div>))}                       
+                        {daysToRender.map((day) => (<div tabIndex="-1" id={day} className={checkDay(day)}>{day > 0 && day}</div>))}                       
                         
                     </div>
                 </div>               

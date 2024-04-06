@@ -136,8 +136,7 @@ const AskForm = (props) => {
           <p>Ride your best way</p>
           
         </div>        
-        {/* <div ref={element} className={s.container}> */}        
-        {/* <div ref={element} className={`${s.container} ${scrolled ? s.scroll_top : ""}`}> */}
+        {/* <div ref={element} className={s.container}> */}
         <div className={`${s.container} ${scrolled ? s.scroll_top : ""}`}>
           <form className={s.form} onSubmit={findRidesHandleSubmit}>
             {/* <h3>Find ride</h3> */}
