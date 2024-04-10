@@ -8,7 +8,7 @@ export async function useSseInitializer(isAuth, currentUser) {
 
   const [eventData, setEventData] = useState(null);
   // console.log("userId in hook:", userId);
-  console.log("eventData in hook:", eventData);
+  // console.log("eventData in hook:", eventData);
 
   useEffect(() => {
     let createSseConnection = () => {

@@ -36,7 +36,7 @@ const AskForm = (props) => {
   const element = React.useRef();  
   const observer = React.useRef();
   const [scrolled, setScrolled] = React.useState(false);
-  console.log("suggestedRides", suggestedRides)
+  // console.log("suggestedRides", suggestedRides)
   
   // console.log("initialState data", initialState)
   // const dispatch = useDispatch();
@@ -97,11 +97,11 @@ const AskForm = (props) => {
     
       let entry = entries[0]  
       if (!entry.isIntersecting) {
-        console.log("intersecting")
+        // console.log("intersecting")
         setScrolled(true)
       }
       else {
-        console.log("not intersecting")
+        // console.log("not intersecting")
         setScrolled(false)
       }    
     }
@@ -239,7 +239,7 @@ const AskForm = (props) => {
                   </div>
                 )}
               </div>
-              {inputValues.destination.localityName !== '' &&
+              {/* {inputValues.destination.localityName !== '' &&
               suggestedRides.length > 0 &&
               targetName === 'destination' ? (
                 <div className={s.input__popup}>
@@ -253,10 +253,32 @@ const AskForm = (props) => {
                     })}
                   </ul>
                 </div>
+              ) : null} */}
+              {inputValues.destination.localityName !== '' && targetName === 'destination' && suggestMode ?
+              (
+                <div className={s.input__popup}>
+                  <div className={s.list_container}>
+                    <ul>
+                      { searching && <li><span className={s.loader}></span></li>}
+                        
+                         {suggestedRides.map((item, i) => {
+                            return (<li key={i} onClick={(e) => onSuggestSelect2(e, { item })}><span>{item.locality}</span></li>);
+                          })} 
+                          
+                      
+                      {/* { searching
+                        ? <li><span className={s.loader}></span></li>
+                        : suggestedRides ? <span><h6>result</h6></span> : <span><h6>No result</h6></span>  
+                      }  */}
+                       {/* { loading
+                        ? <li><span className={s.loader}></span></li>
+                        : <li><span className={s.span_result}><center><h4>No result</h4></center></span></li>
+                        }  */}
+                    </ul>
+                  </div>                 
+                </div>
               ) : null}
             </div>  
-
-
                <div className={s.calendar_wrapper}>
                     
             <div className={s.calendar_btn}>     
@@ -275,27 +297,20 @@ const AskForm = (props) => {
                       {inputValues.date ? moment(inputValues.date).format("DD MMM YYYY") : moment(new Date ()).format("DD MMM YYYY")}
                     </span>
                   </div>
-                </div>
-                
+                </div>               
                   
                   </button> 
             </div>
             <div>            
-                {openCalendar && <Calendar2 setOpenCalendar={setOpenCalendar} inputValues={inputValues} setInputValues={setInputValues} 
+                {openCalendar && <Calendar2 openCalendar={openCalendar} setOpenCalendar={setOpenCalendar} inputValues={inputValues} setInputValues={setInputValues} 
                                         selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
             </div>
             </div>   
             <div className={s.search_btn}>              
               <button disabled={isSubmitting} type="submit">Find ride</button>       
             </div>                      
-          </form>
-          
-        </div>
-        {/* <div>
-           
-            {openCalendar && <Calendar2 setOpenCalendar={setOpenCalendar} inputValues={inputValues} setInputValues={setInputValues} 
-                                        selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
-        </div> */}
+          </form>          
+        </div>       
       </div>
       
     </>

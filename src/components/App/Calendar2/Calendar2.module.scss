@@ -12,7 +12,7 @@
     background-color: white;
     border-radius: 16px;
     margin-top: 2px;
-    right: 19%;
+    right: 19%;    
     // padding: 20px;
     position: absolute;
     overflow: hidden;
@@ -24,8 +24,7 @@
     // font-style: normal;
 
     .calendar_header {
-        display: flex;
-        
+        display: flex;        
         justify-content: space-between;
         align-items: center;
         font-size: 1em;
@@ -194,93 +193,6 @@
 }
 
 
-
-
-// .calendar_days {
-//     display: grid;
-//     grid-template-columns: repeat(7, 1fr);
-//     gap: 2px;
-//     padding: 0 20px;
-//     // background-color: violet;
-
-//     .div {
-//         width: 36px;
-//         height: 36px;
-//         display: flex;
-//         align-items: center;
-//         text-align: center;
-//         justify-content: center;
-//         padding: 5px;
-//         position: relative;
-//         animation: daysAppear 1s forwards;
-
-//         &_past_date {
-//             color: rgb(143, 141, 141);
-//             width: 36px;
-//         height: 36px;
-//         display: flex;
-//         align-items: center;
-//         text-align: center;
-//         justify-content: center;
-//         padding: 5px;
-//         position: relative;
-//         animation: daysAppear 1s forwards;
-
-//             &:hover {
-//                 cursor: default;
-//             }
-//         }
-
-//         &_curr_date {
-//             font-weight: 700;
-//             color: #0000ff;
-//             width: 36px;
-//         height: 36px;
-//         display: flex;
-//         align-items: center;
-//         text-align: center;
-//         justify-content: center;
-//         padding: 5px;
-//         position: relative;
-//         animation: daysAppear 1s forwards;
-
-//             &:hover {
-//                 cursor: pointer;
-//             }  
-
-//             &_selected {
-//                 border-radius: 50%;
-//                 cursor: pointer;
-//                 color: white;
-//                 background-color: #f8a97c;
-//             }
-//         }
-
-//         &_future_date {
-//             color: rgb(0, 0, 0);
-//             width: 36px;
-//         height: 36px;
-//         display: flex;
-//         align-items: center;
-//         text-align: center;
-//         justify-content: center;
-//         padding: 5px;
-//         position: relative;
-//         animation: daysAppear 1s forwards;
-
-//             &:hover {
-//                 cursor: pointer;
-//             }
-
-//             &_selected {
-//                 cursor: pointer;
-//                 color: white;
-//                 background-color: #f8a97c;
-//                 border-radius: 50%;
-//             }
-//         }
-
-
-
-//     }
-// } 
+.hidden {
+    display: none;
+}

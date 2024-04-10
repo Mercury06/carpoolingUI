@@ -118,27 +118,26 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
     // console.log('e.target', e.target);
     // console.log('item.localityFrom', item.locality);
     // console.log('item._id', item._id);
-    console.log(
-      "inputValues.localityFrom.localityName:",
-      inputValues.localityFrom.localityName
-    );
-    console.log("inputValues.localityFrom.id:", inputValues.localityFrom.id);
+    // console.log(
+    //   "inputValues.localityFrom.localityName:",
+    //   inputValues.localityFrom.localityName
+    // );
+    // console.log("inputValues.localityFrom.id:", inputValues.localityFrom.id);
     return;
   }
+
   function onSuggestSelect2(e, { item }) {
     e.stopPropagation();
     inputValues.destination.localityName = item.locality;
     inputValues.destination.id = item._id;
 
     dispatch(setSuggestedRidesActionCreator([]));
-    // console.log('e.target', e.target);
-    // console.log('item._id', item._id);
-    // console.log('item.localityFrom', item.locality);
-    console.log(
-      "inputValues.destination.localityName:",
-      inputValues.destination.localityName
-    );
-    console.log("inputValues.destination.id:", inputValues.destination.id);
+    setSuggestMode(false);
+    // console.log(
+    //   "inputValues.destination.localityName:",
+    //   inputValues.destination.localityName
+    // );
+    // console.log("inputValues.destination.id:", inputValues.destination.id);
     return;
   }
 

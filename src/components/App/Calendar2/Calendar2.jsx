@@ -3,7 +3,7 @@ import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 import s from './Calendar2.module.scss';
 
 
-const Calendar2 = ({setOpenCalendar, setInputValues, inputValues, selectedDate, setSelectedDate }) => {    
+const Calendar2 = ({openCalendar, setOpenCalendar, setInputValues, inputValues, selectedDate, setSelectedDate }) => {    
     
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     const currentDate = new Date();
@@ -170,7 +170,8 @@ const Calendar2 = ({setOpenCalendar, setInputValues, inputValues, selectedDate, 
 
     return (
         <>
-            <div class={s.calendar}>
+            {/* <div class={s.calendar}> */}
+            <div className={`${s.calendar} ${openCalendar ? "" : s.hidden}`}>
                 <div class={s.calendar_header}>
                     <div class={s.month_picker} id="month-picker">
                         <div onClick={onBackMonth} class={s.arrow}>

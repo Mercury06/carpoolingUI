@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import NotificationMenu from '../Header/NotificationMenu';
 import Footer from '../../temporary/Footer/Footer';
 import Content from '../../temporary/Content/Content';
+import Content2 from '../../temporary/Content2/Content2';
 
 
 const Layout = ({ children, renderFlag }) => {
@@ -82,7 +83,8 @@ const Layout = ({ children, renderFlag }) => {
                                 dropDownMenuRef={dropDownMenuRef}/> } 
       { isAuth && <NotificationMenu openNotifications={openNotifications} notificationMenuRef={notificationMenuRef}/>}                         
       <div className={classes.container}>{children}</div>
-      {renderFlag && <Content />}
+      {/* {renderFlag && <Content />} */}
+      {renderFlag && <Content2 />}
       {renderFlag && <Footer />}     
     </>
   );
