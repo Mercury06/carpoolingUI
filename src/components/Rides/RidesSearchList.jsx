@@ -27,14 +27,16 @@ const RidesSearchList = () => {
     e.stopPropagation();
     setLoading(true);
     console.log(e.currentTarget);
+    console.log("searchRidesParams", searchRidesParams);
     const result = await createAsk(searchRidesParams);
-    if (result.status === 'OK') {
-      setTimeout(() => {
-        console.log('result:', result.status);
-        setLoading(false);
-        setFetched(true);
-      }, 1000);
-    }
+    console.log("result in searchRidesParams", result);
+    // if (result.status === 'OK') {
+    //   setTimeout(() => {
+    //     console.log('result:', result.status);
+    //     setLoading(false);
+    //     setFetched(true);
+    //   }, 1000);
+    // }
     return;
   };
 

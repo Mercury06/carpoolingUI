@@ -5,12 +5,11 @@ import NotificationItem from "./NotificationItem";
 
 
 
-const NotificationMenu = ({openNotifications, notificationMenuRef, children}) => {
-    const notifications = useSelector((state) => state.user.notifications);
-    
+const NotificationMenu = ({openNotifications, notificationMenuRef, notifications, children}) => {
+    console.log("notifications in NotificationMenu>>>>>>>>", notifications)
     return (    
         <div ref={notificationMenuRef} className={`${classes.notificationmenu_wrap} ${ openNotifications ? classes.active : ''}`}>         
-            {notifications.map((item) => <NotificationItem item={item} openNotifications={openNotifications} key={item._id} />)}  
+            {/* {notifications.map((item) => <NotificationItem item={item} openNotifications={openNotifications} key={item._id} />)}   */}
         </div>
     )
 }

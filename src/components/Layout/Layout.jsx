@@ -16,6 +16,7 @@ const Layout = ({ children, renderFlag }) => {
   
   const isAuth = useSelector((state) => state.user.isAuth);
   const user = useSelector((state) => state.user.currentUser); 
+  const notifications = useSelector((state) => state.user.notifications);
     
   const userIconRef = useRef();
   const dropDownMenuRef = useRef();
@@ -81,7 +82,7 @@ const Layout = ({ children, renderFlag }) => {
       <Header setOpenNotifications={setOpenNotifications} setOpenDropdown={setOpenDropdown} openDropdown={openDropdown} isAuth={isAuth} userIconRef={userIconRef} notificationIconRef={notificationIconRef}/>      
       { isAuth && <DropDownMenu openDropdown={openDropdown} user={user} 
                                 dropDownMenuRef={dropDownMenuRef}/> } 
-      { isAuth && <NotificationMenu openNotifications={openNotifications} notificationMenuRef={notificationMenuRef}/>}                         
+      { isAuth && notifications.length > 1 && <NotificationMenu openNotifications={openNotifications} notificationMenuRef={notificationMenuRef} notifications={notifications} />}                         
       <div className={classes.container}>{children}</div>
       {/* {renderFlag && <Content />} */}
       {renderFlag && <Content2 />}

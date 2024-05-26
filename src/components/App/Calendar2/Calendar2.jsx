@@ -172,16 +172,16 @@ const Calendar2 = ({openCalendar, setOpenCalendar, setInputValues, inputValues, 
         <>
             {/* <div class={s.calendar}> */}
             <div className={`${s.calendar} ${openCalendar ? "" : s.hidden}`}>
-                <div class={s.calendar_header}>
-                    <div class={s.month_picker} id="month-picker">
-                        <div onClick={onBackMonth} class={s.arrow}>
+                <div className={s.calendar_header}>
+                    <div className={s.month_picker} id="month-picker">
+                        <div onClick={onBackMonth} className={s.arrow}>
                             <span>
                                 {/* <h3><MdArrowBackIosNew color="orange" /></h3> */} 
                                 {/* <h3><MdArrowBackIosNew color={`${s.container} ${scrolled ? s.scroll_top : ""}`} /></h3> */}
                                 <h3><MdArrowBackIosNew color={ new Date().getMonth() == monthNames.indexOf(shownMonthTitle) && new Date().getFullYear() == shownYear ? "grey"  : "orange"} /></h3>
                             </span>
                         </div>
-                        <div class={s.month_and_year}>
+                        <div className={s.month_and_year}>
                             <div>
                                 <span><h3>{shownMonthTitle}</h3></span>
                             </div>
@@ -189,15 +189,15 @@ const Calendar2 = ({openCalendar, setOpenCalendar, setInputValues, inputValues, 
                                 <span><h3>{shownYear}</h3></span>
                             </div>
                         </div>
-                        <div onClick={onForwardMonth} class={s.arrow}>
+                        <div onClick={onForwardMonth} className={s.arrow}>
                             <span>
                                 <h3><MdArrowForwardIos color="orange"/></h3>
                             </span>
                         </div>                        
                     </div>     
                 </div>
-                <div class={s.calendar_body}>
-                    <div class={s.calendar_week_day}>
+                <div className={s.calendar_body}>
+                    <div className={s.calendar_week_day}>
                         <div>Su</div>
                         <div>Mo</div>
                         <div>Tu</div>
@@ -206,7 +206,7 @@ const Calendar2 = ({openCalendar, setOpenCalendar, setInputValues, inputValues, 
                         <div>Fr</div>
                         <div>Sa</div>
                     </div>
-                    <div class={s.calendar_days} onClick={(e) => setDate(e)}>
+                    <div className={s.calendar_days} onClick={(e) => setDate(e)}>
                         {/* {daysToRender.map((day) => checkDay(day) ? <div id={day} className={s.day}>{day > 0 && day}</div> : <div id={day} className={s.day}>{day*2}</div>
                             // checkDay(day) ? (<div id={day} className={s.day}>{day > 0 && day}</div>) : (<div id={day} className={s.day}>{shownYear}</div>) 
                             // (checkDay(day) ? <div id={day} className={s.day}>{day > 0 && day}</div> : <div id={day} className={s.day}>{day*2}</div>)
@@ -215,7 +215,7 @@ const Calendar2 = ({openCalendar, setOpenCalendar, setInputValues, inputValues, 
                         {/* {daysToRender.map((day) => (<div id={day} className={s.day}>{day > 0 && day}</div>))  */}
                            
                         {/* {daysToRender.map((day) => (<div id={day} className={checkDay(day) ? s.div_past_date : s.div}>{day > 0 && day}</div>))} */}
-                        {daysToRender.map((day) => (<div tabIndex="-1" id={day} className={checkDay(day)}>{day > 0 && day}</div>))}                       
+                        {daysToRender.map((day, index) => (<div tabIndex="-1" key={index} id={day} className={checkDay(day)}>{day > 0 && day}</div>))}                       
                         
                     </div>
                 </div>               

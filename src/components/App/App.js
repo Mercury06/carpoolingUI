@@ -28,23 +28,24 @@ import { useSseInitializer } from "../utils/useSseInitializer.js";
 
 function App() {
   const isAuth = useSelector((state) => state.user.isAuth);
+  const userId = useSelector((state) => state.user.currentUser.id);
   const dispatch = useDispatch();
   const [renderFlag, setRenderFlag] = useState(false);
   const currentUser = useSelector((store) => store.user.currentUser);
   const [message, setmessage] = useState(null);
   // const eventData = useSseInitializer(isAuth, currentUser);
   useSseInitializer(isAuth, currentUser);
-  // console.log("currentUser at top:", currentUser);
-  // console.log("eventData at top:", eventData);
 
   useEffect(() => {
     dispatch(auth());
     console.log("DISPATCHED AUTH");
   }, []);
+  // console.log("userId in App start", userId);
 
   useEffect(() => {
     const userId = currentUser.id;
     if (userId) {
+      // console.log("REFRESHED NOTIFICATIONS", userId);
       dispatch(fetchNotifications(userId));
     }
   }, [isAuth]);
@@ -108,7 +109,7 @@ function App() {
         {isAuth && (
           <Route
             path="ask-ride"
-            element={<AskForm setRenderFlag={setRenderFlag} />}
+            element={<AskForm setRenderFlag={setRenderFlag} userId={userId} />}
           />
         )}
         {!isAuth && (

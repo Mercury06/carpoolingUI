@@ -35,7 +35,7 @@ function useForm(initialState, validate) {
   async function searchResolver(search) {
     //debugger;
     try {
-      if (search !== "" || undefined) {
+      if (search) {
         const result = await findLocality(search);
         dispatch(setSuggestedRidesActionCreator(result));
       } else {
@@ -45,6 +45,7 @@ function useForm(initialState, validate) {
       console.log(e);
     }
   }
+
   async function handleChange(e) {
     //debugger;
     let search = e.target.value;

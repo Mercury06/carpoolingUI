@@ -42,21 +42,22 @@ const Content2 = () => {
             entry.target.style.setProperty('opacity', "1")
             entry.target.style.setProperty('transform', "none")              
           }    
-        }       
-              
+        }                     
      
         elemRefs.forEach((i) => {
             if (i && i instanceof Element) {
-                console.log("element", i)
+                // console.log("element", i)
                 // const observer = new IntersectionObserver(cb, options)  
                 // observer.observe(i)
                 lineObserver.current = new IntersectionObserver(cb, options)            
                 lineObserver.current.observe(i)              
             }    
         })        
-
         
-        // lineObserver.current.observe(timelineRef.current)
+        return () => {
+            lineObserver.current.disconnect();            
+        }
+    
        
       }, []);       
 

@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import useDebounce from "../../../Hooks/useDebounce";
 
-function useFormValidation(initialState, setOpenCalendar, validate) {
+function useFormValidation(initialState, setOpenCalendar) {
   const [inputValues, setInputValues] = React.useState(initialState);
   //const [form, setForm] = React.useState({ localityFrom: '', destination: '', user: '', date: '' });
   const [suggestMode, setSuggestMode] = React.useState(false);
@@ -20,7 +20,7 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
   const [targetName, setTargetName] = React.useState(null);
   const deboucedSearch = useDebounce(searchResolver, 500);
 
-  // console.log("inputValues mounted", inputValues);
+  console.log("inputValues mounted##", inputValues);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,13 +37,15 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
   //     }
   //   }
   // }, [errors]);
+
   async function searchResolver(search) {
     //debugger;
     try {
-      if (search !== "" || undefined) {
+      if (search) {
         const result = await findLocality(search);
-        if (result && result.length > 0) {
-          dispatch(setSuggestedRidesActionCreator(result));
+        if (result && result.searchResult.length > 0) {
+          let dataToDispatch = result.searchResult;
+          dispatch(setSuggestedRidesActionCreator(dataToDispatch));
           setSearching(false);
         } else {
           setSuggestMode(false);
@@ -52,14 +54,16 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
       } else {
         dispatch(setSuggestedRidesActionCreator([]));
         setSuggestMode(false);
+        return;
       }
     } catch (e) {
       console.log(e);
     }
   }
+
   const onClickClear = (inputName) => {
     //debugger;
-
+    if (!inputName) return;
     if (inputName === "input1") {
       setInputValues({
         ...inputValues,
@@ -83,7 +87,7 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
   async function handleChange(e) {
     let search = e.target.value;
     // console.log("e.target.value", e.target.value);
-    if (search === "" || undefined) {
+    if (!search) {
       setInputValues({
         ...inputValues,
         [e.target.name]: { localityName: e.target.value },
@@ -146,10 +150,11 @@ function useFormValidation(initialState, setOpenCalendar, validate) {
     event.preventDefault();
     console.log("inputValues", inputValues);
     // console.log("converted", moment("25 march 2024").format("YYYY-MM-DD"));
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     dispatch(setSearchRidesParamsActionCreator(inputValues));
     dispatch(findRidesByParamsThunkCreator(inputValues));
     navigate("/rides-search");
-
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //findRidesByParamsApiAction(inputValues);
     //console.log('submit');
     //const validationErrors = validate(inputValues);

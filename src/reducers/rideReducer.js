@@ -92,7 +92,12 @@ export const findRidesByParamsThunkCreator = ({ ...form }) => {
   return async (dispatch) => {
     try {
       const rides = await findRidesByParamsApiAction({ ...form });
-      dispatch(setRidesActionCreator(rides));
+      if (rides && rides.matchedRides.length != 0) {
+        console.log("rides in reduceer", rides.matchedRides);
+        dispatch(setRidesActionCreator(rides));
+      } else {
+        console.log("no result");
+      }
     } catch (e) {
       alert(e.response.data);
     }

@@ -18,7 +18,9 @@ export async function useSseInitializer(isAuth, currentUser) {
         );
         eventSource.current.onmessage = (event) => {
           const message = JSON.parse(event.data);
+
           // setEventData(message);
+          console.log("event in eventSource", event);
           console.log("eventSource onmessage...", message);
         };
         eventSource.current.addEventListener("opportune", (event) => {

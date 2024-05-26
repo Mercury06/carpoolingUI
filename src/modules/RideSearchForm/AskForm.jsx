@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { useSelector } from 'react-redux';
 import { BsFillGeoAltFill } from 'react-icons/bs';
 import { ClearIcon } from '../../components/assets/svg/BoxIcons';
@@ -7,7 +6,7 @@ import { LiaExchangeAltSolid } from "react-icons/lia";
 import { FaCalendarWeek } from "react-icons/fa";
 import useForm from './hooks/useForm';
 // import { setSuggestedRides } from '../../../../reducers/rideReducer';
-// import { findLocality } from '../../../api/actions';
+
 
 import s from './askForm.module.scss';
 import Calendar2 from '../../components/App/Calendar2/Calendar2';
@@ -15,6 +14,8 @@ import moment from 'moment';
 
 
 const AskForm = (props) => {
+  
+  const userId = props.userId;
   
   const initialState = {
     localityFrom: {
@@ -28,24 +29,25 @@ const AskForm = (props) => {
     user: '',
     date: '',
   };
-
-  const userId = useSelector((state) => state.user.currentUser.id);
+  
   const suggestedRides = useSelector((state) => state.ride.suggestedRides);
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const [selectedDate, setSelectedDate] = React.useState(moment(new Date()).format("YYYY-MM-DD"));
   const [openCalendar, setOpenCalendar] = React.useState(false);
   const element = React.useRef();  
   const observer = React.useRef();
   const [scrolled, setScrolled] = React.useState(false);
   // console.log("suggestedRides", suggestedRides)
-  
-  // console.log("initialState data", initialState)
-  // const dispatch = useDispatch();
+
 
   React.useEffect(() => {
-    initialState.user = userId;
-    // initialState.date = selectedDate;    
-    // console.log('suggestedRides:', suggestedRides);
-  }, [suggestedRides]);
+     
+    initialState.date = selectedDate;
+    setInputValues({
+      ...inputValues,
+      user: userId,
+    });
+    
+  }, [suggestedRides, userId]);
 
   React.useEffect(() => {
     props.setRenderFlag(true)   
